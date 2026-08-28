@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AI 股票觀察儀表板</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<div id="app-shell">
+  <nav id="side-nav">
+    <div class="brand">AI 股票觀察</div>
+    <ul>
+      <li><a href="#/overview" data-route="overview">總覽 Dashboard</a></li>
+      <li><a href="#/observation" data-route="observation">AI 觀察清單</a></li>
+      <li><a href="#/portfolio" data-route="portfolio">我的持股</a></li>
+      <li><a href="#/stock" data-route="stock">個股分析</a></li>
+      <li><a href="#/selection-flow" data-route="selection-flow">AI 選股流程</a></li>
+      <li><a href="#/strategy" data-route="strategy">策略／參數</a></li>
+      <li><a href="#/market" data-route="market">市場分析</a></li>
+      <li><a href="#/industry" data-route="industry">產業分析</a></li>
+      <li><a href="#/backtest" data-route="backtest">回測驗證</a></li>
+      <li><a href="#/historical" data-route="historical">資料中心</a></li>
+      <li><a href="#/reports" data-route="reports">報告中心</a></li>
+      <li><a href="#/settings" data-route="settings">系統設定</a></li>
+    </ul>
+  </nav>
+
+  <div id="main-area">
+    <header id="top-bar">
+      <div style="position: relative;">
+        <input type="search" id="global-search" placeholder="搜尋股票代號或公司名稱" autocomplete="off" />
+        <div id="search-results" hidden></div>
+      </div>
+      <div id="auth-box">
+        <span id="auth-status" class="notice" style="display:none; margin:0; padding:4px 10px;"></span>
+        <form id="login-form" class="inline" style="margin:0;">
+          <input type="email" id="login-email" placeholder="Email" required style="padding:6px 10px; border:1px solid var(--border); border-radius:8px;" />
+          <input type="password" id="login-password" placeholder="密碼" required style="padding:6px 10px; border:1px solid var(--border); border-radius:8px;" />
+          <button type="submit" class="btn primary">登入</button>
+          <button type="button" id="signup-btn" class="btn">註冊</button>
+        </form>
+        <button type="button" id="logout-btn" class="btn" hidden>登出</button>
+      </div>
+    </header>
+
+    <main id="page-content">
+      <div class="empty">載入中...</div>
+    </main>
+  </div>
+</div>
+
+<script src="js/config.js"></script>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

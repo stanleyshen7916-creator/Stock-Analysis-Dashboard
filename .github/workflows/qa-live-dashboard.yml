@@ -1,0 +1,34 @@
+name: Live Dashboard QA
+
+# M23 (M11-M23 Dashboard spec v1, Section 12). Runs on the GitHub Actions
+# runner because this sandbox's own network egress cannot reach the
+# Supabase project directly (established precedent throughout the
+# private stock-analysis-system repo for every external endpoint this
+# project depends on) - the runner has normal internet access, so this
+# is the real, honest verification path against Production, not a mock.
+# Read-only: this repo's config.js already carries the real, non-secret
+# anon/publishable key, so no secrets are needed here.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install dependencies
+        run: npm install
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Run live dashboard QA
+        run: npm run qa:live-dashboard

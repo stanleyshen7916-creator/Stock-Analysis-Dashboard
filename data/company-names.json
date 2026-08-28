@@ -1,0 +1,9932 @@
+{
+  "generatedAt": "2026-08-27T04:44:18.163Z",
+  "source": "TWSE t187ap03_L + TPEx mopsfin_t187ap03_O (company basic data)",
+  "count": 1985,
+  "companies": [
+    {
+      "symbol": "1240",
+      "market": "TPEx",
+      "name": "茂生農經"
+    },
+    {
+      "symbol": "1259",
+      "market": "TPEx",
+      "name": "安心"
+    },
+    {
+      "symbol": "1264",
+      "market": "TPEx",
+      "name": "德麥"
+    },
+    {
+      "symbol": "1268",
+      "market": "TPEx",
+      "name": "漢來美食"
+    },
+    {
+      "symbol": "1294",
+      "market": "TPEx",
+      "name": "漢田生技"
+    },
+    {
+      "symbol": "1295",
+      "market": "TPEx",
+      "name": "生合"
+    },
+    {
+      "symbol": "1336",
+      "market": "TPEx",
+      "name": "台翰"
+    },
+    {
+      "symbol": "1565",
+      "market": "TPEx",
+      "name": "精華"
+    },
+    {
+      "symbol": "1569",
+      "market": "TPEx",
+      "name": "濱川"
+    },
+    {
+      "symbol": "1570",
+      "market": "TPEx",
+      "name": "力肯"
+    },
+    {
+      "symbol": "1580",
+      "market": "TPEx",
+      "name": "新麥"
+    },
+    {
+      "symbol": "1584",
+      "market": "TPEx",
+      "name": "精剛"
+    },
+    {
+      "symbol": "1586",
+      "market": "TPEx",
+      "name": "和勤"
+    },
+    {
+      "symbol": "1591",
+      "market": "TPEx",
+      "name": "駿吉-KY"
+    },
+    {
+      "symbol": "1593",
+      "market": "TPEx",
+      "name": "祺驊"
+    },
+    {
+      "symbol": "1595",
+      "market": "TPEx",
+      "name": "川寶"
+    },
+    {
+      "symbol": "1599",
+      "market": "TPEx",
+      "name": "宏佳騰"
+    },
+    {
+      "symbol": "1742",
+      "market": "TPEx",
+      "name": "台蠟"
+    },
+    {
+      "symbol": "1777",
+      "market": "TPEx",
+      "name": "生泰"
+    },
+    {
+      "symbol": "1780",
+      "market": "TPEx",
+      "name": "立弘"
+    },
+    {
+      "symbol": "1781",
+      "market": "TPEx",
+      "name": "合世"
+    },
+    {
+      "symbol": "1784",
+      "market": "TPEx",
+      "name": "訊聯"
+    },
+    {
+      "symbol": "1785",
+      "market": "TPEx",
+      "name": "光洋科"
+    },
+    {
+      "symbol": "1788",
+      "market": "TPEx",
+      "name": "杏昌"
+    },
+    {
+      "symbol": "1796",
+      "market": "TPEx",
+      "name": "金穎生技"
+    },
+    {
+      "symbol": "1799",
+      "market": "TPEx",
+      "name": "易威"
+    },
+    {
+      "symbol": "1813",
+      "market": "TPEx",
+      "name": "寶利徠"
+    },
+    {
+      "symbol": "1815",
+      "market": "TPEx",
+      "name": "富喬"
+    },
+    {
+      "symbol": "2035",
+      "market": "TPEx",
+      "name": "唐榮公司"
+    },
+    {
+      "symbol": "2061",
+      "market": "TPEx",
+      "name": "風青"
+    },
+    {
+      "symbol": "2063",
+      "market": "TPEx",
+      "name": "世鎧精密"
+    },
+    {
+      "symbol": "2064",
+      "market": "TPEx",
+      "name": "晉椿"
+    },
+    {
+      "symbol": "2065",
+      "market": "TPEx",
+      "name": "世豐"
+    },
+    {
+      "symbol": "2066",
+      "market": "TPEx",
+      "name": "世德"
+    },
+    {
+      "symbol": "2067",
+      "market": "TPEx",
+      "name": "嘉鋼"
+    },
+    {
+      "symbol": "2070",
+      "market": "TPEx",
+      "name": "精湛"
+    },
+    {
+      "symbol": "2073",
+      "market": "TPEx",
+      "name": "雄順"
+    },
+    {
+      "symbol": "2221",
+      "market": "TPEx",
+      "name": "大甲"
+    },
+    {
+      "symbol": "2230",
+      "market": "TPEx",
+      "name": "泰茂"
+    },
+    {
+      "symbol": "2235",
+      "market": "TPEx",
+      "name": "謚源"
+    },
+    {
+      "symbol": "2596",
+      "market": "TPEx",
+      "name": "綠意"
+    },
+    {
+      "symbol": "2640",
+      "market": "TPEx",
+      "name": "大車隊"
+    },
+    {
+      "symbol": "2641",
+      "market": "TPEx",
+      "name": "正德"
+    },
+    {
+      "symbol": "2643",
+      "market": "TPEx",
+      "name": "捷迅"
+    },
+    {
+      "symbol": "2718",
+      "market": "TPEx",
+      "name": "全心投控"
+    },
+    {
+      "symbol": "2719",
+      "market": "TPEx",
+      "name": "燦星旅"
+    },
+    {
+      "symbol": "2724",
+      "market": "TPEx",
+      "name": "藝舍-KY"
+    },
+    {
+      "symbol": "2726",
+      "market": "TPEx",
+      "name": "雅茗-KY"
+    },
+    {
+      "symbol": "2729",
+      "market": "TPEx",
+      "name": "瓦城"
+    },
+    {
+      "symbol": "2732",
+      "market": "TPEx",
+      "name": "六角"
+    },
+    {
+      "symbol": "2734",
+      "market": "TPEx",
+      "name": "易飛網"
+    },
+    {
+      "symbol": "2736",
+      "market": "TPEx",
+      "name": "富野"
+    },
+    {
+      "symbol": "2740",
+      "market": "TPEx",
+      "name": "華軒"
+    },
+    {
+      "symbol": "2743",
+      "market": "TPEx",
+      "name": "山富"
+    },
+    {
+      "symbol": "2745",
+      "market": "TPEx",
+      "name": "五福"
+    },
+    {
+      "symbol": "2751",
+      "market": "TPEx",
+      "name": "王座"
+    },
+    {
+      "symbol": "2752",
+      "market": "TPEx",
+      "name": "豆府"
+    },
+    {
+      "symbol": "2754",
+      "market": "TPEx",
+      "name": "亞洲藏壽司"
+    },
+    {
+      "symbol": "2755",
+      "market": "TPEx",
+      "name": "揚秦"
+    },
+    {
+      "symbol": "2756",
+      "market": "TPEx",
+      "name": "聯發國際"
+    },
+    {
+      "symbol": "2916",
+      "market": "TPEx",
+      "name": "滿心"
+    },
+    {
+      "symbol": "2924",
+      "market": "TPEx",
+      "name": "宏太-KY"
+    },
+    {
+      "symbol": "2926",
+      "market": "TPEx",
+      "name": "誠品生活"
+    },
+    {
+      "symbol": "2937",
+      "market": "TPEx",
+      "name": "集雅社"
+    },
+    {
+      "symbol": "2941",
+      "market": "TPEx",
+      "name": "米斯特"
+    },
+    {
+      "symbol": "2947",
+      "market": "TPEx",
+      "name": "振宇五金"
+    },
+    {
+      "symbol": "2948",
+      "market": "TPEx",
+      "name": "寶陞"
+    },
+    {
+      "symbol": "2949",
+      "market": "TPEx",
+      "name": "欣新網"
+    },
+    {
+      "symbol": "3064",
+      "market": "TPEx",
+      "name": "泰偉"
+    },
+    {
+      "symbol": "3066",
+      "market": "TPEx",
+      "name": "李洲"
+    },
+    {
+      "symbol": "3067",
+      "market": "TPEx",
+      "name": "全域"
+    },
+    {
+      "symbol": "3071",
+      "market": "TPEx",
+      "name": "協禧"
+    },
+    {
+      "symbol": "3073",
+      "market": "TPEx",
+      "name": "天方能源"
+    },
+    {
+      "symbol": "3078",
+      "market": "TPEx",
+      "name": "僑威"
+    },
+    {
+      "symbol": "3081",
+      "market": "TPEx",
+      "name": "聯亞"
+    },
+    {
+      "symbol": "3083",
+      "market": "TPEx",
+      "name": "網龍"
+    },
+    {
+      "symbol": "3085",
+      "market": "TPEx",
+      "name": "新零售"
+    },
+    {
+      "symbol": "3086",
+      "market": "TPEx",
+      "name": "華義*"
+    },
+    {
+      "symbol": "3088",
+      "market": "TPEx",
+      "name": "艾訊"
+    },
+    {
+      "symbol": "3093",
+      "market": "TPEx",
+      "name": "港建*"
+    },
+    {
+      "symbol": "3095",
+      "market": "TPEx",
+      "name": "及成"
+    },
+    {
+      "symbol": "3105",
+      "market": "TPEx",
+      "name": "穩懋"
+    },
+    {
+      "symbol": "3114",
+      "market": "TPEx",
+      "name": "好德"
+    },
+    {
+      "symbol": "3115",
+      "market": "TPEx",
+      "name": "富榮綱"
+    },
+    {
+      "symbol": "3118",
+      "market": "TPEx",
+      "name": "進階"
+    },
+    {
+      "symbol": "3122",
+      "market": "TPEx",
+      "name": "笙泉"
+    },
+    {
+      "symbol": "3128",
+      "market": "TPEx",
+      "name": "昇銳"
+    },
+    {
+      "symbol": "3131",
+      "market": "TPEx",
+      "name": "弘塑"
+    },
+    {
+      "symbol": "3141",
+      "market": "TPEx",
+      "name": "晶宏"
+    },
+    {
+      "symbol": "3147",
+      "market": "TPEx",
+      "name": "大綜"
+    },
+    {
+      "symbol": "3152",
+      "market": "TPEx",
+      "name": "璟德"
+    },
+    {
+      "symbol": "3158",
+      "market": "TPEx",
+      "name": "嘉實"
+    },
+    {
+      "symbol": "3162",
+      "market": "TPEx",
+      "name": "精確"
+    },
+    {
+      "symbol": "3163",
+      "market": "TPEx",
+      "name": "波若威"
+    },
+    {
+      "symbol": "3169",
+      "market": "TPEx",
+      "name": "亞信"
+    },
+    {
+      "symbol": "3171",
+      "market": "TPEx",
+      "name": "炎洲流通"
+    },
+    {
+      "symbol": "3176",
+      "market": "TPEx",
+      "name": "基亞"
+    },
+    {
+      "symbol": "3178",
+      "market": "TPEx",
+      "name": "公準"
+    },
+    {
+      "symbol": "3188",
+      "market": "TPEx",
+      "name": "鑫龍騰"
+    },
+    {
+      "symbol": "3191",
+      "market": "TPEx",
+      "name": "雲嘉南"
+    },
+    {
+      "symbol": "3205",
+      "market": "TPEx",
+      "name": "佰研"
+    },
+    {
+      "symbol": "3206",
+      "market": "TPEx",
+      "name": "志豐"
+    },
+    {
+      "symbol": "3207",
+      "market": "TPEx",
+      "name": "耀勝"
+    },
+    {
+      "symbol": "3211",
+      "market": "TPEx",
+      "name": "順達"
+    },
+    {
+      "symbol": "3213",
+      "market": "TPEx",
+      "name": "茂訊"
+    },
+    {
+      "symbol": "3217",
+      "market": "TPEx",
+      "name": "優群"
+    },
+    {
+      "symbol": "3218",
+      "market": "TPEx",
+      "name": "大學光"
+    },
+    {
+      "symbol": "3219",
+      "market": "TPEx",
+      "name": "倚強科"
+    },
+    {
+      "symbol": "3221",
+      "market": "TPEx",
+      "name": "台嘉碩"
+    },
+    {
+      "symbol": "3224",
+      "market": "TPEx",
+      "name": "三顧"
+    },
+    {
+      "symbol": "3226",
+      "market": "TPEx",
+      "name": "龍鋒"
+    },
+    {
+      "symbol": "3227",
+      "market": "TPEx",
+      "name": "原相"
+    },
+    {
+      "symbol": "3228",
+      "market": "TPEx",
+      "name": "金麗科"
+    },
+    {
+      "symbol": "3230",
+      "market": "TPEx",
+      "name": "錦明"
+    },
+    {
+      "symbol": "3232",
+      "market": "TPEx",
+      "name": "昱捷"
+    },
+    {
+      "symbol": "3234",
+      "market": "TPEx",
+      "name": "光環"
+    },
+    {
+      "symbol": "3236",
+      "market": "TPEx",
+      "name": "千如"
+    },
+    {
+      "symbol": "3252",
+      "market": "TPEx",
+      "name": "海灣"
+    },
+    {
+      "symbol": "3259",
+      "market": "TPEx",
+      "name": "鑫創"
+    },
+    {
+      "symbol": "3260",
+      "market": "TPEx",
+      "name": "威剛"
+    },
+    {
+      "symbol": "3264",
+      "market": "TPEx",
+      "name": "欣銓"
+    },
+    {
+      "symbol": "3265",
+      "market": "TPEx",
+      "name": "台星科"
+    },
+    {
+      "symbol": "3268",
+      "market": "TPEx",
+      "name": "海德威"
+    },
+    {
+      "symbol": "3272",
+      "market": "TPEx",
+      "name": "東碩"
+    },
+    {
+      "symbol": "3276",
+      "market": "TPEx",
+      "name": "宇環"
+    },
+    {
+      "symbol": "3284",
+      "market": "TPEx",
+      "name": "太普高"
+    },
+    {
+      "symbol": "3285",
+      "market": "TPEx",
+      "name": "微端"
+    },
+    {
+      "symbol": "3287",
+      "market": "TPEx",
+      "name": "廣寰科"
+    },
+    {
+      "symbol": "3288",
+      "market": "TPEx",
+      "name": "點晶"
+    },
+    {
+      "symbol": "3289",
+      "market": "TPEx",
+      "name": "宜特"
+    },
+    {
+      "symbol": "3290",
+      "market": "TPEx",
+      "name": "東浦"
+    },
+    {
+      "symbol": "3293",
+      "market": "TPEx",
+      "name": "鈊象"
+    },
+    {
+      "symbol": "3294",
+      "market": "TPEx",
+      "name": "英濟"
+    },
+    {
+      "symbol": "3297",
+      "market": "TPEx",
+      "name": "杭特"
+    },
+    {
+      "symbol": "3303",
+      "market": "TPEx",
+      "name": "岱稜"
+    },
+    {
+      "symbol": "3306",
+      "market": "TPEx",
+      "name": "鼎天"
+    },
+    {
+      "symbol": "3310",
+      "market": "TPEx",
+      "name": "佳穎"
+    },
+    {
+      "symbol": "3313",
+      "market": "TPEx",
+      "name": "斐成"
+    },
+    {
+      "symbol": "3317",
+      "market": "TPEx",
+      "name": "尼克森"
+    },
+    {
+      "symbol": "3322",
+      "market": "TPEx",
+      "name": "建舜電"
+    },
+    {
+      "symbol": "3323",
+      "market": "TPEx",
+      "name": "加百裕"
+    },
+    {
+      "symbol": "3324",
+      "market": "TPEx",
+      "name": "雙鴻"
+    },
+    {
+      "symbol": "3325",
+      "market": "TPEx",
+      "name": "旭品"
+    },
+    {
+      "symbol": "3332",
+      "market": "TPEx",
+      "name": "幸康"
+    },
+    {
+      "symbol": "3339",
+      "market": "TPEx",
+      "name": "泰谷"
+    },
+    {
+      "symbol": "3349",
+      "market": "TPEx",
+      "name": "寶德"
+    },
+    {
+      "symbol": "3354",
+      "market": "TPEx",
+      "name": "律勝"
+    },
+    {
+      "symbol": "3357",
+      "market": "TPEx",
+      "name": "臺慶科"
+    },
+    {
+      "symbol": "3360",
+      "market": "TPEx",
+      "name": "尚立"
+    },
+    {
+      "symbol": "3362",
+      "market": "TPEx",
+      "name": "先進光"
+    },
+    {
+      "symbol": "3363",
+      "market": "TPEx",
+      "name": "上詮"
+    },
+    {
+      "symbol": "3372",
+      "market": "TPEx",
+      "name": "典範"
+    },
+    {
+      "symbol": "3373",
+      "market": "TPEx",
+      "name": "熱映"
+    },
+    {
+      "symbol": "3374",
+      "market": "TPEx",
+      "name": "精材"
+    },
+    {
+      "symbol": "3379",
+      "market": "TPEx",
+      "name": "彬台"
+    },
+    {
+      "symbol": "3388",
+      "market": "TPEx",
+      "name": "崇越電"
+    },
+    {
+      "symbol": "3390",
+      "market": "TPEx",
+      "name": "旭軟"
+    },
+    {
+      "symbol": "3402",
+      "market": "TPEx",
+      "name": "漢科"
+    },
+    {
+      "symbol": "3430",
+      "market": "TPEx",
+      "name": "奇鈦科"
+    },
+    {
+      "symbol": "3434",
+      "market": "TPEx",
+      "name": "哲固"
+    },
+    {
+      "symbol": "3438",
+      "market": "TPEx",
+      "name": "類比科"
+    },
+    {
+      "symbol": "3441",
+      "market": "TPEx",
+      "name": "聯一光電"
+    },
+    {
+      "symbol": "3444",
+      "market": "TPEx",
+      "name": "利機"
+    },
+    {
+      "symbol": "3455",
+      "market": "TPEx",
+      "name": "由田"
+    },
+    {
+      "symbol": "3465",
+      "market": "TPEx",
+      "name": "進泰電子"
+    },
+    {
+      "symbol": "3466",
+      "market": "TPEx",
+      "name": "德晉"
+    },
+    {
+      "symbol": "3467",
+      "market": "TPEx",
+      "name": "台灣精材"
+    },
+    {
+      "symbol": "3479",
+      "market": "TPEx",
+      "name": "安勤"
+    },
+    {
+      "symbol": "3483",
+      "market": "TPEx",
+      "name": "力致"
+    },
+    {
+      "symbol": "3484",
+      "market": "TPEx",
+      "name": "崧騰"
+    },
+    {
+      "symbol": "3485",
+      "market": "TPEx",
+      "name": "敘豐"
+    },
+    {
+      "symbol": "3489",
+      "market": "TPEx",
+      "name": "森寶"
+    },
+    {
+      "symbol": "3490",
+      "market": "TPEx",
+      "name": "單井"
+    },
+    {
+      "symbol": "3491",
+      "market": "TPEx",
+      "name": "昇達科"
+    },
+    {
+      "symbol": "3492",
+      "market": "TPEx",
+      "name": "長盛"
+    },
+    {
+      "symbol": "3498",
+      "market": "TPEx",
+      "name": "陽程"
+    },
+    {
+      "symbol": "3499",
+      "market": "TPEx",
+      "name": "環天科"
+    },
+    {
+      "symbol": "3508",
+      "market": "TPEx",
+      "name": "位速"
+    },
+    {
+      "symbol": "3511",
+      "market": "TPEx",
+      "name": "矽瑪"
+    },
+    {
+      "symbol": "3512",
+      "market": "TPEx",
+      "name": "皇龍"
+    },
+    {
+      "symbol": "3516",
+      "market": "TPEx",
+      "name": "亞帝歐"
+    },
+    {
+      "symbol": "3520",
+      "market": "TPEx",
+      "name": "華盈"
+    },
+    {
+      "symbol": "3521",
+      "market": "TPEx",
+      "name": "台鋼建設"
+    },
+    {
+      "symbol": "3522",
+      "market": "TPEx",
+      "name": "御嵿"
+    },
+    {
+      "symbol": "3523",
+      "market": "TPEx",
+      "name": "迎輝"
+    },
+    {
+      "symbol": "3526",
+      "market": "TPEx",
+      "name": "凡甲"
+    },
+    {
+      "symbol": "3527",
+      "market": "TPEx",
+      "name": "聚積"
+    },
+    {
+      "symbol": "3529",
+      "market": "TPEx",
+      "name": "力旺"
+    },
+    {
+      "symbol": "3531",
+      "market": "TPEx",
+      "name": "先益"
+    },
+    {
+      "symbol": "3537",
+      "market": "TPEx",
+      "name": "堡達"
+    },
+    {
+      "symbol": "3540",
+      "market": "TPEx",
+      "name": "曜越"
+    },
+    {
+      "symbol": "3541",
+      "market": "TPEx",
+      "name": "西柏"
+    },
+    {
+      "symbol": "3546",
+      "market": "TPEx",
+      "name": "宇峻"
+    },
+    {
+      "symbol": "3548",
+      "market": "TPEx",
+      "name": "兆利"
+    },
+    {
+      "symbol": "3551",
+      "market": "TPEx",
+      "name": "世禾"
+    },
+    {
+      "symbol": "3552",
+      "market": "TPEx",
+      "name": "同致"
+    },
+    {
+      "symbol": "3555",
+      "market": "TPEx",
+      "name": "博士旺"
+    },
+    {
+      "symbol": "3556",
+      "market": "TPEx",
+      "name": "禾瑞亞"
+    },
+    {
+      "symbol": "3558",
+      "market": "TPEx",
+      "name": "神準"
+    },
+    {
+      "symbol": "3564",
+      "market": "TPEx",
+      "name": "其陽"
+    },
+    {
+      "symbol": "3567",
+      "market": "TPEx",
+      "name": "逸昌"
+    },
+    {
+      "symbol": "3570",
+      "market": "TPEx",
+      "name": "大塚"
+    },
+    {
+      "symbol": "3577",
+      "market": "TPEx",
+      "name": "泓格"
+    },
+    {
+      "symbol": "3580",
+      "market": "TPEx",
+      "name": "友威科"
+    },
+    {
+      "symbol": "3581",
+      "market": "TPEx",
+      "name": "博磊"
+    },
+    {
+      "symbol": "3587",
+      "market": "TPEx",
+      "name": "閎康"
+    },
+    {
+      "symbol": "3594",
+      "market": "TPEx",
+      "name": "磐儀"
+    },
+    {
+      "symbol": "3597",
+      "market": "TPEx",
+      "name": "映興"
+    },
+    {
+      "symbol": "3609",
+      "market": "TPEx",
+      "name": "三一東林"
+    },
+    {
+      "symbol": "3611",
+      "market": "TPEx",
+      "name": "鼎翰"
+    },
+    {
+      "symbol": "3615",
+      "market": "TPEx",
+      "name": "安可"
+    },
+    {
+      "symbol": "3623",
+      "market": "TPEx",
+      "name": "富晶通"
+    },
+    {
+      "symbol": "3624",
+      "market": "TPEx",
+      "name": "光頡"
+    },
+    {
+      "symbol": "3625",
+      "market": "TPEx",
+      "name": "西勝"
+    },
+    {
+      "symbol": "3628",
+      "market": "TPEx",
+      "name": "盈正"
+    },
+    {
+      "symbol": "3629",
+      "market": "TPEx",
+      "name": "地心引力"
+    },
+    {
+      "symbol": "3630",
+      "market": "TPEx",
+      "name": "新鉅科"
+    },
+    {
+      "symbol": "3631",
+      "market": "TPEx",
+      "name": "晟楠"
+    },
+    {
+      "symbol": "3632",
+      "market": "TPEx",
+      "name": "研勤"
+    },
+    {
+      "symbol": "3646",
+      "market": "TPEx",
+      "name": "艾恩特"
+    },
+    {
+      "symbol": "3663",
+      "market": "TPEx",
+      "name": "鑫科"
+    },
+    {
+      "symbol": "3664",
+      "market": "TPEx",
+      "name": "安瑞-KY"
+    },
+    {
+      "symbol": "3666",
+      "market": "TPEx",
+      "name": "光耀"
+    },
+    {
+      "symbol": "3672",
+      "market": "TPEx",
+      "name": "康聯訊"
+    },
+    {
+      "symbol": "3675",
+      "market": "TPEx",
+      "name": "德微"
+    },
+    {
+      "symbol": "3680",
+      "market": "TPEx",
+      "name": "家登"
+    },
+    {
+      "symbol": "3684",
+      "market": "TPEx",
+      "name": "榮昌"
+    },
+    {
+      "symbol": "3685",
+      "market": "TPEx",
+      "name": "元創精密"
+    },
+    {
+      "symbol": "3687",
+      "market": "TPEx",
+      "name": "歐買尬"
+    },
+    {
+      "symbol": "3689",
+      "market": "TPEx",
+      "name": "湧德"
+    },
+    {
+      "symbol": "3691",
+      "market": "TPEx",
+      "name": "碩禾"
+    },
+    {
+      "symbol": "3693",
+      "market": "TPEx",
+      "name": "營邦"
+    },
+    {
+      "symbol": "3707",
+      "market": "TPEx",
+      "name": "漢磊"
+    },
+    {
+      "symbol": "3709",
+      "market": "TPEx",
+      "name": "鑫聯大投控"
+    },
+    {
+      "symbol": "3710",
+      "market": "TPEx",
+      "name": "連展投控"
+    },
+    {
+      "symbol": "3713",
+      "market": "TPEx",
+      "name": "新晶投控"
+    },
+    {
+      "symbol": "4102",
+      "market": "TPEx",
+      "name": "永日"
+    },
+    {
+      "symbol": "4105",
+      "market": "TPEx",
+      "name": "東洋"
+    },
+    {
+      "symbol": "4107",
+      "market": "TPEx",
+      "name": "邦特"
+    },
+    {
+      "symbol": "4109",
+      "market": "TPEx",
+      "name": "加捷生醫"
+    },
+    {
+      "symbol": "4111",
+      "market": "TPEx",
+      "name": "濟生"
+    },
+    {
+      "symbol": "4113",
+      "market": "TPEx",
+      "name": "聯上"
+    },
+    {
+      "symbol": "4114",
+      "market": "TPEx",
+      "name": "健喬"
+    },
+    {
+      "symbol": "4116",
+      "market": "TPEx",
+      "name": "明基醫"
+    },
+    {
+      "symbol": "4120",
+      "market": "TPEx",
+      "name": "友華"
+    },
+    {
+      "symbol": "4121",
+      "market": "TPEx",
+      "name": "優盛"
+    },
+    {
+      "symbol": "4123",
+      "market": "TPEx",
+      "name": "晟德"
+    },
+    {
+      "symbol": "4126",
+      "market": "TPEx",
+      "name": "太醫"
+    },
+    {
+      "symbol": "4127",
+      "market": "TPEx",
+      "name": "天良"
+    },
+    {
+      "symbol": "4128",
+      "market": "TPEx",
+      "name": "中天"
+    },
+    {
+      "symbol": "4129",
+      "market": "TPEx",
+      "name": "聯合"
+    },
+    {
+      "symbol": "4131",
+      "market": "TPEx",
+      "name": "浩泰"
+    },
+    {
+      "symbol": "4138",
+      "market": "TPEx",
+      "name": "曜亞"
+    },
+    {
+      "symbol": "4139",
+      "market": "TPEx",
+      "name": "馬光-KY"
+    },
+    {
+      "symbol": "4147",
+      "market": "TPEx",
+      "name": "中裕"
+    },
+    {
+      "symbol": "4153",
+      "market": "TPEx",
+      "name": "鈺緯"
+    },
+    {
+      "symbol": "4154",
+      "market": "TPEx",
+      "name": "樂威科-KY"
+    },
+    {
+      "symbol": "4157",
+      "market": "TPEx",
+      "name": "太景*-KY"
+    },
+    {
+      "symbol": "4160",
+      "market": "TPEx",
+      "name": "訊聯基因"
+    },
+    {
+      "symbol": "4161",
+      "market": "TPEx",
+      "name": "聿新科"
+    },
+    {
+      "symbol": "4162",
+      "market": "TPEx",
+      "name": "智擎"
+    },
+    {
+      "symbol": "4163",
+      "market": "TPEx",
+      "name": "鐿鈦"
+    },
+    {
+      "symbol": "4166",
+      "market": "TPEx",
+      "name": "友霖"
+    },
+    {
+      "symbol": "4167",
+      "market": "TPEx",
+      "name": "松瑞藥"
+    },
+    {
+      "symbol": "4168",
+      "market": "TPEx",
+      "name": "醣聯"
+    },
+    {
+      "symbol": "4171",
+      "market": "TPEx",
+      "name": "瑞基"
+    },
+    {
+      "symbol": "4173",
+      "market": "TPEx",
+      "name": "久裕"
+    },
+    {
+      "symbol": "4174",
+      "market": "TPEx",
+      "name": "浩鼎"
+    },
+    {
+      "symbol": "4175",
+      "market": "TPEx",
+      "name": "杏一"
+    },
+    {
+      "symbol": "4183",
+      "market": "TPEx",
+      "name": "福永生技"
+    },
+    {
+      "symbol": "4188",
+      "market": "TPEx",
+      "name": "安克"
+    },
+    {
+      "symbol": "4192",
+      "market": "TPEx",
+      "name": "杏國"
+    },
+    {
+      "symbol": "4198",
+      "market": "TPEx",
+      "name": "欣大健康"
+    },
+    {
+      "symbol": "4205",
+      "market": "TPEx",
+      "name": "中華食"
+    },
+    {
+      "symbol": "4207",
+      "market": "TPEx",
+      "name": "環泰"
+    },
+    {
+      "symbol": "4303",
+      "market": "TPEx",
+      "name": "信立"
+    },
+    {
+      "symbol": "4304",
+      "market": "TPEx",
+      "name": "勝昱"
+    },
+    {
+      "symbol": "4305",
+      "market": "TPEx",
+      "name": "世坤"
+    },
+    {
+      "symbol": "4401",
+      "market": "TPEx",
+      "name": "東隆興"
+    },
+    {
+      "symbol": "4402",
+      "market": "TPEx",
+      "name": "郡都開發"
+    },
+    {
+      "symbol": "4406",
+      "market": "TPEx",
+      "name": "新昕纖"
+    },
+    {
+      "symbol": "4413",
+      "market": "TPEx",
+      "name": "飛寶企業"
+    },
+    {
+      "symbol": "4416",
+      "market": "TPEx",
+      "name": "三圓"
+    },
+    {
+      "symbol": "4417",
+      "market": "TPEx",
+      "name": "金洲"
+    },
+    {
+      "symbol": "4419",
+      "market": "TPEx",
+      "name": "皇家美食"
+    },
+    {
+      "symbol": "4420",
+      "market": "TPEx",
+      "name": "光明"
+    },
+    {
+      "symbol": "4430",
+      "market": "TPEx",
+      "name": "耀億"
+    },
+    {
+      "symbol": "4432",
+      "market": "TPEx",
+      "name": "銘旺實"
+    },
+    {
+      "symbol": "4433",
+      "market": "TPEx",
+      "name": "興采"
+    },
+    {
+      "symbol": "4442",
+      "market": "TPEx",
+      "name": "竣邦-KY"
+    },
+    {
+      "symbol": "4502",
+      "market": "TPEx",
+      "name": "健信"
+    },
+    {
+      "symbol": "4503",
+      "market": "TPEx",
+      "name": "金雨"
+    },
+    {
+      "symbol": "4506",
+      "market": "TPEx",
+      "name": "崇友"
+    },
+    {
+      "symbol": "4510",
+      "market": "TPEx",
+      "name": "高鋒"
+    },
+    {
+      "symbol": "4513",
+      "market": "TPEx",
+      "name": "福裕"
+    },
+    {
+      "symbol": "4523",
+      "market": "TPEx",
+      "name": "永彰"
+    },
+    {
+      "symbol": "4527",
+      "market": "TPEx",
+      "name": "方方土霖"
+    },
+    {
+      "symbol": "4528",
+      "market": "TPEx",
+      "name": "江興鍛"
+    },
+    {
+      "symbol": "4529",
+      "market": "TPEx",
+      "name": "淳紳"
+    },
+    {
+      "symbol": "4530",
+      "market": "TPEx",
+      "name": "天意能創"
+    },
+    {
+      "symbol": "4533",
+      "market": "TPEx",
+      "name": "協易機"
+    },
+    {
+      "symbol": "4534",
+      "market": "TPEx",
+      "name": "慶騰"
+    },
+    {
+      "symbol": "4535",
+      "market": "TPEx",
+      "name": "至興"
+    },
+    {
+      "symbol": "4538",
+      "market": "TPEx",
+      "name": "大詠城"
+    },
+    {
+      "symbol": "4541",
+      "market": "TPEx",
+      "name": "晟田"
+    },
+    {
+      "symbol": "4542",
+      "market": "TPEx",
+      "name": "科嶠"
+    },
+    {
+      "symbol": "4543",
+      "market": "TPEx",
+      "name": "萬在"
+    },
+    {
+      "symbol": "4549",
+      "market": "TPEx",
+      "name": "桓達"
+    },
+    {
+      "symbol": "4550",
+      "market": "TPEx",
+      "name": "長佳"
+    },
+    {
+      "symbol": "4554",
+      "market": "TPEx",
+      "name": "橙的"
+    },
+    {
+      "symbol": "4556",
+      "market": "TPEx",
+      "name": "旭然"
+    },
+    {
+      "symbol": "4558",
+      "market": "TPEx",
+      "name": "寶緯"
+    },
+    {
+      "symbol": "4561",
+      "market": "TPEx",
+      "name": "健椿"
+    },
+    {
+      "symbol": "4563",
+      "market": "TPEx",
+      "name": "百德"
+    },
+    {
+      "symbol": "4568",
+      "market": "TPEx",
+      "name": "科際精密"
+    },
+    {
+      "symbol": "4577",
+      "market": "TPEx",
+      "name": "達航科技"
+    },
+    {
+      "symbol": "4580",
+      "market": "TPEx",
+      "name": "捷流閥業"
+    },
+    {
+      "symbol": "4584",
+      "market": "TPEx",
+      "name": "君帆"
+    },
+    {
+      "symbol": "4609",
+      "market": "TPEx",
+      "name": "唐鋒"
+    },
+    {
+      "symbol": "4702",
+      "market": "TPEx",
+      "name": "中美實"
+    },
+    {
+      "symbol": "4706",
+      "market": "TPEx",
+      "name": "大恭"
+    },
+    {
+      "symbol": "4707",
+      "market": "TPEx",
+      "name": "磐亞"
+    },
+    {
+      "symbol": "4711",
+      "market": "TPEx",
+      "name": "永純"
+    },
+    {
+      "symbol": "4714",
+      "market": "TPEx",
+      "name": "永捷"
+    },
+    {
+      "symbol": "4716",
+      "market": "TPEx",
+      "name": "大立"
+    },
+    {
+      "symbol": "4721",
+      "market": "TPEx",
+      "name": "美琪瑪"
+    },
+    {
+      "symbol": "4726",
+      "market": "TPEx",
+      "name": "永昕"
+    },
+    {
+      "symbol": "4728",
+      "market": "TPEx",
+      "name": "雙美"
+    },
+    {
+      "symbol": "4729",
+      "market": "TPEx",
+      "name": "熒茂"
+    },
+    {
+      "symbol": "4735",
+      "market": "TPEx",
+      "name": "豪展"
+    },
+    {
+      "symbol": "4741",
+      "market": "TPEx",
+      "name": "泓瀚"
+    },
+    {
+      "symbol": "4743",
+      "market": "TPEx",
+      "name": "合一"
+    },
+    {
+      "symbol": "4744",
+      "market": "TPEx",
+      "name": "皇將"
+    },
+    {
+      "symbol": "4745",
+      "market": "TPEx",
+      "name": "合富-KY"
+    },
+    {
+      "symbol": "4747",
+      "market": "TPEx",
+      "name": "強生製藥"
+    },
+    {
+      "symbol": "4749",
+      "market": "TPEx",
+      "name": "新應材"
+    },
+    {
+      "symbol": "4754",
+      "market": "TPEx",
+      "name": "國碳科"
+    },
+    {
+      "symbol": "4760",
+      "market": "TPEx",
+      "name": "勤凱科技"
+    },
+    {
+      "symbol": "4767",
+      "market": "TPEx",
+      "name": "誠泰科技"
+    },
+    {
+      "symbol": "4768",
+      "market": "TPEx",
+      "name": "晶呈科技"
+    },
+    {
+      "symbol": "4772",
+      "market": "TPEx",
+      "name": "台特化"
+    },
+    {
+      "symbol": "4804",
+      "market": "TPEx",
+      "name": "大略-KY"
+    },
+    {
+      "symbol": "4806",
+      "market": "TPEx",
+      "name": "桂田文創"
+    },
+    {
+      "symbol": "4903",
+      "market": "TPEx",
+      "name": "聯光通"
+    },
+    {
+      "symbol": "4905",
+      "market": "TPEx",
+      "name": "台聯電"
+    },
+    {
+      "symbol": "4907",
+      "market": "TPEx",
+      "name": "富宇"
+    },
+    {
+      "symbol": "4908",
+      "market": "TPEx",
+      "name": "前鼎"
+    },
+    {
+      "symbol": "4909",
+      "market": "TPEx",
+      "name": "新復興"
+    },
+    {
+      "symbol": "4911",
+      "market": "TPEx",
+      "name": "德英"
+    },
+    {
+      "symbol": "4923",
+      "market": "TPEx",
+      "name": "力士"
+    },
+    {
+      "symbol": "4924",
+      "market": "TPEx",
+      "name": "欣厚-KY"
+    },
+    {
+      "symbol": "4931",
+      "market": "TPEx",
+      "name": "新盛力"
+    },
+    {
+      "symbol": "4933",
+      "market": "TPEx",
+      "name": "友輝"
+    },
+    {
+      "symbol": "4939",
+      "market": "TPEx",
+      "name": "亞電"
+    },
+    {
+      "symbol": "4946",
+      "market": "TPEx",
+      "name": "辣椒"
+    },
+    {
+      "symbol": "4950",
+      "market": "TPEx",
+      "name": "金耘國際"
+    },
+    {
+      "symbol": "4951",
+      "market": "TPEx",
+      "name": "精拓科"
+    },
+    {
+      "symbol": "4953",
+      "market": "TPEx",
+      "name": "緯致"
+    },
+    {
+      "symbol": "4966",
+      "market": "TPEx",
+      "name": "譜瑞-KY"
+    },
+    {
+      "symbol": "4971",
+      "market": "TPEx",
+      "name": "IET-KY"
+    },
+    {
+      "symbol": "4972",
+      "market": "TPEx",
+      "name": "湯石照明"
+    },
+    {
+      "symbol": "4973",
+      "market": "TPEx",
+      "name": "廣穎電通"
+    },
+    {
+      "symbol": "4974",
+      "market": "TPEx",
+      "name": "亞泰"
+    },
+    {
+      "symbol": "4979",
+      "market": "TPEx",
+      "name": "華星光"
+    },
+    {
+      "symbol": "4991",
+      "market": "TPEx",
+      "name": "環宇-KY"
+    },
+    {
+      "symbol": "4995",
+      "market": "TPEx",
+      "name": "晶達"
+    },
+    {
+      "symbol": "5009",
+      "market": "TPEx",
+      "name": "榮剛"
+    },
+    {
+      "symbol": "5011",
+      "market": "TPEx",
+      "name": "久陽"
+    },
+    {
+      "symbol": "5013",
+      "market": "TPEx",
+      "name": "強新"
+    },
+    {
+      "symbol": "5014",
+      "market": "TPEx",
+      "name": "建錩"
+    },
+    {
+      "symbol": "5015",
+      "market": "TPEx",
+      "name": "華祺"
+    },
+    {
+      "symbol": "5016",
+      "market": "TPEx",
+      "name": "松和"
+    },
+    {
+      "symbol": "5201",
+      "market": "TPEx",
+      "name": "凱衛"
+    },
+    {
+      "symbol": "5202",
+      "market": "TPEx",
+      "name": "力新"
+    },
+    {
+      "symbol": "5205",
+      "market": "TPEx",
+      "name": "中茂"
+    },
+    {
+      "symbol": "5206",
+      "market": "TPEx",
+      "name": "坤悅"
+    },
+    {
+      "symbol": "5209",
+      "market": "TPEx",
+      "name": "新鼎"
+    },
+    {
+      "symbol": "5210",
+      "market": "TPEx",
+      "name": "寶碩"
+    },
+    {
+      "symbol": "5211",
+      "market": "TPEx",
+      "name": "蒙恬"
+    },
+    {
+      "symbol": "5212",
+      "market": "TPEx",
+      "name": "凌網"
+    },
+    {
+      "symbol": "5213",
+      "market": "TPEx",
+      "name": "亞昕"
+    },
+    {
+      "symbol": "5220",
+      "market": "TPEx",
+      "name": "萬達光電"
+    },
+    {
+      "symbol": "5223",
+      "market": "TPEx",
+      "name": "安力-KY"
+    },
+    {
+      "symbol": "5227",
+      "market": "TPEx",
+      "name": "立凱-KY"
+    },
+    {
+      "symbol": "5228",
+      "market": "TPEx",
+      "name": "鈺鎧"
+    },
+    {
+      "symbol": "5230",
+      "market": "TPEx",
+      "name": "雷笛克光學"
+    },
+    {
+      "symbol": "5245",
+      "market": "TPEx",
+      "name": "智晶"
+    },
+    {
+      "symbol": "5251",
+      "market": "TPEx",
+      "name": "天鉞電"
+    },
+    {
+      "symbol": "5263",
+      "market": "TPEx",
+      "name": "智崴"
+    },
+    {
+      "symbol": "5272",
+      "market": "TPEx",
+      "name": "笙科"
+    },
+    {
+      "symbol": "5274",
+      "market": "TPEx",
+      "name": "信驊"
+    },
+    {
+      "symbol": "5276",
+      "market": "TPEx",
+      "name": "達輝-KY"
+    },
+    {
+      "symbol": "5278",
+      "market": "TPEx",
+      "name": "尚凡*"
+    },
+    {
+      "symbol": "5287",
+      "market": "TPEx",
+      "name": "數字"
+    },
+    {
+      "symbol": "5289",
+      "market": "TPEx",
+      "name": "宜鼎"
+    },
+    {
+      "symbol": "5291",
+      "market": "TPEx",
+      "name": "邑昇"
+    },
+    {
+      "symbol": "5299",
+      "market": "TPEx",
+      "name": "杰力"
+    },
+    {
+      "symbol": "5301",
+      "market": "TPEx",
+      "name": "寶得利"
+    },
+    {
+      "symbol": "5302",
+      "market": "TPEx",
+      "name": "太欣"
+    },
+    {
+      "symbol": "5309",
+      "market": "TPEx",
+      "name": "系統電"
+    },
+    {
+      "symbol": "5310",
+      "market": "TPEx",
+      "name": "天剛"
+    },
+    {
+      "symbol": "5312",
+      "market": "TPEx",
+      "name": "寶島科"
+    },
+    {
+      "symbol": "5314",
+      "market": "TPEx",
+      "name": "世紀*"
+    },
+    {
+      "symbol": "5315",
+      "market": "TPEx",
+      "name": "光聯"
+    },
+    {
+      "symbol": "5321",
+      "market": "TPEx",
+      "name": "美而快"
+    },
+    {
+      "symbol": "5324",
+      "market": "TPEx",
+      "name": "士開"
+    },
+    {
+      "symbol": "5328",
+      "market": "TPEx",
+      "name": "華容"
+    },
+    {
+      "symbol": "5340",
+      "market": "TPEx",
+      "name": "建榮"
+    },
+    {
+      "symbol": "5344",
+      "market": "TPEx",
+      "name": "立衛"
+    },
+    {
+      "symbol": "5345",
+      "market": "TPEx",
+      "name": "馥鴻"
+    },
+    {
+      "symbol": "5347",
+      "market": "TPEx",
+      "name": "世界"
+    },
+    {
+      "symbol": "5348",
+      "market": "TPEx",
+      "name": "正能量智能"
+    },
+    {
+      "symbol": "5351",
+      "market": "TPEx",
+      "name": "鈺創"
+    },
+    {
+      "symbol": "5353",
+      "market": "TPEx",
+      "name": "台林"
+    },
+    {
+      "symbol": "5355",
+      "market": "TPEx",
+      "name": "佳總"
+    },
+    {
+      "symbol": "5356",
+      "market": "TPEx",
+      "name": "協益"
+    },
+    {
+      "symbol": "5364",
+      "market": "TPEx",
+      "name": "力麗店"
+    },
+    {
+      "symbol": "5371",
+      "market": "TPEx",
+      "name": "中光電"
+    },
+    {
+      "symbol": "5381",
+      "market": "TPEx",
+      "name": "光譜"
+    },
+    {
+      "symbol": "5386",
+      "market": "TPEx",
+      "name": "青雲"
+    },
+    {
+      "symbol": "5392",
+      "market": "TPEx",
+      "name": "能率"
+    },
+    {
+      "symbol": "5398",
+      "market": "TPEx",
+      "name": "慕康生醫"
+    },
+    {
+      "symbol": "5403",
+      "market": "TPEx",
+      "name": "中菲"
+    },
+    {
+      "symbol": "5410",
+      "market": "TPEx",
+      "name": "國眾"
+    },
+    {
+      "symbol": "5425",
+      "market": "TPEx",
+      "name": "台半"
+    },
+    {
+      "symbol": "5426",
+      "market": "TPEx",
+      "name": "振發"
+    },
+    {
+      "symbol": "5432",
+      "market": "TPEx",
+      "name": "新門"
+    },
+    {
+      "symbol": "5438",
+      "market": "TPEx",
+      "name": "東友"
+    },
+    {
+      "symbol": "5439",
+      "market": "TPEx",
+      "name": "高技"
+    },
+    {
+      "symbol": "5443",
+      "market": "TPEx",
+      "name": "均豪"
+    },
+    {
+      "symbol": "5450",
+      "market": "TPEx",
+      "name": "南良"
+    },
+    {
+      "symbol": "5452",
+      "market": "TPEx",
+      "name": "佶優"
+    },
+    {
+      "symbol": "5455",
+      "market": "TPEx",
+      "name": "昇益"
+    },
+    {
+      "symbol": "5457",
+      "market": "TPEx",
+      "name": "宣德"
+    },
+    {
+      "symbol": "5460",
+      "market": "TPEx",
+      "name": "同協"
+    },
+    {
+      "symbol": "5464",
+      "market": "TPEx",
+      "name": "霖宏"
+    },
+    {
+      "symbol": "5465",
+      "market": "TPEx",
+      "name": "富驊"
+    },
+    {
+      "symbol": "5468",
+      "market": "TPEx",
+      "name": "凱鈺"
+    },
+    {
+      "symbol": "5474",
+      "market": "TPEx",
+      "name": "聰泰"
+    },
+    {
+      "symbol": "5475",
+      "market": "TPEx",
+      "name": "德宏"
+    },
+    {
+      "symbol": "5478",
+      "market": "TPEx",
+      "name": "智冠"
+    },
+    {
+      "symbol": "5481",
+      "market": "TPEx",
+      "name": "新華"
+    },
+    {
+      "symbol": "5483",
+      "market": "TPEx",
+      "name": "中美晶"
+    },
+    {
+      "symbol": "5487",
+      "market": "TPEx",
+      "name": "通泰"
+    },
+    {
+      "symbol": "5488",
+      "market": "TPEx",
+      "name": "松普"
+    },
+    {
+      "symbol": "5489",
+      "market": "TPEx",
+      "name": "彩富"
+    },
+    {
+      "symbol": "5490",
+      "market": "TPEx",
+      "name": "同亨"
+    },
+    {
+      "symbol": "5493",
+      "market": "TPEx",
+      "name": "三聯"
+    },
+    {
+      "symbol": "5498",
+      "market": "TPEx",
+      "name": "凱崴"
+    },
+    {
+      "symbol": "5508",
+      "market": "TPEx",
+      "name": "永信建"
+    },
+    {
+      "symbol": "5511",
+      "market": "TPEx",
+      "name": "德昌"
+    },
+    {
+      "symbol": "5512",
+      "market": "TPEx",
+      "name": "力麒"
+    },
+    {
+      "symbol": "5514",
+      "market": "TPEx",
+      "name": "三豐"
+    },
+    {
+      "symbol": "5516",
+      "market": "TPEx",
+      "name": "雙喜"
+    },
+    {
+      "symbol": "5520",
+      "market": "TPEx",
+      "name": "力泰"
+    },
+    {
+      "symbol": "5523",
+      "market": "TPEx",
+      "name": "豐謙"
+    },
+    {
+      "symbol": "5529",
+      "market": "TPEx",
+      "name": "鉅陞"
+    },
+    {
+      "symbol": "5530",
+      "market": "TPEx",
+      "name": "龍巖"
+    },
+    {
+      "symbol": "5536",
+      "market": "TPEx",
+      "name": "聖暉*"
+    },
+    {
+      "symbol": "5543",
+      "market": "TPEx",
+      "name": "桓鼎-KY"
+    },
+    {
+      "symbol": "5547",
+      "market": "TPEx",
+      "name": "久舜"
+    },
+    {
+      "symbol": "5548",
+      "market": "TPEx",
+      "name": "安倉"
+    },
+    {
+      "symbol": "5601",
+      "market": "TPEx",
+      "name": "台聯櫃"
+    },
+    {
+      "symbol": "5603",
+      "market": "TPEx",
+      "name": "陸海"
+    },
+    {
+      "symbol": "5604",
+      "market": "TPEx",
+      "name": "中連"
+    },
+    {
+      "symbol": "5609",
+      "market": "TPEx",
+      "name": "中菲行"
+    },
+    {
+      "symbol": "5701",
+      "market": "TPEx",
+      "name": "劍湖山"
+    },
+    {
+      "symbol": "5703",
+      "market": "TPEx",
+      "name": "亞都麗緻"
+    },
+    {
+      "symbol": "5704",
+      "market": "TPEx",
+      "name": "老爺知"
+    },
+    {
+      "symbol": "5864",
+      "market": "TPEx",
+      "name": "致和證"
+    },
+    {
+      "symbol": "5878",
+      "market": "TPEx",
+      "name": "台名"
+    },
+    {
+      "symbol": "5902",
+      "market": "TPEx",
+      "name": "德記"
+    },
+    {
+      "symbol": "5903",
+      "market": "TPEx",
+      "name": "全家"
+    },
+    {
+      "symbol": "5904",
+      "market": "TPEx",
+      "name": "寶雅*"
+    },
+    {
+      "symbol": "5905",
+      "market": "TPEx",
+      "name": "南仁湖"
+    },
+    {
+      "symbol": "6015",
+      "market": "TPEx",
+      "name": "宏遠證"
+    },
+    {
+      "symbol": "6016",
+      "market": "TPEx",
+      "name": "康和證"
+    },
+    {
+      "symbol": "6020",
+      "market": "TPEx",
+      "name": "大展證"
+    },
+    {
+      "symbol": "6021",
+      "market": "TPEx",
+      "name": "美好證"
+    },
+    {
+      "symbol": "6023",
+      "market": "TPEx",
+      "name": "元大期貨"
+    },
+    {
+      "symbol": "6026",
+      "market": "TPEx",
+      "name": "福邦證"
+    },
+    {
+      "symbol": "6028",
+      "market": "TPEx",
+      "name": "公勝保經"
+    },
+    {
+      "symbol": "6101",
+      "market": "TPEx",
+      "name": "寬魚國際"
+    },
+    {
+      "symbol": "6103",
+      "market": "TPEx",
+      "name": "合邦"
+    },
+    {
+      "symbol": "6104",
+      "market": "TPEx",
+      "name": "創惟"
+    },
+    {
+      "symbol": "6109",
+      "market": "TPEx",
+      "name": "亞元"
+    },
+    {
+      "symbol": "6111",
+      "market": "TPEx",
+      "name": "光聚晶電"
+    },
+    {
+      "symbol": "6113",
+      "market": "TPEx",
+      "name": "亞矽"
+    },
+    {
+      "symbol": "6114",
+      "market": "TPEx",
+      "name": "久威"
+    },
+    {
+      "symbol": "6118",
+      "market": "TPEx",
+      "name": "建達"
+    },
+    {
+      "symbol": "6121",
+      "market": "TPEx",
+      "name": "新普"
+    },
+    {
+      "symbol": "6122",
+      "market": "TPEx",
+      "name": "擎邦"
+    },
+    {
+      "symbol": "6123",
+      "market": "TPEx",
+      "name": "上奇"
+    },
+    {
+      "symbol": "6124",
+      "market": "TPEx",
+      "name": "業強"
+    },
+    {
+      "symbol": "6125",
+      "market": "TPEx",
+      "name": "廣運"
+    },
+    {
+      "symbol": "6126",
+      "market": "TPEx",
+      "name": "信音"
+    },
+    {
+      "symbol": "6127",
+      "market": "TPEx",
+      "name": "九豪"
+    },
+    {
+      "symbol": "6129",
+      "market": "TPEx",
+      "name": "普誠"
+    },
+    {
+      "symbol": "6130",
+      "market": "TPEx",
+      "name": "上亞科技"
+    },
+    {
+      "symbol": "6134",
+      "market": "TPEx",
+      "name": "萬旭"
+    },
+    {
+      "symbol": "6138",
+      "market": "TPEx",
+      "name": "茂達"
+    },
+    {
+      "symbol": "6140",
+      "market": "TPEx",
+      "name": "訊達電腦"
+    },
+    {
+      "symbol": "6143",
+      "market": "TPEx",
+      "name": "振曜"
+    },
+    {
+      "symbol": "6144",
+      "market": "TPEx",
+      "name": "得利影"
+    },
+    {
+      "symbol": "6146",
+      "market": "TPEx",
+      "name": "耕興"
+    },
+    {
+      "symbol": "6147",
+      "market": "TPEx",
+      "name": "頎邦"
+    },
+    {
+      "symbol": "6148",
+      "market": "TPEx",
+      "name": "驊宏資"
+    },
+    {
+      "symbol": "6150",
+      "market": "TPEx",
+      "name": "撼訊"
+    },
+    {
+      "symbol": "6151",
+      "market": "TPEx",
+      "name": "晉倫"
+    },
+    {
+      "symbol": "6154",
+      "market": "TPEx",
+      "name": "順發"
+    },
+    {
+      "symbol": "6156",
+      "market": "TPEx",
+      "name": "松上"
+    },
+    {
+      "symbol": "6158",
+      "market": "TPEx",
+      "name": "禾昌"
+    },
+    {
+      "symbol": "6160",
+      "market": "TPEx",
+      "name": "欣技"
+    },
+    {
+      "symbol": "6161",
+      "market": "TPEx",
+      "name": "捷波"
+    },
+    {
+      "symbol": "6163",
+      "market": "TPEx",
+      "name": "華電網"
+    },
+    {
+      "symbol": "6167",
+      "market": "TPEx",
+      "name": "久正"
+    },
+    {
+      "symbol": "6169",
+      "market": "TPEx",
+      "name": "昱泉"
+    },
+    {
+      "symbol": "6170",
+      "market": "TPEx",
+      "name": "統振"
+    },
+    {
+      "symbol": "6171",
+      "market": "TPEx",
+      "name": "大城地產"
+    },
+    {
+      "symbol": "6173",
+      "market": "TPEx",
+      "name": "信昌電"
+    },
+    {
+      "symbol": "6174",
+      "market": "TPEx",
+      "name": "安碁"
+    },
+    {
+      "symbol": "6175",
+      "market": "TPEx",
+      "name": "立敦"
+    },
+    {
+      "symbol": "6179",
+      "market": "TPEx",
+      "name": "亞通"
+    },
+    {
+      "symbol": "6180",
+      "market": "TPEx",
+      "name": "橘子"
+    },
+    {
+      "symbol": "6182",
+      "market": "TPEx",
+      "name": "合晶"
+    },
+    {
+      "symbol": "6185",
+      "market": "TPEx",
+      "name": "幃翔"
+    },
+    {
+      "symbol": "6186",
+      "market": "TPEx",
+      "name": "新潤"
+    },
+    {
+      "symbol": "6187",
+      "market": "TPEx",
+      "name": "萬潤"
+    },
+    {
+      "symbol": "6188",
+      "market": "TPEx",
+      "name": "廣明"
+    },
+    {
+      "symbol": "6190",
+      "market": "TPEx",
+      "name": "萬泰科"
+    },
+    {
+      "symbol": "6194",
+      "market": "TPEx",
+      "name": "育富"
+    },
+    {
+      "symbol": "6195",
+      "market": "TPEx",
+      "name": "詩肯"
+    },
+    {
+      "symbol": "6198",
+      "market": "TPEx",
+      "name": "瑞築"
+    },
+    {
+      "symbol": "6199",
+      "market": "TPEx",
+      "name": "天品"
+    },
+    {
+      "symbol": "6203",
+      "market": "TPEx",
+      "name": "海韻電"
+    },
+    {
+      "symbol": "6204",
+      "market": "TPEx",
+      "name": "艾華"
+    },
+    {
+      "symbol": "6207",
+      "market": "TPEx",
+      "name": "雷科"
+    },
+    {
+      "symbol": "6208",
+      "market": "TPEx",
+      "name": "日揚"
+    },
+    {
+      "symbol": "6210",
+      "market": "TPEx",
+      "name": "慶生"
+    },
+    {
+      "symbol": "6212",
+      "market": "TPEx",
+      "name": "理銘"
+    },
+    {
+      "symbol": "6217",
+      "market": "TPEx",
+      "name": "中探針"
+    },
+    {
+      "symbol": "6218",
+      "market": "TPEx",
+      "name": "豪勉"
+    },
+    {
+      "symbol": "6219",
+      "market": "TPEx",
+      "name": "富旺"
+    },
+    {
+      "symbol": "6220",
+      "market": "TPEx",
+      "name": "岳豐"
+    },
+    {
+      "symbol": "6221",
+      "market": "TPEx",
+      "name": "晉泰"
+    },
+    {
+      "symbol": "6222",
+      "market": "TPEx",
+      "name": "立軒"
+    },
+    {
+      "symbol": "6223",
+      "market": "TPEx",
+      "name": "旺矽"
+    },
+    {
+      "symbol": "6227",
+      "market": "TPEx",
+      "name": "茂綸"
+    },
+    {
+      "symbol": "6228",
+      "market": "TPEx",
+      "name": "全譜"
+    },
+    {
+      "symbol": "6229",
+      "market": "TPEx",
+      "name": "研通"
+    },
+    {
+      "symbol": "6231",
+      "market": "TPEx",
+      "name": "系微"
+    },
+    {
+      "symbol": "6233",
+      "market": "TPEx",
+      "name": "旺玖"
+    },
+    {
+      "symbol": "6234",
+      "market": "TPEx",
+      "name": "高僑"
+    },
+    {
+      "symbol": "6236",
+      "market": "TPEx",
+      "name": "中湛"
+    },
+    {
+      "symbol": "6237",
+      "market": "TPEx",
+      "name": "驊訊"
+    },
+    {
+      "symbol": "6240",
+      "market": "TPEx",
+      "name": "松崗"
+    },
+    {
+      "symbol": "6241",
+      "market": "TPEx",
+      "name": "鑫永洋"
+    },
+    {
+      "symbol": "6242",
+      "market": "TPEx",
+      "name": "立康"
+    },
+    {
+      "symbol": "6244",
+      "market": "TPEx",
+      "name": "茂迪"
+    },
+    {
+      "symbol": "6245",
+      "market": "TPEx",
+      "name": "立端"
+    },
+    {
+      "symbol": "6246",
+      "market": "TPEx",
+      "name": "臺龍"
+    },
+    {
+      "symbol": "6248",
+      "market": "TPEx",
+      "name": "沛波"
+    },
+    {
+      "symbol": "6259",
+      "market": "TPEx",
+      "name": "百徽"
+    },
+    {
+      "symbol": "6261",
+      "market": "TPEx",
+      "name": "久元"
+    },
+    {
+      "symbol": "6263",
+      "market": "TPEx",
+      "name": "普萊德"
+    },
+    {
+      "symbol": "6264",
+      "market": "TPEx",
+      "name": "富裔"
+    },
+    {
+      "symbol": "6265",
+      "market": "TPEx",
+      "name": "方土昶"
+    },
+    {
+      "symbol": "6266",
+      "market": "TPEx",
+      "name": "泰詠"
+    },
+    {
+      "symbol": "6270",
+      "market": "TPEx",
+      "name": "倍微"
+    },
+    {
+      "symbol": "6274",
+      "market": "TPEx",
+      "name": "台燿"
+    },
+    {
+      "symbol": "6275",
+      "market": "TPEx",
+      "name": "元山"
+    },
+    {
+      "symbol": "6276",
+      "market": "TPEx",
+      "name": "安鈦克"
+    },
+    {
+      "symbol": "6279",
+      "market": "TPEx",
+      "name": "胡連"
+    },
+    {
+      "symbol": "6284",
+      "market": "TPEx",
+      "name": "佳邦"
+    },
+    {
+      "symbol": "6290",
+      "market": "TPEx",
+      "name": "良維"
+    },
+    {
+      "symbol": "6291",
+      "market": "TPEx",
+      "name": "沛亨"
+    },
+    {
+      "symbol": "6292",
+      "market": "TPEx",
+      "name": "迅德"
+    },
+    {
+      "symbol": "6294",
+      "market": "TPEx",
+      "name": "智基"
+    },
+    {
+      "symbol": "6411",
+      "market": "TPEx",
+      "name": "晶焱"
+    },
+    {
+      "symbol": "6417",
+      "market": "TPEx",
+      "name": "韋僑"
+    },
+    {
+      "symbol": "6418",
+      "market": "TPEx",
+      "name": "詠昇"
+    },
+    {
+      "symbol": "6419",
+      "market": "TPEx",
+      "name": "京晨科"
+    },
+    {
+      "symbol": "6423",
+      "market": "TPEx",
+      "name": "億而得"
+    },
+    {
+      "symbol": "6425",
+      "market": "TPEx",
+      "name": "易發"
+    },
+    {
+      "symbol": "6432",
+      "market": "TPEx",
+      "name": "今展科"
+    },
+    {
+      "symbol": "6435",
+      "market": "TPEx",
+      "name": "大中"
+    },
+    {
+      "symbol": "6441",
+      "market": "TPEx",
+      "name": "廣錠"
+    },
+    {
+      "symbol": "6461",
+      "market": "TPEx",
+      "name": "益得"
+    },
+    {
+      "symbol": "6462",
+      "market": "TPEx",
+      "name": "神盾"
+    },
+    {
+      "symbol": "6465",
+      "market": "TPEx",
+      "name": "威潤"
+    },
+    {
+      "symbol": "6469",
+      "market": "TPEx",
+      "name": "大樹"
+    },
+    {
+      "symbol": "6470",
+      "market": "TPEx",
+      "name": "宇智"
+    },
+    {
+      "symbol": "6474",
+      "market": "TPEx",
+      "name": "華豫寧"
+    },
+    {
+      "symbol": "6482",
+      "market": "TPEx",
+      "name": "弘煜科"
+    },
+    {
+      "symbol": "6485",
+      "market": "TPEx",
+      "name": "點序"
+    },
+    {
+      "symbol": "6486",
+      "market": "TPEx",
+      "name": "互動"
+    },
+    {
+      "symbol": "6488",
+      "market": "TPEx",
+      "name": "環球晶"
+    },
+    {
+      "symbol": "6492",
+      "market": "TPEx",
+      "name": "生華科"
+    },
+    {
+      "symbol": "6494",
+      "market": "TPEx",
+      "name": "九齊"
+    },
+    {
+      "symbol": "6496",
+      "market": "TPEx",
+      "name": "科懋"
+    },
+    {
+      "symbol": "6498",
+      "market": "TPEx",
+      "name": "久禾光"
+    },
+    {
+      "symbol": "6499",
+      "market": "TPEx",
+      "name": "益安"
+    },
+    {
+      "symbol": "6506",
+      "market": "TPEx",
+      "name": "雙邦"
+    },
+    {
+      "symbol": "6508",
+      "market": "TPEx",
+      "name": "惠光"
+    },
+    {
+      "symbol": "6509",
+      "market": "TPEx",
+      "name": "聚和"
+    },
+    {
+      "symbol": "6510",
+      "market": "TPEx",
+      "name": "精測"
+    },
+    {
+      "symbol": "6512",
+      "market": "TPEx",
+      "name": "啟發電"
+    },
+    {
+      "symbol": "6516",
+      "market": "TPEx",
+      "name": "勤崴國際"
+    },
+    {
+      "symbol": "6517",
+      "market": "TPEx",
+      "name": "保勝光學"
+    },
+    {
+      "symbol": "6523",
+      "market": "TPEx",
+      "name": "達爾膚"
+    },
+    {
+      "symbol": "6527",
+      "market": "TPEx",
+      "name": "明達醫"
+    },
+    {
+      "symbol": "6530",
+      "market": "TPEx",
+      "name": "創威"
+    },
+    {
+      "symbol": "6532",
+      "market": "TPEx",
+      "name": "瑞耘"
+    },
+    {
+      "symbol": "6535",
+      "market": "TPEx",
+      "name": "順藥"
+    },
+    {
+      "symbol": "6538",
+      "market": "TPEx",
+      "name": "倉和"
+    },
+    {
+      "symbol": "6542",
+      "market": "TPEx",
+      "name": "隆中"
+    },
+    {
+      "symbol": "6546",
+      "market": "TPEx",
+      "name": "正基"
+    },
+    {
+      "symbol": "6547",
+      "market": "TPEx",
+      "name": "高端疫苗"
+    },
+    {
+      "symbol": "6548",
+      "market": "TPEx",
+      "name": "長科*"
+    },
+    {
+      "symbol": "6556",
+      "market": "TPEx",
+      "name": "勝品"
+    },
+    {
+      "symbol": "6560",
+      "market": "TPEx",
+      "name": "欣普羅"
+    },
+    {
+      "symbol": "6561",
+      "market": "TPEx",
+      "name": "是方"
+    },
+    {
+      "symbol": "6568",
+      "market": "TPEx",
+      "name": "宏觀"
+    },
+    {
+      "symbol": "6569",
+      "market": "TPEx",
+      "name": "醫揚"
+    },
+    {
+      "symbol": "6570",
+      "market": "TPEx",
+      "name": "維田"
+    },
+    {
+      "symbol": "6574",
+      "market": "TPEx",
+      "name": "霈方"
+    },
+    {
+      "symbol": "6576",
+      "market": "TPEx",
+      "name": "逸達"
+    },
+    {
+      "symbol": "6577",
+      "market": "TPEx",
+      "name": "勁豐"
+    },
+    {
+      "symbol": "6578",
+      "market": "TPEx",
+      "name": "達邦蛋白"
+    },
+    {
+      "symbol": "6584",
+      "market": "TPEx",
+      "name": "南俊國際"
+    },
+    {
+      "symbol": "6588",
+      "market": "TPEx",
+      "name": "東典光電"
+    },
+    {
+      "symbol": "6590",
+      "market": "TPEx",
+      "name": "普鴻"
+    },
+    {
+      "symbol": "6593",
+      "market": "TPEx",
+      "name": "台灣銘板"
+    },
+    {
+      "symbol": "6596",
+      "market": "TPEx",
+      "name": "寬宏藝術"
+    },
+    {
+      "symbol": "6597",
+      "market": "TPEx",
+      "name": "立誠"
+    },
+    {
+      "symbol": "6603",
+      "market": "TPEx",
+      "name": "富強鑫"
+    },
+    {
+      "symbol": "6609",
+      "market": "TPEx",
+      "name": "瀧澤科"
+    },
+    {
+      "symbol": "6612",
+      "market": "TPEx",
+      "name": "奈米醫材"
+    },
+    {
+      "symbol": "6613",
+      "market": "TPEx",
+      "name": "朋億*"
+    },
+    {
+      "symbol": "6615",
+      "market": "TPEx",
+      "name": "慧智"
+    },
+    {
+      "symbol": "6616",
+      "market": "TPEx",
+      "name": "特昇-KY"
+    },
+    {
+      "symbol": "6617",
+      "market": "TPEx",
+      "name": "共信-KY"
+    },
+    {
+      "symbol": "6620",
+      "market": "TPEx",
+      "name": "漢達"
+    },
+    {
+      "symbol": "6624",
+      "market": "TPEx",
+      "name": "萬年清"
+    },
+    {
+      "symbol": "6629",
+      "market": "TPEx",
+      "name": "泰金-KY"
+    },
+    {
+      "symbol": "6637",
+      "market": "TPEx",
+      "name": "醫影"
+    },
+    {
+      "symbol": "6640",
+      "market": "TPEx",
+      "name": "均華"
+    },
+    {
+      "symbol": "6642",
+      "market": "TPEx",
+      "name": "富致"
+    },
+    {
+      "symbol": "6643",
+      "market": "TPEx",
+      "name": "M31"
+    },
+    {
+      "symbol": "6649",
+      "market": "TPEx",
+      "name": "台生材"
+    },
+    {
+      "symbol": "6651",
+      "market": "TPEx",
+      "name": "全宇昕"
+    },
+    {
+      "symbol": "6654",
+      "market": "TPEx",
+      "name": "天正國際"
+    },
+    {
+      "symbol": "6661",
+      "market": "TPEx",
+      "name": "威健生技"
+    },
+    {
+      "symbol": "6662",
+      "market": "TPEx",
+      "name": "樂斯科"
+    },
+    {
+      "symbol": "6664",
+      "market": "TPEx",
+      "name": "群翊"
+    },
+    {
+      "symbol": "6667",
+      "market": "TPEx",
+      "name": "信紘科"
+    },
+    {
+      "symbol": "6679",
+      "market": "TPEx",
+      "name": "鈺太"
+    },
+    {
+      "symbol": "6680",
+      "market": "TPEx",
+      "name": "鑫創電子"
+    },
+    {
+      "symbol": "6683",
+      "market": "TPEx",
+      "name": "雍智科技"
+    },
+    {
+      "symbol": "6684",
+      "market": "TPEx",
+      "name": "安格"
+    },
+    {
+      "symbol": "6690",
+      "market": "TPEx",
+      "name": "安碁資訊"
+    },
+    {
+      "symbol": "6692",
+      "market": "TPEx",
+      "name": "進能服"
+    },
+    {
+      "symbol": "6693",
+      "market": "TPEx",
+      "name": "廣閎科"
+    },
+    {
+      "symbol": "6697",
+      "market": "TPEx",
+      "name": "東捷資訊"
+    },
+    {
+      "symbol": "6703",
+      "market": "TPEx",
+      "name": "軒郁"
+    },
+    {
+      "symbol": "6708",
+      "market": "TPEx",
+      "name": "天擎"
+    },
+    {
+      "symbol": "6712",
+      "market": "TPEx",
+      "name": "長聖"
+    },
+    {
+      "symbol": "6716",
+      "market": "TPEx",
+      "name": "應廣"
+    },
+    {
+      "symbol": "6720",
+      "market": "TPEx",
+      "name": "久昌"
+    },
+    {
+      "symbol": "6721",
+      "market": "TPEx",
+      "name": "信實"
+    },
+    {
+      "symbol": "6725",
+      "market": "TPEx",
+      "name": "矽科宏晟"
+    },
+    {
+      "symbol": "6727",
+      "market": "TPEx",
+      "name": "亞泰金屬"
+    },
+    {
+      "symbol": "6728",
+      "market": "TPEx",
+      "name": "上洋"
+    },
+    {
+      "symbol": "6730",
+      "market": "TPEx",
+      "name": "常廣"
+    },
+    {
+      "symbol": "6732",
+      "market": "TPEx",
+      "name": "昇佳電子"
+    },
+    {
+      "symbol": "6733",
+      "market": "TPEx",
+      "name": "博晟生醫"
+    },
+    {
+      "symbol": "6735",
+      "market": "TPEx",
+      "name": "美達科技"
+    },
+    {
+      "symbol": "6739",
+      "market": "TPEx",
+      "name": "竹陞科技"
+    },
+    {
+      "symbol": "6741",
+      "market": "TPEx",
+      "name": "91APP*-KY"
+    },
+    {
+      "symbol": "6751",
+      "market": "TPEx",
+      "name": "智聯服務"
+    },
+    {
+      "symbol": "6752",
+      "market": "TPEx",
+      "name": "叡揚"
+    },
+    {
+      "symbol": "6761",
+      "market": "TPEx",
+      "name": "穩得"
+    },
+    {
+      "symbol": "6762",
+      "market": "TPEx",
+      "name": "達亞"
+    },
+    {
+      "symbol": "6763",
+      "market": "TPEx",
+      "name": "綠界科技*"
+    },
+    {
+      "symbol": "6767",
+      "market": "TPEx",
+      "name": "台微醫"
+    },
+    {
+      "symbol": "6785",
+      "market": "TPEx",
+      "name": "昱展新藥"
+    },
+    {
+      "symbol": "6788",
+      "market": "TPEx",
+      "name": "華景電"
+    },
+    {
+      "symbol": "6791",
+      "market": "TPEx",
+      "name": "虎門科技"
+    },
+    {
+      "symbol": "6803",
+      "market": "TPEx",
+      "name": "崑鼎"
+    },
+    {
+      "symbol": "6804",
+      "market": "TPEx",
+      "name": "明係"
+    },
+    {
+      "symbol": "6811",
+      "market": "TPEx",
+      "name": "宏碁資訊"
+    },
+    {
+      "symbol": "6821",
+      "market": "TPEx",
+      "name": "聯寶"
+    },
+    {
+      "symbol": "6823",
+      "market": "TPEx",
+      "name": "濾能"
+    },
+    {
+      "symbol": "6829",
+      "market": "TPEx",
+      "name": "千附精密"
+    },
+    {
+      "symbol": "6840",
+      "market": "TPEx",
+      "name": "東研信超"
+    },
+    {
+      "symbol": "6841",
+      "market": "TPEx",
+      "name": "長佳智能"
+    },
+    {
+      "symbol": "6843",
+      "market": "TPEx",
+      "name": "進典"
+    },
+    {
+      "symbol": "6844",
+      "market": "TPEx",
+      "name": "諾貝兒"
+    },
+    {
+      "symbol": "6846",
+      "market": "TPEx",
+      "name": "綠茵"
+    },
+    {
+      "symbol": "6855",
+      "market": "TPEx",
+      "name": "數泓科"
+    },
+    {
+      "symbol": "6856",
+      "market": "TPEx",
+      "name": "鑫傳"
+    },
+    {
+      "symbol": "6859",
+      "market": "TPEx",
+      "name": "伯特光"
+    },
+    {
+      "symbol": "6865",
+      "market": "TPEx",
+      "name": "偉康科技"
+    },
+    {
+      "symbol": "6870",
+      "market": "TPEx",
+      "name": "騰雲"
+    },
+    {
+      "symbol": "6872",
+      "market": "TPEx",
+      "name": "浩宇生醫"
+    },
+    {
+      "symbol": "6874",
+      "market": "TPEx",
+      "name": "倍力"
+    },
+    {
+      "symbol": "6875",
+      "market": "TPEx",
+      "name": "國邑*"
+    },
+    {
+      "symbol": "6877",
+      "market": "TPEx",
+      "name": "鏵友益"
+    },
+    {
+      "symbol": "6881",
+      "market": "TPEx",
+      "name": "潤德"
+    },
+    {
+      "symbol": "6884",
+      "market": "TPEx",
+      "name": "海柏特"
+    },
+    {
+      "symbol": "6894",
+      "market": "TPEx",
+      "name": "衛司特"
+    },
+    {
+      "symbol": "6895",
+      "market": "TPEx",
+      "name": "宏碩系統"
+    },
+    {
+      "symbol": "6899",
+      "market": "TPEx",
+      "name": "創為精密"
+    },
+    {
+      "symbol": "6903",
+      "market": "TPEx",
+      "name": "巨漢"
+    },
+    {
+      "symbol": "6904",
+      "market": "TPEx",
+      "name": "伯鑫"
+    },
+    {
+      "symbol": "6907",
+      "market": "TPEx",
+      "name": "雅特力-KY"
+    },
+    {
+      "symbol": "6910",
+      "market": "TPEx",
+      "name": "德鴻"
+    },
+    {
+      "symbol": "6913",
+      "market": "TPEx",
+      "name": "鴻呈"
+    },
+    {
+      "symbol": "6922",
+      "market": "TPEx",
+      "name": "宸曜"
+    },
+    {
+      "symbol": "6925",
+      "market": "TPEx",
+      "name": "意藍"
+    },
+    {
+      "symbol": "6929",
+      "market": "TPEx",
+      "name": "佑全"
+    },
+    {
+      "symbol": "6945",
+      "market": "TPEx",
+      "name": "圓祥生技"
+    },
+    {
+      "symbol": "6953",
+      "market": "TPEx",
+      "name": "家碩"
+    },
+    {
+      "symbol": "6961",
+      "market": "TPEx",
+      "name": "旅天下"
+    },
+    {
+      "symbol": "6967",
+      "market": "TPEx",
+      "name": "汎瑋材料"
+    },
+    {
+      "symbol": "6968",
+      "market": "TPEx",
+      "name": "萬達寵物"
+    },
+    {
+      "symbol": "6971",
+      "market": "TPEx",
+      "name": "惠民實業"
+    },
+    {
+      "symbol": "6982",
+      "market": "TPEx",
+      "name": "大井泵浦"
+    },
+    {
+      "symbol": "6983",
+      "market": "TPEx",
+      "name": "華洋精機"
+    },
+    {
+      "symbol": "6986",
+      "market": "TPEx",
+      "name": "和迅"
+    },
+    {
+      "symbol": "6996",
+      "market": "TPEx",
+      "name": "力領科技"
+    },
+    {
+      "symbol": "6997",
+      "market": "TPEx",
+      "name": "博弘"
+    },
+    {
+      "symbol": "7402",
+      "market": "TPEx",
+      "name": "邑錡"
+    },
+    {
+      "symbol": "7547",
+      "market": "TPEx",
+      "name": "碩網"
+    },
+    {
+      "symbol": "7556",
+      "market": "TPEx",
+      "name": "意德士科技"
+    },
+    {
+      "symbol": "7584",
+      "market": "TPEx",
+      "name": "樂意"
+    },
+    {
+      "symbol": "7642",
+      "market": "TPEx",
+      "name": "昶瑞機電"
+    },
+    {
+      "symbol": "7703",
+      "market": "TPEx",
+      "name": "銳澤"
+    },
+    {
+      "symbol": "7704",
+      "market": "TPEx",
+      "name": "明遠精密"
+    },
+    {
+      "symbol": "7708",
+      "market": "TPEx",
+      "name": "全家餐飲"
+    },
+    {
+      "symbol": "7709",
+      "market": "TPEx",
+      "name": "榮田"
+    },
+    {
+      "symbol": "7712",
+      "market": "TPEx",
+      "name": "博盛半導體"
+    },
+    {
+      "symbol": "7713",
+      "market": "TPEx",
+      "name": "威力德生醫"
+    },
+    {
+      "symbol": "7714",
+      "market": "TPEx",
+      "name": "創泓科技"
+    },
+    {
+      "symbol": "7715",
+      "market": "TPEx",
+      "name": "裕山"
+    },
+    {
+      "symbol": "7716",
+      "market": "TPEx",
+      "name": "昱臺國際"
+    },
+    {
+      "symbol": "7717",
+      "market": "TPEx",
+      "name": "萊德光電-KY"
+    },
+    {
+      "symbol": "7718",
+      "market": "TPEx",
+      "name": "友鋮"
+    },
+    {
+      "symbol": "7723",
+      "market": "TPEx",
+      "name": "築間"
+    },
+    {
+      "symbol": "7728",
+      "market": "TPEx",
+      "name": "光焱科技"
+    },
+    {
+      "symbol": "7734",
+      "market": "TPEx",
+      "name": "印能科技"
+    },
+    {
+      "symbol": "7738",
+      "market": "TPEx",
+      "name": "東聯互動"
+    },
+    {
+      "symbol": "7743",
+      "market": "TPEx",
+      "name": "金利食安"
+    },
+    {
+      "symbol": "7744",
+      "market": "TPEx",
+      "name": "崴寶"
+    },
+    {
+      "symbol": "7747",
+      "market": "TPEx",
+      "name": "昕奇雲端"
+    },
+    {
+      "symbol": "7751",
+      "market": "TPEx",
+      "name": "竑騰"
+    },
+    {
+      "symbol": "7753",
+      "market": "TPEx",
+      "name": "星亞"
+    },
+    {
+      "symbol": "7757",
+      "market": "TPEx",
+      "name": "金色三麥"
+    },
+    {
+      "symbol": "7767",
+      "market": "TPEx",
+      "name": "仁大資訊"
+    },
+    {
+      "symbol": "7770",
+      "market": "TPEx",
+      "name": "君曜"
+    },
+    {
+      "symbol": "7772",
+      "market": "TPEx",
+      "name": "耀穎"
+    },
+    {
+      "symbol": "7777",
+      "market": "TPEx",
+      "name": "能率亞洲"
+    },
+    {
+      "symbol": "7782",
+      "market": "TPEx",
+      "name": "光速火箭"
+    },
+    {
+      "symbol": "7792",
+      "market": "TPEx",
+      "name": "安葆"
+    },
+    {
+      "symbol": "7794",
+      "market": "TPEx",
+      "name": "宏碁智新"
+    },
+    {
+      "symbol": "7805",
+      "market": "TPEx",
+      "name": "威聯通"
+    },
+    {
+      "symbol": "7810",
+      "market": "TPEx",
+      "name": "捷創科技"
+    },
+    {
+      "symbol": "7811",
+      "market": "TPEx",
+      "name": "民盛"
+    },
+    {
+      "symbol": "7814",
+      "market": "TPEx",
+      "name": "海昌生技"
+    },
+    {
+      "symbol": "7819",
+      "market": "TPEx",
+      "name": "精誠金融"
+    },
+    {
+      "symbol": "7820",
+      "market": "TPEx",
+      "name": "立盈"
+    },
+    {
+      "symbol": "7828",
+      "market": "TPEx",
+      "name": "創新服務"
+    },
+    {
+      "symbol": "7839",
+      "market": "TPEx",
+      "name": "達人網"
+    },
+    {
+      "symbol": "7842",
+      "market": "TPEx",
+      "name": "天能綠電"
+    },
+    {
+      "symbol": "8024",
+      "market": "TPEx",
+      "name": "佑華"
+    },
+    {
+      "symbol": "8027",
+      "market": "TPEx",
+      "name": "鈦昇"
+    },
+    {
+      "symbol": "8032",
+      "market": "TPEx",
+      "name": "光菱"
+    },
+    {
+      "symbol": "8034",
+      "market": "TPEx",
+      "name": "榮群"
+    },
+    {
+      "symbol": "8038",
+      "market": "TPEx",
+      "name": "長園科"
+    },
+    {
+      "symbol": "8040",
+      "market": "TPEx",
+      "name": "九暘"
+    },
+    {
+      "symbol": "8042",
+      "market": "TPEx",
+      "name": "金山電"
+    },
+    {
+      "symbol": "8043",
+      "market": "TPEx",
+      "name": "蜜望實"
+    },
+    {
+      "symbol": "8044",
+      "market": "TPEx",
+      "name": "網家"
+    },
+    {
+      "symbol": "8047",
+      "market": "TPEx",
+      "name": "星雲"
+    },
+    {
+      "symbol": "8048",
+      "market": "TPEx",
+      "name": "德勝"
+    },
+    {
+      "symbol": "8049",
+      "market": "TPEx",
+      "name": "晶采"
+    },
+    {
+      "symbol": "8050",
+      "market": "TPEx",
+      "name": "廣積"
+    },
+    {
+      "symbol": "8054",
+      "market": "TPEx",
+      "name": "安國"
+    },
+    {
+      "symbol": "8059",
+      "market": "TPEx",
+      "name": "凱碩"
+    },
+    {
+      "symbol": "8064",
+      "market": "TPEx",
+      "name": "東捷"
+    },
+    {
+      "symbol": "8066",
+      "market": "TPEx",
+      "name": "來思達"
+    },
+    {
+      "symbol": "8067",
+      "market": "TPEx",
+      "name": "志旭"
+    },
+    {
+      "symbol": "8068",
+      "market": "TPEx",
+      "name": "全達"
+    },
+    {
+      "symbol": "8069",
+      "market": "TPEx",
+      "name": "元太"
+    },
+    {
+      "symbol": "8071",
+      "market": "TPEx",
+      "name": "能率網通"
+    },
+    {
+      "symbol": "8074",
+      "market": "TPEx",
+      "name": "鉅橡"
+    },
+    {
+      "symbol": "8076",
+      "market": "TPEx",
+      "name": "伍豐"
+    },
+    {
+      "symbol": "8077",
+      "market": "TPEx",
+      "name": "洛碁"
+    },
+    {
+      "symbol": "8080",
+      "market": "TPEx",
+      "name": "泰霖"
+    },
+    {
+      "symbol": "8083",
+      "market": "TPEx",
+      "name": "瑞穎"
+    },
+    {
+      "symbol": "8084",
+      "market": "TPEx",
+      "name": "巨虹"
+    },
+    {
+      "symbol": "8085",
+      "market": "TPEx",
+      "name": "福華"
+    },
+    {
+      "symbol": "8086",
+      "market": "TPEx",
+      "name": "宏捷科"
+    },
+    {
+      "symbol": "8087",
+      "market": "TPEx",
+      "name": "麗升能源"
+    },
+    {
+      "symbol": "8088",
+      "market": "TPEx",
+      "name": "品安"
+    },
+    {
+      "symbol": "8089",
+      "market": "TPEx",
+      "name": "康全電訊"
+    },
+    {
+      "symbol": "8091",
+      "market": "TPEx",
+      "name": "翔名"
+    },
+    {
+      "symbol": "8092",
+      "market": "TPEx",
+      "name": "建暐"
+    },
+    {
+      "symbol": "8093",
+      "market": "TPEx",
+      "name": "保銳"
+    },
+    {
+      "symbol": "8096",
+      "market": "TPEx",
+      "name": "擎亞"
+    },
+    {
+      "symbol": "8097",
+      "market": "TPEx",
+      "name": "常珵"
+    },
+    {
+      "symbol": "8099",
+      "market": "TPEx",
+      "name": "大世科"
+    },
+    {
+      "symbol": "8102",
+      "market": "TPEx",
+      "name": "傑霖科技"
+    },
+    {
+      "symbol": "8107",
+      "market": "TPEx",
+      "name": "大億金茂"
+    },
+    {
+      "symbol": "8109",
+      "market": "TPEx",
+      "name": "博大"
+    },
+    {
+      "symbol": "8111",
+      "market": "TPEx",
+      "name": "立碁"
+    },
+    {
+      "symbol": "8121",
+      "market": "TPEx",
+      "name": "越峰"
+    },
+    {
+      "symbol": "8147",
+      "market": "TPEx",
+      "name": "正淩"
+    },
+    {
+      "symbol": "8155",
+      "market": "TPEx",
+      "name": "博智"
+    },
+    {
+      "symbol": "8171",
+      "market": "TPEx",
+      "name": "天宇"
+    },
+    {
+      "symbol": "8176",
+      "market": "TPEx",
+      "name": "智捷"
+    },
+    {
+      "symbol": "8182",
+      "market": "TPEx",
+      "name": "加高"
+    },
+    {
+      "symbol": "8183",
+      "market": "TPEx",
+      "name": "精星"
+    },
+    {
+      "symbol": "8227",
+      "market": "TPEx",
+      "name": "巨有科技"
+    },
+    {
+      "symbol": "8234",
+      "market": "TPEx",
+      "name": "新漢"
+    },
+    {
+      "symbol": "8240",
+      "market": "TPEx",
+      "name": "華宏"
+    },
+    {
+      "symbol": "8255",
+      "market": "TPEx",
+      "name": "朋程"
+    },
+    {
+      "symbol": "8272",
+      "market": "TPEx",
+      "name": "全景軟體"
+    },
+    {
+      "symbol": "8277",
+      "market": "TPEx",
+      "name": "商丞"
+    },
+    {
+      "symbol": "8279",
+      "market": "TPEx",
+      "name": "生展"
+    },
+    {
+      "symbol": "8284",
+      "market": "TPEx",
+      "name": "三竹"
+    },
+    {
+      "symbol": "8289",
+      "market": "TPEx",
+      "name": "泰藝"
+    },
+    {
+      "symbol": "8291",
+      "market": "TPEx",
+      "name": "尚茂"
+    },
+    {
+      "symbol": "8299",
+      "market": "TPEx",
+      "name": "群聯"
+    },
+    {
+      "symbol": "8342",
+      "market": "TPEx",
+      "name": "益張"
+    },
+    {
+      "symbol": "8349",
+      "market": "TPEx",
+      "name": "恒耀國際"
+    },
+    {
+      "symbol": "8354",
+      "market": "TPEx",
+      "name": "冠好"
+    },
+    {
+      "symbol": "8358",
+      "market": "TPEx",
+      "name": "金居"
+    },
+    {
+      "symbol": "8383",
+      "market": "TPEx",
+      "name": "千附"
+    },
+    {
+      "symbol": "8390",
+      "market": "TPEx",
+      "name": "金益鼎"
+    },
+    {
+      "symbol": "8401",
+      "market": "TPEx",
+      "name": "白紗科"
+    },
+    {
+      "symbol": "8403",
+      "market": "TPEx",
+      "name": "盛弘"
+    },
+    {
+      "symbol": "8409",
+      "market": "TPEx",
+      "name": "商之器"
+    },
+    {
+      "symbol": "8410",
+      "market": "TPEx",
+      "name": "森田"
+    },
+    {
+      "symbol": "8415",
+      "market": "TPEx",
+      "name": "大國鋼"
+    },
+    {
+      "symbol": "8416",
+      "market": "TPEx",
+      "name": "實威"
+    },
+    {
+      "symbol": "8421",
+      "market": "TPEx",
+      "name": "旭源"
+    },
+    {
+      "symbol": "8423",
+      "market": "TPEx",
+      "name": "保綠-KY"
+    },
+    {
+      "symbol": "8424",
+      "market": "TPEx",
+      "name": "惠普"
+    },
+    {
+      "symbol": "8426",
+      "market": "TPEx",
+      "name": "紅木-KY"
+    },
+    {
+      "symbol": "8431",
+      "market": "TPEx",
+      "name": "匯鑽科"
+    },
+    {
+      "symbol": "8432",
+      "market": "TPEx",
+      "name": "東生華"
+    },
+    {
+      "symbol": "8433",
+      "market": "TPEx",
+      "name": "弘帆"
+    },
+    {
+      "symbol": "8435",
+      "market": "TPEx",
+      "name": "鉅邁"
+    },
+    {
+      "symbol": "8436",
+      "market": "TPEx",
+      "name": "大江"
+    },
+    {
+      "symbol": "8437",
+      "market": "TPEx",
+      "name": "大地-KY"
+    },
+    {
+      "symbol": "8440",
+      "market": "TPEx",
+      "name": "綠電"
+    },
+    {
+      "symbol": "8444",
+      "market": "TPEx",
+      "name": "綠河-KY"
+    },
+    {
+      "symbol": "8446",
+      "market": "TPEx",
+      "name": "華研"
+    },
+    {
+      "symbol": "8450",
+      "market": "TPEx",
+      "name": "霹靂"
+    },
+    {
+      "symbol": "8455",
+      "market": "TPEx",
+      "name": "大拓-KY"
+    },
+    {
+      "symbol": "8472",
+      "market": "TPEx",
+      "name": "納維康"
+    },
+    {
+      "symbol": "8477",
+      "market": "TPEx",
+      "name": "創業家"
+    },
+    {
+      "symbol": "8489",
+      "market": "TPEx",
+      "name": "三貝德"
+    },
+    {
+      "symbol": "8905",
+      "market": "TPEx",
+      "name": "裕國"
+    },
+    {
+      "symbol": "8906",
+      "market": "TPEx",
+      "name": "花王"
+    },
+    {
+      "symbol": "8908",
+      "market": "TPEx",
+      "name": "欣雄"
+    },
+    {
+      "symbol": "8916",
+      "market": "TPEx",
+      "name": "光隆"
+    },
+    {
+      "symbol": "8917",
+      "market": "TPEx",
+      "name": "欣泰"
+    },
+    {
+      "symbol": "8921",
+      "market": "TPEx",
+      "name": "沈氏"
+    },
+    {
+      "symbol": "8923",
+      "market": "TPEx",
+      "name": "時報"
+    },
+    {
+      "symbol": "8924",
+      "market": "TPEx",
+      "name": "大田"
+    },
+    {
+      "symbol": "8927",
+      "market": "TPEx",
+      "name": "北基"
+    },
+    {
+      "symbol": "8928",
+      "market": "TPEx",
+      "name": "鉅明"
+    },
+    {
+      "symbol": "8929",
+      "market": "TPEx",
+      "name": "富堡"
+    },
+    {
+      "symbol": "8930",
+      "market": "TPEx",
+      "name": "青鋼"
+    },
+    {
+      "symbol": "8931",
+      "market": "TPEx",
+      "name": "大汽電"
+    },
+    {
+      "symbol": "8932",
+      "market": "TPEx",
+      "name": "智通*"
+    },
+    {
+      "symbol": "8933",
+      "market": "TPEx",
+      "name": "愛地雅"
+    },
+    {
+      "symbol": "8935",
+      "market": "TPEx",
+      "name": "邦泰"
+    },
+    {
+      "symbol": "8936",
+      "market": "TPEx",
+      "name": "國統"
+    },
+    {
+      "symbol": "8937",
+      "market": "TPEx",
+      "name": "合騏*"
+    },
+    {
+      "symbol": "8938",
+      "market": "TPEx",
+      "name": "明安"
+    },
+    {
+      "symbol": "8941",
+      "market": "TPEx",
+      "name": "關中"
+    },
+    {
+      "symbol": "8942",
+      "market": "TPEx",
+      "name": "森鉅"
+    },
+    {
+      "symbol": "9949",
+      "market": "TPEx",
+      "name": "琉園"
+    },
+    {
+      "symbol": "9950",
+      "market": "TPEx",
+      "name": "萬國通"
+    },
+    {
+      "symbol": "9951",
+      "market": "TPEx",
+      "name": "皇田"
+    },
+    {
+      "symbol": "9960",
+      "market": "TPEx",
+      "name": "邁達康"
+    },
+    {
+      "symbol": "9962",
+      "market": "TPEx",
+      "name": "有益"
+    },
+    {
+      "symbol": "1101",
+      "market": "TWSE",
+      "name": "台泥"
+    },
+    {
+      "symbol": "1102",
+      "market": "TWSE",
+      "name": "亞泥"
+    },
+    {
+      "symbol": "1103",
+      "market": "TWSE",
+      "name": "嘉泥"
+    },
+    {
+      "symbol": "1104",
+      "market": "TWSE",
+      "name": "環泥"
+    },
+    {
+      "symbol": "1108",
+      "market": "TWSE",
+      "name": "幸福"
+    },
+    {
+      "symbol": "1109",
+      "market": "TWSE",
+      "name": "信大"
+    },
+    {
+      "symbol": "1110",
+      "market": "TWSE",
+      "name": "東泥"
+    },
+    {
+      "symbol": "1201",
+      "market": "TWSE",
+      "name": "味全"
+    },
+    {
+      "symbol": "1203",
+      "market": "TWSE",
+      "name": "味王"
+    },
+    {
+      "symbol": "1210",
+      "market": "TWSE",
+      "name": "大成"
+    },
+    {
+      "symbol": "1213",
+      "market": "TWSE",
+      "name": "大飲"
+    },
+    {
+      "symbol": "1215",
+      "market": "TWSE",
+      "name": "卜蜂"
+    },
+    {
+      "symbol": "1216",
+      "market": "TWSE",
+      "name": "統一"
+    },
+    {
+      "symbol": "1217",
+      "market": "TWSE",
+      "name": "愛之味"
+    },
+    {
+      "symbol": "1218",
+      "market": "TWSE",
+      "name": "泰山"
+    },
+    {
+      "symbol": "1219",
+      "market": "TWSE",
+      "name": "福壽"
+    },
+    {
+      "symbol": "1220",
+      "market": "TWSE",
+      "name": "台榮"
+    },
+    {
+      "symbol": "1225",
+      "market": "TWSE",
+      "name": "福懋油"
+    },
+    {
+      "symbol": "1227",
+      "market": "TWSE",
+      "name": "佳格"
+    },
+    {
+      "symbol": "1229",
+      "market": "TWSE",
+      "name": "聯華"
+    },
+    {
+      "symbol": "1231",
+      "market": "TWSE",
+      "name": "聯華食"
+    },
+    {
+      "symbol": "1232",
+      "market": "TWSE",
+      "name": "大統益"
+    },
+    {
+      "symbol": "1233",
+      "market": "TWSE",
+      "name": "天仁"
+    },
+    {
+      "symbol": "1234",
+      "market": "TWSE",
+      "name": "黑松"
+    },
+    {
+      "symbol": "1235",
+      "market": "TWSE",
+      "name": "興泰"
+    },
+    {
+      "symbol": "1236",
+      "market": "TWSE",
+      "name": "宏亞"
+    },
+    {
+      "symbol": "1256",
+      "market": "TWSE",
+      "name": "鮮活果汁-KY"
+    },
+    {
+      "symbol": "1301",
+      "market": "TWSE",
+      "name": "台塑"
+    },
+    {
+      "symbol": "1303",
+      "market": "TWSE",
+      "name": "南亞"
+    },
+    {
+      "symbol": "1304",
+      "market": "TWSE",
+      "name": "台聚"
+    },
+    {
+      "symbol": "1305",
+      "market": "TWSE",
+      "name": "華夏"
+    },
+    {
+      "symbol": "1307",
+      "market": "TWSE",
+      "name": "三芳"
+    },
+    {
+      "symbol": "1308",
+      "market": "TWSE",
+      "name": "亞聚"
+    },
+    {
+      "symbol": "1309",
+      "market": "TWSE",
+      "name": "台達化"
+    },
+    {
+      "symbol": "1310",
+      "market": "TWSE",
+      "name": "台苯"
+    },
+    {
+      "symbol": "1312",
+      "market": "TWSE",
+      "name": "國喬"
+    },
+    {
+      "symbol": "1313",
+      "market": "TWSE",
+      "name": "聯成"
+    },
+    {
+      "symbol": "1314",
+      "market": "TWSE",
+      "name": "中石化"
+    },
+    {
+      "symbol": "1315",
+      "market": "TWSE",
+      "name": "達新"
+    },
+    {
+      "symbol": "1316",
+      "market": "TWSE",
+      "name": "上曜"
+    },
+    {
+      "symbol": "1319",
+      "market": "TWSE",
+      "name": "東陽"
+    },
+    {
+      "symbol": "1321",
+      "market": "TWSE",
+      "name": "大洋"
+    },
+    {
+      "symbol": "1323",
+      "market": "TWSE",
+      "name": "永裕"
+    },
+    {
+      "symbol": "1324",
+      "market": "TWSE",
+      "name": "地球"
+    },
+    {
+      "symbol": "1325",
+      "market": "TWSE",
+      "name": "恆大"
+    },
+    {
+      "symbol": "1326",
+      "market": "TWSE",
+      "name": "台化"
+    },
+    {
+      "symbol": "1337",
+      "market": "TWSE",
+      "name": "再生-KY"
+    },
+    {
+      "symbol": "1338",
+      "market": "TWSE",
+      "name": "廣華-KY"
+    },
+    {
+      "symbol": "1339",
+      "market": "TWSE",
+      "name": "昭輝"
+    },
+    {
+      "symbol": "1340",
+      "market": "TWSE",
+      "name": "勝悅-KY"
+    },
+    {
+      "symbol": "1341",
+      "market": "TWSE",
+      "name": "富林-KY"
+    },
+    {
+      "symbol": "1342",
+      "market": "TWSE",
+      "name": "八貫"
+    },
+    {
+      "symbol": "1402",
+      "market": "TWSE",
+      "name": "遠東新"
+    },
+    {
+      "symbol": "1409",
+      "market": "TWSE",
+      "name": "新纖"
+    },
+    {
+      "symbol": "1410",
+      "market": "TWSE",
+      "name": "南染"
+    },
+    {
+      "symbol": "1413",
+      "market": "TWSE",
+      "name": "宏洲"
+    },
+    {
+      "symbol": "1414",
+      "market": "TWSE",
+      "name": "東和"
+    },
+    {
+      "symbol": "1416",
+      "market": "TWSE",
+      "name": "廣豐"
+    },
+    {
+      "symbol": "1417",
+      "market": "TWSE",
+      "name": "嘉裕"
+    },
+    {
+      "symbol": "1418",
+      "market": "TWSE",
+      "name": "東華"
+    },
+    {
+      "symbol": "1419",
+      "market": "TWSE",
+      "name": "新紡"
+    },
+    {
+      "symbol": "1423",
+      "market": "TWSE",
+      "name": "利華"
+    },
+    {
+      "symbol": "1432",
+      "market": "TWSE",
+      "name": "大魯閣"
+    },
+    {
+      "symbol": "1434",
+      "market": "TWSE",
+      "name": "福懋"
+    },
+    {
+      "symbol": "1435",
+      "market": "TWSE",
+      "name": "中福"
+    },
+    {
+      "symbol": "1436",
+      "market": "TWSE",
+      "name": "華友聯"
+    },
+    {
+      "symbol": "1437",
+      "market": "TWSE",
+      "name": "勤益控"
+    },
+    {
+      "symbol": "1438",
+      "market": "TWSE",
+      "name": "三地開發"
+    },
+    {
+      "symbol": "1439",
+      "market": "TWSE",
+      "name": "雋揚"
+    },
+    {
+      "symbol": "1440",
+      "market": "TWSE",
+      "name": "南紡"
+    },
+    {
+      "symbol": "1441",
+      "market": "TWSE",
+      "name": "大東"
+    },
+    {
+      "symbol": "1442",
+      "market": "TWSE",
+      "name": "名軒"
+    },
+    {
+      "symbol": "1443",
+      "market": "TWSE",
+      "name": "立益物流"
+    },
+    {
+      "symbol": "1444",
+      "market": "TWSE",
+      "name": "力麗"
+    },
+    {
+      "symbol": "1445",
+      "market": "TWSE",
+      "name": "大宇"
+    },
+    {
+      "symbol": "1446",
+      "market": "TWSE",
+      "name": "宏和"
+    },
+    {
+      "symbol": "1447",
+      "market": "TWSE",
+      "name": "力鵬"
+    },
+    {
+      "symbol": "1449",
+      "market": "TWSE",
+      "name": "佳和"
+    },
+    {
+      "symbol": "1451",
+      "market": "TWSE",
+      "name": "年興"
+    },
+    {
+      "symbol": "1452",
+      "market": "TWSE",
+      "name": "宏益"
+    },
+    {
+      "symbol": "1453",
+      "market": "TWSE",
+      "name": "大將"
+    },
+    {
+      "symbol": "1454",
+      "market": "TWSE",
+      "name": "台富"
+    },
+    {
+      "symbol": "1455",
+      "market": "TWSE",
+      "name": "集盛"
+    },
+    {
+      "symbol": "1456",
+      "market": "TWSE",
+      "name": "怡華"
+    },
+    {
+      "symbol": "1457",
+      "market": "TWSE",
+      "name": "宜進"
+    },
+    {
+      "symbol": "1459",
+      "market": "TWSE",
+      "name": "聯發"
+    },
+    {
+      "symbol": "1460",
+      "market": "TWSE",
+      "name": "宏遠"
+    },
+    {
+      "symbol": "1463",
+      "market": "TWSE",
+      "name": "強盛新"
+    },
+    {
+      "symbol": "1464",
+      "market": "TWSE",
+      "name": "得力"
+    },
+    {
+      "symbol": "1465",
+      "market": "TWSE",
+      "name": "偉全"
+    },
+    {
+      "symbol": "1466",
+      "market": "TWSE",
+      "name": "聚隆"
+    },
+    {
+      "symbol": "1467",
+      "market": "TWSE",
+      "name": "南緯"
+    },
+    {
+      "symbol": "1468",
+      "market": "TWSE",
+      "name": "昶和"
+    },
+    {
+      "symbol": "1470",
+      "market": "TWSE",
+      "name": "大統新創"
+    },
+    {
+      "symbol": "1471",
+      "market": "TWSE",
+      "name": "首利"
+    },
+    {
+      "symbol": "1472",
+      "market": "TWSE",
+      "name": "三洋實業"
+    },
+    {
+      "symbol": "1473",
+      "market": "TWSE",
+      "name": "台南"
+    },
+    {
+      "symbol": "1474",
+      "market": "TWSE",
+      "name": "弘裕"
+    },
+    {
+      "symbol": "1475",
+      "market": "TWSE",
+      "name": "業旺"
+    },
+    {
+      "symbol": "1476",
+      "market": "TWSE",
+      "name": "儒鴻"
+    },
+    {
+      "symbol": "1477",
+      "market": "TWSE",
+      "name": "聚陽"
+    },
+    {
+      "symbol": "1503",
+      "market": "TWSE",
+      "name": "士電"
+    },
+    {
+      "symbol": "1504",
+      "market": "TWSE",
+      "name": "東元"
+    },
+    {
+      "symbol": "1506",
+      "market": "TWSE",
+      "name": "正道"
+    },
+    {
+      "symbol": "1512",
+      "market": "TWSE",
+      "name": "瑞利"
+    },
+    {
+      "symbol": "1513",
+      "market": "TWSE",
+      "name": "中興電"
+    },
+    {
+      "symbol": "1514",
+      "market": "TWSE",
+      "name": "亞力"
+    },
+    {
+      "symbol": "1515",
+      "market": "TWSE",
+      "name": "力山"
+    },
+    {
+      "symbol": "1516",
+      "market": "TWSE",
+      "name": "川飛"
+    },
+    {
+      "symbol": "1517",
+      "market": "TWSE",
+      "name": "利奇"
+    },
+    {
+      "symbol": "1519",
+      "market": "TWSE",
+      "name": "華城"
+    },
+    {
+      "symbol": "1521",
+      "market": "TWSE",
+      "name": "大億"
+    },
+    {
+      "symbol": "1522",
+      "market": "TWSE",
+      "name": "堤維西"
+    },
+    {
+      "symbol": "1524",
+      "market": "TWSE",
+      "name": "耿鼎"
+    },
+    {
+      "symbol": "1525",
+      "market": "TWSE",
+      "name": "江申"
+    },
+    {
+      "symbol": "1526",
+      "market": "TWSE",
+      "name": "日馳"
+    },
+    {
+      "symbol": "1527",
+      "market": "TWSE",
+      "name": "鑽全"
+    },
+    {
+      "symbol": "1528",
+      "market": "TWSE",
+      "name": "恩德"
+    },
+    {
+      "symbol": "1529",
+      "market": "TWSE",
+      "name": "樂事綠能"
+    },
+    {
+      "symbol": "1530",
+      "market": "TWSE",
+      "name": "亞崴"
+    },
+    {
+      "symbol": "1531",
+      "market": "TWSE",
+      "name": "高林股"
+    },
+    {
+      "symbol": "1532",
+      "market": "TWSE",
+      "name": "勤美"
+    },
+    {
+      "symbol": "1533",
+      "market": "TWSE",
+      "name": "車王電"
+    },
+    {
+      "symbol": "1535",
+      "market": "TWSE",
+      "name": "中宇"
+    },
+    {
+      "symbol": "1536",
+      "market": "TWSE",
+      "name": "和大"
+    },
+    {
+      "symbol": "1537",
+      "market": "TWSE",
+      "name": "廣隆"
+    },
+    {
+      "symbol": "1538",
+      "market": "TWSE",
+      "name": "正峰"
+    },
+    {
+      "symbol": "1539",
+      "market": "TWSE",
+      "name": "巨庭"
+    },
+    {
+      "symbol": "1540",
+      "market": "TWSE",
+      "name": "喬福"
+    },
+    {
+      "symbol": "1541",
+      "market": "TWSE",
+      "name": "錩泰"
+    },
+    {
+      "symbol": "1558",
+      "market": "TWSE",
+      "name": "伸興"
+    },
+    {
+      "symbol": "1560",
+      "market": "TWSE",
+      "name": "中砂"
+    },
+    {
+      "symbol": "1563",
+      "market": "TWSE",
+      "name": "巧新"
+    },
+    {
+      "symbol": "1568",
+      "market": "TWSE",
+      "name": "倉佑"
+    },
+    {
+      "symbol": "1582",
+      "market": "TWSE",
+      "name": "信錦"
+    },
+    {
+      "symbol": "1583",
+      "market": "TWSE",
+      "name": "程泰"
+    },
+    {
+      "symbol": "1587",
+      "market": "TWSE",
+      "name": "吉茂"
+    },
+    {
+      "symbol": "1589",
+      "market": "TWSE",
+      "name": "永冠-KY"
+    },
+    {
+      "symbol": "1590",
+      "market": "TWSE",
+      "name": "亞德客-KY"
+    },
+    {
+      "symbol": "1597",
+      "market": "TWSE",
+      "name": "直得"
+    },
+    {
+      "symbol": "1598",
+      "market": "TWSE",
+      "name": "岱宇"
+    },
+    {
+      "symbol": "1603",
+      "market": "TWSE",
+      "name": "華電"
+    },
+    {
+      "symbol": "1604",
+      "market": "TWSE",
+      "name": "聲寶"
+    },
+    {
+      "symbol": "1605",
+      "market": "TWSE",
+      "name": "華新"
+    },
+    {
+      "symbol": "1608",
+      "market": "TWSE",
+      "name": "華榮"
+    },
+    {
+      "symbol": "1609",
+      "market": "TWSE",
+      "name": "大亞"
+    },
+    {
+      "symbol": "1611",
+      "market": "TWSE",
+      "name": "中電"
+    },
+    {
+      "symbol": "1612",
+      "market": "TWSE",
+      "name": "宏泰"
+    },
+    {
+      "symbol": "1614",
+      "market": "TWSE",
+      "name": "三洋電"
+    },
+    {
+      "symbol": "1615",
+      "market": "TWSE",
+      "name": "大山"
+    },
+    {
+      "symbol": "1616",
+      "market": "TWSE",
+      "name": "億泰"
+    },
+    {
+      "symbol": "1617",
+      "market": "TWSE",
+      "name": "榮星"
+    },
+    {
+      "symbol": "1618",
+      "market": "TWSE",
+      "name": "合機"
+    },
+    {
+      "symbol": "1623",
+      "market": "TWSE",
+      "name": "大東電"
+    },
+    {
+      "symbol": "1626",
+      "market": "TWSE",
+      "name": "艾美特-KY"
+    },
+    {
+      "symbol": "1702",
+      "market": "TWSE",
+      "name": "南僑"
+    },
+    {
+      "symbol": "1707",
+      "market": "TWSE",
+      "name": "葡萄王"
+    },
+    {
+      "symbol": "1708",
+      "market": "TWSE",
+      "name": "東鹼"
+    },
+    {
+      "symbol": "1709",
+      "market": "TWSE",
+      "name": "和益"
+    },
+    {
+      "symbol": "1710",
+      "market": "TWSE",
+      "name": "東聯"
+    },
+    {
+      "symbol": "1711",
+      "market": "TWSE",
+      "name": "永光"
+    },
+    {
+      "symbol": "1712",
+      "market": "TWSE",
+      "name": "興農"
+    },
+    {
+      "symbol": "1713",
+      "market": "TWSE",
+      "name": "國化"
+    },
+    {
+      "symbol": "1714",
+      "market": "TWSE",
+      "name": "和桐"
+    },
+    {
+      "symbol": "1717",
+      "market": "TWSE",
+      "name": "長興"
+    },
+    {
+      "symbol": "1718",
+      "market": "TWSE",
+      "name": "中纖"
+    },
+    {
+      "symbol": "1720",
+      "market": "TWSE",
+      "name": "生達"
+    },
+    {
+      "symbol": "1721",
+      "market": "TWSE",
+      "name": "三晃"
+    },
+    {
+      "symbol": "1722",
+      "market": "TWSE",
+      "name": "台肥"
+    },
+    {
+      "symbol": "1723",
+      "market": "TWSE",
+      "name": "中碳"
+    },
+    {
+      "symbol": "1725",
+      "market": "TWSE",
+      "name": "元禎"
+    },
+    {
+      "symbol": "1726",
+      "market": "TWSE",
+      "name": "永記"
+    },
+    {
+      "symbol": "1727",
+      "market": "TWSE",
+      "name": "中華化"
+    },
+    {
+      "symbol": "1730",
+      "market": "TWSE",
+      "name": "花仙子"
+    },
+    {
+      "symbol": "1731",
+      "market": "TWSE",
+      "name": "美吾華"
+    },
+    {
+      "symbol": "1732",
+      "market": "TWSE",
+      "name": "毛寶"
+    },
+    {
+      "symbol": "1733",
+      "market": "TWSE",
+      "name": "五鼎"
+    },
+    {
+      "symbol": "1734",
+      "market": "TWSE",
+      "name": "杏輝"
+    },
+    {
+      "symbol": "1735",
+      "market": "TWSE",
+      "name": "日勝化"
+    },
+    {
+      "symbol": "1736",
+      "market": "TWSE",
+      "name": "喬山"
+    },
+    {
+      "symbol": "1737",
+      "market": "TWSE",
+      "name": "臺鹽"
+    },
+    {
+      "symbol": "1752",
+      "market": "TWSE",
+      "name": "南光"
+    },
+    {
+      "symbol": "1760",
+      "market": "TWSE",
+      "name": "寶齡富錦"
+    },
+    {
+      "symbol": "1762",
+      "market": "TWSE",
+      "name": "中化生"
+    },
+    {
+      "symbol": "1773",
+      "market": "TWSE",
+      "name": "勝一"
+    },
+    {
+      "symbol": "1776",
+      "market": "TWSE",
+      "name": "展宇"
+    },
+    {
+      "symbol": "1783",
+      "market": "TWSE",
+      "name": "和康生"
+    },
+    {
+      "symbol": "1786",
+      "market": "TWSE",
+      "name": "科妍"
+    },
+    {
+      "symbol": "1789",
+      "market": "TWSE",
+      "name": "神隆"
+    },
+    {
+      "symbol": "1795",
+      "market": "TWSE",
+      "name": "美時"
+    },
+    {
+      "symbol": "1802",
+      "market": "TWSE",
+      "name": "台玻"
+    },
+    {
+      "symbol": "1805",
+      "market": "TWSE",
+      "name": "寶徠"
+    },
+    {
+      "symbol": "1806",
+      "market": "TWSE",
+      "name": "冠軍"
+    },
+    {
+      "symbol": "1808",
+      "market": "TWSE",
+      "name": "潤隆"
+    },
+    {
+      "symbol": "1809",
+      "market": "TWSE",
+      "name": "中釉"
+    },
+    {
+      "symbol": "1810",
+      "market": "TWSE",
+      "name": "和成"
+    },
+    {
+      "symbol": "1817",
+      "market": "TWSE",
+      "name": "凱撒衛"
+    },
+    {
+      "symbol": "1903",
+      "market": "TWSE",
+      "name": "士紙"
+    },
+    {
+      "symbol": "1904",
+      "market": "TWSE",
+      "name": "正隆"
+    },
+    {
+      "symbol": "1905",
+      "market": "TWSE",
+      "name": "華紙"
+    },
+    {
+      "symbol": "1906",
+      "market": "TWSE",
+      "name": "寶隆"
+    },
+    {
+      "symbol": "1907",
+      "market": "TWSE",
+      "name": "永豐餘"
+    },
+    {
+      "symbol": "1909",
+      "market": "TWSE",
+      "name": "榮成"
+    },
+    {
+      "symbol": "2002",
+      "market": "TWSE",
+      "name": "中鋼"
+    },
+    {
+      "symbol": "2006",
+      "market": "TWSE",
+      "name": "東和鋼鐵"
+    },
+    {
+      "symbol": "2007",
+      "market": "TWSE",
+      "name": "燁興"
+    },
+    {
+      "symbol": "2008",
+      "market": "TWSE",
+      "name": "高興昌"
+    },
+    {
+      "symbol": "2009",
+      "market": "TWSE",
+      "name": "第一銅"
+    },
+    {
+      "symbol": "2010",
+      "market": "TWSE",
+      "name": "春源"
+    },
+    {
+      "symbol": "2012",
+      "market": "TWSE",
+      "name": "春雨"
+    },
+    {
+      "symbol": "2013",
+      "market": "TWSE",
+      "name": "中鋼構"
+    },
+    {
+      "symbol": "2014",
+      "market": "TWSE",
+      "name": "中鴻"
+    },
+    {
+      "symbol": "2015",
+      "market": "TWSE",
+      "name": "豐興"
+    },
+    {
+      "symbol": "2017",
+      "market": "TWSE",
+      "name": "官田鋼"
+    },
+    {
+      "symbol": "2020",
+      "market": "TWSE",
+      "name": "美亞"
+    },
+    {
+      "symbol": "2022",
+      "market": "TWSE",
+      "name": "聚亨"
+    },
+    {
+      "symbol": "2023",
+      "market": "TWSE",
+      "name": "燁輝"
+    },
+    {
+      "symbol": "2024",
+      "market": "TWSE",
+      "name": "志聯"
+    },
+    {
+      "symbol": "2025",
+      "market": "TWSE",
+      "name": "千興"
+    },
+    {
+      "symbol": "2027",
+      "market": "TWSE",
+      "name": "大成鋼"
+    },
+    {
+      "symbol": "2028",
+      "market": "TWSE",
+      "name": "威致"
+    },
+    {
+      "symbol": "2029",
+      "market": "TWSE",
+      "name": "盛餘"
+    },
+    {
+      "symbol": "2030",
+      "market": "TWSE",
+      "name": "彰源"
+    },
+    {
+      "symbol": "2031",
+      "market": "TWSE",
+      "name": "新光鋼"
+    },
+    {
+      "symbol": "2032",
+      "market": "TWSE",
+      "name": "新鋼"
+    },
+    {
+      "symbol": "2033",
+      "market": "TWSE",
+      "name": "佳大"
+    },
+    {
+      "symbol": "2034",
+      "market": "TWSE",
+      "name": "允強"
+    },
+    {
+      "symbol": "2038",
+      "market": "TWSE",
+      "name": "海光"
+    },
+    {
+      "symbol": "2049",
+      "market": "TWSE",
+      "name": "上銀"
+    },
+    {
+      "symbol": "2059",
+      "market": "TWSE",
+      "name": "川湖"
+    },
+    {
+      "symbol": "2062",
+      "market": "TWSE",
+      "name": "橋椿"
+    },
+    {
+      "symbol": "2069",
+      "market": "TWSE",
+      "name": "運錩"
+    },
+    {
+      "symbol": "2072",
+      "market": "TWSE",
+      "name": "世紀風電"
+    },
+    {
+      "symbol": "2101",
+      "market": "TWSE",
+      "name": "南港"
+    },
+    {
+      "symbol": "2102",
+      "market": "TWSE",
+      "name": "泰豐"
+    },
+    {
+      "symbol": "2103",
+      "market": "TWSE",
+      "name": "台橡"
+    },
+    {
+      "symbol": "2104",
+      "market": "TWSE",
+      "name": "國際中橡"
+    },
+    {
+      "symbol": "2105",
+      "market": "TWSE",
+      "name": "正新"
+    },
+    {
+      "symbol": "2106",
+      "market": "TWSE",
+      "name": "建大"
+    },
+    {
+      "symbol": "2107",
+      "market": "TWSE",
+      "name": "厚生"
+    },
+    {
+      "symbol": "2108",
+      "market": "TWSE",
+      "name": "南帝"
+    },
+    {
+      "symbol": "2109",
+      "market": "TWSE",
+      "name": "華豐"
+    },
+    {
+      "symbol": "2114",
+      "market": "TWSE",
+      "name": "鑫永銓"
+    },
+    {
+      "symbol": "2115",
+      "market": "TWSE",
+      "name": "六暉-KY"
+    },
+    {
+      "symbol": "2201",
+      "market": "TWSE",
+      "name": "裕隆"
+    },
+    {
+      "symbol": "2204",
+      "market": "TWSE",
+      "name": "中華"
+    },
+    {
+      "symbol": "2206",
+      "market": "TWSE",
+      "name": "三陽工業"
+    },
+    {
+      "symbol": "2207",
+      "market": "TWSE",
+      "name": "和泰車"
+    },
+    {
+      "symbol": "2208",
+      "market": "TWSE",
+      "name": "台船"
+    },
+    {
+      "symbol": "2211",
+      "market": "TWSE",
+      "name": "長榮鋼"
+    },
+    {
+      "symbol": "2227",
+      "market": "TWSE",
+      "name": "裕日車"
+    },
+    {
+      "symbol": "2228",
+      "market": "TWSE",
+      "name": "劍麟"
+    },
+    {
+      "symbol": "2231",
+      "market": "TWSE",
+      "name": "為升"
+    },
+    {
+      "symbol": "2233",
+      "market": "TWSE",
+      "name": "宇隆"
+    },
+    {
+      "symbol": "2236",
+      "market": "TWSE",
+      "name": "百達-KY"
+    },
+    {
+      "symbol": "2237",
+      "market": "TWSE",
+      "name": "華德動能-創"
+    },
+    {
+      "symbol": "2239",
+      "market": "TWSE",
+      "name": "英利-KY"
+    },
+    {
+      "symbol": "2241",
+      "market": "TWSE",
+      "name": "艾姆勒"
+    },
+    {
+      "symbol": "2243",
+      "market": "TWSE",
+      "name": "宏旭-KY"
+    },
+    {
+      "symbol": "2247",
+      "market": "TWSE",
+      "name": "汎德永業"
+    },
+    {
+      "symbol": "2248",
+      "market": "TWSE",
+      "name": "華勝-KY"
+    },
+    {
+      "symbol": "2250",
+      "market": "TWSE",
+      "name": "IKKA-KY"
+    },
+    {
+      "symbol": "2254",
+      "market": "TWSE",
+      "name": "巨鎧精密-創"
+    },
+    {
+      "symbol": "2258",
+      "market": "TWSE",
+      "name": "鴻華先進-創"
+    },
+    {
+      "symbol": "2301",
+      "market": "TWSE",
+      "name": "光寶科"
+    },
+    {
+      "symbol": "2302",
+      "market": "TWSE",
+      "name": "麗正"
+    },
+    {
+      "symbol": "2303",
+      "market": "TWSE",
+      "name": "聯電"
+    },
+    {
+      "symbol": "2305",
+      "market": "TWSE",
+      "name": "全友"
+    },
+    {
+      "symbol": "2308",
+      "market": "TWSE",
+      "name": "台達電"
+    },
+    {
+      "symbol": "2312",
+      "market": "TWSE",
+      "name": "金寶"
+    },
+    {
+      "symbol": "2313",
+      "market": "TWSE",
+      "name": "華通"
+    },
+    {
+      "symbol": "2314",
+      "market": "TWSE",
+      "name": "台揚"
+    },
+    {
+      "symbol": "2316",
+      "market": "TWSE",
+      "name": "楠梓電"
+    },
+    {
+      "symbol": "2317",
+      "market": "TWSE",
+      "name": "鴻海"
+    },
+    {
+      "symbol": "2321",
+      "market": "TWSE",
+      "name": "東訊"
+    },
+    {
+      "symbol": "2323",
+      "market": "TWSE",
+      "name": "中環"
+    },
+    {
+      "symbol": "2324",
+      "market": "TWSE",
+      "name": "仁寶"
+    },
+    {
+      "symbol": "2327",
+      "market": "TWSE",
+      "name": "國巨*"
+    },
+    {
+      "symbol": "2328",
+      "market": "TWSE",
+      "name": "廣宇"
+    },
+    {
+      "symbol": "2329",
+      "market": "TWSE",
+      "name": "華泰"
+    },
+    {
+      "symbol": "2330",
+      "market": "TWSE",
+      "name": "台積電"
+    },
+    {
+      "symbol": "2331",
+      "market": "TWSE",
+      "name": "精英"
+    },
+    {
+      "symbol": "2332",
+      "market": "TWSE",
+      "name": "友訊"
+    },
+    {
+      "symbol": "2337",
+      "market": "TWSE",
+      "name": "旺宏"
+    },
+    {
+      "symbol": "2338",
+      "market": "TWSE",
+      "name": "光罩"
+    },
+    {
+      "symbol": "2340",
+      "market": "TWSE",
+      "name": "台亞"
+    },
+    {
+      "symbol": "2342",
+      "market": "TWSE",
+      "name": "茂矽"
+    },
+    {
+      "symbol": "2344",
+      "market": "TWSE",
+      "name": "華邦電"
+    },
+    {
+      "symbol": "2345",
+      "market": "TWSE",
+      "name": "智邦"
+    },
+    {
+      "symbol": "2347",
+      "market": "TWSE",
+      "name": "聯強"
+    },
+    {
+      "symbol": "2348",
+      "market": "TWSE",
+      "name": "海悅"
+    },
+    {
+      "symbol": "2349",
+      "market": "TWSE",
+      "name": "錸德"
+    },
+    {
+      "symbol": "2351",
+      "market": "TWSE",
+      "name": "順德"
+    },
+    {
+      "symbol": "2352",
+      "market": "TWSE",
+      "name": "佳世達"
+    },
+    {
+      "symbol": "2353",
+      "market": "TWSE",
+      "name": "宏碁"
+    },
+    {
+      "symbol": "2354",
+      "market": "TWSE",
+      "name": "鴻準"
+    },
+    {
+      "symbol": "2355",
+      "market": "TWSE",
+      "name": "敬鵬"
+    },
+    {
+      "symbol": "2356",
+      "market": "TWSE",
+      "name": "英業達"
+    },
+    {
+      "symbol": "2357",
+      "market": "TWSE",
+      "name": "華碩"
+    },
+    {
+      "symbol": "2359",
+      "market": "TWSE",
+      "name": "所羅門"
+    },
+    {
+      "symbol": "2360",
+      "market": "TWSE",
+      "name": "致茂"
+    },
+    {
+      "symbol": "2362",
+      "market": "TWSE",
+      "name": "藍天"
+    },
+    {
+      "symbol": "2363",
+      "market": "TWSE",
+      "name": "矽統"
+    },
+    {
+      "symbol": "2364",
+      "market": "TWSE",
+      "name": "倫飛"
+    },
+    {
+      "symbol": "2365",
+      "market": "TWSE",
+      "name": "昆盈"
+    },
+    {
+      "symbol": "2367",
+      "market": "TWSE",
+      "name": "燿華"
+    },
+    {
+      "symbol": "2368",
+      "market": "TWSE",
+      "name": "金像電"
+    },
+    {
+      "symbol": "2369",
+      "market": "TWSE",
+      "name": "菱生"
+    },
+    {
+      "symbol": "2371",
+      "market": "TWSE",
+      "name": "大同"
+    },
+    {
+      "symbol": "2373",
+      "market": "TWSE",
+      "name": "震旦行"
+    },
+    {
+      "symbol": "2374",
+      "market": "TWSE",
+      "name": "佳能"
+    },
+    {
+      "symbol": "2375",
+      "market": "TWSE",
+      "name": "凱美"
+    },
+    {
+      "symbol": "2376",
+      "market": "TWSE",
+      "name": "技嘉"
+    },
+    {
+      "symbol": "2377",
+      "market": "TWSE",
+      "name": "微星"
+    },
+    {
+      "symbol": "2379",
+      "market": "TWSE",
+      "name": "瑞昱"
+    },
+    {
+      "symbol": "2380",
+      "market": "TWSE",
+      "name": "虹光"
+    },
+    {
+      "symbol": "2382",
+      "market": "TWSE",
+      "name": "廣達"
+    },
+    {
+      "symbol": "2383",
+      "market": "TWSE",
+      "name": "台光電"
+    },
+    {
+      "symbol": "2385",
+      "market": "TWSE",
+      "name": "群光"
+    },
+    {
+      "symbol": "2387",
+      "market": "TWSE",
+      "name": "精元"
+    },
+    {
+      "symbol": "2388",
+      "market": "TWSE",
+      "name": "威盛"
+    },
+    {
+      "symbol": "2390",
+      "market": "TWSE",
+      "name": "云辰"
+    },
+    {
+      "symbol": "2392",
+      "market": "TWSE",
+      "name": "正崴"
+    },
+    {
+      "symbol": "2393",
+      "market": "TWSE",
+      "name": "億光"
+    },
+    {
+      "symbol": "2395",
+      "market": "TWSE",
+      "name": "研華"
+    },
+    {
+      "symbol": "2397",
+      "market": "TWSE",
+      "name": "友通"
+    },
+    {
+      "symbol": "2399",
+      "market": "TWSE",
+      "name": "映泰"
+    },
+    {
+      "symbol": "2401",
+      "market": "TWSE",
+      "name": "凌陽"
+    },
+    {
+      "symbol": "2402",
+      "market": "TWSE",
+      "name": "毅嘉"
+    },
+    {
+      "symbol": "2404",
+      "market": "TWSE",
+      "name": "漢唐"
+    },
+    {
+      "symbol": "2405",
+      "market": "TWSE",
+      "name": "輔信"
+    },
+    {
+      "symbol": "2406",
+      "market": "TWSE",
+      "name": "國碩"
+    },
+    {
+      "symbol": "2408",
+      "market": "TWSE",
+      "name": "南亞科"
+    },
+    {
+      "symbol": "2409",
+      "market": "TWSE",
+      "name": "友達"
+    },
+    {
+      "symbol": "2412",
+      "market": "TWSE",
+      "name": "中華電"
+    },
+    {
+      "symbol": "2413",
+      "market": "TWSE",
+      "name": "環科"
+    },
+    {
+      "symbol": "2414",
+      "market": "TWSE",
+      "name": "精技"
+    },
+    {
+      "symbol": "2415",
+      "market": "TWSE",
+      "name": "錩新"
+    },
+    {
+      "symbol": "2417",
+      "market": "TWSE",
+      "name": "圓剛"
+    },
+    {
+      "symbol": "2419",
+      "market": "TWSE",
+      "name": "仲琦"
+    },
+    {
+      "symbol": "2420",
+      "market": "TWSE",
+      "name": "新巨"
+    },
+    {
+      "symbol": "2421",
+      "market": "TWSE",
+      "name": "建準"
+    },
+    {
+      "symbol": "2423",
+      "market": "TWSE",
+      "name": "固緯"
+    },
+    {
+      "symbol": "2424",
+      "market": "TWSE",
+      "name": "隴華"
+    },
+    {
+      "symbol": "2425",
+      "market": "TWSE",
+      "name": "承啟"
+    },
+    {
+      "symbol": "2426",
+      "market": "TWSE",
+      "name": "鼎元"
+    },
+    {
+      "symbol": "2427",
+      "market": "TWSE",
+      "name": "三商電"
+    },
+    {
+      "symbol": "2428",
+      "market": "TWSE",
+      "name": "興勤"
+    },
+    {
+      "symbol": "2429",
+      "market": "TWSE",
+      "name": "銘旺科"
+    },
+    {
+      "symbol": "2430",
+      "market": "TWSE",
+      "name": "燦坤"
+    },
+    {
+      "symbol": "2431",
+      "market": "TWSE",
+      "name": "聯昌"
+    },
+    {
+      "symbol": "2432",
+      "market": "TWSE",
+      "name": "倚天酷碁-創"
+    },
+    {
+      "symbol": "2433",
+      "market": "TWSE",
+      "name": "互盛電"
+    },
+    {
+      "symbol": "2434",
+      "market": "TWSE",
+      "name": "統懋"
+    },
+    {
+      "symbol": "2436",
+      "market": "TWSE",
+      "name": "偉詮電"
+    },
+    {
+      "symbol": "2438",
+      "market": "TWSE",
+      "name": "翔耀"
+    },
+    {
+      "symbol": "2439",
+      "market": "TWSE",
+      "name": "美律"
+    },
+    {
+      "symbol": "2440",
+      "market": "TWSE",
+      "name": "太空梭"
+    },
+    {
+      "symbol": "2441",
+      "market": "TWSE",
+      "name": "超豐"
+    },
+    {
+      "symbol": "2442",
+      "market": "TWSE",
+      "name": "新美齊"
+    },
+    {
+      "symbol": "2444",
+      "market": "TWSE",
+      "name": "兆勁"
+    },
+    {
+      "symbol": "2449",
+      "market": "TWSE",
+      "name": "京元電子"
+    },
+    {
+      "symbol": "2450",
+      "market": "TWSE",
+      "name": "神腦"
+    },
+    {
+      "symbol": "2451",
+      "market": "TWSE",
+      "name": "創見"
+    },
+    {
+      "symbol": "2453",
+      "market": "TWSE",
+      "name": "凌群"
+    },
+    {
+      "symbol": "2454",
+      "market": "TWSE",
+      "name": "聯發科"
+    },
+    {
+      "symbol": "2455",
+      "market": "TWSE",
+      "name": "全新"
+    },
+    {
+      "symbol": "2457",
+      "market": "TWSE",
+      "name": "飛宏"
+    },
+    {
+      "symbol": "2458",
+      "market": "TWSE",
+      "name": "義隆"
+    },
+    {
+      "symbol": "2459",
+      "market": "TWSE",
+      "name": "敦吉"
+    },
+    {
+      "symbol": "2460",
+      "market": "TWSE",
+      "name": "建通"
+    },
+    {
+      "symbol": "2461",
+      "market": "TWSE",
+      "name": "光群雷"
+    },
+    {
+      "symbol": "2462",
+      "market": "TWSE",
+      "name": "良得電"
+    },
+    {
+      "symbol": "2464",
+      "market": "TWSE",
+      "name": "盟立"
+    },
+    {
+      "symbol": "2465",
+      "market": "TWSE",
+      "name": "麗臺"
+    },
+    {
+      "symbol": "2466",
+      "market": "TWSE",
+      "name": "冠西電"
+    },
+    {
+      "symbol": "2467",
+      "market": "TWSE",
+      "name": "志聖"
+    },
+    {
+      "symbol": "2468",
+      "market": "TWSE",
+      "name": "華經"
+    },
+    {
+      "symbol": "2471",
+      "market": "TWSE",
+      "name": "資通"
+    },
+    {
+      "symbol": "2472",
+      "market": "TWSE",
+      "name": "立隆電"
+    },
+    {
+      "symbol": "2474",
+      "market": "TWSE",
+      "name": "可成"
+    },
+    {
+      "symbol": "2476",
+      "market": "TWSE",
+      "name": "鉅祥"
+    },
+    {
+      "symbol": "2477",
+      "market": "TWSE",
+      "name": "美隆電"
+    },
+    {
+      "symbol": "2478",
+      "market": "TWSE",
+      "name": "大毅"
+    },
+    {
+      "symbol": "2480",
+      "market": "TWSE",
+      "name": "敦陽科"
+    },
+    {
+      "symbol": "2481",
+      "market": "TWSE",
+      "name": "強茂"
+    },
+    {
+      "symbol": "2482",
+      "market": "TWSE",
+      "name": "連宇"
+    },
+    {
+      "symbol": "2483",
+      "market": "TWSE",
+      "name": "百容"
+    },
+    {
+      "symbol": "2484",
+      "market": "TWSE",
+      "name": "希華"
+    },
+    {
+      "symbol": "2485",
+      "market": "TWSE",
+      "name": "兆赫"
+    },
+    {
+      "symbol": "2486",
+      "market": "TWSE",
+      "name": "一詮"
+    },
+    {
+      "symbol": "2488",
+      "market": "TWSE",
+      "name": "漢平"
+    },
+    {
+      "symbol": "2489",
+      "market": "TWSE",
+      "name": "瑞軒"
+    },
+    {
+      "symbol": "2491",
+      "market": "TWSE",
+      "name": "吉祥全"
+    },
+    {
+      "symbol": "2492",
+      "market": "TWSE",
+      "name": "華新科"
+    },
+    {
+      "symbol": "2493",
+      "market": "TWSE",
+      "name": "揚博"
+    },
+    {
+      "symbol": "2495",
+      "market": "TWSE",
+      "name": "普安"
+    },
+    {
+      "symbol": "2496",
+      "market": "TWSE",
+      "name": "卓越"
+    },
+    {
+      "symbol": "2497",
+      "market": "TWSE",
+      "name": "怡利電"
+    },
+    {
+      "symbol": "2498",
+      "market": "TWSE",
+      "name": "宏達電"
+    },
+    {
+      "symbol": "2501",
+      "market": "TWSE",
+      "name": "國建"
+    },
+    {
+      "symbol": "2504",
+      "market": "TWSE",
+      "name": "國產"
+    },
+    {
+      "symbol": "2505",
+      "market": "TWSE",
+      "name": "國揚"
+    },
+    {
+      "symbol": "2506",
+      "market": "TWSE",
+      "name": "太設"
+    },
+    {
+      "symbol": "2509",
+      "market": "TWSE",
+      "name": "全坤建"
+    },
+    {
+      "symbol": "2511",
+      "market": "TWSE",
+      "name": "太子"
+    },
+    {
+      "symbol": "2514",
+      "market": "TWSE",
+      "name": "龍邦"
+    },
+    {
+      "symbol": "2515",
+      "market": "TWSE",
+      "name": "中工"
+    },
+    {
+      "symbol": "2516",
+      "market": "TWSE",
+      "name": "新建"
+    },
+    {
+      "symbol": "2520",
+      "market": "TWSE",
+      "name": "冠德"
+    },
+    {
+      "symbol": "2524",
+      "market": "TWSE",
+      "name": "京城"
+    },
+    {
+      "symbol": "2527",
+      "market": "TWSE",
+      "name": "宏璟"
+    },
+    {
+      "symbol": "2528",
+      "market": "TWSE",
+      "name": "皇普"
+    },
+    {
+      "symbol": "2530",
+      "market": "TWSE",
+      "name": "華建"
+    },
+    {
+      "symbol": "2534",
+      "market": "TWSE",
+      "name": "宏盛"
+    },
+    {
+      "symbol": "2535",
+      "market": "TWSE",
+      "name": "達欣工"
+    },
+    {
+      "symbol": "2536",
+      "market": "TWSE",
+      "name": "宏普"
+    },
+    {
+      "symbol": "2537",
+      "market": "TWSE",
+      "name": "聯上發"
+    },
+    {
+      "symbol": "2538",
+      "market": "TWSE",
+      "name": "基泰"
+    },
+    {
+      "symbol": "2539",
+      "market": "TWSE",
+      "name": "櫻花建"
+    },
+    {
+      "symbol": "2540",
+      "market": "TWSE",
+      "name": "愛山林"
+    },
+    {
+      "symbol": "2542",
+      "market": "TWSE",
+      "name": "興富發"
+    },
+    {
+      "symbol": "2543",
+      "market": "TWSE",
+      "name": "皇昌"
+    },
+    {
+      "symbol": "2545",
+      "market": "TWSE",
+      "name": "皇翔"
+    },
+    {
+      "symbol": "2546",
+      "market": "TWSE",
+      "name": "根基"
+    },
+    {
+      "symbol": "2547",
+      "market": "TWSE",
+      "name": "日勝生"
+    },
+    {
+      "symbol": "2548",
+      "market": "TWSE",
+      "name": "華固"
+    },
+    {
+      "symbol": "2597",
+      "market": "TWSE",
+      "name": "潤弘"
+    },
+    {
+      "symbol": "2601",
+      "market": "TWSE",
+      "name": "益航"
+    },
+    {
+      "symbol": "2603",
+      "market": "TWSE",
+      "name": "長榮"
+    },
+    {
+      "symbol": "2605",
+      "market": "TWSE",
+      "name": "新興"
+    },
+    {
+      "symbol": "2606",
+      "market": "TWSE",
+      "name": "裕民"
+    },
+    {
+      "symbol": "2607",
+      "market": "TWSE",
+      "name": "榮運"
+    },
+    {
+      "symbol": "2608",
+      "market": "TWSE",
+      "name": "嘉里大榮"
+    },
+    {
+      "symbol": "2609",
+      "market": "TWSE",
+      "name": "陽明"
+    },
+    {
+      "symbol": "2610",
+      "market": "TWSE",
+      "name": "華航"
+    },
+    {
+      "symbol": "2611",
+      "market": "TWSE",
+      "name": "志信"
+    },
+    {
+      "symbol": "2612",
+      "market": "TWSE",
+      "name": "中航"
+    },
+    {
+      "symbol": "2613",
+      "market": "TWSE",
+      "name": "中櫃"
+    },
+    {
+      "symbol": "2614",
+      "market": "TWSE",
+      "name": "東森"
+    },
+    {
+      "symbol": "2615",
+      "market": "TWSE",
+      "name": "萬海"
+    },
+    {
+      "symbol": "2616",
+      "market": "TWSE",
+      "name": "山隆"
+    },
+    {
+      "symbol": "2617",
+      "market": "TWSE",
+      "name": "台航"
+    },
+    {
+      "symbol": "2618",
+      "market": "TWSE",
+      "name": "長榮航"
+    },
+    {
+      "symbol": "2630",
+      "market": "TWSE",
+      "name": "亞航"
+    },
+    {
+      "symbol": "2633",
+      "market": "TWSE",
+      "name": "台灣高鐵"
+    },
+    {
+      "symbol": "2634",
+      "market": "TWSE",
+      "name": "漢翔"
+    },
+    {
+      "symbol": "2636",
+      "market": "TWSE",
+      "name": "台驊控股"
+    },
+    {
+      "symbol": "2637",
+      "market": "TWSE",
+      "name": "慧洋-KY"
+    },
+    {
+      "symbol": "2642",
+      "market": "TWSE",
+      "name": "宅配通"
+    },
+    {
+      "symbol": "2645",
+      "market": "TWSE",
+      "name": "長榮航太"
+    },
+    {
+      "symbol": "2646",
+      "market": "TWSE",
+      "name": "星宇航空"
+    },
+    {
+      "symbol": "2701",
+      "market": "TWSE",
+      "name": "萬企"
+    },
+    {
+      "symbol": "2702",
+      "market": "TWSE",
+      "name": "華園"
+    },
+    {
+      "symbol": "2704",
+      "market": "TWSE",
+      "name": "國賓"
+    },
+    {
+      "symbol": "2705",
+      "market": "TWSE",
+      "name": "六福"
+    },
+    {
+      "symbol": "2706",
+      "market": "TWSE",
+      "name": "第一店"
+    },
+    {
+      "symbol": "2707",
+      "market": "TWSE",
+      "name": "晶華"
+    },
+    {
+      "symbol": "2712",
+      "market": "TWSE",
+      "name": "遠雄來"
+    },
+    {
+      "symbol": "2722",
+      "market": "TWSE",
+      "name": "夏都"
+    },
+    {
+      "symbol": "2723",
+      "market": "TWSE",
+      "name": "美食-KY"
+    },
+    {
+      "symbol": "2727",
+      "market": "TWSE",
+      "name": "王品"
+    },
+    {
+      "symbol": "2731",
+      "market": "TWSE",
+      "name": "雄獅"
+    },
+    {
+      "symbol": "2739",
+      "market": "TWSE",
+      "name": "寒舍"
+    },
+    {
+      "symbol": "2748",
+      "market": "TWSE",
+      "name": "雲品"
+    },
+    {
+      "symbol": "2753",
+      "market": "TWSE",
+      "name": "八方雲集"
+    },
+    {
+      "symbol": "2762",
+      "market": "TWSE",
+      "name": "世界健身-KY"
+    },
+    {
+      "symbol": "2801",
+      "market": "TWSE",
+      "name": "彰銀"
+    },
+    {
+      "symbol": "2812",
+      "market": "TWSE",
+      "name": "台中銀"
+    },
+    {
+      "symbol": "2816",
+      "market": "TWSE",
+      "name": "旺旺保"
+    },
+    {
+      "symbol": "2820",
+      "market": "TWSE",
+      "name": "華票"
+    },
+    {
+      "symbol": "2832",
+      "market": "TWSE",
+      "name": "台產"
+    },
+    {
+      "symbol": "2834",
+      "market": "TWSE",
+      "name": "臺企銀"
+    },
+    {
+      "symbol": "2836",
+      "market": "TWSE",
+      "name": "高雄銀"
+    },
+    {
+      "symbol": "2838",
+      "market": "TWSE",
+      "name": "聯邦銀"
+    },
+    {
+      "symbol": "2845",
+      "market": "TWSE",
+      "name": "遠東銀"
+    },
+    {
+      "symbol": "2849",
+      "market": "TWSE",
+      "name": "安泰銀"
+    },
+    {
+      "symbol": "2850",
+      "market": "TWSE",
+      "name": "新產"
+    },
+    {
+      "symbol": "2851",
+      "market": "TWSE",
+      "name": "中再保"
+    },
+    {
+      "symbol": "2852",
+      "market": "TWSE",
+      "name": "第一保"
+    },
+    {
+      "symbol": "2855",
+      "market": "TWSE",
+      "name": "統一證"
+    },
+    {
+      "symbol": "2867",
+      "market": "TWSE",
+      "name": "三商壽"
+    },
+    {
+      "symbol": "2880",
+      "market": "TWSE",
+      "name": "華南金"
+    },
+    {
+      "symbol": "2881",
+      "market": "TWSE",
+      "name": "富邦金"
+    },
+    {
+      "symbol": "2882",
+      "market": "TWSE",
+      "name": "國泰金"
+    },
+    {
+      "symbol": "2883",
+      "market": "TWSE",
+      "name": "凱基金"
+    },
+    {
+      "symbol": "2884",
+      "market": "TWSE",
+      "name": "玉山金"
+    },
+    {
+      "symbol": "2885",
+      "market": "TWSE",
+      "name": "元大金"
+    },
+    {
+      "symbol": "2886",
+      "market": "TWSE",
+      "name": "兆豐金"
+    },
+    {
+      "symbol": "2887",
+      "market": "TWSE",
+      "name": "台新新光金"
+    },
+    {
+      "symbol": "2889",
+      "market": "TWSE",
+      "name": "國票金"
+    },
+    {
+      "symbol": "2890",
+      "market": "TWSE",
+      "name": "永豐金"
+    },
+    {
+      "symbol": "2891",
+      "market": "TWSE",
+      "name": "中信金"
+    },
+    {
+      "symbol": "2892",
+      "market": "TWSE",
+      "name": "第一金"
+    },
+    {
+      "symbol": "2897",
+      "market": "TWSE",
+      "name": "王道銀行"
+    },
+    {
+      "symbol": "2901",
+      "market": "TWSE",
+      "name": "欣欣"
+    },
+    {
+      "symbol": "2903",
+      "market": "TWSE",
+      "name": "遠百"
+    },
+    {
+      "symbol": "2904",
+      "market": "TWSE",
+      "name": "匯僑"
+    },
+    {
+      "symbol": "2905",
+      "market": "TWSE",
+      "name": "三商"
+    },
+    {
+      "symbol": "2906",
+      "market": "TWSE",
+      "name": "高林"
+    },
+    {
+      "symbol": "2908",
+      "market": "TWSE",
+      "name": "特力"
+    },
+    {
+      "symbol": "2910",
+      "market": "TWSE",
+      "name": "統領"
+    },
+    {
+      "symbol": "2911",
+      "market": "TWSE",
+      "name": "麗嬰房"
+    },
+    {
+      "symbol": "2912",
+      "market": "TWSE",
+      "name": "統一超"
+    },
+    {
+      "symbol": "2913",
+      "market": "TWSE",
+      "name": "農林"
+    },
+    {
+      "symbol": "2915",
+      "market": "TWSE",
+      "name": "潤泰全"
+    },
+    {
+      "symbol": "2923",
+      "market": "TWSE",
+      "name": "鼎固-KY"
+    },
+    {
+      "symbol": "2929",
+      "market": "TWSE",
+      "name": "淘帝-KY"
+    },
+    {
+      "symbol": "2939",
+      "market": "TWSE",
+      "name": "永邑-KY"
+    },
+    {
+      "symbol": "2945",
+      "market": "TWSE",
+      "name": "三商家購"
+    },
+    {
+      "symbol": "3002",
+      "market": "TWSE",
+      "name": "歐格"
+    },
+    {
+      "symbol": "3003",
+      "market": "TWSE",
+      "name": "健和興"
+    },
+    {
+      "symbol": "3004",
+      "market": "TWSE",
+      "name": "豐達科"
+    },
+    {
+      "symbol": "3005",
+      "market": "TWSE",
+      "name": "神基"
+    },
+    {
+      "symbol": "3006",
+      "market": "TWSE",
+      "name": "晶豪科"
+    },
+    {
+      "symbol": "3008",
+      "market": "TWSE",
+      "name": "大立光"
+    },
+    {
+      "symbol": "3010",
+      "market": "TWSE",
+      "name": "華立"
+    },
+    {
+      "symbol": "3011",
+      "market": "TWSE",
+      "name": "今皓"
+    },
+    {
+      "symbol": "3013",
+      "market": "TWSE",
+      "name": "晟銘電"
+    },
+    {
+      "symbol": "3014",
+      "market": "TWSE",
+      "name": "聯陽"
+    },
+    {
+      "symbol": "3015",
+      "market": "TWSE",
+      "name": "全漢"
+    },
+    {
+      "symbol": "3016",
+      "market": "TWSE",
+      "name": "嘉晶"
+    },
+    {
+      "symbol": "3017",
+      "market": "TWSE",
+      "name": "奇鋐"
+    },
+    {
+      "symbol": "3018",
+      "market": "TWSE",
+      "name": "隆銘綠能"
+    },
+    {
+      "symbol": "3019",
+      "market": "TWSE",
+      "name": "亞光"
+    },
+    {
+      "symbol": "3021",
+      "market": "TWSE",
+      "name": "鴻名"
+    },
+    {
+      "symbol": "3022",
+      "market": "TWSE",
+      "name": "威強電"
+    },
+    {
+      "symbol": "3023",
+      "market": "TWSE",
+      "name": "信邦"
+    },
+    {
+      "symbol": "3024",
+      "market": "TWSE",
+      "name": "憶聲"
+    },
+    {
+      "symbol": "3025",
+      "market": "TWSE",
+      "name": "星通"
+    },
+    {
+      "symbol": "3026",
+      "market": "TWSE",
+      "name": "禾伸堂"
+    },
+    {
+      "symbol": "3027",
+      "market": "TWSE",
+      "name": "盛達"
+    },
+    {
+      "symbol": "3028",
+      "market": "TWSE",
+      "name": "增你強"
+    },
+    {
+      "symbol": "3029",
+      "market": "TWSE",
+      "name": "零壹"
+    },
+    {
+      "symbol": "3030",
+      "market": "TWSE",
+      "name": "德律"
+    },
+    {
+      "symbol": "3031",
+      "market": "TWSE",
+      "name": "佰鴻"
+    },
+    {
+      "symbol": "3032",
+      "market": "TWSE",
+      "name": "偉訓"
+    },
+    {
+      "symbol": "3033",
+      "market": "TWSE",
+      "name": "威健"
+    },
+    {
+      "symbol": "3034",
+      "market": "TWSE",
+      "name": "聯詠"
+    },
+    {
+      "symbol": "3035",
+      "market": "TWSE",
+      "name": "智原"
+    },
+    {
+      "symbol": "3036",
+      "market": "TWSE",
+      "name": "文曄"
+    },
+    {
+      "symbol": "3037",
+      "market": "TWSE",
+      "name": "欣興"
+    },
+    {
+      "symbol": "3038",
+      "market": "TWSE",
+      "name": "全台"
+    },
+    {
+      "symbol": "3040",
+      "market": "TWSE",
+      "name": "遠見"
+    },
+    {
+      "symbol": "3041",
+      "market": "TWSE",
+      "name": "揚智"
+    },
+    {
+      "symbol": "3042",
+      "market": "TWSE",
+      "name": "晶技"
+    },
+    {
+      "symbol": "3043",
+      "market": "TWSE",
+      "name": "科風"
+    },
+    {
+      "symbol": "3044",
+      "market": "TWSE",
+      "name": "健鼎"
+    },
+    {
+      "symbol": "3045",
+      "market": "TWSE",
+      "name": "台灣大"
+    },
+    {
+      "symbol": "3046",
+      "market": "TWSE",
+      "name": "建碁"
+    },
+    {
+      "symbol": "3047",
+      "market": "TWSE",
+      "name": "訊舟"
+    },
+    {
+      "symbol": "3048",
+      "market": "TWSE",
+      "name": "益登"
+    },
+    {
+      "symbol": "3049",
+      "market": "TWSE",
+      "name": "精金"
+    },
+    {
+      "symbol": "3050",
+      "market": "TWSE",
+      "name": "鈺德"
+    },
+    {
+      "symbol": "3051",
+      "market": "TWSE",
+      "name": "力特"
+    },
+    {
+      "symbol": "3052",
+      "market": "TWSE",
+      "name": "夆典"
+    },
+    {
+      "symbol": "3054",
+      "market": "TWSE",
+      "name": "立萬利"
+    },
+    {
+      "symbol": "3055",
+      "market": "TWSE",
+      "name": "蔚華科"
+    },
+    {
+      "symbol": "3056",
+      "market": "TWSE",
+      "name": "富華新"
+    },
+    {
+      "symbol": "3057",
+      "market": "TWSE",
+      "name": "喬鼎"
+    },
+    {
+      "symbol": "3058",
+      "market": "TWSE",
+      "name": "立德"
+    },
+    {
+      "symbol": "3059",
+      "market": "TWSE",
+      "name": "華晶科"
+    },
+    {
+      "symbol": "3060",
+      "market": "TWSE",
+      "name": "銘異"
+    },
+    {
+      "symbol": "3062",
+      "market": "TWSE",
+      "name": "建漢"
+    },
+    {
+      "symbol": "3090",
+      "market": "TWSE",
+      "name": "日電貿"
+    },
+    {
+      "symbol": "3092",
+      "market": "TWSE",
+      "name": "鴻碩"
+    },
+    {
+      "symbol": "3094",
+      "market": "TWSE",
+      "name": "聯傑"
+    },
+    {
+      "symbol": "3130",
+      "market": "TWSE",
+      "name": "一零四"
+    },
+    {
+      "symbol": "3135",
+      "market": "TWSE",
+      "name": "凌航"
+    },
+    {
+      "symbol": "3138",
+      "market": "TWSE",
+      "name": "耀登"
+    },
+    {
+      "symbol": "3149",
+      "market": "TWSE",
+      "name": "正達"
+    },
+    {
+      "symbol": "3150",
+      "market": "TWSE",
+      "name": "鈺寶-創"
+    },
+    {
+      "symbol": "3164",
+      "market": "TWSE",
+      "name": "景岳"
+    },
+    {
+      "symbol": "3167",
+      "market": "TWSE",
+      "name": "大量"
+    },
+    {
+      "symbol": "3168",
+      "market": "TWSE",
+      "name": "眾福科"
+    },
+    {
+      "symbol": "3189",
+      "market": "TWSE",
+      "name": "景碩"
+    },
+    {
+      "symbol": "3209",
+      "market": "TWSE",
+      "name": "全科"
+    },
+    {
+      "symbol": "3229",
+      "market": "TWSE",
+      "name": "晟鈦"
+    },
+    {
+      "symbol": "3231",
+      "market": "TWSE",
+      "name": "緯創"
+    },
+    {
+      "symbol": "3257",
+      "market": "TWSE",
+      "name": "虹冠電"
+    },
+    {
+      "symbol": "3266",
+      "market": "TWSE",
+      "name": "昇陽"
+    },
+    {
+      "symbol": "3296",
+      "market": "TWSE",
+      "name": "勝德"
+    },
+    {
+      "symbol": "3305",
+      "market": "TWSE",
+      "name": "昇貿"
+    },
+    {
+      "symbol": "3308",
+      "market": "TWSE",
+      "name": "聯德"
+    },
+    {
+      "symbol": "3311",
+      "market": "TWSE",
+      "name": "閎暉"
+    },
+    {
+      "symbol": "3312",
+      "market": "TWSE",
+      "name": "弘憶股"
+    },
+    {
+      "symbol": "3321",
+      "market": "TWSE",
+      "name": "同泰"
+    },
+    {
+      "symbol": "3338",
+      "market": "TWSE",
+      "name": "泰碩"
+    },
+    {
+      "symbol": "3346",
+      "market": "TWSE",
+      "name": "麗清"
+    },
+    {
+      "symbol": "3356",
+      "market": "TWSE",
+      "name": "奇偶"
+    },
+    {
+      "symbol": "3376",
+      "market": "TWSE",
+      "name": "新日興"
+    },
+    {
+      "symbol": "3380",
+      "market": "TWSE",
+      "name": "明泰"
+    },
+    {
+      "symbol": "3406",
+      "market": "TWSE",
+      "name": "玉晶光"
+    },
+    {
+      "symbol": "3413",
+      "market": "TWSE",
+      "name": "京鼎"
+    },
+    {
+      "symbol": "3416",
+      "market": "TWSE",
+      "name": "融程電"
+    },
+    {
+      "symbol": "3419",
+      "market": "TWSE",
+      "name": "譁裕"
+    },
+    {
+      "symbol": "3432",
+      "market": "TWSE",
+      "name": "台端"
+    },
+    {
+      "symbol": "3437",
+      "market": "TWSE",
+      "name": "榮創"
+    },
+    {
+      "symbol": "3443",
+      "market": "TWSE",
+      "name": "創意"
+    },
+    {
+      "symbol": "3447",
+      "market": "TWSE",
+      "name": "展達"
+    },
+    {
+      "symbol": "3450",
+      "market": "TWSE",
+      "name": "聯鈞"
+    },
+    {
+      "symbol": "3481",
+      "market": "TWSE",
+      "name": "群創"
+    },
+    {
+      "symbol": "3494",
+      "market": "TWSE",
+      "name": "誠研"
+    },
+    {
+      "symbol": "3501",
+      "market": "TWSE",
+      "name": "維熹"
+    },
+    {
+      "symbol": "3504",
+      "market": "TWSE",
+      "name": "揚明光"
+    },
+    {
+      "symbol": "3515",
+      "market": "TWSE",
+      "name": "華擎"
+    },
+    {
+      "symbol": "3518",
+      "market": "TWSE",
+      "name": "柏騰"
+    },
+    {
+      "symbol": "3528",
+      "market": "TWSE",
+      "name": "安馳"
+    },
+    {
+      "symbol": "3530",
+      "market": "TWSE",
+      "name": "晶相光"
+    },
+    {
+      "symbol": "3532",
+      "market": "TWSE",
+      "name": "台勝科"
+    },
+    {
+      "symbol": "3533",
+      "market": "TWSE",
+      "name": "嘉澤"
+    },
+    {
+      "symbol": "3535",
+      "market": "TWSE",
+      "name": "晶彩科"
+    },
+    {
+      "symbol": "3543",
+      "market": "TWSE",
+      "name": "州巧"
+    },
+    {
+      "symbol": "3545",
+      "market": "TWSE",
+      "name": "敦泰"
+    },
+    {
+      "symbol": "3550",
+      "market": "TWSE",
+      "name": "聯穎"
+    },
+    {
+      "symbol": "3557",
+      "market": "TWSE",
+      "name": "嘉威"
+    },
+    {
+      "symbol": "3563",
+      "market": "TWSE",
+      "name": "牧德"
+    },
+    {
+      "symbol": "3576",
+      "market": "TWSE",
+      "name": "聯合再生"
+    },
+    {
+      "symbol": "3583",
+      "market": "TWSE",
+      "name": "辛耘"
+    },
+    {
+      "symbol": "3588",
+      "market": "TWSE",
+      "name": "通嘉"
+    },
+    {
+      "symbol": "3591",
+      "market": "TWSE",
+      "name": "艾笛森"
+    },
+    {
+      "symbol": "3592",
+      "market": "TWSE",
+      "name": "瑞鼎"
+    },
+    {
+      "symbol": "3593",
+      "market": "TWSE",
+      "name": "力銘"
+    },
+    {
+      "symbol": "3596",
+      "market": "TWSE",
+      "name": "智易"
+    },
+    {
+      "symbol": "3605",
+      "market": "TWSE",
+      "name": "宏致"
+    },
+    {
+      "symbol": "3607",
+      "market": "TWSE",
+      "name": "谷崧"
+    },
+    {
+      "symbol": "3617",
+      "market": "TWSE",
+      "name": "碩天"
+    },
+    {
+      "symbol": "3622",
+      "market": "TWSE",
+      "name": "洋華"
+    },
+    {
+      "symbol": "3645",
+      "market": "TWSE",
+      "name": "達邁"
+    },
+    {
+      "symbol": "3652",
+      "market": "TWSE",
+      "name": "精聯"
+    },
+    {
+      "symbol": "3653",
+      "market": "TWSE",
+      "name": "健策"
+    },
+    {
+      "symbol": "3661",
+      "market": "TWSE",
+      "name": "世芯-KY"
+    },
+    {
+      "symbol": "3665",
+      "market": "TWSE",
+      "name": "貿聯-KY"
+    },
+    {
+      "symbol": "3669",
+      "market": "TWSE",
+      "name": "圓展"
+    },
+    {
+      "symbol": "3673",
+      "market": "TWSE",
+      "name": "TPK-KY"
+    },
+    {
+      "symbol": "3679",
+      "market": "TWSE",
+      "name": "新至陞"
+    },
+    {
+      "symbol": "3686",
+      "market": "TWSE",
+      "name": "達能"
+    },
+    {
+      "symbol": "3694",
+      "market": "TWSE",
+      "name": "海華"
+    },
+    {
+      "symbol": "3701",
+      "market": "TWSE",
+      "name": "大眾控"
+    },
+    {
+      "symbol": "3702",
+      "market": "TWSE",
+      "name": "大聯大"
+    },
+    {
+      "symbol": "3703",
+      "market": "TWSE",
+      "name": "欣陸"
+    },
+    {
+      "symbol": "3704",
+      "market": "TWSE",
+      "name": "合勤控"
+    },
+    {
+      "symbol": "3705",
+      "market": "TWSE",
+      "name": "永信"
+    },
+    {
+      "symbol": "3706",
+      "market": "TWSE",
+      "name": "神達"
+    },
+    {
+      "symbol": "3708",
+      "market": "TWSE",
+      "name": "上緯投控"
+    },
+    {
+      "symbol": "3711",
+      "market": "TWSE",
+      "name": "日月光投控"
+    },
+    {
+      "symbol": "3712",
+      "market": "TWSE",
+      "name": "永崴投控"
+    },
+    {
+      "symbol": "3714",
+      "market": "TWSE",
+      "name": "富采"
+    },
+    {
+      "symbol": "3715",
+      "market": "TWSE",
+      "name": "定穎投控"
+    },
+    {
+      "symbol": "3716",
+      "market": "TWSE",
+      "name": "中化控股"
+    },
+    {
+      "symbol": "3717",
+      "market": "TWSE",
+      "name": "聯嘉投控"
+    },
+    {
+      "symbol": "4104",
+      "market": "TWSE",
+      "name": "佳醫"
+    },
+    {
+      "symbol": "4106",
+      "market": "TWSE",
+      "name": "雃博"
+    },
+    {
+      "symbol": "4108",
+      "market": "TWSE",
+      "name": "懷特"
+    },
+    {
+      "symbol": "4119",
+      "market": "TWSE",
+      "name": "旭富"
+    },
+    {
+      "symbol": "4133",
+      "market": "TWSE",
+      "name": "亞諾法"
+    },
+    {
+      "symbol": "4137",
+      "market": "TWSE",
+      "name": "麗豐-KY"
+    },
+    {
+      "symbol": "4142",
+      "market": "TWSE",
+      "name": "國光生"
+    },
+    {
+      "symbol": "4148",
+      "market": "TWSE",
+      "name": "全宇生技-KY"
+    },
+    {
+      "symbol": "4155",
+      "market": "TWSE",
+      "name": "訊映"
+    },
+    {
+      "symbol": "4164",
+      "market": "TWSE",
+      "name": "承業醫"
+    },
+    {
+      "symbol": "4169",
+      "market": "TWSE",
+      "name": "泰宗"
+    },
+    {
+      "symbol": "4178",
+      "market": "TWSE",
+      "name": "永笙-KY"
+    },
+    {
+      "symbol": "4190",
+      "market": "TWSE",
+      "name": "佐登-KY"
+    },
+    {
+      "symbol": "4195",
+      "market": "TWSE",
+      "name": "基米-創"
+    },
+    {
+      "symbol": "4306",
+      "market": "TWSE",
+      "name": "炎洲"
+    },
+    {
+      "symbol": "4414",
+      "market": "TWSE",
+      "name": "如興"
+    },
+    {
+      "symbol": "4426",
+      "market": "TWSE",
+      "name": "利勤"
+    },
+    {
+      "symbol": "4438",
+      "market": "TWSE",
+      "name": "廣越"
+    },
+    {
+      "symbol": "4439",
+      "market": "TWSE",
+      "name": "冠星-KY"
+    },
+    {
+      "symbol": "4440",
+      "market": "TWSE",
+      "name": "宜新實業"
+    },
+    {
+      "symbol": "4441",
+      "market": "TWSE",
+      "name": "振大環球"
+    },
+    {
+      "symbol": "4526",
+      "market": "TWSE",
+      "name": "東台"
+    },
+    {
+      "symbol": "4532",
+      "market": "TWSE",
+      "name": "瑞智"
+    },
+    {
+      "symbol": "4536",
+      "market": "TWSE",
+      "name": "拓凱"
+    },
+    {
+      "symbol": "4540",
+      "market": "TWSE",
+      "name": "全球傳動"
+    },
+    {
+      "symbol": "4545",
+      "market": "TWSE",
+      "name": "銘鈺"
+    },
+    {
+      "symbol": "4551",
+      "market": "TWSE",
+      "name": "智伸科"
+    },
+    {
+      "symbol": "4552",
+      "market": "TWSE",
+      "name": "力達-KY"
+    },
+    {
+      "symbol": "4555",
+      "market": "TWSE",
+      "name": "氣立"
+    },
+    {
+      "symbol": "4557",
+      "market": "TWSE",
+      "name": "永新-KY"
+    },
+    {
+      "symbol": "4560",
+      "market": "TWSE",
+      "name": "強信-KY"
+    },
+    {
+      "symbol": "4562",
+      "market": "TWSE",
+      "name": "穎漢"
+    },
+    {
+      "symbol": "4564",
+      "market": "TWSE",
+      "name": "元翎"
+    },
+    {
+      "symbol": "4566",
+      "market": "TWSE",
+      "name": "時碩工業"
+    },
+    {
+      "symbol": "4569",
+      "market": "TWSE",
+      "name": "六方科-KY"
+    },
+    {
+      "symbol": "4571",
+      "market": "TWSE",
+      "name": "鈞興-KY"
+    },
+    {
+      "symbol": "4572",
+      "market": "TWSE",
+      "name": "駐龍"
+    },
+    {
+      "symbol": "4576",
+      "market": "TWSE",
+      "name": "大銀微系統"
+    },
+    {
+      "symbol": "4581",
+      "market": "TWSE",
+      "name": "光隆精密-KY"
+    },
+    {
+      "symbol": "4582",
+      "market": "TWSE",
+      "name": "聚恆-創"
+    },
+    {
+      "symbol": "4583",
+      "market": "TWSE",
+      "name": "台灣精銳"
+    },
+    {
+      "symbol": "4585",
+      "market": "TWSE",
+      "name": "達明"
+    },
+    {
+      "symbol": "4588",
+      "market": "TWSE",
+      "name": "玖鼎電力"
+    },
+    {
+      "symbol": "4590",
+      "market": "TWSE",
+      "name": "富田-創"
+    },
+    {
+      "symbol": "4720",
+      "market": "TWSE",
+      "name": "德淵"
+    },
+    {
+      "symbol": "4722",
+      "market": "TWSE",
+      "name": "國精化"
+    },
+    {
+      "symbol": "4736",
+      "market": "TWSE",
+      "name": "泰博"
+    },
+    {
+      "symbol": "4737",
+      "market": "TWSE",
+      "name": "華廣"
+    },
+    {
+      "symbol": "4739",
+      "market": "TWSE",
+      "name": "康普"
+    },
+    {
+      "symbol": "4746",
+      "market": "TWSE",
+      "name": "台耀"
+    },
+    {
+      "symbol": "4755",
+      "market": "TWSE",
+      "name": "三福化"
+    },
+    {
+      "symbol": "4763",
+      "market": "TWSE",
+      "name": "材料*-KY"
+    },
+    {
+      "symbol": "4764",
+      "market": "TWSE",
+      "name": "雙鍵"
+    },
+    {
+      "symbol": "4766",
+      "market": "TWSE",
+      "name": "南寶"
+    },
+    {
+      "symbol": "4770",
+      "market": "TWSE",
+      "name": "上品"
+    },
+    {
+      "symbol": "4771",
+      "market": "TWSE",
+      "name": "望隼"
+    },
+    {
+      "symbol": "4807",
+      "market": "TWSE",
+      "name": "日成-KY"
+    },
+    {
+      "symbol": "4904",
+      "market": "TWSE",
+      "name": "遠傳"
+    },
+    {
+      "symbol": "4906",
+      "market": "TWSE",
+      "name": "正文"
+    },
+    {
+      "symbol": "4912",
+      "market": "TWSE",
+      "name": "聯德控股-KY"
+    },
+    {
+      "symbol": "4915",
+      "market": "TWSE",
+      "name": "致伸"
+    },
+    {
+      "symbol": "4916",
+      "market": "TWSE",
+      "name": "事欣科"
+    },
+    {
+      "symbol": "4919",
+      "market": "TWSE",
+      "name": "新唐"
+    },
+    {
+      "symbol": "4927",
+      "market": "TWSE",
+      "name": "泰鼎-KY"
+    },
+    {
+      "symbol": "4930",
+      "market": "TWSE",
+      "name": "燦星網"
+    },
+    {
+      "symbol": "4934",
+      "market": "TWSE",
+      "name": "太極"
+    },
+    {
+      "symbol": "4935",
+      "market": "TWSE",
+      "name": "茂林-KY"
+    },
+    {
+      "symbol": "4938",
+      "market": "TWSE",
+      "name": "和碩"
+    },
+    {
+      "symbol": "4942",
+      "market": "TWSE",
+      "name": "嘉彰"
+    },
+    {
+      "symbol": "4943",
+      "market": "TWSE",
+      "name": "康控-KY"
+    },
+    {
+      "symbol": "4949",
+      "market": "TWSE",
+      "name": "有成精密"
+    },
+    {
+      "symbol": "4952",
+      "market": "TWSE",
+      "name": "凌通"
+    },
+    {
+      "symbol": "4956",
+      "market": "TWSE",
+      "name": "光鋐"
+    },
+    {
+      "symbol": "4958",
+      "market": "TWSE",
+      "name": "臻鼎-KY"
+    },
+    {
+      "symbol": "4960",
+      "market": "TWSE",
+      "name": "誠美材"
+    },
+    {
+      "symbol": "4961",
+      "market": "TWSE",
+      "name": "天鈺"
+    },
+    {
+      "symbol": "4967",
+      "market": "TWSE",
+      "name": "十銓"
+    },
+    {
+      "symbol": "4968",
+      "market": "TWSE",
+      "name": "立積"
+    },
+    {
+      "symbol": "4976",
+      "market": "TWSE",
+      "name": "佳凌"
+    },
+    {
+      "symbol": "4977",
+      "market": "TWSE",
+      "name": "眾達-KY"
+    },
+    {
+      "symbol": "4989",
+      "market": "TWSE",
+      "name": "榮科"
+    },
+    {
+      "symbol": "4994",
+      "market": "TWSE",
+      "name": "傳奇"
+    },
+    {
+      "symbol": "4999",
+      "market": "TWSE",
+      "name": "鑫禾"
+    },
+    {
+      "symbol": "5007",
+      "market": "TWSE",
+      "name": "三星"
+    },
+    {
+      "symbol": "5203",
+      "market": "TWSE",
+      "name": "訊連"
+    },
+    {
+      "symbol": "5215",
+      "market": "TWSE",
+      "name": "科嘉-KY"
+    },
+    {
+      "symbol": "5222",
+      "market": "TWSE",
+      "name": "全訊"
+    },
+    {
+      "symbol": "5225",
+      "market": "TWSE",
+      "name": "東科-KY"
+    },
+    {
+      "symbol": "5234",
+      "market": "TWSE",
+      "name": "達興材料"
+    },
+    {
+      "symbol": "5236",
+      "market": "TWSE",
+      "name": "凌陽創新"
+    },
+    {
+      "symbol": "5243",
+      "market": "TWSE",
+      "name": "乙盛-KY"
+    },
+    {
+      "symbol": "5244",
+      "market": "TWSE",
+      "name": "弘凱"
+    },
+    {
+      "symbol": "5258",
+      "market": "TWSE",
+      "name": "虹堡"
+    },
+    {
+      "symbol": "5269",
+      "market": "TWSE",
+      "name": "祥碩"
+    },
+    {
+      "symbol": "5283",
+      "market": "TWSE",
+      "name": "禾聯碩"
+    },
+    {
+      "symbol": "5284",
+      "market": "TWSE",
+      "name": "jpp-KY"
+    },
+    {
+      "symbol": "5285",
+      "market": "TWSE",
+      "name": "界霖"
+    },
+    {
+      "symbol": "5288",
+      "market": "TWSE",
+      "name": "豐祥-KY"
+    },
+    {
+      "symbol": "5292",
+      "market": "TWSE",
+      "name": "華懋"
+    },
+    {
+      "symbol": "5306",
+      "market": "TWSE",
+      "name": "桂盟"
+    },
+    {
+      "symbol": "5388",
+      "market": "TWSE",
+      "name": "中磊"
+    },
+    {
+      "symbol": "5434",
+      "market": "TWSE",
+      "name": "崇越"
+    },
+    {
+      "symbol": "5469",
+      "market": "TWSE",
+      "name": "瀚宇博"
+    },
+    {
+      "symbol": "5471",
+      "market": "TWSE",
+      "name": "松翰"
+    },
+    {
+      "symbol": "5484",
+      "market": "TWSE",
+      "name": "慧友"
+    },
+    {
+      "symbol": "5515",
+      "market": "TWSE",
+      "name": "建國"
+    },
+    {
+      "symbol": "5519",
+      "market": "TWSE",
+      "name": "隆大"
+    },
+    {
+      "symbol": "5521",
+      "market": "TWSE",
+      "name": "工信"
+    },
+    {
+      "symbol": "5522",
+      "market": "TWSE",
+      "name": "遠雄"
+    },
+    {
+      "symbol": "5525",
+      "market": "TWSE",
+      "name": "順天"
+    },
+    {
+      "symbol": "5531",
+      "market": "TWSE",
+      "name": "鄉林"
+    },
+    {
+      "symbol": "5533",
+      "market": "TWSE",
+      "name": "皇鼎"
+    },
+    {
+      "symbol": "5534",
+      "market": "TWSE",
+      "name": "長虹"
+    },
+    {
+      "symbol": "5538",
+      "market": "TWSE",
+      "name": "東明-KY"
+    },
+    {
+      "symbol": "5546",
+      "market": "TWSE",
+      "name": "永固-KY"
+    },
+    {
+      "symbol": "5607",
+      "market": "TWSE",
+      "name": "遠雄港"
+    },
+    {
+      "symbol": "5608",
+      "market": "TWSE",
+      "name": "四維航"
+    },
+    {
+      "symbol": "5706",
+      "market": "TWSE",
+      "name": "鳳凰"
+    },
+    {
+      "symbol": "5871",
+      "market": "TWSE",
+      "name": "中租-KY"
+    },
+    {
+      "symbol": "5876",
+      "market": "TWSE",
+      "name": "上海商銀"
+    },
+    {
+      "symbol": "5880",
+      "market": "TWSE",
+      "name": "合庫金"
+    },
+    {
+      "symbol": "5906",
+      "market": "TWSE",
+      "name": "台南-KY"
+    },
+    {
+      "symbol": "5907",
+      "market": "TWSE",
+      "name": "大洋-KY"
+    },
+    {
+      "symbol": "6005",
+      "market": "TWSE",
+      "name": "群益證"
+    },
+    {
+      "symbol": "6024",
+      "market": "TWSE",
+      "name": "群益期"
+    },
+    {
+      "symbol": "6108",
+      "market": "TWSE",
+      "name": "競國"
+    },
+    {
+      "symbol": "6112",
+      "market": "TWSE",
+      "name": "邁達特"
+    },
+    {
+      "symbol": "6115",
+      "market": "TWSE",
+      "name": "鎰勝"
+    },
+    {
+      "symbol": "6116",
+      "market": "TWSE",
+      "name": "彩晶"
+    },
+    {
+      "symbol": "6117",
+      "market": "TWSE",
+      "name": "迎廣"
+    },
+    {
+      "symbol": "6120",
+      "market": "TWSE",
+      "name": "達運"
+    },
+    {
+      "symbol": "6128",
+      "market": "TWSE",
+      "name": "上福"
+    },
+    {
+      "symbol": "6133",
+      "market": "TWSE",
+      "name": "金橋"
+    },
+    {
+      "symbol": "6136",
+      "market": "TWSE",
+      "name": "富爾特"
+    },
+    {
+      "symbol": "6139",
+      "market": "TWSE",
+      "name": "亞翔"
+    },
+    {
+      "symbol": "6141",
+      "market": "TWSE",
+      "name": "柏承"
+    },
+    {
+      "symbol": "6142",
+      "market": "TWSE",
+      "name": "友勁"
+    },
+    {
+      "symbol": "6152",
+      "market": "TWSE",
+      "name": "百一"
+    },
+    {
+      "symbol": "6153",
+      "market": "TWSE",
+      "name": "嘉聯益"
+    },
+    {
+      "symbol": "6155",
+      "market": "TWSE",
+      "name": "鈞寶"
+    },
+    {
+      "symbol": "6164",
+      "market": "TWSE",
+      "name": "華興"
+    },
+    {
+      "symbol": "6165",
+      "market": "TWSE",
+      "name": "浪凡"
+    },
+    {
+      "symbol": "6166",
+      "market": "TWSE",
+      "name": "凌華"
+    },
+    {
+      "symbol": "6168",
+      "market": "TWSE",
+      "name": "宏齊"
+    },
+    {
+      "symbol": "6176",
+      "market": "TWSE",
+      "name": "瑞儀"
+    },
+    {
+      "symbol": "6177",
+      "market": "TWSE",
+      "name": "達麗"
+    },
+    {
+      "symbol": "6183",
+      "market": "TWSE",
+      "name": "關貿"
+    },
+    {
+      "symbol": "6184",
+      "market": "TWSE",
+      "name": "大豐電"
+    },
+    {
+      "symbol": "6189",
+      "market": "TWSE",
+      "name": "豐藝"
+    },
+    {
+      "symbol": "6191",
+      "market": "TWSE",
+      "name": "精成科"
+    },
+    {
+      "symbol": "6192",
+      "market": "TWSE",
+      "name": "巨路"
+    },
+    {
+      "symbol": "6196",
+      "market": "TWSE",
+      "name": "帆宣"
+    },
+    {
+      "symbol": "6197",
+      "market": "TWSE",
+      "name": "佳必琪"
+    },
+    {
+      "symbol": "6201",
+      "market": "TWSE",
+      "name": "亞弘電"
+    },
+    {
+      "symbol": "6202",
+      "market": "TWSE",
+      "name": "盛群"
+    },
+    {
+      "symbol": "6205",
+      "market": "TWSE",
+      "name": "詮欣"
+    },
+    {
+      "symbol": "6206",
+      "market": "TWSE",
+      "name": "飛捷"
+    },
+    {
+      "symbol": "6209",
+      "market": "TWSE",
+      "name": "今國光"
+    },
+    {
+      "symbol": "6213",
+      "market": "TWSE",
+      "name": "聯茂"
+    },
+    {
+      "symbol": "6214",
+      "market": "TWSE",
+      "name": "精誠"
+    },
+    {
+      "symbol": "6215",
+      "market": "TWSE",
+      "name": "和椿"
+    },
+    {
+      "symbol": "6216",
+      "market": "TWSE",
+      "name": "居易"
+    },
+    {
+      "symbol": "6224",
+      "market": "TWSE",
+      "name": "聚鼎"
+    },
+    {
+      "symbol": "6225",
+      "market": "TWSE",
+      "name": "天瀚"
+    },
+    {
+      "symbol": "6226",
+      "market": "TWSE",
+      "name": "光鼎"
+    },
+    {
+      "symbol": "6230",
+      "market": "TWSE",
+      "name": "尼得科超眾"
+    },
+    {
+      "symbol": "6235",
+      "market": "TWSE",
+      "name": "華孚"
+    },
+    {
+      "symbol": "6239",
+      "market": "TWSE",
+      "name": "力成"
+    },
+    {
+      "symbol": "6243",
+      "market": "TWSE",
+      "name": "迅杰"
+    },
+    {
+      "symbol": "6257",
+      "market": "TWSE",
+      "name": "矽格"
+    },
+    {
+      "symbol": "6269",
+      "market": "TWSE",
+      "name": "台郡"
+    },
+    {
+      "symbol": "6271",
+      "market": "TWSE",
+      "name": "同欣電"
+    },
+    {
+      "symbol": "6272",
+      "market": "TWSE",
+      "name": "驊陞"
+    },
+    {
+      "symbol": "6277",
+      "market": "TWSE",
+      "name": "宏正"
+    },
+    {
+      "symbol": "6278",
+      "market": "TWSE",
+      "name": "台表科"
+    },
+    {
+      "symbol": "6281",
+      "market": "TWSE",
+      "name": "全國電"
+    },
+    {
+      "symbol": "6282",
+      "market": "TWSE",
+      "name": "康舒"
+    },
+    {
+      "symbol": "6283",
+      "market": "TWSE",
+      "name": "淳安"
+    },
+    {
+      "symbol": "6285",
+      "market": "TWSE",
+      "name": "啟碁"
+    },
+    {
+      "symbol": "6405",
+      "market": "TWSE",
+      "name": "悅城"
+    },
+    {
+      "symbol": "6409",
+      "market": "TWSE",
+      "name": "旭隼"
+    },
+    {
+      "symbol": "6412",
+      "market": "TWSE",
+      "name": "群電"
+    },
+    {
+      "symbol": "6414",
+      "market": "TWSE",
+      "name": "樺漢"
+    },
+    {
+      "symbol": "6415",
+      "market": "TWSE",
+      "name": "矽力*-KY"
+    },
+    {
+      "symbol": "6416",
+      "market": "TWSE",
+      "name": "瑞祺電通"
+    },
+    {
+      "symbol": "6426",
+      "market": "TWSE",
+      "name": "統新"
+    },
+    {
+      "symbol": "6431",
+      "market": "TWSE",
+      "name": "光麗-KY"
+    },
+    {
+      "symbol": "6438",
+      "market": "TWSE",
+      "name": "迅得"
+    },
+    {
+      "symbol": "6442",
+      "market": "TWSE",
+      "name": "光聖"
+    },
+    {
+      "symbol": "6443",
+      "market": "TWSE",
+      "name": "元晶"
+    },
+    {
+      "symbol": "6446",
+      "market": "TWSE",
+      "name": "藥華藥"
+    },
+    {
+      "symbol": "6449",
+      "market": "TWSE",
+      "name": "鈺邦"
+    },
+    {
+      "symbol": "6451",
+      "market": "TWSE",
+      "name": "訊芯-KY"
+    },
+    {
+      "symbol": "6456",
+      "market": "TWSE",
+      "name": "GIS-KY"
+    },
+    {
+      "symbol": "6464",
+      "market": "TWSE",
+      "name": "台數科"
+    },
+    {
+      "symbol": "6472",
+      "market": "TWSE",
+      "name": "保瑞"
+    },
+    {
+      "symbol": "6477",
+      "market": "TWSE",
+      "name": "安集"
+    },
+    {
+      "symbol": "6491",
+      "market": "TWSE",
+      "name": "晶碩"
+    },
+    {
+      "symbol": "6504",
+      "market": "TWSE",
+      "name": "南六"
+    },
+    {
+      "symbol": "6505",
+      "market": "TWSE",
+      "name": "台塑化"
+    },
+    {
+      "symbol": "6515",
+      "market": "TWSE",
+      "name": "穎崴"
+    },
+    {
+      "symbol": "6525",
+      "market": "TWSE",
+      "name": "捷敏-KY"
+    },
+    {
+      "symbol": "6526",
+      "market": "TWSE",
+      "name": "達發"
+    },
+    {
+      "symbol": "6531",
+      "market": "TWSE",
+      "name": "愛普*"
+    },
+    {
+      "symbol": "6533",
+      "market": "TWSE",
+      "name": "晶心科"
+    },
+    {
+      "symbol": "6534",
+      "market": "TWSE",
+      "name": "正瀚-創"
+    },
+    {
+      "symbol": "6541",
+      "market": "TWSE",
+      "name": "泰福-KY"
+    },
+    {
+      "symbol": "6550",
+      "market": "TWSE",
+      "name": "北極星藥業-KY"
+    },
+    {
+      "symbol": "6552",
+      "market": "TWSE",
+      "name": "易華電"
+    },
+    {
+      "symbol": "6558",
+      "market": "TWSE",
+      "name": "興能高"
+    },
+    {
+      "symbol": "6573",
+      "market": "TWSE",
+      "name": "虹揚-KY"
+    },
+    {
+      "symbol": "6579",
+      "market": "TWSE",
+      "name": "研揚"
+    },
+    {
+      "symbol": "6581",
+      "market": "TWSE",
+      "name": "鋼聯"
+    },
+    {
+      "symbol": "6582",
+      "market": "TWSE",
+      "name": "申豐"
+    },
+    {
+      "symbol": "6585",
+      "market": "TWSE",
+      "name": "鼎基"
+    },
+    {
+      "symbol": "6589",
+      "market": "TWSE",
+      "name": "台康生技"
+    },
+    {
+      "symbol": "6591",
+      "market": "TWSE",
+      "name": "動力-KY"
+    },
+    {
+      "symbol": "6592",
+      "market": "TWSE",
+      "name": "和潤企業"
+    },
+    {
+      "symbol": "6598",
+      "market": "TWSE",
+      "name": "ABC-KY"
+    },
+    {
+      "symbol": "6605",
+      "market": "TWSE",
+      "name": "帝寶"
+    },
+    {
+      "symbol": "6606",
+      "market": "TWSE",
+      "name": "建德工業"
+    },
+    {
+      "symbol": "6614",
+      "market": "TWSE",
+      "name": "資拓宏宇"
+    },
+    {
+      "symbol": "6625",
+      "market": "TWSE",
+      "name": "必應"
+    },
+    {
+      "symbol": "6641",
+      "market": "TWSE",
+      "name": "基士德-KY"
+    },
+    {
+      "symbol": "6645",
+      "market": "TWSE",
+      "name": "金萬林-創"
+    },
+    {
+      "symbol": "6655",
+      "market": "TWSE",
+      "name": "科定"
+    },
+    {
+      "symbol": "6657",
+      "market": "TWSE",
+      "name": "華安"
+    },
+    {
+      "symbol": "6658",
+      "market": "TWSE",
+      "name": "聯策"
+    },
+    {
+      "symbol": "6666",
+      "market": "TWSE",
+      "name": "羅麗芬-KY"
+    },
+    {
+      "symbol": "6668",
+      "market": "TWSE",
+      "name": "中揚光"
+    },
+    {
+      "symbol": "6669",
+      "market": "TWSE",
+      "name": "緯穎"
+    },
+    {
+      "symbol": "6670",
+      "market": "TWSE",
+      "name": "復盛應用"
+    },
+    {
+      "symbol": "6671",
+      "market": "TWSE",
+      "name": "三能-KY"
+    },
+    {
+      "symbol": "6672",
+      "market": "TWSE",
+      "name": "騰輝電子-KY"
+    },
+    {
+      "symbol": "6674",
+      "market": "TWSE",
+      "name": "鋐寶科技"
+    },
+    {
+      "symbol": "6689",
+      "market": "TWSE",
+      "name": "伊雲谷"
+    },
+    {
+      "symbol": "6691",
+      "market": "TWSE",
+      "name": "洋基工程"
+    },
+    {
+      "symbol": "6695",
+      "market": "TWSE",
+      "name": "芯鼎"
+    },
+    {
+      "symbol": "6698",
+      "market": "TWSE",
+      "name": "旭暉應材"
+    },
+    {
+      "symbol": "6706",
+      "market": "TWSE",
+      "name": "惠特"
+    },
+    {
+      "symbol": "6715",
+      "market": "TWSE",
+      "name": "嘉基"
+    },
+    {
+      "symbol": "6719",
+      "market": "TWSE",
+      "name": "力智"
+    },
+    {
+      "symbol": "6722",
+      "market": "TWSE",
+      "name": "輝創"
+    },
+    {
+      "symbol": "6742",
+      "market": "TWSE",
+      "name": "澤米"
+    },
+    {
+      "symbol": "6743",
+      "market": "TWSE",
+      "name": "安普新"
+    },
+    {
+      "symbol": "6753",
+      "market": "TWSE",
+      "name": "龍德造船"
+    },
+    {
+      "symbol": "6754",
+      "market": "TWSE",
+      "name": "匯僑設計"
+    },
+    {
+      "symbol": "6756",
+      "market": "TWSE",
+      "name": "威鋒電子"
+    },
+    {
+      "symbol": "6757",
+      "market": "TWSE",
+      "name": "台灣虎航"
+    },
+    {
+      "symbol": "6768",
+      "market": "TWSE",
+      "name": "志強-KY"
+    },
+    {
+      "symbol": "6770",
+      "market": "TWSE",
+      "name": "力積電"
+    },
+    {
+      "symbol": "6771",
+      "market": "TWSE",
+      "name": "平和環保-創"
+    },
+    {
+      "symbol": "6776",
+      "market": "TWSE",
+      "name": "展碁國際"
+    },
+    {
+      "symbol": "6781",
+      "market": "TWSE",
+      "name": "AES-KY"
+    },
+    {
+      "symbol": "6782",
+      "market": "TWSE",
+      "name": "視陽"
+    },
+    {
+      "symbol": "6789",
+      "market": "TWSE",
+      "name": "采鈺"
+    },
+    {
+      "symbol": "6790",
+      "market": "TWSE",
+      "name": "永豐實"
+    },
+    {
+      "symbol": "6792",
+      "market": "TWSE",
+      "name": "詠業"
+    },
+    {
+      "symbol": "6794",
+      "market": "TWSE",
+      "name": "向榮生技"
+    },
+    {
+      "symbol": "6796",
+      "market": "TWSE",
+      "name": "晉弘"
+    },
+    {
+      "symbol": "6799",
+      "market": "TWSE",
+      "name": "來頡"
+    },
+    {
+      "symbol": "6805",
+      "market": "TWSE",
+      "name": "富世達"
+    },
+    {
+      "symbol": "6807",
+      "market": "TWSE",
+      "name": "峰源-KY"
+    },
+    {
+      "symbol": "6830",
+      "market": "TWSE",
+      "name": "汎銓"
+    },
+    {
+      "symbol": "6831",
+      "market": "TWSE",
+      "name": "邁科"
+    },
+    {
+      "symbol": "6834",
+      "market": "TWSE",
+      "name": "天二科技"
+    },
+    {
+      "symbol": "6835",
+      "market": "TWSE",
+      "name": "圓裕"
+    },
+    {
+      "symbol": "6838",
+      "market": "TWSE",
+      "name": "台新藥"
+    },
+    {
+      "symbol": "6854",
+      "market": "TWSE",
+      "name": "錼創科技-KY創"
+    },
+    {
+      "symbol": "6861",
+      "market": "TWSE",
+      "name": "睿生光電"
+    },
+    {
+      "symbol": "6862",
+      "market": "TWSE",
+      "name": "三集瑞-KY"
+    },
+    {
+      "symbol": "6863",
+      "market": "TWSE",
+      "name": "永道-KY"
+    },
+    {
+      "symbol": "6869",
+      "market": "TWSE",
+      "name": "雲豹能源"
+    },
+    {
+      "symbol": "6873",
+      "market": "TWSE",
+      "name": "泓德能源"
+    },
+    {
+      "symbol": "6885",
+      "market": "TWSE",
+      "name": "全福生技"
+    },
+    {
+      "symbol": "6887",
+      "market": "TWSE",
+      "name": "寶綠特-KY"
+    },
+    {
+      "symbol": "6890",
+      "market": "TWSE",
+      "name": "來億-KY"
+    },
+    {
+      "symbol": "6901",
+      "market": "TWSE",
+      "name": "鑽石投資"
+    },
+    {
+      "symbol": "6902",
+      "market": "TWSE",
+      "name": "GOGOLOOK"
+    },
+    {
+      "symbol": "6906",
+      "market": "TWSE",
+      "name": "現觀科"
+    },
+    {
+      "symbol": "6908",
+      "market": "TWSE",
+      "name": "宏碁遊戲-創"
+    },
+    {
+      "symbol": "6909",
+      "market": "TWSE",
+      "name": "創控"
+    },
+    {
+      "symbol": "6914",
+      "market": "TWSE",
+      "name": "阜爾運通"
+    },
+    {
+      "symbol": "6916",
+      "market": "TWSE",
+      "name": "華凌"
+    },
+    {
+      "symbol": "6918",
+      "market": "TWSE",
+      "name": "愛派司"
+    },
+    {
+      "symbol": "6919",
+      "market": "TWSE",
+      "name": "康霈*"
+    },
+    {
+      "symbol": "6921",
+      "market": "TWSE",
+      "name": "嘉雨思-創"
+    },
+    {
+      "symbol": "6923",
+      "market": "TWSE",
+      "name": "中台"
+    },
+    {
+      "symbol": "6924",
+      "market": "TWSE",
+      "name": "榮惠-KY創"
+    },
+    {
+      "symbol": "6928",
+      "market": "TWSE",
+      "name": "攸泰科技"
+    },
+    {
+      "symbol": "6931",
+      "market": "TWSE",
+      "name": "青松健康"
+    },
+    {
+      "symbol": "6933",
+      "market": "TWSE",
+      "name": "AMAX-KY"
+    },
+    {
+      "symbol": "6934",
+      "market": "TWSE",
+      "name": "心誠鎂"
+    },
+    {
+      "symbol": "6936",
+      "market": "TWSE",
+      "name": "永鴻生技"
+    },
+    {
+      "symbol": "6937",
+      "market": "TWSE",
+      "name": "天虹"
+    },
+    {
+      "symbol": "6944",
+      "market": "TWSE",
+      "name": "兆聯實業"
+    },
+    {
+      "symbol": "6947",
+      "market": "TWSE",
+      "name": "台鎔科技"
+    },
+    {
+      "symbol": "6949",
+      "market": "TWSE",
+      "name": "沛爾生醫-創"
+    },
+    {
+      "symbol": "6951",
+      "market": "TWSE",
+      "name": "青新-創"
+    },
+    {
+      "symbol": "6952",
+      "market": "TWSE",
+      "name": "大武山"
+    },
+    {
+      "symbol": "6955",
+      "market": "TWSE",
+      "name": "邦睿生技-創"
+    },
+    {
+      "symbol": "6957",
+      "market": "TWSE",
+      "name": "裕慶-KY"
+    },
+    {
+      "symbol": "6958",
+      "market": "TWSE",
+      "name": "日盛台駿"
+    },
+    {
+      "symbol": "6962",
+      "market": "TWSE",
+      "name": "奕力-KY"
+    },
+    {
+      "symbol": "6965",
+      "market": "TWSE",
+      "name": "中傑-KY"
+    },
+    {
+      "symbol": "6969",
+      "market": "TWSE",
+      "name": "成信實業*-創"
+    },
+    {
+      "symbol": "6988",
+      "market": "TWSE",
+      "name": "威力暘-創"
+    },
+    {
+      "symbol": "6994",
+      "market": "TWSE",
+      "name": "富威電力"
+    },
+    {
+      "symbol": "7610",
+      "market": "TWSE",
+      "name": "聯友金屬-創"
+    },
+    {
+      "symbol": "7631",
+      "market": "TWSE",
+      "name": "聚賢研發-創"
+    },
+    {
+      "symbol": "7689",
+      "market": "TWSE",
+      "name": "大鵬科CLMX"
+    },
+    {
+      "symbol": "7705",
+      "market": "TWSE",
+      "name": "三商餐飲"
+    },
+    {
+      "symbol": "7711",
+      "market": "TWSE",
+      "name": "永擎"
+    },
+    {
+      "symbol": "7721",
+      "market": "TWSE",
+      "name": "微程式"
+    },
+    {
+      "symbol": "7722",
+      "market": "TWSE",
+      "name": "LINEPAY"
+    },
+    {
+      "symbol": "7730",
+      "market": "TWSE",
+      "name": "暉盛-創"
+    },
+    {
+      "symbol": "7732",
+      "market": "TWSE",
+      "name": "金興精密"
+    },
+    {
+      "symbol": "7736",
+      "market": "TWSE",
+      "name": "虎山"
+    },
+    {
+      "symbol": "7740",
+      "market": "TWSE",
+      "name": "熙特爾-創"
+    },
+    {
+      "symbol": "7749",
+      "market": "TWSE",
+      "name": "意騰-KY"
+    },
+    {
+      "symbol": "7750",
+      "market": "TWSE",
+      "name": "新代"
+    },
+    {
+      "symbol": "7760",
+      "market": "TWSE",
+      "name": "享溫馨"
+    },
+    {
+      "symbol": "7765",
+      "market": "TWSE",
+      "name": "中華資安"
+    },
+    {
+      "symbol": "7768",
+      "market": "TWSE",
+      "name": "頌勝科技"
+    },
+    {
+      "symbol": "7769",
+      "market": "TWSE",
+      "name": "鴻勁"
+    },
+    {
+      "symbol": "7780",
+      "market": "TWSE",
+      "name": "大研生醫*"
+    },
+    {
+      "symbol": "7786",
+      "market": "TWSE",
+      "name": "東方風能"
+    },
+    {
+      "symbol": "7788",
+      "market": "TWSE",
+      "name": "松川精密"
+    },
+    {
+      "symbol": "7791",
+      "market": "TWSE",
+      "name": "皇家可口"
+    },
+    {
+      "symbol": "7795",
+      "market": "TWSE",
+      "name": "長廣"
+    },
+    {
+      "symbol": "7799",
+      "market": "TWSE",
+      "name": "禾榮科"
+    },
+    {
+      "symbol": "7803",
+      "market": "TWSE",
+      "name": "雲象科技-創"
+    },
+    {
+      "symbol": "7818",
+      "market": "TWSE",
+      "name": "溢泰實業"
+    },
+    {
+      "symbol": "7821",
+      "market": "TWSE",
+      "name": "神數"
+    },
+    {
+      "symbol": "7822",
+      "market": "TWSE",
+      "name": "倍利科"
+    },
+    {
+      "symbol": "7823",
+      "market": "TWSE",
+      "name": "奧義賽博-KY創"
+    },
+    {
+      "symbol": "7827",
+      "market": "TWSE",
+      "name": "漢康-KY創"
+    },
+    {
+      "symbol": "7835",
+      "market": "TWSE",
+      "name": "永悅健康-創"
+    },
+    {
+      "symbol": "7855",
+      "market": "TWSE",
+      "name": "和運租車"
+    },
+    {
+      "symbol": "8011",
+      "market": "TWSE",
+      "name": "台通"
+    },
+    {
+      "symbol": "8016",
+      "market": "TWSE",
+      "name": "矽創"
+    },
+    {
+      "symbol": "8021",
+      "market": "TWSE",
+      "name": "尖點"
+    },
+    {
+      "symbol": "8028",
+      "market": "TWSE",
+      "name": "昇陽半導體"
+    },
+    {
+      "symbol": "8033",
+      "market": "TWSE",
+      "name": "雷虎"
+    },
+    {
+      "symbol": "8039",
+      "market": "TWSE",
+      "name": "台虹"
+    },
+    {
+      "symbol": "8045",
+      "market": "TWSE",
+      "name": "達運光電"
+    },
+    {
+      "symbol": "8046",
+      "market": "TWSE",
+      "name": "南電"
+    },
+    {
+      "symbol": "8070",
+      "market": "TWSE",
+      "name": "長華*"
+    },
+    {
+      "symbol": "8072",
+      "market": "TWSE",
+      "name": "陞泰"
+    },
+    {
+      "symbol": "8081",
+      "market": "TWSE",
+      "name": "致新"
+    },
+    {
+      "symbol": "8101",
+      "market": "TWSE",
+      "name": "華冠"
+    },
+    {
+      "symbol": "8103",
+      "market": "TWSE",
+      "name": "瀚荃"
+    },
+    {
+      "symbol": "8104",
+      "market": "TWSE",
+      "name": "錸寶"
+    },
+    {
+      "symbol": "8105",
+      "market": "TWSE",
+      "name": "凌巨"
+    },
+    {
+      "symbol": "8110",
+      "market": "TWSE",
+      "name": "華東"
+    },
+    {
+      "symbol": "8112",
+      "market": "TWSE",
+      "name": "至上"
+    },
+    {
+      "symbol": "8114",
+      "market": "TWSE",
+      "name": "振樺電"
+    },
+    {
+      "symbol": "8131",
+      "market": "TWSE",
+      "name": "福懋科"
+    },
+    {
+      "symbol": "8150",
+      "market": "TWSE",
+      "name": "南茂"
+    },
+    {
+      "symbol": "8162",
+      "market": "TWSE",
+      "name": "微矽電子-創"
+    },
+    {
+      "symbol": "8163",
+      "market": "TWSE",
+      "name": "達方"
+    },
+    {
+      "symbol": "8201",
+      "market": "TWSE",
+      "name": "無敵"
+    },
+    {
+      "symbol": "8210",
+      "market": "TWSE",
+      "name": "勤誠"
+    },
+    {
+      "symbol": "8213",
+      "market": "TWSE",
+      "name": "志超"
+    },
+    {
+      "symbol": "8215",
+      "market": "TWSE",
+      "name": "明基材"
+    },
+    {
+      "symbol": "8222",
+      "market": "TWSE",
+      "name": "寶一"
+    },
+    {
+      "symbol": "8249",
+      "market": "TWSE",
+      "name": "菱光"
+    },
+    {
+      "symbol": "8261",
+      "market": "TWSE",
+      "name": "富鼎"
+    },
+    {
+      "symbol": "8271",
+      "market": "TWSE",
+      "name": "宇瞻"
+    },
+    {
+      "symbol": "8341",
+      "market": "TWSE",
+      "name": "日友"
+    },
+    {
+      "symbol": "8367",
+      "market": "TWSE",
+      "name": "建新國際"
+    },
+    {
+      "symbol": "8374",
+      "market": "TWSE",
+      "name": "羅昇"
+    },
+    {
+      "symbol": "8404",
+      "market": "TWSE",
+      "name": "百和興業-KY"
+    },
+    {
+      "symbol": "8411",
+      "market": "TWSE",
+      "name": "福貞-KY"
+    },
+    {
+      "symbol": "8422",
+      "market": "TWSE",
+      "name": "可寧衛*"
+    },
+    {
+      "symbol": "8429",
+      "market": "TWSE",
+      "name": "金麗-KY"
+    },
+    {
+      "symbol": "8438",
+      "market": "TWSE",
+      "name": "昶昕"
+    },
+    {
+      "symbol": "8442",
+      "market": "TWSE",
+      "name": "威宏-KY"
+    },
+    {
+      "symbol": "8443",
+      "market": "TWSE",
+      "name": "阿瘦"
+    },
+    {
+      "symbol": "8454",
+      "market": "TWSE",
+      "name": "富邦媒"
+    },
+    {
+      "symbol": "8462",
+      "market": "TWSE",
+      "name": "柏文"
+    },
+    {
+      "symbol": "8463",
+      "market": "TWSE",
+      "name": "潤泰材"
+    },
+    {
+      "symbol": "8464",
+      "market": "TWSE",
+      "name": "億豐"
+    },
+    {
+      "symbol": "8466",
+      "market": "TWSE",
+      "name": "美吉吉-KY"
+    },
+    {
+      "symbol": "8467",
+      "market": "TWSE",
+      "name": "波力-KY"
+    },
+    {
+      "symbol": "8473",
+      "market": "TWSE",
+      "name": "山林水"
+    },
+    {
+      "symbol": "8476",
+      "market": "TWSE",
+      "name": "台境*"
+    },
+    {
+      "symbol": "8478",
+      "market": "TWSE",
+      "name": "東哥遊艇"
+    },
+    {
+      "symbol": "8481",
+      "market": "TWSE",
+      "name": "政伸"
+    },
+    {
+      "symbol": "8482",
+      "market": "TWSE",
+      "name": "商億-KY"
+    },
+    {
+      "symbol": "8487",
+      "market": "TWSE",
+      "name": "愛爾達-創"
+    },
+    {
+      "symbol": "8488",
+      "market": "TWSE",
+      "name": "吉源-KY"
+    },
+    {
+      "symbol": "8499",
+      "market": "TWSE",
+      "name": "鼎炫-KY"
+    },
+    {
+      "symbol": "8926",
+      "market": "TWSE",
+      "name": "台汽電"
+    },
+    {
+      "symbol": "8940",
+      "market": "TWSE",
+      "name": "新天地"
+    },
+    {
+      "symbol": "8996",
+      "market": "TWSE",
+      "name": "高力"
+    },
+    {
+      "symbol": "9103",
+      "market": "TWSE",
+      "name": "美德醫療-DR"
+    },
+    {
+      "symbol": "910322",
+      "market": "TWSE",
+      "name": "康師傅-DR"
+    },
+    {
+      "symbol": "9105",
+      "market": "TWSE",
+      "name": "泰金寶-DR"
+    },
+    {
+      "symbol": "910861",
+      "market": "TWSE",
+      "name": "神州-DR"
+    },
+    {
+      "symbol": "9110",
+      "market": "TWSE",
+      "name": "越南控-DR"
+    },
+    {
+      "symbol": "911608",
+      "market": "TWSE",
+      "name": "明輝-DR"
+    },
+    {
+      "symbol": "911622",
+      "market": "TWSE",
+      "name": "泰聚亨-DR"
+    },
+    {
+      "symbol": "911868",
+      "market": "TWSE",
+      "name": "同方友友-DR"
+    },
+    {
+      "symbol": "912000",
+      "market": "TWSE",
+      "name": "晨訊科-DR"
+    },
+    {
+      "symbol": "9136",
+      "market": "TWSE",
+      "name": "巨騰-DR"
+    },
+    {
+      "symbol": "9802",
+      "market": "TWSE",
+      "name": "鈺齊-KY"
+    },
+    {
+      "symbol": "9902",
+      "market": "TWSE",
+      "name": "台火"
+    },
+    {
+      "symbol": "9904",
+      "market": "TWSE",
+      "name": "寶成"
+    },
+    {
+      "symbol": "9905",
+      "market": "TWSE",
+      "name": "大華"
+    },
+    {
+      "symbol": "9906",
+      "market": "TWSE",
+      "name": "欣巴巴"
+    },
+    {
+      "symbol": "9907",
+      "market": "TWSE",
+      "name": "統一實"
+    },
+    {
+      "symbol": "9908",
+      "market": "TWSE",
+      "name": "大台北"
+    },
+    {
+      "symbol": "9910",
+      "market": "TWSE",
+      "name": "豐泰"
+    },
+    {
+      "symbol": "9911",
+      "market": "TWSE",
+      "name": "櫻花"
+    },
+    {
+      "symbol": "9912",
+      "market": "TWSE",
+      "name": "偉聯"
+    },
+    {
+      "symbol": "9914",
+      "market": "TWSE",
+      "name": "美利達"
+    },
+    {
+      "symbol": "9917",
+      "market": "TWSE",
+      "name": "中保科"
+    },
+    {
+      "symbol": "9918",
+      "market": "TWSE",
+      "name": "欣天然"
+    },
+    {
+      "symbol": "9919",
+      "market": "TWSE",
+      "name": "康那香"
+    },
+    {
+      "symbol": "9921",
+      "market": "TWSE",
+      "name": "巨大"
+    },
+    {
+      "symbol": "9924",
+      "market": "TWSE",
+      "name": "福興"
+    },
+    {
+      "symbol": "9925",
+      "market": "TWSE",
+      "name": "新保"
+    },
+    {
+      "symbol": "9926",
+      "market": "TWSE",
+      "name": "新海"
+    },
+    {
+      "symbol": "9927",
+      "market": "TWSE",
+      "name": "泰銘"
+    },
+    {
+      "symbol": "9928",
+      "market": "TWSE",
+      "name": "中視"
+    },
+    {
+      "symbol": "9929",
+      "market": "TWSE",
+      "name": "秋雨"
+    },
+    {
+      "symbol": "9930",
+      "market": "TWSE",
+      "name": "中聯資源"
+    },
+    {
+      "symbol": "9931",
+      "market": "TWSE",
+      "name": "欣高"
+    },
+    {
+      "symbol": "9933",
+      "market": "TWSE",
+      "name": "中鼎"
+    },
+    {
+      "symbol": "9934",
+      "market": "TWSE",
+      "name": "成霖"
+    },
+    {
+      "symbol": "9935",
+      "market": "TWSE",
+      "name": "慶豐富"
+    },
+    {
+      "symbol": "9937",
+      "market": "TWSE",
+      "name": "全國"
+    },
+    {
+      "symbol": "9938",
+      "market": "TWSE",
+      "name": "百和"
+    },
+    {
+      "symbol": "9939",
+      "market": "TWSE",
+      "name": "宏全"
+    },
+    {
+      "symbol": "9940",
+      "market": "TWSE",
+      "name": "信義"
+    },
+    {
+      "symbol": "9941",
+      "market": "TWSE",
+      "name": "裕融"
+    },
+    {
+      "symbol": "9942",
+      "market": "TWSE",
+      "name": "茂順"
+    },
+    {
+      "symbol": "9943",
+      "market": "TWSE",
+      "name": "好樂迪"
+    },
+    {
+      "symbol": "9944",
+      "market": "TWSE",
+      "name": "新麗"
+    },
+    {
+      "symbol": "9945",
+      "market": "TWSE",
+      "name": "潤泰新"
+    },
+    {
+      "symbol": "9946",
+      "market": "TWSE",
+      "name": "三發地產"
+    },
+    {
+      "symbol": "9955",
+      "market": "TWSE",
+      "name": "佳龍"
+    },
+    {
+      "symbol": "9958",
+      "market": "TWSE",
+      "name": "世紀鋼"
+    }
+  ]
+}
