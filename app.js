@@ -10,6 +10,7 @@ import { OBSERVATION_LIST_HORIZONS } from './lib/horizons.js';
 import { loadCompanyNames, lookupCompanyName, searchCompanyNames } from './lib/company-name-lookup.js';
 import { createPortfolio } from './lib/portfolio.js';
 import { runHistoricalDataStatus } from './lib/historical-data-status.js';
+import { signIn, signUp, signOut, getStoredSession } from './lib/auth.js';
 
 (async () => {
   const AHS = window.StockDashboard = {};
@@ -164,30 +165,53 @@ import { runHistoricalDataStatus } from './lib/historical-data-status.js';
 
   // --- Individual Stock Analysis (real search + real price/fundamentals/history) ---
 
+  // G5-06: uses Promise.allSettled (not Promise.all) so one failed fetch
+  // (e.g. a transient Supabase timeout on fundamentals) never blanks the
+  // other two panels that succeeded - each panel renders from its own
+  // settled result independently, matching the spec's "不得因單一市場資料
+  // 失敗造成整個 Dashboard 崩潰" requirement. A real gap found and fixed
+  // during this Gate's QA pass, not a hypothetical.
   async function loadAnalysis(symbol, market) {
     document.querySelector('#analysis-title').textContent = `${symbolWithName(symbol, market)}（${market}）`;
     document.querySelector('#analysis-fundamentals').innerHTML = '<div class="empty">載入中...</div>';
     document.querySelector('#analysis-history').innerHTML = '<div class="empty">載入中...</div>';
     document.querySelector('#analysis-prices').innerHTML = '<div class="empty">載入中...</div>';
-    try {
-      const [dailyRows, fundamentalRows, top50History] = await Promise.all([
-        fetchMarketDaily(symbol, market, isoDateDaysAgo(60)),
-        fetchFundamentals(symbol, market),
-        fetchTop50RowHistory(symbol, market, 30)
-      ]);
-      const latest = dailyRows[dailyRows.length - 1] ?? null;
-      const latestFundamental = fundamentalRows[0] ?? null;
-      const per = latest && latestFundamental?.eps ? latest.close / latestFundamental.eps : null;
-      const pbr = latest && latestFundamental?.book_value_per_share ? latest.close / latestFundamental.book_value_per_share : null;
-      const top50Row = (snapshot?.current ?? []).find((r) => r.symbol === symbol && r.market === market) ?? top50History[0] ?? null;
+    document.querySelector('#analysis-score').textContent = '–';
+    document.querySelector('#analysis-target').textContent = '目標價：載入中...';
+    document.querySelector('#analysis-horizon').textContent = '觀察週期：載入中...';
+    document.querySelector('#analysis-reasons').innerHTML = '<li>載入中...</li>';
 
+    const [dailyResult, fundamentalResult, historyResult] = await Promise.allSettled([
+      fetchMarketDaily(symbol, market, isoDateDaysAgo(60)),
+      fetchFundamentals(symbol, market),
+      fetchTop50RowHistory(symbol, market, 30)
+    ]);
+
+    if (historyResult.status === 'fulfilled') {
+      const top50History = historyResult.value;
+      const top50Row = (snapshot?.current ?? []).find((r) => r.symbol === symbol && r.market === market) ?? top50History[0] ?? null;
       document.querySelector('#analysis-score').textContent = top50Row ? fmtNum(top50Row.recommendation_score, 0) : '–';
       document.querySelector('#analysis-target').textContent = `目標價：${top50Row?.target_price != null ? fmtNum(top50Row.target_price) : '尚無真實資料'}`;
       const horizonLabels = top50Row?.observation_horizons ? OBSERVATION_LIST_HORIZONS.filter((h) => top50Row.observation_horizons[h.key]).map((h) => h.label).join('、') : '';
       document.querySelector('#analysis-horizon').textContent = `觀察週期：${horizonLabels || '不在目前觀察清單'}`;
       const reasons = top50Row?.recommendation_reason ?? [];
       document.querySelector('#analysis-reasons').innerHTML = reasons.length > 0 ? reasons.map((r) => `<li>${r}</li>`).join('') : '<li>尚無真實觸發訊號資料</li>';
+      document.querySelector('#analysis-history').innerHTML = top50History.length > 0 ? `<div class="table-wrap"><table><thead><tr><th>日期</th><th>AI評分</th><th>目標價</th><th>建議</th></tr></thead><tbody>
+        ${top50History.map((r) => `<tr><td>${r.calculation_date}</td><td>${fmtNum(r.recommendation_score, 0)}</td><td>${fmtNum(r.target_price)}</td><td>${decisionLabel(r.decision_state)}</td></tr>`).join('')}
+      </tbody></table></div>` : '<div class="empty">尚無真實推薦紀錄</div>';
+    } else {
+      document.querySelector('#analysis-target').textContent = '目標價：讀取失敗';
+      document.querySelector('#analysis-horizon').textContent = '觀察週期：讀取失敗';
+      document.querySelector('#analysis-reasons').innerHTML = '<li>讀取失敗</li>';
+      document.querySelector('#analysis-history').innerHTML = `<div class="empty">AI 推薦歷史讀取失敗：${historyResult.reason.message}</div>`;
+    }
 
+    if (fundamentalResult.status === 'fulfilled') {
+      const dailyRows = dailyResult.status === 'fulfilled' ? dailyResult.value : [];
+      const latest = dailyRows[dailyRows.length - 1] ?? null;
+      const latestFundamental = fundamentalResult.value[0] ?? null;
+      const per = latest && latestFundamental?.eps ? latest.close / latestFundamental.eps : null;
+      const pbr = latest && latestFundamental?.book_value_per_share ? latest.close / latestFundamental.book_value_per_share : null;
       document.querySelector('#analysis-fundamentals').innerHTML = latestFundamental ? `<table><tbody>
         <tr><th>期間</th><td>${latestFundamental.reporting_period ?? '—'}</td></tr>
         <tr><th>EPS</th><td>${fmtNum(latestFundamental.eps)}</td></tr>
@@ -195,18 +219,17 @@ import { runHistoricalDataStatus } from './lib/historical-data-status.js';
         <tr><th>股價淨值比 (P/B)</th><td>${Number.isFinite(pbr) ? fmtNum(pbr) : '資料不足'}</td></tr>
         <tr><th>資料來源</th><td>${latestFundamental.source ?? '—'}</td></tr>
       </tbody></table>` : '<div class="empty">尚無真實基本面資料</div>';
+    } else {
+      document.querySelector('#analysis-fundamentals').innerHTML = `<div class="empty">基本面資料讀取失敗：${fundamentalResult.reason.message}</div>`;
+    }
 
-      document.querySelector('#analysis-history').innerHTML = top50History.length > 0 ? `<div class="table-wrap"><table><thead><tr><th>日期</th><th>AI評分</th><th>目標價</th><th>建議</th></tr></thead><tbody>
-        ${top50History.map((r) => `<tr><td>${r.calculation_date}</td><td>${fmtNum(r.recommendation_score, 0)}</td><td>${fmtNum(r.target_price)}</td><td>${decisionLabel(r.decision_state)}</td></tr>`).join('')}
-      </tbody></table></div>` : '<div class="empty">尚無真實推薦紀錄</div>';
-
+    if (dailyResult.status === 'fulfilled') {
+      const dailyRows = dailyResult.value;
       document.querySelector('#analysis-prices').innerHTML = dailyRows.length > 0 ? `<div class="table-wrap" style="max-height:280px;overflow-y:auto;"><table><thead><tr><th>日期</th><th>開盤</th><th>最高</th><th>最低</th><th>收盤</th><th>成交量</th></tr></thead><tbody>
         ${dailyRows.slice().reverse().map((r) => `<tr><td>${r.trading_date}</td><td>${fmtNum(r.open)}</td><td>${fmtNum(r.high)}</td><td>${fmtNum(r.low)}</td><td>${fmtNum(r.close)}</td><td>${r.volume}</td></tr>`).join('')}
       </tbody></table></div>` : '<div class="empty">尚無真實股價資料</div>';
-    } catch (err) {
-      document.querySelector('#analysis-fundamentals').innerHTML = `<div class="empty">Production Data 讀取失敗：${err.message}</div>`;
-      document.querySelector('#analysis-history').innerHTML = '';
-      document.querySelector('#analysis-prices').innerHTML = '';
+    } else {
+      document.querySelector('#analysis-prices').innerHTML = `<div class="empty">股價資料讀取失敗：${dailyResult.reason.message}</div>`;
     }
   }
 
@@ -277,6 +300,59 @@ import { runHistoricalDataStatus } from './lib/historical-data-status.js';
     }
   }
 
+  // --- Auth (G3-02: Supabase Auth login/logout, gated behind the private
+  // repo's migration 012 once applied - currentBearerToken() in lib/auth.js
+  // already upgrades every data.js/historical-data-status.js request to
+  // the real session's access token when one exists, so no data-layer
+  // change is needed here beyond reloading after login/logout state
+  // changes. Added to the baseline's existing .top-meta topbar area - the
+  // smallest slot that already exists for status-style controls, not a
+  // new page or a redesigned topbar.) ---
+
+  function renderAuthBox() {
+    const session = getStoredSession();
+    const statusEl = document.querySelector('#auth-status');
+    const formEl = document.querySelector('#login-form');
+    const logoutBtn = document.querySelector('#logout-btn');
+    if (!statusEl || !formEl || !logoutBtn) return;
+    if (session?.user) {
+      statusEl.hidden = false;
+      statusEl.textContent = `已登入：${session.user.email}`;
+      formEl.hidden = true;
+      logoutBtn.hidden = false;
+    } else {
+      statusEl.hidden = true;
+      formEl.hidden = false;
+      logoutBtn.hidden = true;
+    }
+  }
+
+  document.querySelector('#login-form')?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const email = document.querySelector('#login-email').value;
+    const password = document.querySelector('#login-password').value;
+    try {
+      const session = await signIn({ email, password });
+      if (!session) { alert('登入失敗：此帳號可能需要先完成 Email 驗證'); return; }
+      renderAuthBox();
+      await reloadData();
+    } catch (err) { alert(err.message); }
+  });
+  document.querySelector('#signup-btn')?.addEventListener('click', async () => {
+    const email = document.querySelector('#login-email').value;
+    const password = document.querySelector('#login-password').value;
+    if (!email || !password) { alert('請先輸入 Email 與密碼再註冊'); return; }
+    try {
+      await signUp({ email, password });
+      alert('註冊成功。若 Supabase 專案要求 Email 驗證，請至信箱完成驗證後再登入。');
+    } catch (err) { alert(err.message); }
+  });
+  document.querySelector('#logout-btn')?.addEventListener('click', async () => {
+    await signOut();
+    renderAuthBox();
+    await reloadData();
+  });
+
   // --- Router / navigation (structure unchanged from the confirmed baseline) ---
 
   function showPage(page) {
@@ -319,38 +395,51 @@ import { runHistoricalDataStatus } from './lib/historical-data-status.js';
   AHS.showPage = showPage;
   AHS.horizons = horizons;
 
-  // --- Init: load real Production Data, never fall back to the mock arrays ---
+  // --- Data loading: real Production Data, never fall back to mock arrays.
+  // Callable again after login/logout so a real authenticated session
+  // (once migration 012 is applied) is reflected without a page reload. ---
 
-  try { namesSnapshot = await loadCompanyNames(); } catch { /* search/name display degrades to bare symbols */ }
-
-  try {
-    snapshot = await fetchTop50Snapshot();
-    if (snapshot.asOfDate) {
-      horizonsData = buildObservationList(snapshot);
-      allEntries = [...new Map(Object.values(horizonsData).flat().map((e) => [`${e.market}:${e.symbol}`, e])).values()];
+  async function reloadData() {
+    try {
+      snapshot = await fetchTop50Snapshot();
+      if (snapshot.asOfDate) {
+        horizonsData = buildObservationList(snapshot);
+        allEntries = [...new Map(Object.values(horizonsData).flat().map((e) => [`${e.market}:${e.symbol}`, e])).values()];
+      } else {
+        horizonsData = null;
+        allEntries = [];
+      }
+    } catch (err) {
+      snapshot = null;
+      horizonsData = null;
+      allEntries = [];
+      document.querySelector('#system-status').textContent = '● 資料連線異常';
+      document.querySelector('#stock-table').innerHTML = `<tr><td colspan="10" class="empty">Production Data 讀取失敗：${err.message}</td></tr>`;
+      document.querySelector('#changes').className = 'empty';
+      document.querySelector('#changes').textContent = `讀取失敗：${err.message}`;
     }
-  } catch (err) {
-    snapshot = null;
-    document.querySelector('#system-status').textContent = '● 資料連線異常';
-    document.querySelector('#stock-table').innerHTML = `<tr><td colspan="10" class="empty">Production Data 讀取失敗：${err.message}</td></tr>`;
-    document.querySelector('#changes').className = 'empty';
-    document.querySelector('#changes').textContent = `讀取失敗：${err.message}`;
+
+    if (snapshot?.asOfDate) {
+      const changedList = allEntries.filter((e) => e.changeType !== 'UNCHANGED');
+      const top10 = allEntries.filter((e) => Number.isFinite(e.aiScore)).sort((a, b) => b.aiScore - a.aiScore).slice(0, 10);
+      renderStocksTable(top10);
+      renderChangesList(changedList);
+      renderHeroAndSignals(allEntries, changedList);
+    } else if (snapshot) {
+      document.querySelector('#system-status').textContent = '● 尚無真實資料';
+      renderStocksTable([]);
+      document.querySelector('#changes').className = 'empty';
+      document.querySelector('#changes').textContent = '今日無真實變化';
+    }
+
+    renderHorizonGrid();
+    populateEngineSelect();
+    renderPortfolio();
   }
 
-  if (snapshot?.asOfDate) {
-    const changedList = allEntries.filter((e) => e.changeType !== 'UNCHANGED');
-    const top10 = allEntries.filter((e) => Number.isFinite(e.aiScore)).sort((a, b) => b.aiScore - a.aiScore).slice(0, 10);
-    renderStocksTable(top10);
-    renderChangesList(changedList);
-    renderHeroAndSignals(allEntries, changedList);
-  } else if (snapshot) {
-    document.querySelector('#system-status').textContent = '● 尚無真實資料';
-    renderStocksTable([]);
-    document.querySelector('#changes').className = 'empty';
-    document.querySelector('#changes').textContent = '今日無真實變化';
-  }
+  // --- Init ---
 
-  renderHorizonGrid();
-  populateEngineSelect();
-  renderPortfolio();
+  renderAuthBox();
+  try { namesSnapshot = await loadCompanyNames(); } catch { /* search/name display degrades to bare symbols */ }
+  await reloadData();
 })();

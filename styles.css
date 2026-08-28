@@ -12,3 +12,13 @@
 .analysis-grid table{width:100%;border-collapse:collapse;font-size:12px}
 .analysis-grid table th{text-align:left;color:#83909d;padding:6px 4px;width:40%}
 .analysis-grid table td{padding:6px 4px;border-top:1px solid #edf0f3}
+
+/* G3-02 Auth login/logout - added to the baseline's existing .top-meta
+   status-badge area (the smallest slot already meant for compact topbar
+   controls), reusing .top-meta span's pill shape and .primary's button
+   color rather than inventing a new visual language. */
+#auth-status{background:#eaf2ff;color:#1b69d4;border-color:#c8dcf7}
+.auth-form{display:flex;gap:6px;align-items:center;margin:0}
+.auth-form input{padding:6px 9px;border:1px solid #d9e2ea;border-radius:14px;font-size:11px;font:inherit;width:120px}
+.auth-form button,#logout-btn{border:1px solid #ccd9e5;background:#fff;color:#3f6487;border-radius:14px;padding:6px 12px;cursor:pointer;font-size:11px}
+@media(max-width:760px){.auth-form{width:100%;flex-wrap:wrap}.auth-form input{flex:1 1 45%;min-width:0;width:auto}}
