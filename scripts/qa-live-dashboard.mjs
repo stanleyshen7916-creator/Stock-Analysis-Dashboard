@@ -31,7 +31,10 @@ function startStaticServer(dir) {
   });
 }
 
-const ROUTES = ['#/overview', '#/observation', '#/portfolio', '#/stock/TWSE/2330', '#/selection-flow', '#/historical', '#/strategy'];
+// Navigation here is click-driven (data-page/data-horizon buttons), not
+// hash-based - matches the confirmed UX_BASELINE_V1 baseline (this repo's
+// PR #1) exactly; this QA script drives it the same way a real user would.
+const PAGE_CLICKS = ['dashboard', 'portfolio', 'analysis', 'engine', 'strategy', 'market', 'industry', 'backtest', 'data', 'reports', 'settings'];
 
 async function run() {
   const { server, port } = await startStaticServer(rootDir);
@@ -45,10 +48,17 @@ async function run() {
     page.on('pageerror', (err) => consoleErrors.push(`pageerror: ${err.message}`));
 
     await page.goto(`http://127.0.0.1:${port}/index.html`, { waitUntil: 'networkidle' });
-    for (const route of ROUTES) {
-      await page.evaluate((r) => { window.location.hash = r; }, route);
-      await page.waitForTimeout(1500);
+    await page.waitForTimeout(1500);
+    for (const page_ of PAGE_CLICKS) {
+      await page.click(`[data-page="${page_}"]`);
+      await page.waitForTimeout(1000);
     }
+    await page.click('[data-page="dashboard"]');
+    await page.waitForTimeout(500);
+    await page.click('[data-horizon="short"]');
+    await page.waitForTimeout(800);
+    const stockLink = await page.$('.link-stock');
+    if (stockLink) { await stockLink.click(); await page.waitForTimeout(1200); }
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth + 1);
     // Only the harmless, expected favicon 404 is allowed - any other console
     // error fails the QA, matching this project's established convention.
