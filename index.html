@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI 智慧選股研究平台</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">AI</span><div><strong>AI 智慧選股</strong><small>Stock Selection System</small></div></div>
+      <nav id="nav" class="nav" aria-label="主要功能">
+        <button class="nav-item active" data-page="dashboard">總覽 Dashboard</button>
+        <div class="nav-group"><div class="nav-label">AI 觀察清單</div>
+          <button class="nav-sub active-sub" data-horizon="intraday">當沖（0–1日）</button>
+          <button class="nav-sub" data-horizon="short">短期（2週內）</button>
+          <button class="nav-sub" data-horizon="shortmid">短中期（3–6個月）</button>
+          <button class="nav-sub" data-horizon="mid">中期（6–12個月）</button>
+          <button class="nav-sub" data-horizon="midlong">中長期（12–36個月）</button>
+          <button class="nav-sub" data-horizon="long">長期（36個月以上）</button>
+        </div>
+        <button class="nav-item" data-page="portfolio">我的持股 Portfolio</button>
+        <button class="nav-item" data-page="analysis">個股分析</button>
+        <button class="nav-item" data-page="engine">AI 選股流程</button>
+        <button class="nav-item" data-page="strategy">策略／參數</button>
+        <button class="nav-item" data-page="market">市場分析</button>
+        <button class="nav-item" data-page="industry">產業分析</button>
+        <button class="nav-item" data-page="backtest">回測驗證 Backtest</button>
+        <button class="nav-item" data-page="data">資料中心</button>
+        <button class="nav-item" data-page="reports">報告中心</button>
+        <button class="nav-item" data-page="settings">系統設定</button>
+      </nav>
+      <div class="status-card"><b>系統狀態</b><span>● 資料收集 Pipeline</span><span>● Database</span><span>● AI 分析引擎</span><span>● Dashboard</span></div>
+    </aside>
+    <main class="main">
+      <header class="topbar"><div><div class="eyebrow">AI INVESTMENT RESEARCH</div><h1>AI 智慧選股研究平台</h1><p>重點不是「看完所有股票」，而是每天告訴你「哪些股票值得觀察、為什麼、目標在哪裡」。</p></div><div class="top-meta"><span>資料更新：每日</span><span>觀察清單：每週重整</span><span class="ok" id="system-status">● 系統正常</span><span id="auth-status" hidden></span><form id="login-form" class="auth-form"><input id="login-email" type="email" placeholder="Email" autocomplete="username" required><input id="login-password" type="password" placeholder="密碼" autocomplete="current-password" required><button type="submit" class="primary">登入</button><button type="button" id="signup-btn">註冊</button></form><button type="button" id="logout-btn" class="primary" hidden>登出</button></div></header>
+      <section id="page-dashboard" class="page active-page">
+        <div class="hero-grid">
+          <article class="hero-card"><div class="hero-title"><span>本週 AI 選股結論</span><span class="badge">研究模式</span></div><div class="hero-number" id="hero-count">– <small>檔</small></div><div class="hero-text">AI 從市場資料、技術分析、趨勢結構、基本面與風險條件篩出值得持續追蹤的標的。</div><div class="hero-actions"><button class="primary" data-page="engine">查看 AI 選股流程</button><button data-page="reports">查看本週報告</button></div></article>
+          <article class="signal-card"><h3>今日推薦變化</h3><div class="signal-row"><b id="signal-up">↑ –</b><span>升級</span><em id="signal-up-note">尚無資料</em></div><div class="signal-row"><b id="signal-same">→ –</b><span>維持</span><em>條件未變</em></div><div class="signal-row down"><b id="signal-down">↓ –</b><span>降級</span><em id="signal-down-note">尚無資料</em></div></article>
+          <article class="signal-card"><h3>資料狀態</h3><div class="data-big" id="data-completeness">–%</div><p>資料完整度（AVAILABLE／掃描股票數）</p><div class="mini-progress"><span class="progress-fill" id="data-completeness-bar"></span></div><small id="data-asof">最新交易日：–</small></article>
+        </div>
+        <div class="section-head"><div><h2>AI 本週投資觀察總覽</h2><p>觀察清單依投資週期分層；點選任一週期可查看該清單。</p></div><button data-page="engine">查看完整清單 →</button></div>
+        <div class="horizon-grid">
+          <button class="horizon hot" data-horizon="intraday"><b>當沖</b><strong>–</strong><span>檔　平均分 –</span></button><button class="horizon blue" data-horizon="short"><b>短期 2週內</b><strong>–</strong><span>檔　平均分 –</span></button><button class="horizon teal" data-horizon="shortmid"><b>短中期 3–6個月</b><strong>–</strong><span>檔　平均分 –</span></button><button class="horizon gold" data-horizon="mid"><b>中期 6–12個月</b><strong>–</strong><span>檔　平均分 –</span></button><button class="horizon orange" data-horizon="midlong"><b>中長期 12–36個月</b><strong>–</strong><span>檔　平均分 –</span></button><button class="horizon red" data-horizon="long"><b>長期 36個月+</b><strong>–</strong><span>檔　平均分 –</span></button>
+        </div>
+        <div class="content-grid">
+          <section class="panel wide"><div class="section-head compact"><div><h2>AI 本週強力觀察 TOP 10</h2><p>依 AI 綜合評分排序；評分不是投資保證，而是研究優先級。</p></div><button data-page="analysis">個股完整分析</button></div><div class="table-wrap"><table><thead><tr><th>#</th><th>代號</th><th>名稱</th><th>週期</th><th>AI評分</th><th>現價</th><th>目標價</th><th>預期空間</th><th>AI觀察理由</th><th>狀態</th></tr></thead><tbody id="stock-table"><tr><td colspan="10" class="empty">載入中...</td></tr></tbody></table></div></section>
+          <aside class="panel side"><h2>今日 AI 推薦變化</h2><div id="changes" class="empty">載入中...</div><button class="full" data-page="reports">查看完整 AI 評鑑追蹤 →</button></aside>
+        </div>
+        <div class="bottom-grid"><section class="panel"><h2>我的持股</h2><p>輸入已持有股票後，AI 會將「持股風險」與「觀察清單」分開管理。</p><button class="primary" data-page="portfolio">管理我的持股</button></section><section class="panel"><h2>AI 選股流程摘要</h2><div class="flow"><span>資料</span><i>→</i><span>指標</span><i>→</i><span>多模型評分</span><i>→</i><span>加權</span><i>→</i><span>觀察清單</span></div><button class="full" data-page="engine">查看各工具得分與權重</button></section><section class="panel"><h2>市場環境</h2><div class="market-score"><strong id="market-score-value">–</strong><span>/100</span><small id="market-score-label">尚未串接</small></div><p id="market-score-note">市場情緒指數／整體環境評分尚無驗證資料來源，誠實標示為未啟用，非虛構分數。</p></section></div>
+      </section>
+      <section id="page-portfolio" class="page"><div class="page-title"><h2>我的持股 Portfolio</h2><p>只管理你實際持有的股票，不與 AI 觀察清單混為一談。此頁非交易系統，不含任何下單功能。</p></div><div class="form-card"><label>股票代號或名稱<input id="portfolio-input" placeholder="例如 2330 / 台積電"></label><label>持有股數<input id="portfolio-shares" type="number" placeholder="例如 1000"></label><label>平均成本<input id="portfolio-cost" type="number" step="0.01" placeholder="例如 980"></label><button class="primary" id="add-portfolio">新增持股</button></div><div class="panel"><h3>目前持股</h3><div id="portfolio-list" class="empty">尚未輸入持股。</div></div></section>
+      <section id="page-analysis" class="page"><div class="page-title"><h2>個股分析</h2><p>當你需要深入了解單一股票時使用；首頁只呈現 AI 選股結論。</p></div><div class="search-card"><input id="analysis-search" placeholder="輸入股票代號或名稱，例如 2330 / 台積電"><button class="primary" id="analysis-search-btn">搜尋</button></div><div class="analysis-grid"><div class="panel"><h3 id="analysis-title">請搜尋一檔股票</h3><div class="score-circle"><span id="analysis-score">–</span><small>AI評分</small></div><p id="analysis-target">目標價：–</p><p id="analysis-horizon">觀察週期：–</p></div><div class="panel"><h3>AI 觀察理由（真實觸發訊號）</h3><ul class="clean" id="analysis-reasons"><li>請先搜尋股票</li></ul></div></div><div class="analysis-grid" style="margin-top:14px;"><div class="panel"><h3>基本面</h3><div id="analysis-fundamentals" class="empty">請先搜尋股票</div></div><div class="panel"><h3>AI 推薦歷史</h3><div id="analysis-history" class="empty">請先搜尋股票</div></div></div><div class="panel" style="margin-top:14px;"><h3>近期股價（近 60 日內真實交易資料）</h3><div id="analysis-prices" class="empty">請先搜尋股票</div></div></section>
+      <section id="page-engine" class="page"><div class="page-title"><h2>AI 選股流程</h2><p>透明呈現每一個分析工具的分數、權重與加權結果，讓推薦可以被驗證與修正。</p></div><div class="engine-grid"><div class="panel"><h3>選擇個股檢視真實計分細節</h3><select id="engine-symbol"><option value="">請選擇</option></select><div class="score-total"><span id="engine-score">–</span><span>/100</span></div><p>加權總分 = 各分析工具分數 × AI 動態權重</p></div><div class="panel"><h3>分析工具得分與權重</h3><div id="engine-weights" class="empty">請先選擇股票</div></div></div><div class="panel"><h3>AI 動態調整紀錄</h3><p>當每日新資料與原推薦結果產生偏差，AI 會記錄原因、評估參數是否需要修正，並保留原推薦版本供回溯。</p><div class="audit">目前狀態：<b>持續學習／觀察</b>　｜　下次週期：每週重整觀察清單　｜　推薦：<b id="engine-decision">–</b></div></div></section>
+      <section id="page-generic" class="page"><div class="page-title"><h2 id="generic-title">功能</h2><p id="generic-desc">此功能頁將載入對應資料與分析結果。</p></div><div class="generic-grid"><div class="panel"><h3>功能狀態</h3><div class="status-line">● 已建立 UX 入口</div><div class="status-line">● 待串接 Production Data</div><div class="status-line">● 不在此頁猜測資料</div></div><div class="panel" id="generic-data-panel"><h3>資料與驗證</h3><p>GitHub 負責前端與資料收集流程；Production Database 保存市場資料。AI 分析結果必須可追溯至資料、計算、評分與結論。</p></div></div></section>
+    </main>
+  </div>
+  <script src="config.js"></script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
