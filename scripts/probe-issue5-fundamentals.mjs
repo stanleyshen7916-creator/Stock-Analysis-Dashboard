@@ -22,7 +22,11 @@ for (const row of top50) {
   const isQuarterly = /^\d{4}-Q\d$/.test(first.reporting_period);
   if (isQuarterly) {
     affected += 1;
-    console.log(`AFFECTED: ${row.symbol} (${row.market}) periods[0]=${JSON.stringify(fundamentals.map((f) => ({ p: f.reporting_period, revenue: f.revenue })))}`);
+    const epsMissing = first.eps == null;
+    const bvpsMissing = first.book_value_per_share == null;
+    if (epsMissing || bvpsMissing) {
+      console.log(`NULL-FIELDS: ${row.symbol} (${row.market}) top=${JSON.stringify({ p: first.reporting_period, eps: first.eps, bvps: first.book_value_per_share })} full=${JSON.stringify(fundamentals.map((f) => ({ p: f.reporting_period, eps: f.eps, bvps: f.book_value_per_share, revenue: f.revenue })))}`);
+    }
   }
 }
-console.log(`checked ${top50.length} Top50 symbols, ${affected} would show a quarterly row as "latest" in fetchFundamentals()[0]`);
+console.log(`checked ${top50.length} Top50 symbols, ${affected} have a quarterly row at periods[0]; NULL-FIELDS lines above show where eps/book_value_per_share is actually missing on that top row despite an older row possibly having it`);
