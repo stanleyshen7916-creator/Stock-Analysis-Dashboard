@@ -22,3 +22,46 @@
 .auth-form input{padding:6px 9px;border:1px solid #d9e2ea;border-radius:14px;font-size:11px;font:inherit;width:120px}
 .auth-form button,#logout-btn{border:1px solid #ccd9e5;background:#fff;color:#3f6487;border-radius:14px;padding:6px 12px;cursor:pointer;font-size:11px}
 @media(max-width:760px){.auth-form{width:100%;flex-wrap:wrap}.auth-form input{flex:1 1 45%;min-width:0;width:auto}}
+
+/* Issue #7: accessibility/readability pass.
+   Typography is intentionally increased without changing the locked
+   information architecture or visual language. */
+body{font-size:16px}
+.nav button{font-size:15px}
+.nav-label{font-size:13px}
+.nav-sub{font-size:14px!important}
+.status-card{font-size:13px}
+.brand strong{font-size:17px}
+.brand small{font-size:12px}
+.topbar p,.section-head p,.page-title p,.panel p{font-size:14px}
+.eyebrow{font-size:12px}
+.topbar h1{font-size:28px}
+.top-meta span,.badge{font-size:13px;padding:8px 11px}
+.hero-title{font-size:15px}
+.hero-text{font-size:15px}
+.signal-card h3{font-size:15px}
+.signal-row{font-size:13px}
+.data-big{font-size:38px}
+.section-head h2,.page-title h2{font-size:21px}
+.section-head button,.panel button,.search-card button,.form-card button{font-size:13px}
+.horizon{padding:15px}
+.horizon b{font-size:13px}
+.horizon strong{font-size:29px}
+.horizon span{font-size:12px}
+.table-wrap table{font-size:13px}
+.table-wrap th,.table-wrap td{padding:10px}
+.change-item{font-size:13px}
+.clean{font-size:14px}
+.weight-row{font-size:13px}
+.status-line{font-size:14px}
+.empty{font-size:14px}
+.flow{font-size:13px}
+@media(max-width:760px){
+  .main{padding:18px}
+  .topbar h1{font-size:24px}
+  .topbar p,.section-head p,.page-title p,.panel p{font-size:14px}
+  .nav button{font-size:14px}
+  .horizon b{font-size:13px}
+  .horizon span{font-size:12px}
+  .table-wrap table{font-size:12px}
+}
