@@ -28,6 +28,8 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm install
+      - name: TEMP Issue #5 diagnostic probe (read-only, anon key)
+        run: node scripts/probe-issue5-fundamentals.mjs
       - name: Install Playwright Chromium
         run: npx playwright install --with-deps chromium
       - name: Run live dashboard QA
