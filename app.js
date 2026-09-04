@@ -93,7 +93,9 @@
         .dashboard-overview, .content-grid { grid-template-columns: 1fr !important; }
       }
       @media (max-width: 800px) {
+        html, body { overflow-x: hidden !important; }
         .main { padding: 12px !important; }
+        .topbar > div:first-child { min-width: 0 !important; }
         .kpi-strip { grid-template-columns: repeat(2, 1fr) !important; gap: 9px !important; }
         .kpi { min-height: 98px !important; }
         .horizon-grid { grid-template-columns: repeat(2, 1fr) !important; }
@@ -101,6 +103,7 @@
         .bottom-grid { grid-template-columns: 1fr !important; }
         .topbar { display: block !important; }
         .top-meta { justify-content: flex-start !important; margin-top: 9px !important; }
+        .table-wrap { max-width: 100% !important; overflow-x: auto !important; }
       }
       @media (max-width: 520px) {
         .kpi-strip, .horizon-grid { grid-template-columns: 1fr !important; }
