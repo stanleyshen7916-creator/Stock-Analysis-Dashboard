@@ -104,11 +104,9 @@
     document.head.appendChild(style);
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', installPresentationStyles, { once: true });
-  } else {
-    installPresentationStyles();
-  }
+  // app.js is loaded after the reference <style>, so append immediately and
+  // make the presentation contract active before app-runtime renders data.
+  installPresentationStyles();
 })();
 
 import('./app-runtime.js').catch((err) => {
