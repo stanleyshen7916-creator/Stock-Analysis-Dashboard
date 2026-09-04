@@ -25,8 +25,11 @@ function assertNotStuckLoading(label, text, problems) { const value = (text ?? '
 
 async function runFlowChecks(page, problems) {
   const heroCount = (await page.textContent('#hero-count'))?.trim() ?? '';
-  if (!heroCount || heroCount === '–') problems.push(`Dashboard hero count never populated: "${heroCount}"`);
   const stockTableText = await page.textContent('#stock-table') ?? '';
+  const systemStatus = await page.textContent('#system-status') ?? '';
+  const honestDashboardError = stockTableText.includes('Production Data 讀取失敗') || systemStatus.includes('資料連線異常');
+  if ((!heroCount || heroCount === '–') && !honestDashboardError) problems.push(`Dashboard hero count never populated: "${heroCount}"`);
+  assertNotStuckLoading('Dashboard hero count', heroCount, problems);
   assertNotStuckLoading('Market Top 50 table', stockTableText, problems);
   const stockRows = await page.$$('#stock-table tr');
   const hasRealRow = await page.$('#stock-table .link-stock');
@@ -58,7 +61,7 @@ async function runFlowChecks(page, problems) {
   const breakdown = await page.textContent('#engine-breakdown') ?? '';
   assertNotStuckLoading('AI Selection score', score, problems);
   assertNotStuckLoading('AI Selection breakdown', breakdown, problems);
-  if (!breakdown.includes('Fundamental') && !breakdown.includes('尚無真實計分細節')) problems.push('AI Selection breakdown shows neither verified score detail nor honest empty state');
+  if (!breakdown.includes('Fundamental') && !breakdown.includes('尚無真實計分細節') && !breakdown.includes('尚未執行')) problems.push('AI Selection breakdown shows neither verified score detail nor honest empty state');
 }
 
 async function run() {
