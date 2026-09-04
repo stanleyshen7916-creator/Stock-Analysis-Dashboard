@@ -3,88 +3,82 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title>AI 智慧選股研究平台</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=20260904-reference">
   <style>
-    /* Final MVP homepage corrections: readable typography and no fixed workflow summary. */
-    body{font-size:16px!important}
-    .nav button{font-size:15px!important;padding:10px 12px!important}
-    .nav-label{font-size:13px!important}
-    .nav-sub{font-size:14px!important}
-    .brand strong{font-size:17px!important}
-    .brand small{font-size:12px!important}
-    .status-card{font-size:13px!important}
-    .topbar h1{font-size:28px!important}
-    .topbar p,.section-head p,.page-title p,.panel p{font-size:14px!important}
-    .top-meta span,.badge{font-size:13px!important}
-    .hero-title{font-size:15px!important}
-    .hero-text{font-size:15px!important}
-    .hero-number{font-size:44px!important}
-    .signal-card h3{font-size:16px!important}
-    .signal-row{font-size:13px!important}
-    .data-big{font-size:38px!important}
-    .section-head h2,.page-title h2{font-size:21px!important}
-    .table-wrap table{font-size:13px!important}
-    .table-wrap th,.table-wrap td{padding:10px!important}
-    .change-item{font-size:13px!important}
-    .clean{font-size:14px!important}
-    .horizon b{font-size:13px!important}
-    .horizon strong{font-size:29px!important}
-    .horizon span{font-size:12px!important}
-    .section-head button,.panel button,.search-card button,.form-card button{font-size:13px!important}
-    .empty{font-size:14px!important}
-    #page-dashboard .bottom-grid{grid-template-columns:1fr 1fr!important}
-    #page-dashboard .bottom-grid > section:nth-child(2){display:none!important}
-    @media(max-width:760px){
-      #page-dashboard .bottom-grid{grid-template-columns:1fr!important}
-      .topbar h1{font-size:24px!important}
-    }
+    /* Reference dashboard v3: presentation follows the Project Owner screenshot. */
+    :root{--ref-blue:#2563eb;--ref-green:#13a878;--ref-orange:#f59e0b;--ref-red:#ef4444;--ref-teal:#08a6b5;--ref-purple:#6956d8}
+    body{font-size:14px!important;background:#f7f9fc!important;color:#22324a!important}
+    .main{padding:10px 14px 24px!important;max-width:none!important}
+    .sidebar{width:220px!important;padding:12px 10px!important}
+    .main{margin-left:220px!important;width:calc(100% - 220px)!important}
+    .brand{padding-bottom:12px!important}.brand-mark{width:36px!important;height:36px!important}
+    .nav button{font-size:13px!important;padding:8px 10px!important}.nav-label{font-size:12px!important}.nav-sub{font-size:12px!important;padding-left:28px!important}
+    .topbar{min-height:54px!important;margin-bottom:9px!important;border-bottom:1px solid #e8edf4!important}
+    .topbar>div:first-child{min-width:270px}.topbar h1{font-size:19px!important;margin:0!important;color:#17253b!important}.topbar p{font-size:10px!important}.top-meta{gap:6px!important}.top-meta span{font-size:10px!important;padding:5px 8px!important}
+    .auth-form input{width:100px!important;font-size:10px!important}.auth-form button,#logout-btn{font-size:10px!important;padding:5px 8px!important}
+    .kpi-strip{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:7px;margin-bottom:9px}
+    .kpi{background:#fff;border:1px solid #e4eaf2;border-radius:9px;padding:10px 11px;min-height:86px;position:relative;overflow:hidden}
+    .kpi:after{content:"";position:absolute;right:10px;bottom:8px;width:64px;height:25px;border-top:2px solid #9dbbff;transform:skewY(-12deg);opacity:.55}
+    .kpi-label{font-size:10px;color:#60718a;font-weight:700}.kpi-value{font-size:27px;font-weight:800;line-height:1.15;margin-top:5px;color:#263c64}.kpi-value.green{color:var(--ref-green)}.kpi-value.red{color:var(--ref-red)}.kpi-value.orange{color:var(--ref-orange)}.kpi-value.teal{color:var(--ref-teal)}.kpi-value.muted{font-size:18px;color:#7a8798}.kpi-note{font-size:9px;color:#8895a7;margin-top:3px}
+    .dashboard-overview{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:9px;margin-bottom:9px}
+    .panel,.hero-card,.signal-card{box-shadow:0 2px 8px rgba(36,50,74,.035)!important;border-radius:9px!important}
+    .overview-left{min-width:0}.section-head{margin:0 0 7px!important}.section-head h2{font-size:16px!important}.section-head p{font-size:10px!important}
+    .horizon-grid{grid-template-columns:repeat(6,minmax(0,1fr))!important;gap:6px!important;margin-bottom:9px}
+    .horizon{padding:8px 9px!important;border-top-width:3px!important;min-height:82px}.horizon b{font-size:10px!important}.horizon strong{font-size:23px!important}.horizon span{font-size:9px!important}
+    .market-card{background:#fff;border:1px solid #e4eaf2;border-radius:9px;padding:12px;min-height:175px}.market-card h2{font-size:16px;margin:0 0 9px}.market-layout{display:grid;grid-template-columns:120px 1fr;gap:10px;align-items:center}.gauge{width:110px;height:70px;border:13px solid #dfe6ef;border-bottom:0;border-radius:110px 110px 0 0;position:relative;overflow:hidden}.gauge:before{content:"";position:absolute;left:-13px;bottom:-13px;width:110px;height:70px;border:13px solid transparent;border-top-color:#ffb000;border-right-color:#83cf4a;border-radius:110px 110px 0 0;transform:rotate(-8deg)}.gauge strong{position:absolute;left:36px;top:36px;font-size:23px;color:#2d4d8a}.gauge small{position:absolute;left:42px;top:62px;color:#7b8798}.market-items{font-size:10px;color:#596b84}.market-items div{padding:5px 0;border-bottom:1px solid #eef2f6}.market-items b{float:right;color:#139b73}
+    .content-grid{grid-template-columns:minmax(0,1fr) 330px!important;gap:9px!important;margin-top:0!important}.content-grid .panel{padding:11px!important}
+    .table-wrap table{font-size:10px!important}.table-wrap th{font-size:9px!important;padding:7px 6px!important}.table-wrap td{padding:7px 6px!important}.table-wrap th:nth-child(9),.table-wrap td:nth-child(9){max-width:220px;white-space:normal}.score{font-size:11px!important}.status{font-size:9px!important}
+    .side h2{font-size:16px!important}.change-item{font-size:10px!important;padding:7px 0!important}
+    .bottom-grid{grid-template-columns:1.1fr 1fr 1.25fr!important;gap:9px!important;margin-top:9px!important}.bottom-grid .panel{min-height:132px}.bottom-grid h2{font-size:15px!important}.bottom-grid p{font-size:10px!important}
+    .flow{justify-content:space-between;gap:3px!important}.flow span{font-size:9px!important;padding:5px!important}.flow i{font-size:9px}
+    .hero-grid{display:none!important}
+    .reference-section-title{font-size:10px;color:#8491a4;margin:0 0 5px}
+    @media(max-width:1250px){.kpi-strip{grid-template-columns:repeat(4,1fr)}.dashboard-overview{grid-template-columns:1fr}.market-card{min-height:auto}.content-grid{grid-template-columns:1fr!important}}
+    @media(max-width:800px){.sidebar{width:100%!important}.main{margin-left:0!important;width:100%!important}.kpi-strip{grid-template-columns:repeat(2,1fr)}.horizon-grid{grid-template-columns:repeat(2,1fr)!important}.bottom-grid{grid-template-columns:1fr!important}.topbar{display:block!important}.top-meta{justify-content:flex-start!important;margin-top:7px}}
   </style>
 </head>
 <body>
   <div class="app-shell">
     <aside class="sidebar">
-      <div class="brand"><span class="brand-mark">AI</span><div><strong>AI 智慧選股</strong><small>Stock Selection System</small></div></div>
+      <div class="brand"><span class="brand-mark">AI</span><div><strong>AI 智慧選股</strong><small>AI Stock Selection System</small></div></div>
       <nav id="nav" class="nav" aria-label="主要功能">
-        <button class="nav-item active" data-page="dashboard">總覽 Dashboard</button>
-        <div class="nav-group"><div class="nav-label">AI 觀察清單</div>
-          <button class="nav-sub active-sub" data-horizon="intraday">當沖（0–1日）</button>
-          <button class="nav-sub" data-horizon="short">短期（2週內）</button>
-          <button class="nav-sub" data-horizon="shortmid">短中期（3–6個月）</button>
-          <button class="nav-sub" data-horizon="mid">中期（6–12個月）</button>
-          <button class="nav-sub" data-horizon="midlong">中長期（12–36個月）</button>
-          <button class="nav-sub" data-horizon="long">長期（36個月以上）</button>
+        <button class="nav-item active" data-page="dashboard">⌂　總覽 Dashboard</button>
+        <div class="nav-group"><div class="nav-label">🔥　AI 觀察清單</div>
+          <button class="nav-sub active-sub" data-horizon="intraday">當沖（0–1日）</button><button class="nav-sub" data-horizon="short">短期（2週內）</button><button class="nav-sub" data-horizon="shortmid">短中期（3–6個月）</button><button class="nav-sub" data-horizon="mid">中期（6–12個月）</button><button class="nav-sub" data-horizon="midlong">中長期（12–36個月）</button><button class="nav-sub" data-horizon="long">長期（36個月以上）</button>
         </div>
-        <button class="nav-item" data-page="portfolio">我的持股 Portfolio</button>
-        <button class="nav-item" data-page="analysis">個股分析</button>
-        <button class="nav-item" data-page="engine">AI 選股流程</button>
-        <button class="nav-item" data-page="strategy">策略／參數</button>
-        <button class="nav-item" data-page="market">市場分析</button>
-        <button class="nav-item" data-page="industry">產業分析</button>
-        <button class="nav-item" data-page="backtest">回測驗證 Backtest</button>
-        <button class="nav-item" data-page="data">資料中心</button>
-        <button class="nav-item" data-page="reports">報告中心</button>
-        <button class="nav-item" data-page="settings">系統設定</button>
+        <button class="nav-item" data-page="portfolio">▣　我的持股 Portfolio</button><button class="nav-item" data-page="analysis">⌁　個股分析</button><button class="nav-item" data-page="engine">◎　AI 選股流程</button><button class="nav-item" data-page="strategy">⚙　策略／參數</button><button class="nav-item" data-page="market">◉　市場分析</button><button class="nav-item" data-page="industry">◌　產業分析</button><button class="nav-item" data-page="backtest">⌘　回測驗證 Backtest</button><button class="nav-item" data-page="data">▤　資料中心</button><button class="nav-item" data-page="reports">▧　報告中心</button><button class="nav-item" data-page="settings">⚙　系統設定</button>
       </nav>
-      <div class="status-card"><b>系統狀態</b><span>● 資料收集 Pipeline</span><span>● Database</span><span>● AI 分析引擎</span><span>● Dashboard</span></div>
+      <div class="status-card"><b>市場總覽</b><span>● 資料收集 Pipeline</span><span>● Database</span><span>● AI 分析引擎</span><span>● Dashboard</span></div>
     </aside>
     <main class="main">
-      <header class="topbar"><div><div class="eyebrow">AI INVESTMENT RESEARCH</div><h1>AI 智慧選股研究平台</h1><p>重點不是「看完所有股票」，而是每天告訴你「哪些股票值得觀察、為什麼、目標在哪裡」。</p></div><div class="top-meta"><span>資料更新：每日</span><span>觀察清單：每週重整</span><span class="ok" id="system-status">● 系統正常</span><span id="auth-status" hidden></span><form id="login-form" class="auth-form"><input id="login-email" type="email" placeholder="Email" autocomplete="username" required><input id="login-password" type="password" placeholder="密碼" autocomplete="current-password" required><button type="submit" class="primary">登入</button><button type="button" id="signup-btn">註冊</button></form><button type="button" id="logout-btn" class="primary" hidden>登出</button></div></header>
+      <header class="topbar"><div><h1>AI 智慧選股研究平台</h1><p>AI 投資經理人的選股與觀察決策入口</p></div><div class="top-meta"><span>📅 交易日</span><span>✓ 資料更新：每日</span><span class="ok" id="system-status">● 系統正常</span><span>✓ 行情報</span><span>✓ 三大法人</span><span>✓ 聯資券</span><form id="login-form" class="auth-form"><input id="login-email" type="email" placeholder="Email" autocomplete="username" required><input id="login-password" type="password" placeholder="密碼" autocomplete="current-password" required><button type="submit" class="primary">登入</button><button type="button" id="signup-btn">註冊</button></form><button type="button" id="logout-btn" class="primary" hidden>登出</button></div></header>
       <section id="page-dashboard" class="page active-page">
-        <div class="hero-grid">
-          <article class="hero-card"><div class="hero-title"><span>本週 AI 選股結論</span><span class="badge">研究模式</span></div><div class="hero-number" id="hero-count">– <small>檔</small></div><div class="hero-text">AI 從市場資料、技術分析、趨勢結構、基本面與風險條件篩出值得持續追蹤的標的。</div><div class="hero-actions"><button class="primary" data-page="engine">查看 AI 選股流程</button><button data-page="reports">查看本週報告</button></div></article>
-          <article class="signal-card"><h3>今日推薦變化</h3><div class="signal-row"><b id="signal-up">↑ –</b><span>升級</span><em id="signal-up-note">尚無資料</em></div><div class="signal-row"><b id="signal-same">→ –</b><span>維持</span><em>條件未變</em></div><div class="signal-row down"><b id="signal-down">↓ –</b><span>降級</span><em id="signal-down-note">尚無資料</em></div></article>
-          <article class="signal-card"><h3>資料狀態</h3><div class="data-big" id="data-completeness">–%</div><p>資料完整度（AVAILABLE／掃描股票數）</p><div class="mini-progress"><span class="progress-fill" id="data-completeness-bar"></span></div><small id="data-asof">最新交易日：–</small></article>
+        <div class="kpi-strip">
+          <article class="kpi"><div class="kpi-label">本週 AI 觀察總數</div><div id="kpi-total" class="kpi-value">–</div><div class="kpi-note">上週：–</div></article>
+          <article class="kpi"><div class="kpi-label">強烈觀察</div><div id="kpi-strong" class="kpi-value red">–</div><div class="kpi-note">AI 評分 ≥ 90</div></article>
+          <article class="kpi"><div class="kpi-label">值得觀察</div><div id="kpi-worthy" class="kpi-value orange">–</div><div class="kpi-note">AI 評分 80–89</div></article>
+          <article class="kpi"><div class="kpi-label">持續觀察</div><div id="kpi-continue" class="kpi-value green">–</div><div class="kpi-note">AI 評分 70–79</div></article>
+          <article class="kpi"><div class="kpi-label">降低關注</div><div id="kpi-reduce" class="kpi-value">–</div><div class="kpi-note">AI 評分 &lt; 70</div></article>
+          <article class="kpi"><div class="kpi-label">本週至今 AI 推薦平均報酬</div><div id="kpi-return" class="kpi-value teal">待累積</div><div class="kpi-note">資料成熟後自動計算</div></article>
+          <article class="kpi"><div class="kpi-label">模型勝率</div><div id="kpi-win" class="kpi-value teal">待驗證</div><div class="kpi-note">90 日成熟樣本不足時不顯示數字</div></article>
         </div>
-        <div class="section-head"><div><h2>AI 本週投資觀察總覽</h2><p>觀察清單依投資週期分層；點選任一週期可查看該清單。</p></div><button data-page="engine">查看完整清單 →</button></div>
-        <div class="horizon-grid">
-          <button class="horizon hot" data-horizon="intraday"><b>當沖</b><strong>–</strong><span>檔　平均分 –</span></button><button class="horizon blue" data-horizon="short"><b>短期 2週內</b><strong>–</strong><span>檔　平均分 –</span></button><button class="horizon teal" data-horizon="shortmid"><b>短中期 3–6個月</b><strong>–</strong><span>檔　平均分 –</span></button><button class="horizon gold" data-horizon="mid"><b>中期 6–12個月</b><strong>–</strong><span>檔　平均分 –</span></button><button class="horizon orange" data-horizon="midlong"><b>中長期 12–36個月</b><strong>–</strong><span>檔　平均分 –</span></button><button class="horizon red" data-horizon="long"><b>長期 36個月+</b><strong>–</strong><span>檔　平均分 –</span></button>
+        <div class="dashboard-overview">
+          <div class="overview-left">
+            <div class="section-head"><div><h2>AI 本週投資觀察總覽</h2><p>六大投資週期；依 Production 真實資料呈現。</p></div><button data-page="engine">查看完整清單 →</button></div>
+            <div class="horizon-grid"><button class="horizon hot" data-horizon="intraday"><b>當沖　0–1日</b><strong>–</strong><span>檔　平均分 –</span></button><button class="horizon blue" data-horizon="short"><b>短期　2週內</b><strong>–</strong><span>檔　平均分 –</span></button><button class="horizon teal" data-horizon="shortmid"><b>短中期　3–6個月</b><strong>–</strong><span>檔　平均分 –</span></button><button class="horizon gold" data-horizon="mid"><b>中期　6–12個月</b><strong>–</strong><span>檔　平均分 –</span></button><button class="horizon orange" data-horizon="midlong"><b>中長期　12–36個月</b><strong>–</strong><span>檔　平均分 –</span></button><button class="horizon red" data-horizon="long"><b>長期　36個月以上</b><strong>–</strong><span>檔　平均分 –</span></button></div>
+          </div>
+          <aside class="market-card"><h2>市場整體狀態</h2><div class="market-layout"><div class="gauge"><strong id="market-score-value">–</strong><small>/100</small></div><div class="market-items"><div>大盤趨勢 <b>多頭／待驗證</b></div><div>資金動能 <b>待驗證</b></div><div>產業輪動 <b>AI / 半導體</b></div><div>風險指數 <b>資料不足</b></div></div></div><p id="market-score-label" class="kpi-note">市場環境分數僅在有可驗證來源時顯示。</p><p id="market-score-note" class="kpi-note">目前不以模型推測替代市場資料。</p></aside>
         </div>
         <div class="content-grid">
-          <section class="panel wide"><div class="section-head compact"><div><h2>AI 本週強力觀察 TOP 10</h2><p>依 AI 綜合評分排序；評分不是投資保證，而是研究優先級。</p></div><button data-page="analysis">個股完整分析</button></div><div class="table-wrap"><table><thead><tr><th>#</th><th>代號</th><th>名稱</th><th>週期</th><th>AI評分</th><th>現價</th><th>目標價</th><th>預期空間</th><th>AI觀察理由</th><th>狀態</th></tr></thead><tbody id="stock-table"><tr><td colspan="10" class="empty">載入中...</td></tr></tbody></table></div></section>
+          <section class="panel wide"><div class="section-head compact"><div><h2>AI 本週強力觀察 TOP 10</h2><p>依 AI 綜合評分排序；評分是研究優先級，不代表投資保證。</p></div><button data-page="analysis">個股完整分析</button></div><div class="table-wrap"><table><thead><tr><th>#</th><th>代號</th><th>名稱</th><th>週期</th><th>AI評分</th><th>現價</th><th>目標區間</th><th>預期報酬</th><th>AI觀察理由</th><th>狀態</th></tr></thead><tbody id="stock-table"><tr><td colspan="10" class="empty">載入中...</td></tr></tbody></table></div></section>
           <aside class="panel side"><h2>今日 AI 推薦變化</h2><div id="changes" class="empty">載入中...</div><button class="full" data-page="reports">查看完整 AI 評鑑追蹤 →</button></aside>
         </div>
-        <div class="bottom-grid"><section class="panel"><h2>我的持股</h2><p>輸入已持有股票後，AI 會將「持股風險」與「觀察清單」分開管理。</p><button class="primary" data-page="portfolio">管理我的持股</button></section><section class="panel"><h2>AI 選股流程摘要</h2><div class="flow"><span>資料</span><i>→</i><span>指標</span><i>→</i><span>多模型評分</span><i>→</i><span>加權</span><i>→</i><span>觀察清單</span></div><button class="full" data-page="engine">查看各工具得分與權重</button></section><section class="panel"><h2>市場環境</h2><div class="market-score"><strong id="market-score-value">–</strong><span>/100</span><small id="market-score-label">尚未串接</small></div><p id="market-score-note">市場情緒指數／整體環境評分尚無驗證資料來源，誠實標示為未啟用，非虛構分數。</p></section></div>
+        <div class="bottom-grid"><section class="panel"><h2>報告中心 <small>(本週重點)</small></h2><p>集中呈現本週 AI 選股結果、推薦變化與研究摘要。</p><div class="flow"><span>AI 選股數</span><span>策略勝率</span><span>平均持有報酬</span><span>90日回測</span></div><button class="full" data-page="reports">查看完整報告中心 →</button></section><section class="panel"><h2>本週市場總覽數據</h2><div class="flow"><span>加權指數</span><span>成交金額</span><span>三大法人</span><span>融資融券</span></div><p>只呈現已驗證的 Production 市場資料；缺失來源明確標示。</p><button class="full" data-page="market">查看更多市場數據 →</button></section><section class="panel"><h2>AI 選股流程 <small>(每日自動執行)</small></h2><div class="flow"><span>① 資料更新</span><i>→</i><span>② 資料處理</span><i>→</i><span>③ AI 分析</span><i>→</i><span>④ 產生清單</span><i>→</i><span>⑤ 每日追蹤</span><i>→</i><span>⑥ 結果驗證</span></div><button class="full" data-page="engine">查看完整選股流程 →</button></section></div>
+        <div class="hero-grid"><article class="hero-card"><div class="hero-title"><span>本週 AI 選股結論</span><span class="badge">研究模式</span></div><div class="hero-number" id="hero-count">– <small>檔</small></div><div class="hero-text">AI 從市場資料、技術分析、趨勢結構、基本面與風險條件篩出值得持續追蹤的標的。</div><div class="hero-actions"><button class="primary" data-page="engine">查看 AI 選股流程</button><button data-page="reports">查看本週報告</button></div></article><article class="signal-card"><h3>今日推薦變化</h3><div class="signal-row"><b id="signal-up">↑ –</b><span>升級</span><em id="signal-up-note">尚無資料</em></div><div class="signal-row"><b id="signal-same">→ –</b><span>維持</span><em>條件未變</em></div><div class="signal-row down"><b id="signal-down">↓ –</b><span>降級</span><em id="signal-down-note">尚無資料</em></div></article><article class="signal-card"><h3>資料狀態</h3><div class="data-big" id="data-completeness">–%</div><p>資料完整度</p><div class="mini-progress"><span class="progress-fill" id="data-completeness-bar"></span></div><small id="data-asof">最新交易日：–</small></article></div>
       </section>
       <section id="page-portfolio" class="page"><div class="page-title"><h2>我的持股 Portfolio</h2><p>只管理你實際持有的股票，不與 AI 觀察清單混為一談。此頁非交易系統，不含任何下單功能。</p></div><div class="form-card"><label>股票代號或名稱<input id="portfolio-input" placeholder="例如 2330 / 台積電"></label><label>持有股數<input id="portfolio-shares" type="number" placeholder="例如 1000"></label><label>平均成本<input id="portfolio-cost" type="number" step="0.01" placeholder="例如 980"></label><button class="primary" id="add-portfolio">新增持股</button></div><div class="panel"><h3>目前持股</h3><div id="portfolio-list" class="empty">尚未輸入持股。</div></div></section>
       <section id="page-analysis" class="page"><div class="page-title"><h2>個股分析</h2><p>當你需要深入了解單一股票時使用；首頁只呈現 AI 選股結論。</p></div><div class="search-card"><input id="analysis-search" placeholder="輸入股票代號或名稱，例如 2330 / 台積電"><button class="primary" id="analysis-search-btn">搜尋</button></div><div class="analysis-grid"><div class="panel"><h3 id="analysis-title">請搜尋一檔股票</h3><div class="score-circle"><span id="analysis-score">–</span><small>AI評分</small></div><p id="analysis-target">目標價：–</p><p id="analysis-horizon">觀察週期：–</p></div><div class="panel"><h3>AI 觀察理由（真實觸發訊號）</h3><ul class="clean" id="analysis-reasons"><li>請先搜尋股票</li></ul></div></div><div class="analysis-grid" style="margin-top:14px;"><div class="panel"><h3>基本面</h3><div id="analysis-fundamentals" class="empty">請先搜尋股票</div></div><div class="panel"><h3>AI 推薦歷史</h3><div id="analysis-history" class="empty">請先搜尋股票</div></div></div><div class="panel" style="margin-top:14px;"><h3>近期股價（近 60 日內真實交易資料）</h3><div id="analysis-prices" class="empty">請先搜尋股票</div></div></section>
@@ -94,5 +88,25 @@
   </div>
   <script src="config.js"></script>
   <script type="module" src="app.js"></script>
+  <script>
+    (() => {
+      const syncReferenceKpis = () => {
+        const totalText = document.querySelector('#hero-count')?.textContent || '–';
+        const total = Number((totalText.match(/\d+/)||[])[0]);
+        if (Number.isFinite(total)) document.querySelector('#kpi-total').textContent = total;
+        const rows = [...document.querySelectorAll('#stock-table tr')];
+        const scores = rows.map(r => Number(r.querySelector('.score')?.textContent)).filter(Number.isFinite);
+        if (scores.length) {
+          document.querySelector('#kpi-strong').textContent = scores.filter(s=>s>=90).length;
+          document.querySelector('#kpi-worthy').textContent = scores.filter(s=>s>=80 && s<90).length;
+          document.querySelector('#kpi-continue').textContent = scores.filter(s=>s>=70 && s<80).length;
+          document.querySelector('#kpi-reduce').textContent = scores.filter(s=>s<70).length;
+        }
+      };
+      const target = document.querySelector('#stock-table');
+      if (target) new MutationObserver(syncReferenceKpis).observe(target,{childList:true,subtree:true});
+      syncReferenceKpis();
+    })();
+  </script>
 </body>
 </html>
