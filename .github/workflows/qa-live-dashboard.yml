@@ -4,8 +4,8 @@ name: Live Dashboard QA
 # runner because this sandbox's own network egress cannot reach the
 # Supabase project directly (established precedent throughout the
 # private stock-analysis-system repo for every external endpoint this
-# project depends on) - the runner has normal internet access, so this
-# is the real, honest verification path against Production, not a mock.
+# project depends on) - the runner has normal internet access, so
+# this is the real, honest verification path against Production, not a mock.
 # Read-only: this repo's config.js already carries the real, non-secret
 # anon/publishable key, so no secrets are needed here.
 
@@ -35,3 +35,5 @@ jobs:
         run: npx playwright install --with-deps chromium
       - name: Run live dashboard QA
         run: npm run qa:live-dashboard
+      - name: Run explicit stock analysis executable QA
+        run: npm run qa:stock-analysis
