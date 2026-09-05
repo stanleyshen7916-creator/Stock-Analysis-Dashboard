@@ -7,3 +7,15 @@ window.APP_CONFIG = {
   SUPABASE_URL: 'https://kvffithbxqstrpbausbo.supabase.co',
   SUPABASE_ANON_KEY: 'sb_publishable_tt4X-E1hjMyg5DGXoiK_0Q_EtoNxLc4'
 };
+
+// Load the individual-stock tab controller after configuration is available.
+(() => {
+  const script = document.createElement('script');
+  script.src = 'analysis-tabs.js?v=20260905-tabs';
+  script.async = false;
+  document.head.appendChild(script);
+  const guard = document.createElement('script');
+  guard.src = 'analysis-tabs-fix.js?v=20260905-tabs-fix';
+  guard.async = false;
+  document.head.appendChild(guard);
+})();
