@@ -14,4 +14,8 @@ window.APP_CONFIG = {
   script.src = 'analysis-tabs.js?v=20260905-tabs';
   script.async = false;
   document.head.appendChild(script);
+  const guard = document.createElement('script');
+  guard.src = 'analysis-tabs-fix.js?v=20260905-tabs-fix';
+  guard.async = false;
+  document.head.appendChild(guard);
 })();
