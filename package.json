@@ -5,7 +5,8 @@
   "description": "Public, authenticated read-only AI Observation List dashboard - presentation only, no AI selection logic.",
   "type": "module",
   "scripts": {
-    "qa:live-dashboard": "node scripts/qa-live-dashboard.mjs"
+    "qa:live-dashboard": "node scripts/qa-live-dashboard.mjs",
+    "qa:stock-analysis": "node scripts/qa-stock-analysis-executable.mjs"
   },
   "devDependencies": {
     "playwright": "1.56.1"
