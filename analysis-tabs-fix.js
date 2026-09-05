@@ -36,7 +36,7 @@
         event.preventDefault();
         tabs.forEach((t, j) => t.classList.toggle('active', i === j));
         const names=['overview','technical','fundamental','chips','financial','industry','wave','engine','history','prediction','news'];
-        if (window.StockAnalysisTabs?.setTab) window.StockAnalysisTabs.setTab(names[i]);
+        if (window.StockAnalysisTabsV2?.setTab) window.StockAnalysisTabsV2.setTab(names[i]);
       };
     });
     return true;
