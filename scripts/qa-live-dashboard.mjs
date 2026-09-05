@@ -55,6 +55,21 @@ async function runFlowChecks(page, problems) {
   if (!conclusion.trim()) problems.push('Stock analysis conclusion is blank');
   if (!provenance.trim()) problems.push('Stock analysis provenance is blank');
 
+  const stockTabs = await page.$$('.stock-tab');
+  if (stockTabs.length !== 11) problems.push(`Individual stock tab count is ${stockTabs.length}; expected 11`);
+  const expectedTabs = ['總覽','技術分析','基本面','籌碼分析','財務分析','產業分析','波浪分析','AI 選股流程','歷史推薦','預測追蹤','相關新聞'];
+  for (let i = 0; i < Math.min(stockTabs.length, expectedTabs.length); i += 1) {
+    const tab = page.locator('.stock-tab').nth(i);
+    await tab.click();
+    await page.waitForTimeout(250);
+    const active = await tab.getAttribute('class') ?? '';
+    const content = await page.textContent('#analysis-tab-content') ?? '';
+    if (!active.includes('active')) problems.push(`Stock analysis tab ${expectedTabs[i]} did not become active`);
+    if (!content.trim()) problems.push(`Stock analysis tab ${expectedTabs[i]} rendered blank content`);
+    assertNotStuckLoading(`Stock analysis tab ${expectedTabs[i]}`, content, problems);
+  }
+  await page.locator('.stock-tab').first().click();
+
   await page.click('[data-page="engine"]');
   await page.waitForTimeout(800);
   const score = await page.textContent('#engine-score') ?? '';
@@ -85,7 +100,7 @@ async function run() {
     await page.close();
   }
   await browser.close(); server.close();
-  console.log('=== Dashboard Live QA (reference UX + real-data flow) ===');
+  console.log('=== Dashboard Live QA (reference UX + real-data flow + stock tabs) ===');
   let failed = false;
   for (const { label, realErrors, overflow, problems } of results) {
     console.log(`${label}: horizontalOverflow=${overflow} consoleErrors=${realErrors.length} flowProblems=${problems.length}`);
