@@ -8,14 +8,14 @@ window.APP_CONFIG = {
   SUPABASE_ANON_KEY: 'sb_publishable_tt4X-E1hjMyg5DGXoiK_0Q_EtoNxLc4'
 };
 
-// Load the individual-stock tab controller after configuration is available.
+// Load the validated individual-stock tab controller after configuration is available.
 (() => {
   const script = document.createElement('script');
-  script.src = 'analysis-tabs.js?v=20260905-tabs';
+  script.src = 'analysis-tabs-v2.js?v=20260905-tabs-v2';
   script.async = false;
   document.head.appendChild(script);
   const guard = document.createElement('script');
-  guard.src = 'analysis-tabs-fix.js?v=20260905-tabs-fix';
+  guard.src = 'analysis-tabs-fix.js?v=20260905-tabs-fix-v2';
   guard.async = false;
   document.head.appendChild(guard);
 })();
