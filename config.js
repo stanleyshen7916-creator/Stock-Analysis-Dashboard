@@ -18,4 +18,8 @@ window.APP_CONFIG = {
   guard.src = 'analysis-tabs-fix.js?v=20260905-tabs-fix-v2';
   guard.async = false;
   document.head.appendChild(guard);
+  const production = document.createElement('script');
+  production.src = 'stock-analysis-production.js?v=20260907-production-v1';
+  production.async = false;
+  document.head.appendChild(production);
 })();
