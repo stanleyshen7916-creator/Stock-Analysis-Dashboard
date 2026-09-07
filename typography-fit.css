@@ -1,5 +1,4 @@
-/* Dashboard typography/layout fit v4.
-   Keep readable type without browser zoom, which caused clipping and oversized KPI values. */
+/* Dashboard typography/layout fit v4. */
 html, body { zoom: 1 !important; }
 body { font-size: 14px !important; }
 .topbar h1 { font-size: 20px !important; }
@@ -16,22 +15,10 @@ body { font-size: 14px !important; }
 .score-total span { font-size: 13px !important; }
 .weight-row, .audit { font-size: 11px !important; }
 .analysis-grid table, .analysis-grid table th, .analysis-grid table td { font-size: 12px !important; }
-
-/* Individual-stock Production panel */
 #analysis-production-panel h3 { font-size: 16px; }
 #analysis-production-panel .stock-panel-sub { font-size: 11px; }
 #analysis-production-panel .stock-table { font-size: 13px; }
-#analysis-production-panel .stock-table th,
-#analysis-production-panel .stock-table td { font-size: 13px; }
+#analysis-production-panel .stock-table th, #analysis-production-panel .stock-table td { font-size: 13px; }
 #analysis-production-panel .stock-empty { font-size: 12px; }
 #analysis-production-panel .stock-footer-note { font-size: 11px; }
-
-@media (max-width: 800px) {
-  body { font-size: 14px !important; }
-  .topbar h1 { font-size: 19px !important; }
-  .top-meta span, .badge { font-size: 11px !important; }
-  .table-wrap table { font-size: 12px !important; }
-  #analysis-production-panel .stock-table,
-  #analysis-production-panel .stock-table th,
-  #analysis-production-panel .stock-table td { font-size: 12px; }
-}
+@media (max-width: 800px) { body { font-size: 14px !important; } .topbar h1 { font-size: 19px !important; } .top-meta span, .badge { font-size: 11px !important; } .table-wrap table { font-size: 12px !important; } #analysis-production-panel .stock-table, #analysis-production-panel .stock-table th, #analysis-production-panel .stock-table td { font-size: 12px; } }
