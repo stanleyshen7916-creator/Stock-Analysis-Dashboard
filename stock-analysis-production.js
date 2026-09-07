@@ -1,7 +1,7 @@
 // Individual-stock Production display layer.
-// Presentation only: all scoring/recommendation values come from
+// Presentation only: all scoring/recommendation/indicator values come from
 // stock_analysis_results written by Stock-Analysis-System. This file never
-// calculates an AI score or recommendation.
+// calculates an AI score or technical indicator.
 (() => {
   const loaded = { value: false };
   const esc = (value) => String(value ?? '—').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -12,7 +12,7 @@
     if (document.querySelector('link[data-dashboard-typography-fit]')) return;
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = 'typography-fit.css?v=20260907-fit';
+    link.href = 'typography-fit.css?v=20260907-fit2';
     link.dataset.dashboardTypographyFit = 'true';
     document.head.appendChild(link);
   }
@@ -24,6 +24,15 @@
     });
     if (!response.ok) throw new Error(`GET ${path.split('?')[0]} failed (${response.status})`);
     return response.json();
+  }
+
+  function removeDuplicateDailyPanel() {
+    const page = document.querySelector('#page-analysis');
+    if (!page) return;
+    page.querySelectorAll('.stock-panel').forEach((panel) => {
+      const title = panel.querySelector('h3')?.textContent?.replace(/更多\s*›?/g, '').trim() ?? '';
+      if (/近期日線資料/.test(title)) panel.remove();
+    });
   }
 
   function ensureProductionPanel() {
@@ -50,7 +59,33 @@
     if (panel) panel.innerHTML = `<h3>Production 分析結果</h3><div class="stock-empty">讀取失敗：${esc(message)}</div>`;
   }
 
+  function renderTechnicalIndicators(result) {
+    const host = document.querySelector('#analysis-technical');
+    if (!host) return;
+    const ti = result?.technical_indicators;
+    const score = result?.score_breakdown?.technical?.score;
+    if (!ti) {
+      host.innerHTML = '<table class="stock-table"><tbody><tr><th>技術面綜合分數</th><td>資料不足</td></tr><tr><th>趨勢狀態</th><td>待驗證</td></tr><tr><th>動能</th><td>待驗證</td></tr><tr><th>波動度</th><td>待驗證</td></tr><tr><th>成交量趨勢</th><td>待驗證</td></tr></tbody></table>';
+      return;
+    }
+    const status = ti.statuses ?? {};
+    const macd = ti.macd ?? {};
+    const bb = ti.bollinger ?? {};
+    host.innerHTML = `<table class="stock-table"><tbody>
+      <tr><th>技術面綜合分數</th><td>${esc(fmt(score))}</td></tr>
+      <tr><th>SMA20</th><td>${esc(fmt(ti.sma20))}</td></tr>
+      <tr><th>EMA20</th><td>${esc(fmt(ti.ema20))}</td></tr>
+      <tr><th>RSI14</th><td>${esc(fmt(ti.rsi14))}</td></tr>
+      <tr><th>MACD</th><td>${esc(fmt(macd.line))} / ${esc(fmt(macd.signal))} / ${esc(fmt(macd.histogram))}</td></tr>
+      <tr><th>布林通道</th><td>${esc(fmt(bb.lower))} / ${esc(fmt(bb.middle))} / ${esc(fmt(bb.upper))}</td></tr>
+      <tr><th>ATR14</th><td>${esc(fmt(ti.atr14))}</td></tr>
+      <tr><th>趨勢 / 動能</th><td>${esc(status.trend)} / ${esc(status.momentum)}</td></tr>
+      <tr><th>波動度 / 成交量</th><td>${esc(status.volatility)} / ${esc(status.volume)}</td></tr>
+    </tbody></table>`;
+  }
+
   function render({ result, daily, fundamentals }) {
+    removeDuplicateDailyPanel();
     const panel = ensureProductionPanel();
     if (!panel) return;
     const score = result?.recommendation_score;
@@ -74,7 +109,7 @@
       <p class="stock-panel-sub">結果由 Analysis Engine 計算後寫入 Supabase；Dashboard 不重新計算。</p>
       <div class="stock-grid-main" style="margin-top:10px">
         <div><table class="stock-table"><tbody>
-          <tr><th>AI Score</th><td>${esc(fmt(score, 4))} / 100</td></tr>
+          <tr><th>AI Score</th><td>${esc(fmt(score))} / 100</td></tr>
           <tr><th>決策</th><td>${esc(result?.decision_state)}</td></tr>
           <tr><th>參考價</th><td>${esc(fmt(result?.reference_price))}</td></tr>
           <tr><th>目標價</th><td>${esc(fmt(target))}</td></tr>
@@ -84,8 +119,8 @@
           <tr><th>資料狀態</th><td>${esc(result?.data_status)}</td></tr>
         </tbody></table></div>
         <div><h3 style="margin-top:0">目前正式模型分數</h3><table class="stock-table"><tbody>
-          <tr><th>Fundamental</th><td>${esc(fmt(breakdown.fundamental?.score, 2))} · ${esc(breakdown.fundamental?.status)}</td></tr>
-          <tr><th>Technical</th><td>${esc(fmt(breakdown.technical?.score, 2))} · ${esc(breakdown.technical?.status)}</td></tr>
+          <tr><th>Fundamental</th><td>${esc(fmt(breakdown.fundamental?.score))} · ${esc(breakdown.fundamental?.status)}</td></tr>
+          <tr><th>Technical</th><td>${esc(fmt(breakdown.technical?.score))} · ${esc(breakdown.technical?.status)}</td></tr>
           <tr><th>Chip</th><td>${esc(breakdown.chip?.score)} · ${esc(breakdown.chip?.status)}</td></tr>
           <tr><th>模型版本</th><td>${esc(breakdown.model)}</td></tr>
         </tbody></table></div>
@@ -99,6 +134,7 @@
       <div style="margin-top:12px"><h3>目前資料缺口</h3><div class="stock-empty">${gaps.length ? gaps.map((gap) => `<span class="stock-industry" style="display:inline-block;margin:3px">${esc(dataGapLabels[gap] ?? gap)}</span>`).join('') : '目前沒有已記錄資料缺口'}</div></div>
       <div style="margin-top:8px"><h3>Recommendation Reason</h3><div class="stock-empty">${(result?.recommendation_reason ?? []).length ? result.recommendation_reason.map(esc).join('、') : '—'}</div></div>
       <div class="stock-footer-note">Source: ${esc(result?.source)} · Data as of: ${esc(result?.data_as_of)} · Production calculation version: ${esc(result?.calculation_version)}</div>`;
+    renderTechnicalIndicators(result);
   }
 
   async function load(symbol, market = 'TWSE') {
@@ -115,7 +151,7 @@
       const daily = [...dailyRows].reverse();
       render({ result, daily, fundamentals });
       document.querySelector('#analysis-data-state')?.replaceChildren(document.createTextNode(result.data_status ?? '—'));
-      document.querySelector('#analysis-ai-score')?.replaceChildren(document.createTextNode(fmt(result.recommendation_score, 4)));
+      document.querySelector('#analysis-ai-score')?.replaceChildren(document.createTextNode(fmt(result.recommendation_score)));
       document.querySelector('#analysis-decision')?.replaceChildren(document.createTextNode(result.decision_state ?? '—'));
       document.querySelector('#analysis-target')?.replaceChildren(document.createTextNode(fmt(result.target_price)));
       document.querySelector('#analysis-risk')?.replaceChildren(document.createTextNode(fmt(result.risk_price)));
@@ -136,6 +172,7 @@
     if (loaded.value) return;
     loaded.value = true;
     loadTypographyFit();
+    removeDuplicateDailyPanel();
     document.addEventListener('click', (event) => {
       const button = event.target.closest('#analysis-search');
       if (!button) return;
@@ -150,6 +187,7 @@
       const page = document.querySelector('#page-analysis');
       if (!page) return setTimeout(observe, 100);
       ensureProductionPanel();
+      removeDuplicateDailyPanel();
     };
     observe();
   }
