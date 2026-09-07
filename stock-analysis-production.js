@@ -89,7 +89,7 @@
         </div>
       </div>
       <div class="stock-grid-secondary" style="margin-top:12px">
-        <div class="stock-panel"><h3>最新行情</h3><div class="stock-empty">${latest ? `${esc(latest.trading_date)}　收 ${esc(fmt(latest.close))}　${change == null ? '—' : esc(fmtPct(change))}` : '資料不足'}</div></div>
+        <div class="stock-panel"><h3>最新行情</h3><div class="stock-empty">${latest ? `${esc(latest.trading_date)}　開 ${esc(fmt(latest.open))}　高 ${esc(fmt(latest.high))}　低 ${esc(fmt(latest.low))}　收 ${esc(fmt(latest.close))}　量 ${esc(fmt(latest.volume, 0))}　${change == null ? '—' : esc(fmtPct(change))}` : '資料不足'}</div></div>
         <div class="stock-panel"><h3>基本面</h3><div class="stock-empty">${latestFundamental ? `期間 ${esc(latestFundamental.reporting_period)}　營收 ${esc(latestFundamental.revenue ?? '—')}　EPS ${esc(latestFundamental.eps ?? '—')}` : '資料不足'}</div></div>
         <div class="stock-panel"><h3>行情筆數</h3><div class="stock-empty">${esc(daily.length)} 筆；最新 ${esc(latest?.trading_date)}</div></div>
         <div class="stock-panel"><h3>證據強度</h3><div class="stock-empty">${esc(result?.evidence_strength)}</div></div>
@@ -103,13 +103,18 @@
     renderLoading(symbol);
     try {
       const encoded = encodeURIComponent(symbol.toUpperCase());
-      const [resultRows, daily, fundamentals] = await Promise.all([
+      const [resultRows, dailyRows, fundamentals] = await Promise.all([
         get(`stock_analysis_results?symbol=eq.${encoded}&market=eq.${encodeURIComponent(market)}&order=calculation_date.desc&limit=1`),
-        get(`market_daily?symbol=eq.${encoded}&market=eq.${encodeURIComponent(market)}&order=trading_date.asc&limit=120`),
+        // IMPORTANT: fetch the newest 120 trading rows. An ascending query with
+        // limit=120 returns the oldest 120 rows and makes the Dashboard display
+        // stale prices (e.g. 2024-08-06) while the Production result is 2026.
+        get(`market_daily?symbol=eq.${encoded}&market=eq.${encodeURIComponent(market)}&order=trading_date.desc&limit=120`),
         get(`fundamentals?symbol=eq.${encoded}&market=eq.${encodeURIComponent(market)}&order=reporting_period.desc&limit=20`)
       ]);
       const result = resultRows[0] ?? null;
       if (!result) throw new Error(`尚無 ${symbol}/${market} 的 Production 分析結果`);
+      // The renderer and chart expect chronological order.
+      const daily = [...dailyRows].reverse();
       render({ result, daily, fundamentals });
       document.querySelector('#analysis-data-state')?.replaceChildren(document.createTextNode(result.data_status ?? '—'));
       document.querySelector('#analysis-ai-score')?.replaceChildren(document.createTextNode(fmt(result.recommendation_score, 4)));
