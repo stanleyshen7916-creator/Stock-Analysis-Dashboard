@@ -162,7 +162,10 @@
       document.querySelector('#analysis-breadcrumb-stock')?.replaceChildren(document.createTextNode(symbol));
       if (daily.at(-1)) {
         const latest = daily.at(-1);
+        const previous = daily.at(-2) ?? null;
+        const dailyChange = latest && previous && Number(previous.close) ? ((Number(latest.close) - Number(previous.close)) / Number(previous.close)) * 100 : null;
         [['#analysis-price', latest.close], ['#analysis-open', latest.open], ['#analysis-high', latest.high], ['#analysis-low', latest.low], ['#analysis-volume', latest.volume]].forEach(([selector, value]) => document.querySelector(selector)?.replaceChildren(document.createTextNode(fmt(value))));
+        document.querySelector('#analysis-change')?.replaceChildren(document.createTextNode(dailyChange == null ? '—' : fmtPct(dailyChange)));
         document.querySelector('#analysis-price-asof')?.replaceChildren(document.createTextNode(`行情日期 ${latest.trading_date}`));
       }
     } catch (error) { renderError(error.message); }
