@@ -127,7 +127,7 @@
       </div>
       <div class="stock-grid-secondary" style="margin-top:12px">
         <div class="stock-panel"><h3>最新行情</h3><div class="stock-empty">${latest ? `${esc(latest.trading_date)}　開 ${esc(fmt(latest.open))}　高 ${esc(fmt(latest.high))}　低 ${esc(fmt(latest.low))}　收 ${esc(fmt(latest.close))}　量 ${esc(fmt(latest.volume, 0))}　${change == null ? '—' : esc(fmtPct(change))}` : '資料不足'}</div></div>
-        <div class="stock-panel"><h3>基本面</h3><div class="stock-empty">${latestFundamental ? `期間 ${esc(latestFundamental.reporting_period)}　營收 ${esc(latestFundamental.revenue ?? '—')}　EPS ${esc(latestFundamental.eps ?? '—')}` : '資料不足'}</div>
+        <div class="stock-panel"><h3>基本面</h3><div class="stock-empty">${latestFundamental ? `期間 ${esc(latestFundamental.reporting_period)}　營收 ${esc(latestFundamental.revenue ?? '—')}　EPS ${esc(latestFundamental.eps ?? '—')}` : '資料不足'}</div></div>
         <div class="stock-panel"><h3>行情筆數</h3><div class="stock-empty">${esc(daily.length)} 筆；最新 ${esc(latest?.trading_date)}</div></div>
         <div class="stock-panel"><h3>證據強度</h3><div class="stock-empty">${esc(result?.evidence_strength)}</div></div>
       </div>
