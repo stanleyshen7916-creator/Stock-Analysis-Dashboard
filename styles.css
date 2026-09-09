@@ -49,3 +49,23 @@ body{font-size:16.8px!important}
 @media(max-width:800px){.sidebar{width:100%!important}.main{margin-left:0!important;width:100%!important;padding:12px!important}.topbar{min-height:auto!important}.topbar>div:first-child{min-width:0}.kpi-strip{grid-template-columns:repeat(2,1fr)!important}.horizon-grid{grid-template-columns:repeat(2,1fr)!important}.bottom-grid{grid-template-columns:1fr!important}.table-wrap table{min-width:920px!important}.table-wrap{overflow-x:auto!important}.top-meta{gap:6px!important}.top-meta span,.badge{padding:7px 9px!important}.auth-form{gap:6px!important}.auth-form input{width:auto!important;min-width:120px!important}.market-layout{grid-template-columns:120px 1fr!important}}
 @media(max-width:520px){.kpi-strip{grid-template-columns:1fr!important}.horizon-grid{grid-template-columns:1fr!important}.nav{grid-template-columns:1fr!important}.table-wrap table{min-width:880px!important}.content-grid .wide .section-head h2{font-size:22px!important}}
 @media(min-width:1500px){.main{padding-left:22px!important;padding-right:22px!important}.dashboard-overview,.content-grid{gap:11px!important}.bottom-grid{gap:11px!important}}
+
+/* Dashboard UX hotfix v1: Project Owner acceptance adjustments */
+/* TOP 10 typography: materially larger on desktop, still responsive on mobile. */
+#page-dashboard .table-wrap table{font-size:18px!important}
+#page-dashboard .table-wrap th{font-size:14px!important;padding:10px 9px!important}
+#page-dashboard .table-wrap td{font-size:17px!important;padding:10px 9px!important;line-height:1.45!important}
+#page-dashboard .table-wrap td:nth-child(9){font-size:15px!important;line-height:1.5!important}
+#page-dashboard .table-wrap .score{font-size:16px!important;min-width:34px!important;padding:4px 7px!important}
+#page-dashboard .table-wrap .status{font-size:14px!important;padding:4px 8px!important}
+@media(max-width:800px){
+  #page-dashboard .table-wrap table{font-size:16px!important}
+  #page-dashboard .table-wrap th{font-size:13px!important}
+  #page-dashboard .table-wrap td{font-size:15px!important}
+  #page-dashboard .table-wrap td:nth-child(9){font-size:14px!important}
+}
+
+/* Individual-stock analysis: explain missing data instead of leaving isolated labels. */
+#page-analysis .data-state-explain{margin-top:10px;padding:10px 12px;border-radius:8px;background:#fff8e8;border:1px solid #f3dfad;color:#7a5b16;font-size:13px!important;line-height:1.6}
+#page-analysis .data-state-explain strong{display:block;margin-bottom:3px;color:#9a6b00;font-size:14px!important}
+#page-analysis .data-state-badge{display:inline-block;margin-left:6px;padding:2px 7px;border-radius:999px;background:#fff1cc;color:#9a6b00;font-size:12px!important;font-weight:700}
