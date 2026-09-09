@@ -22,4 +22,8 @@ window.APP_CONFIG = {
   production.src = 'stock-analysis-production.js?v=20260907-production-v1';
   production.async = false;
   document.head.appendChild(production);
+  const uxAcceptance = document.createElement('script');
+  uxAcceptance.src = 'dashboard-ux-acceptance-v1.js?v=20260909-ux-v1';
+  uxAcceptance.async = false;
+  document.head.appendChild(uxAcceptance);
 })();
