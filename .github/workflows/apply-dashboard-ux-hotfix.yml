@@ -16,71 +16,88 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
       - name: Apply UX adjustments
+        shell: bash
         run: |
-          python3 - <<'PY'
-          from pathlib import Path
+          set -euo pipefail
 
-          styles = Path('styles.css')
-          marker = '/* Dashboard UX hotfix v1: Project Owner acceptance adjustments */'
-          css = '''\n\n/* Dashboard UX hotfix v1: Project Owner acceptance adjustments */\n/* 1) Make the dashboard TOP 10 table materially easier to read. */\n#page-dashboard .table-wrap table{font-size:18px!important}\n#page-dashboard .table-wrap th{font-size:14px!important;padding:10px 9px!important}\n#page-dashboard .table-wrap td{font-size:17px!important;padding:10px 9px!important;line-height:1.45!important}\n#page-dashboard .table-wrap td:nth-child(9){font-size:15px!important;line-height:1.5!important}\n#page-dashboard .table-wrap .score{font-size:16px!important;min-width:34px!important;padding:4px 7px!important}\n#page-dashboard .table-wrap .status{font-size:14px!important;padding:4px 8px!important}\n@media(max-width:800px){\n  #page-dashboard .table-wrap table{font-size:16px!important}\n  #page-dashboard .table-wrap th{font-size:13px!important}\n  #page-dashboard .table-wrap td{font-size:15px!important}\n  #page-dashboard .table-wrap td:nth-child(9){font-size:14px!important}\n}\n\n/* 2) Make missing-data states explicit instead of leaving isolated \"資料不足\" labels. */\n#page-analysis .data-state-explain{margin-top:10px;padding:10px 12px;border-radius:8px;background:#fff8e8;border:1px solid #f3dfad;color:#7a5b16;font-size:13px!important;line-height:1.6}\n#page-analysis .data-state-explain strong{display:block;margin-bottom:3px;color:#9a6b00;font-size:14px!important}\n#page-analysis .data-state-badge{display:inline-block;margin-left:6px;padding:2px 7px;border-radius:999px;background:#fff1cc;color:#9a6b00;font-size:12px!important;font-weight:700}\n'''
-          current = styles.read_text(encoding='utf-8')
-          if marker not in current:
-              styles.write_text(current.rstrip() + css, encoding='utf-8')
+          if ! grep -q 'Dashboard UX hotfix v1: Project Owner acceptance adjustments' styles.css; then
+            cat >> styles.css <<'EOF'
 
-          app = Path('app.js')
-          js_marker = '/* Dashboard UX hotfix v1 runtime: explicit data-state explanation */'
-          runtime = r'''
+          /* Dashboard UX hotfix v1: Project Owner acceptance adjustments */
+          /* TOP 10 typography: materially larger on desktop, still responsive on mobile. */
+          #page-dashboard .table-wrap table{font-size:18px!important}
+          #page-dashboard .table-wrap th{font-size:14px!important;padding:10px 9px!important}
+          #page-dashboard .table-wrap td{font-size:17px!important;padding:10px 9px!important;line-height:1.45!important}
+          #page-dashboard .table-wrap td:nth-child(9){font-size:15px!important;line-height:1.5!important}
+          #page-dashboard .table-wrap .score{font-size:16px!important;min-width:34px!important;padding:4px 7px!important}
+          #page-dashboard .table-wrap .status{font-size:14px!important;padding:4px 8px!important}
+          @media(max-width:800px){
+            #page-dashboard .table-wrap table{font-size:16px!important}
+            #page-dashboard .table-wrap th{font-size:13px!important}
+            #page-dashboard .table-wrap td{font-size:15px!important}
+            #page-dashboard .table-wrap td:nth-child(9){font-size:14px!important}
+          }
 
-/* Dashboard UX hotfix v1 runtime: explicit data-state explanation */
-(function installDashboardUxHotfix(){
-  const marker='dashboard-ux-hotfix-v1';
-  if(window[marker]) return;
-  window[marker]=true;
+          /* Individual-stock analysis: explain missing data instead of leaving isolated labels. */
+          #page-analysis .data-state-explain{margin-top:10px;padding:10px 12px;border-radius:8px;background:#fff8e8;border:1px solid #f3dfad;color:#7a5b16;font-size:13px!important;line-height:1.6}
+          #page-analysis .data-state-explain strong{display:block;margin-bottom:3px;color:#9a6b00;font-size:14px!important}
+          #page-analysis .data-state-badge{display:inline-block;margin-left:6px;padding:2px 7px;border-radius:999px;background:#fff1cc;color:#9a6b00;font-size:12px!important;font-weight:700}
+          EOF
+          fi
 
-  const NOTE_TEXT={
-    technical:'目前尚無可驗證的技術指標數值。可能原因：歷史資料尚未達到指標所需期間、指標尚未完成 Production 驗證，或資料來源尚未提供。資料補齊並通過驗證後，畫面將自動更新。',
-    fundamental:'目前部分基本面衍生指標尚無可驗證數值。原始資料來源為 MOPS；待最新財報資料同步、欄位解析與計算驗證完成後再顯示數值。'
-  };
+          if ! grep -q 'Dashboard UX hotfix v1 runtime: explicit data-state explanation' app.js; then
+            cat >> app.js <<'EOF'
 
-  function addNote(panel,kind){
-    if(!panel || panel.querySelector('.data-state-explain')) return;
-    const note=document.createElement('div');
-    note.className='data-state-explain';
-    note.innerHTML='<strong>資料狀態說明 <span class="data-state-badge">待補齊／待驗證</span></strong>'+NOTE_TEXT[kind];
-    panel.appendChild(note);
-  }
+          /* Dashboard UX hotfix v1 runtime: explicit data-state explanation */
+          (function installDashboardUxHotfix(){
+            const marker='dashboard-ux-hotfix-v1';
+            if(window[marker]) return;
+            window[marker]=true;
 
-  function refresh(){
-    const root=document.querySelector('#page-analysis');
-    if(!root) return;
-    root.querySelectorAll('.stock-panel').forEach(panel=>{
-      const title=(panel.querySelector('h3')?.textContent||'').replace(/\s+/g,'');
-      if(title.includes('技術')) addNote(panel,'technical');
-      if(title.includes('基本面')) addNote(panel,'fundamental');
-    });
-  }
+            const NOTE_TEXT={
+              technical:'目前尚無可驗證的技術指標數值。可能原因：歷史資料尚未達到指標所需期間、指標尚未完成 Production 驗證，或資料來源尚未提供。資料補齊並通過驗證後，畫面將自動更新。',
+              fundamental:'目前部分基本面衍生指標尚無可驗證數值。原始資料來源為 MOPS；待最新財報資料同步、欄位解析與計算驗證完成後再顯示數值。'
+            };
 
-  const observer=new MutationObserver(()=>refresh());
-  const start=()=>{
-    const root=document.querySelector('#page-analysis')||document.body;
-    observer.observe(root,{childList:true,subtree:true});
-    refresh();
-    setTimeout(refresh,300);
-    setTimeout(refresh,1000);
-  };
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',start,{once:true}); else start();
-})();
-'''
-          current = app.read_text(encoding='utf-8')
-          if js_marker not in current:
-              app.write_text(current.rstrip() + runtime, encoding='utf-8')
-          PY
+            function addNote(panel,kind){
+              if(!panel || panel.querySelector('.data-state-explain')) return;
+              const note=document.createElement('div');
+              note.className='data-state-explain';
+              note.innerHTML='<strong>資料狀態說明 <span class="data-state-badge">待補齊／待驗證</span></strong>'+NOTE_TEXT[kind];
+              panel.appendChild(note);
+            }
+
+            function refresh(){
+              const root=document.querySelector('#page-analysis');
+              if(!root) return;
+              root.querySelectorAll('.stock-panel').forEach(panel=>{
+                const title=(panel.querySelector('h3')?.textContent||'').replace(/\s+/g,'');
+                if(title.includes('技術')) addNote(panel,'technical');
+                if(title.includes('基本面')) addNote(panel,'fundamental');
+              });
+            }
+
+            const observer=new MutationObserver(()=>refresh());
+            const start=()=>{
+              const root=document.querySelector('#page-analysis')||document.body;
+              observer.observe(root,{childList:true,subtree:true});
+              refresh();
+              setTimeout(refresh,300);
+              setTimeout(refresh,1000);
+            };
+            if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',start,{once:true}); else start();
+          })();
+          EOF
+          fi
+
       - name: Verify patch
         run: |
           grep -q 'Dashboard UX hotfix v1' styles.css
           grep -q 'Dashboard UX hotfix v1 runtime' app.js
           node --check app.js
+
       - name: Commit patched dashboard
         run: |
           git config user.name 'github-actions[bot]'
