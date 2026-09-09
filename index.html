@@ -33,8 +33,7 @@
     .content-grid{grid-template-columns:minmax(0,1fr) 330px!important;gap:9px!important;margin-top:0!important}.content-grid .panel{padding:11px!important}
     .table-wrap table{font-size:12px!important}.table-wrap th{font-size:9px!important;padding:7px 6px!important}.table-wrap td{font-size:12px!important;padding:7px 6px!important}.table-wrap th:nth-child(9),.table-wrap td:nth-child(9){max-width:220px;white-space:normal}.table-wrap td:nth-child(9){font-size:10px!important}.score{font-size:11px!important}.status{font-size:9px!important}
     .side h2{font-size:16px!important}.change-item{font-size:10px!important;padding:7px 0!important}
-    .bottom-grid{grid-template-columns:1.1fr 1fr 1.25fr!important;gap:9px!important;margin-top:9px!important}.bottom-grid .panel{min-height:132px}.bottom-grid h2{font-size:15px!important}.bottom-grid p{font-size:10px!important}
-    .flow{justify-content:space-between;gap:3px!important}.flow span{font-size:9px!important;padding:5px!important}.flow i{font-size:9px}
+    .bottom-grid{grid-template-columns:1fr 1fr!important;gap:9px!important;margin-top:9px!important}.bottom-grid .panel{min-height:132px}.bottom-grid h2{font-size:15px!important}.bottom-grid p{font-size:10px!important}
     .hero-grid{display:none!important}
     .reference-section-title{font-size:10px;color:#8491a4;margin:0 0 5px}
     @media(max-width:1250px){.kpi-strip{grid-template-columns:repeat(4,1fr)}.dashboard-overview{grid-template-columns:1fr}.market-card{min-height:auto}.content-grid{grid-template-columns:1fr!important}}
@@ -84,7 +83,6 @@
         <div class="bottom-grid">
           <section class="panel"><h2>報告中心</h2><p>每日市場摘要、AI 選股報告與風險摘要。</p><button class="full" data-page="reports">查看報告中心 →</button></section>
           <section class="panel"><h2>本週市場概覽</h2><div class="market-score"><strong id="hero-count">–</strong><small id="hero-label">資料狀態待確認</small></div><p id="data-completeness">資料完整度：待確認</p><p id="market-note">市場資料與模型結果分開呈現。</p></section>
-          <section class="panel"><h2>AI 選股流程</h2><div class="flow"><span>市場資料</span><i>→</i><span>技術面</span><i>→</i><span>基本面</span><i>→</i><span>產業</span><i>→</i><span>AI評分</span><i>→</i><span>觀察清單</span></div><button class="full" data-page="engine">查看 AI 選股流程 →</button></section>
         </div>
       </section>
       <section id="page-portfolio" class="page"><div class="page-title"><h2>我的持股 Portfolio</h2><p>管理持股與成本，並與 AI 觀察清單交叉檢視。</p></div><div class="form-card"><label>代號<input id="portfolio-symbol" placeholder="例如 2330"></label><label>名稱<input id="portfolio-name" placeholder="例如 台積電"></label><label>股數<input id="portfolio-shares" type="number" min="0"></label><label>成本<input id="portfolio-cost" type="number" min="0" step="0.01"></label><button id="portfolio-add" class="primary">新增持股</button></div><div class="panel table-wrap"><table><thead><tr><th>代號</th><th>名稱</th><th>股數</th><th>成本</th></tr></thead><tbody id="portfolio-table"><tr><td colspan="4" class="empty">尚未登入。</td></tr></tbody></table></div></section>

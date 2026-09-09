@@ -182,8 +182,14 @@
       const input = document.querySelector('#analysis-symbol');
       const symbol = String(input?.value ?? '').trim().toUpperCase();
       if (!symbol) return;
-      event.preventDefault();
-      event.stopImmediatePropagation();
+      // Issue #9/D1: this must NOT call stopImmediatePropagation() - doing so
+      // silently blocked analysis-tabs-v2.js/analysis-tabs-fix.js's own
+      // #analysis-search click handlers (both plain, non-capturing
+      // addEventListener calls on the same button), which is what actually
+      // populates #analysis-tab-content (the 11-tab Overview/Technical/etc.
+      // panel, including the Overview K-line SVG chart) with real Production
+      // data. With that call removed, all three listeners run independently
+      // against their own, non-conflicting DOM targets.
       load(symbol, 'TWSE');
     }, true);
     const observe = () => {
