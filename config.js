@@ -26,4 +26,8 @@ window.APP_CONFIG = {
   uxAcceptance.src = 'dashboard-ux-acceptance-v1.js?v=20260909-ux-v1';
   uxAcceptance.async = false;
   document.head.appendChild(uxAcceptance);
+  const dataPages = document.createElement('script');
+  dataPages.src = 'dashboard-data-pages-v1.js?v=20260909-data-pages-v1';
+  dataPages.async = false;
+  document.head.appendChild(dataPages);
 })();
