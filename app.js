@@ -156,3 +156,39 @@
 import('./app-runtime.js').then(() => {
   try { window.__stockAnalysisEnhancer?.(); } catch (err) { console.error('Stock analysis UX enhancer failed:', err); }
 }).catch((err) => console.error('Dashboard runtime failed to start:', err));
+
+/* Dashboard UX hotfix v1 runtime: explicit data-state explanation */
+(function installDashboardUxHotfix(){
+  const marker='dashboard-ux-hotfix-v1';
+  if(window[marker]) return;
+  window[marker]=true;
+  const NOTE_TEXT={
+    technical:'目前尚無可驗證的技術指標數值。可能原因：歷史資料尚未達到指標所需期間、指標尚未完成 Production 驗證，或資料來源尚未提供。資料補齊並通過驗證後，畫面將自動更新。',
+    fundamental:'目前部分基本面衍生指標尚無可驗證數值。原始資料來源為 MOPS；待最新財報資料同步、欄位解析與計算驗證完成後再顯示數值。'
+  };
+  function addNote(panel,kind){
+    if(!panel || panel.querySelector('.data-state-explain')) return;
+    const note=document.createElement('div');
+    note.className='data-state-explain';
+    note.innerHTML='<strong>資料狀態說明 <span class="data-state-badge">待補齊／待驗證</span></strong>'+NOTE_TEXT[kind];
+    panel.appendChild(note);
+  }
+  function refresh(){
+    const root=document.querySelector('#page-analysis');
+    if(!root) return;
+    root.querySelectorAll('.stock-panel').forEach(panel=>{
+      const title=(panel.querySelector('h3')?.textContent||'').replace(/\s+/g,'');
+      if(title.includes('技術')) addNote(panel,'technical');
+      if(title.includes('基本面')) addNote(panel,'fundamental');
+    });
+  }
+  const observer=new MutationObserver(refresh);
+  const start=()=>{
+    const root=document.querySelector('#page-analysis')||document.body;
+    observer.observe(root,{childList:true,subtree:true});
+    refresh();
+    setTimeout(refresh,300);
+    setTimeout(refresh,1000);
+  };
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',start,{once:true}); else start();
+})();
