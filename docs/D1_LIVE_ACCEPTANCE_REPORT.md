@@ -9,6 +9,8 @@ Audited `main` (HEAD `b2a3f27`) against Issue #9's locked homepage UX baseline a
 
 No architecture, data pipeline, or scoring-engine change was made. No mock/fabricated data was introduced. No second scoring/indicator/recommendation engine was created. `stock-analysis-system` was not modified.
 
+> **Update: real-Production CI now confirms both fixes.** GPT's D1 review (on PR #40) correctly flagged that no GitHub Actions run existed against the PR's head SHA — root cause: `qa-live-dashboard.yml` only triggered on `workflow_dispatch`/`push`-to-`main`, never on a pull request, so no PR in this repo could ever get pre-merge CI evidence. Fixed by adding a `pull_request` trigger (commit `6461d26`). A manually-dispatched run against the first fix commit then surfaced a second, real, non-flaky-by-luck issue: `chart=false` on Desktop but `chart=true` on Mobile in the *same* job. Root cause: `config.js` still loaded the superseded `analysis-tabs-v2.js` alongside its own replacement `analysis-tabs-fix.js`, so removing `stopImmediatePropagation()` let *three* independent fetch/render pipelines (v2, fix, production) fire concurrently on every search instead of two — enough extra concurrent Supabase load that a cold connection could push completion past the QA script's wait window on whichever viewport ran first. Fixed by removing the `analysis-tabs-v2.js` load (commit `901894c`) — `analysis-tabs-fix.js` is explicitly self-contained and already a complete superset. The `pull_request`-triggered run against this PR's actual merge ref (`pull/40/merge`, run `34321448116`) now shows: **`Desktop: chart=true tabs=11 overflow=false consoleErrors=0 problems=0`**, **`Mobile: chart=true tabs=11 overflow=false consoleErrors=0 problems=0`**, `STOCK ANALYSIS QA PASSED`, and `qa:live-dashboard` also PASSED on both viewports. This is real, non-mocked, real-Production confirmation — see the fully revised Individual Stock QA and Final Status sections below.
+
 ## Environment
 
 - Repository: `stanleyshen7916-creator/Stock-Analysis-Dashboard`, branch `fix/d1-homepage-live-qa-gaps` (base `main` @ `b2a3f27`).
@@ -62,9 +64,9 @@ STOCK ANALYSIS QA FAILED
 
 Root cause traced by reading `stock-analysis-production.js`, `analysis-tabs-v2.js`, and `analysis-tabs-fix.js` together: `stock-analysis-production.js` installs a `document.addEventListener('click', ..., true)` (capture phase) on the search flow that calls `event.stopImmediatePropagation()` whenever `#analysis-search` is clicked. Because `analysis-tabs-v2.js` and `analysis-tabs-fix.js` both bind their own data-loading logic to the *same* `#analysis-search` button via plain (bubble-phase) `addEventListener`, the capturing listener firing first and calling `stopImmediatePropagation()` **permanently prevented those two scripts' click handlers from ever executing** — meaning `#analysis-tab-content` (the 11-tab Overview/Technical/etc. panel, including the K-line chart) never received real data and stayed frozen at its initial empty-state render for the lifetime of the page, regardless of what symbol was searched.
 
-**Fix**: removed the `event.stopImmediatePropagation()` call. `stock-analysis-production.js`'s own listener (still capture-phase, still first to run) no longer blocks the other two — all three now populate their own distinct, non-overlapping DOM targets (`#analysis-production-panel` vs. `#analysis-tab-content`) independently.
+**Fix (part 1)**: removed the `event.stopImmediatePropagation()` call. `stock-analysis-production.js`'s own listener (still capture-phase, still first to run) no longer blocks the other click handlers on the same button.
 
-**Verification** (local Playwright, mocked Supabase REST responses so the real fetch→render pipeline runs end-to-end without needing live Production connectivity):
+**Verification (part 1)** (local Playwright, mocked Supabase REST responses so the real fetch→render pipeline runs end-to-end without needing live Production connectivity):
 
 ```
 svgCount: 1 tabCount: 11
@@ -72,7 +74,27 @@ overview snippet: K 線走勢Production OHLCV；本區只呈現真正 K 線。�
 console errors: 0
 ```
 
-All 11 tabs present (總覽/技術分析/基本面/籌碼分析/財務分析/產業分析/波浪分析/AI 選股流程/歷史推薦/預測追蹤/相關新聞), each clickable, none blank, none stuck loading, no console errors — matching `qa-stock-analysis-executable.mjs`'s own assertions, now satisfied.
+This confirmed the mechanism was fixed, but a manually-dispatched **real-CI** run against this exact commit (`f875e82`, run `34321155199`) then showed a subtler, real timing defect:
+
+```
+Desktop: chart=false tabs=11 overflow=false consoleErrors=0 problems=1
+  - Overview K 線走勢 has no graphical SVG chart
+Mobile: chart=true tabs=11 overflow=false consoleErrors=0 problems=0
+```
+
+Same job, same commit, same code — Mobile got its chart, Desktop didn't. Root cause: `config.js` was still loading `analysis-tabs-v2.js` *alongside* its own superseding replacement `analysis-tabs-fix.js` (both bind independent click handlers and fetch/render pipelines to the same button and DOM target). With `stopImmediatePropagation()` gone, that meant *three* concurrent fetch/render pipelines (v2, fix, production) fired on every search instead of two — enough extra concurrent Supabase load that whichever viewport's browser page ran first (Desktop, in this script) hit a colder connection and didn't finish before the QA script's fixed wait window, while the second page (Mobile) benefited from a now-warm connection pool.
+
+**Fix (part 2)**: removed the `analysis-tabs-v2.js` script injection from `config.js` — `analysis-tabs-fix.js` is explicitly self-contained (per its own file header) and already a complete superset of v2's behavior, so v2 was pure redundant load with no functional benefit.
+
+**Verification (part 2)** — real CI, PR's actual merge ref (`pull/40/merge`, run `34321448116`, triggered automatically by the new `pull_request` workflow trigger):
+
+```
+Desktop: chart=true tabs=11 overflow=false consoleErrors=0 problems=0
+Mobile: chart=true tabs=11 overflow=false consoleErrors=0 problems=0
+STOCK ANALYSIS QA PASSED
+```
+
+All 11 tabs present (總覽/技術分析/基本面/籌碼分析/財務分析/產業分析/波浪分析/AI 選股流程/歷史推薦/預測追蹤/相關新聞), each clickable, none blank, none stuck loading, no console errors, on both viewports, against real Production data — `qa-stock-analysis-executable.mjs`'s own assertions now fully satisfied by real CI, not just local mocked verification.
 
 ## 11 Tabs QA
 
@@ -118,15 +140,16 @@ Re-read `stock-analysis-production.js`, `analysis-tabs-fix.js`, `analysis-tabs-v
 
 ## Fixes Applied
 
-1. `stock-analysis-production.js`: removed `event.stopImmediatePropagation()` from the `#analysis-search` capture-phase click listener (1-line removal + explanatory comment). Restores `analysis-tabs-v2.js`/`analysis-tabs-fix.js`'s own click handling, which is what populates the Overview tab's SVG chart and the other 10 tabs with real Production data.
-2. `index.html`: removed the fixed "AI 選股流程" workflow-diagram panel from the homepage `.bottom-grid` (and tightened `.bottom-grid` from 3 to 2 columns to match). The same content remains fully available as the existing, unmodified `#page-engine` secondary page, reachable from the sidebar nav and from the dashboard's own "查看完整清單 →"-style links elsewhere.
+1. `stock-analysis-production.js`: removed `event.stopImmediatePropagation()` from the `#analysis-search` capture-phase click listener. Restores the other scripts' own click handling on that button.
+2. `config.js`: stopped loading the superseded `analysis-tabs-v2.js` (kept only `analysis-tabs-fix.js`, its self-contained replacement) — eliminates the redundant concurrent-fetch race that fix #1 alone exposed (Desktop failing while Mobile passed in the same real-CI job).
+3. `index.html`: removed the fixed "AI 選股流程" workflow-diagram panel from the homepage `.bottom-grid` (and tightened `.bottom-grid` from 3 to 2 columns to match). The same content remains fully available as the existing, unmodified `#page-engine` secondary page.
+4. `.github/workflows/qa-live-dashboard.yml`: added a `pull_request` trigger (previously only `workflow_dispatch`/push-to-`main`), so this and every future PR gets real-Production CI evidence on its own head/merge ref instead of never running until after merge.
 
-Both fixes are minimal, surgical, and reversible; neither touches architecture, the data pipeline, scoring, or introduces new UI concepts beyond what Issue #9 and the existing baseline already specify.
+All four fixes are minimal, surgical, and reversible; none touches architecture, the data pipeline, scoring, or introduces new UI concepts beyond what Issue #9 and the existing baseline already specify. Fixes #1 and #2 are both proven not just locally but by real, non-mocked GitHub Actions runs against real Production Supabase (see Individual Stock QA above) — the final run (`34321448116`) shows both `qa:live-dashboard` and `qa:stock-analysis` fully PASSED on the PR's actual merge ref.
 
 ## Remaining Issues
 
-- `qa-live-dashboard.mjs` and `qa-stock-analysis-executable.mjs` have not been re-run against real Production from a network-unblocked environment as part of this PR (this sandbox cannot reach Supabase). They will run automatically in this repo's own `Live Dashboard QA` GitHub Actions workflow once this branch/PR triggers CI; that real run is the authoritative confirmation this report defers to, and is expected to show `chart=true` for both viewports for the first time since the regression was introduced.
-- `analysis-tabs.js` (dead, unloaded) and `corrected-dashboard.html` (dead, unloaded) remain in the repository — flagged as a hygiene item, not fixed here (out of scope for "smallest correct fix").
+- `analysis-tabs.js` (dead, unloaded even before this PR) and `corrected-dashboard.html` (dead, unloaded) remain in the repository — flagged as a hygiene item, not fixed here (out of scope for "smallest correct fix").
 - All items listed in `docs/M15-M23_EXECUTION_REPORT.md`'s own Known Limitations remain open and are not affected by this PR.
 
 ## Acceptance Matrix
@@ -154,4 +177,4 @@ Both fixes are minimal, surgical, and reversible; neither touches architecture, 
 
 **PASS WITH KNOWN LIMITATIONS**
 
-(Not DONE — final acceptance is GPT's to grant. The one open limitation — real-Production CI re-validation happening on push rather than inside this session — is an environment constraint, not an unresolved Dashboard defect; both applied fixes were independently verified end-to-end against real browser/DOM behavior with mocked data standing in only for the literal Supabase network hop this sandbox cannot make.)
+(Not DONE — final acceptance is GPT's to grant. Both applied fixes are now confirmed by real, non-mocked GitHub Actions CI against real Production Supabase, run against this PR's actual merge ref, not merely by local mocked verification: `qa:live-dashboard` PASSED and `qa:stock-analysis` PASSED — `Desktop: chart=true tabs=11 overflow=false consoleErrors=0 problems=0`, `Mobile: chart=true tabs=11 overflow=false consoleErrors=0 problems=0` (run `34321448116`). The remaining open items — two dead/unloaded files, and pre-existing Known Limitations from `docs/M15-M23_EXECUTION_REPORT.md` — are hygiene/out-of-scope items, not unresolved D1 defects.)
