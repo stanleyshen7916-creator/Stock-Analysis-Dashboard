@@ -19,9 +19,14 @@ function startStaticServer(dir) {
   });
   return new Promise((resolve) => server.listen(0, '127.0.0.1', () => resolve({ server, port: server.address().port })));
 }
-const PAGE_CLICKS = ['dashboard', 'portfolio', 'analysis', 'engine', 'strategy', 'market', 'industry', 'backtest', 'data', 'reports', 'settings'];
+const PAGE_CLICKS = ['dashboard', 'portfolio', 'analysis', 'engine', 'strategy', 'market', 'industry', 'backtest', 'data', 'reports', 'settings', 'top50'];
 const STUCK_LOADING_PATTERNS = ['載入中'];
 function assertNotStuckLoading(label, text, problems) { const value = (text ?? '').trim(); if (STUCK_LOADING_PATTERNS.some((p) => value.includes(p))) problems.push(`${label} still shows loading placeholder after settle-wait: "${value}"`); }
+function assertPageHasContent(pageName, text, problems) {
+  const value = (text ?? '').trim();
+  if (!value) problems.push(`Page ${pageName} is blank`);
+  assertNotStuckLoading(`Page ${pageName}`, value, problems);
+}
 
 async function runFlowChecks(page, problems) {
   const heroCount = (await page.textContent('#hero-count'))?.trim() ?? '';
@@ -30,10 +35,10 @@ async function runFlowChecks(page, problems) {
   const honestDashboardError = stockTableText.includes('Production Data 讀取失敗') || systemStatus.includes('資料連線異常');
   if ((!heroCount || heroCount === '–') && !honestDashboardError) problems.push(`Dashboard hero count never populated: "${heroCount}"`);
   assertNotStuckLoading('Dashboard hero count', heroCount, problems);
-  assertNotStuckLoading('Market Top 50 table', stockTableText, problems);
+  assertNotStuckLoading('Dashboard Top 10 table', stockTableText, problems);
   const stockRows = await page.$$('#stock-table tr');
   const hasRealRow = await page.$('#stock-table .link-stock');
-  if (!stockRows.length || (!hasRealRow && !stockTableText.includes('尚無真實資料') && !stockTableText.includes('Production Data 讀取失敗'))) problems.push('Market Top 50 table has neither real rows nor an honest empty/error state');
+  if (!stockRows.length || (!hasRealRow && !stockTableText.includes('尚無真實資料') && !stockTableText.includes('Production Data 讀取失敗') && !stockTableText.includes('Production 尚無可用 Top 50 資料'))) problems.push('Dashboard Top 10 table has neither real rows nor an honest empty/error state');
 
   await page.click('[data-horizon="short"]');
   await page.waitForTimeout(800);
@@ -79,6 +84,23 @@ async function runFlowChecks(page, problems) {
   if (!breakdown.includes('Fundamental') && !breakdown.includes('尚無真實計分細節') && !breakdown.includes('尚未執行')) problems.push('AI Selection breakdown shows neither verified score detail nor honest empty state');
 }
 
+async function runPageChecks(page, problems) {
+  for (const pageName of PAGE_CLICKS) {
+    const button = page.locator(`[data-page="${pageName}"]`).first();
+    await button.click();
+    await page.waitForTimeout(1000);
+    const root = page.locator(`#page-${pageName}`);
+    const text = await root.textContent().catch(() => '');
+    assertPageHasContent(pageName, text, problems);
+    if (pageName === 'top50') {
+      const table = await page.textContent('#top50-table') ?? '';
+      const hasRows = await page.$$('#top50-table tr');
+      if (!hasRows.length || (!table.includes('2330') && !table.includes('Production Data 讀取失敗') && !table.includes('Production 尚無 Top 50 資料'))) problems.push('Market Top 50 has no verified rows or honest state');
+      if (table.includes('載入中')) problems.push('Market Top 50 remained in loading state');
+    }
+  }
+}
+
 async function run() {
   const { server, port } = await startStaticServer(rootDir);
   const browser = await chromium.launch();
@@ -92,7 +114,7 @@ async function run() {
     await page.waitForTimeout(1800);
     const problems = [];
     await runFlowChecks(page, problems);
-    for (const pageName of PAGE_CLICKS) { await page.click(`[data-page="${pageName}"]`); await page.waitForTimeout(700); }
+    await runPageChecks(page, problems);
     await page.click('[data-page="dashboard"]'); await page.waitForTimeout(500);
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth + 1);
     const realErrors = consoleErrors.filter((e) => !e.includes('favicon'));
@@ -100,7 +122,7 @@ async function run() {
     await page.close();
   }
   await browser.close(); server.close();
-  console.log('=== Dashboard Live QA (reference UX + real-data flow + stock tabs) ===');
+  console.log('=== Dashboard Live QA (reference UX + real-data flow + all pages + stock tabs) ===');
   let failed = false;
   for (const { label, realErrors, overflow, problems } of results) {
     console.log(`${label}: horizontalOverflow=${overflow} consoleErrors=${realErrors.length} flowProblems=${problems.length}`);
