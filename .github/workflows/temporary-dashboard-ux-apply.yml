@@ -1,0 +1,101 @@
+name: Temporary dashboard UX apply
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Apply requested UX fixes
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if ! grep -q 'Dashboard UX hotfix v1: Project Owner acceptance adjustments' styles.css; then
+            cat >> styles.css <<'EOF'
+
+          /* Dashboard UX hotfix v1: Project Owner acceptance adjustments */
+          /* TOP 10 typography: larger for direct user readability. */
+          #page-dashboard .table-wrap table{font-size:18px!important}
+          #page-dashboard .table-wrap th{font-size:14px!important;padding:10px 9px!important}
+          #page-dashboard .table-wrap td{font-size:17px!important;padding:10px 9px!important;line-height:1.45!important}
+          #page-dashboard .table-wrap td:nth-child(9){font-size:15px!important;line-height:1.5!important}
+          #page-dashboard .table-wrap .score{font-size:16px!important;min-width:34px!important;padding:4px 7px!important}
+          #page-dashboard .table-wrap .status{font-size:14px!important;padding:4px 8px!important}
+          @media(max-width:800px){
+            #page-dashboard .table-wrap table{font-size:16px!important}
+            #page-dashboard .table-wrap th{font-size:13px!important}
+            #page-dashboard .table-wrap td{font-size:15px!important}
+            #page-dashboard .table-wrap td:nth-child(9){font-size:14px!important}
+          }
+
+          /* Individual-stock analysis: explicit missing-data explanation. */
+          #page-analysis .data-state-explain{margin-top:10px;padding:10px 12px;border-radius:8px;background:#fff8e8;border:1px solid #f3dfad;color:#7a5b16;font-size:13px!important;line-height:1.6}
+          #page-analysis .data-state-explain strong{display:block;margin-bottom:3px;color:#9a6b00;font-size:14px!important}
+          #page-analysis .data-state-badge{display:inline-block;margin-left:6px;padding:2px 7px;border-radius:999px;background:#fff1cc;color:#9a6b00;font-size:12px!important;font-weight:700}
+          EOF
+          fi
+
+          if ! grep -q 'Dashboard UX hotfix v1 runtime: explicit data-state explanation' app.js; then
+            cat >> app.js <<'EOF'
+
+          /* Dashboard UX hotfix v1 runtime: explicit data-state explanation */
+          (function installDashboardUxHotfix(){
+            const marker='dashboard-ux-hotfix-v1';
+            if(window[marker]) return;
+            window[marker]=true;
+            const NOTE_TEXT={
+              technical:'目前尚無可驗證的技術指標數值。可能原因：歷史資料尚未達到指標所需期間、指標尚未完成 Production 驗證，或資料來源尚未提供。資料補齊並通過驗證後，畫面將自動更新。',
+              fundamental:'目前部分基本面衍生指標尚無可驗證數值。原始資料來源為 MOPS；待最新財報資料同步、欄位解析與計算驗證完成後再顯示數值。'
+            };
+            function addNote(panel,kind){
+              if(!panel || panel.querySelector('.data-state-explain')) return;
+              const note=document.createElement('div');
+              note.className='data-state-explain';
+              note.innerHTML='<strong>資料狀態說明 <span class="data-state-badge">待補齊／待驗證</span></strong>'+NOTE_TEXT[kind];
+              panel.appendChild(note);
+            }
+            function refresh(){
+              const root=document.querySelector('#page-analysis');
+              if(!root) return;
+              root.querySelectorAll('.stock-panel').forEach(panel=>{
+                const title=(panel.querySelector('h3')?.textContent||'').replace(/\s+/g,'');
+                if(title.includes('技術')) addNote(panel,'technical');
+                if(title.includes('基本面')) addNote(panel,'fundamental');
+              });
+            }
+            const observer=new MutationObserver(refresh);
+            const start=()=>{
+              const root=document.querySelector('#page-analysis')||document.body;
+              observer.observe(root,{childList:true,subtree:true});
+              refresh();
+              setTimeout(refresh,300);
+              setTimeout(refresh,1000);
+            };
+            if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',start,{once:true}); else start();
+          })();
+          EOF
+          fi
+
+          node --check app.js
+          grep -q 'Dashboard UX hotfix v1' styles.css
+          grep -q 'Dashboard UX hotfix v1 runtime' app.js
+
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add styles.css app.js
+          git commit -m 'fix: adjust dashboard data states and top10 typography' || true
+          rm -f .github/workflows/temporary-dashboard-ux-apply.yml
+          git add .github/workflows/temporary-dashboard-ux-apply.yml
+          git commit -m 'chore: remove temporary dashboard UX apply workflow' || true
+          git push origin main
