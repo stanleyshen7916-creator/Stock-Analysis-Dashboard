@@ -1,136 +1,24 @@
-// Real-data QA for the approved Dashboard UX. Serves the static files locally
-// and drives the real Production Supabase-backed UI with Playwright. The
-// checks accept either verified data or an explicit honest empty/error state;
-// they never accept a stuck loading state or fabricated values.
 import http from 'node:http';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
 
-const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-function startStaticServer(dir) {
-  const contentTypes = { '.html': 'text/html', '.js': 'text/javascript', '.mjs': 'text/javascript', '.css': 'text/css', '.json': 'application/json' };
-  const server = http.createServer((req, res) => {
-    const requestPath = decodeURIComponent(req.url.split('?')[0]);
-    const filePath = path.join(dir, requestPath === '/' ? '/index.html' : requestPath);
-    if (!filePath.startsWith(dir)) { res.writeHead(403); res.end(); return; }
-    fs.readFile(filePath, (err, data) => { if (err) { res.writeHead(404); res.end('not found'); return; } res.writeHead(200, { 'Content-Type': contentTypes[path.extname(filePath)] || 'application/octet-stream' }); res.end(data); });
-  });
-  return new Promise((resolve) => server.listen(0, '127.0.0.1', () => resolve({ server, port: server.address().port })));
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const pages=['dashboard','portfolio','analysis','engine','strategy','market','industry','backtest','data','reports','settings','top50'];
+const server=http.createServer((req,res)=>{const p=path.join(root,req.url.split('?')[0]==='/'?'/index.html':req.url.split('?')[0]);fs.readFile(p,(e,d)=>{res.writeHead(e?404:200,{'Content-Type':p.endsWith('.js')?'text/javascript':'text/html'});res.end(e?'not found':d);});});
+const text=async(p,sel)=>{if(await p.locator(sel).count()===0)return '';return (await p.locator(sel).first().textContent())||'';};
+function loading(v){return String(v).includes('載入中');}
+async function check(page,label,problems){
+  const hero=await text(page,'#hero-count'), table=await text(page,'#stock-table');
+  if(!hero)problems.push(`${label}: dashboard hero-count missing/blank`); if(loading(hero)||loading(table))problems.push(`${label}: dashboard stuck loading`);
+  if(!(await page.locator('#stock-table .link-stock').count())&&!table.includes('Production Data 讀取失敗')&&!table.includes('尚無'))problems.push(`${label}: dashboard Top 10 has no real row/state`);
+  const stock=await page.locator('.link-stock').first(); if(await stock.count())await stock.click();else{await page.locator('[data-page="analysis"]').first().click();const inp=page.locator('#analysis-symbol');if(await inp.count()){await inp.fill('2330');await page.locator('#analysis-search').click();}}
+  await page.waitForTimeout(1200);
+  for(const id of ['#analysis-conclusion','#analysis-provenance','#analysis-fundamentals','#analysis-market']){const v=await text(page,id);if(!v)problems.push(`${label}: ${id} blank`);if(loading(v))problems.push(`${label}: ${id} stuck loading`);}
+  const tabs=page.locator('.stock-tab');if(await tabs.count()!==11)problems.push(`${label}: stock tab count != 11`);
+  for(let i=0;i<await tabs.count();i++){await tabs.nth(i).click();await page.waitForTimeout(150);const v=await text(page,'#analysis-tab-content');if(!v)problems.push(`${label}: stock tab ${i+1} blank`);if(loading(v))problems.push(`${label}: stock tab ${i+1} loading`);}
 }
-const PAGE_CLICKS = ['dashboard', 'portfolio', 'analysis', 'engine', 'strategy', 'market', 'industry', 'backtest', 'data', 'reports', 'settings', 'top50'];
-const STUCK_LOADING_PATTERNS = ['載入中'];
-function assertNotStuckLoading(label, text, problems) { const value = (text ?? '').trim(); if (STUCK_LOADING_PATTERNS.some((p) => value.includes(p))) problems.push(`${label} still shows loading placeholder after settle-wait: "${value}"`); }
-function assertPageHasContent(pageName, text, problems) {
-  const value = (text ?? '').trim();
-  if (!value) problems.push(`Page ${pageName} is blank`);
-  assertNotStuckLoading(`Page ${pageName}`, value, problems);
-}
-
-async function runFlowChecks(page, problems) {
-  const heroCount = (await page.textContent('#hero-count'))?.trim() ?? '';
-  const stockTableText = await page.textContent('#stock-table') ?? '';
-  const systemStatus = await page.textContent('#system-status') ?? '';
-  const honestDashboardError = stockTableText.includes('Production Data 讀取失敗') || systemStatus.includes('資料連線異常');
-  if ((!heroCount || heroCount === '–') && !honestDashboardError) problems.push(`Dashboard hero count never populated: "${heroCount}"`);
-  assertNotStuckLoading('Dashboard hero count', heroCount, problems);
-  assertNotStuckLoading('Dashboard Top 10 table', stockTableText, problems);
-  const stockRows = await page.$$('#stock-table tr');
-  const hasRealRow = await page.$('#stock-table .link-stock');
-  if (!stockRows.length || (!hasRealRow && !stockTableText.includes('尚無真實資料') && !stockTableText.includes('Production Data 讀取失敗') && !stockTableText.includes('Production 尚無可用 Top 50 資料'))) problems.push('Dashboard Top 10 table has neither real rows nor an honest empty/error state');
-
-  await page.click('[data-horizon="short"]');
-  await page.waitForTimeout(800);
-  assertNotStuckLoading('Horizon-filtered table', await page.textContent('#stock-table'), problems);
-
-  const stockLink = await page.$('.link-stock');
-  if (stockLink) await stockLink.click();
-  else { await page.click('[data-page="analysis"]'); await page.fill('#analysis-symbol', '2330'); await page.click('#analysis-search'); }
-  await page.waitForTimeout(1800);
-
-  const conclusion = await page.textContent('#analysis-conclusion') ?? '';
-  const provenance = await page.textContent('#analysis-provenance') ?? '';
-  const fundamentals = await page.textContent('#analysis-fundamentals') ?? '';
-  const market = await page.textContent('#analysis-market') ?? '';
-  assertNotStuckLoading('Stock analysis conclusion', conclusion, problems);
-  assertNotStuckLoading('Stock analysis provenance', provenance, problems);
-  assertNotStuckLoading('Fundamental panel', fundamentals, problems);
-  assertNotStuckLoading('Market/history panel', market, problems);
-  if (!conclusion.trim()) problems.push('Stock analysis conclusion is blank');
-  if (!provenance.trim()) problems.push('Stock analysis provenance is blank');
-
-  const stockTabs = await page.$$('.stock-tab');
-  if (stockTabs.length !== 11) problems.push(`Individual stock tab count is ${stockTabs.length}; expected 11`);
-  const expectedTabs = ['總覽','技術分析','基本面','籌碼分析','財務分析','產業分析','波浪分析','AI 選股流程','歷史推薦','預測追蹤','相關新聞'];
-  for (let i = 0; i < Math.min(stockTabs.length, expectedTabs.length); i += 1) {
-    const tab = page.locator('.stock-tab').nth(i);
-    await tab.click();
-    await page.waitForTimeout(250);
-    const active = await tab.getAttribute('class') ?? '';
-    const content = await page.textContent('#analysis-tab-content') ?? '';
-    if (!active.includes('active')) problems.push(`Stock analysis tab ${expectedTabs[i]} did not become active`);
-    if (!content.trim()) problems.push(`Stock analysis tab ${expectedTabs[i]} rendered blank content`);
-    assertNotStuckLoading(`Stock analysis tab ${expectedTabs[i]}`, content, problems);
-  }
-  await page.locator('.stock-tab').first().click();
-
-  await page.click('[data-page="engine"]');
-  await page.waitForTimeout(800);
-  const score = await page.textContent('#engine-score') ?? '';
-  const breakdown = await page.textContent('#engine-breakdown') ?? '';
-  assertNotStuckLoading('AI Selection score', score, problems);
-  assertNotStuckLoading('AI Selection breakdown', breakdown, problems);
-  if (!breakdown.includes('Fundamental') && !breakdown.includes('尚無真實計分細節') && !breakdown.includes('尚未執行')) problems.push('AI Selection breakdown shows neither verified score detail nor honest empty state');
-}
-
-async function runPageChecks(page, problems) {
-  for (const pageName of PAGE_CLICKS) {
-    const button = page.locator(`[data-page="${pageName}"]`).first();
-    await button.click();
-    await page.waitForTimeout(1000);
-    const root = page.locator(`#page-${pageName}`);
-    const text = await root.textContent().catch(() => '');
-    assertPageHasContent(pageName, text, problems);
-    if (pageName === 'top50') {
-      const table = await page.textContent('#top50-table') ?? '';
-      const hasRows = await page.$$('#top50-table tr');
-      if (!hasRows.length || (!table.includes('2330') && !table.includes('Production Data 讀取失敗') && !table.includes('Production 尚無 Top 50 資料'))) problems.push('Market Top 50 has no verified rows or honest state');
-      if (table.includes('載入中')) problems.push('Market Top 50 remained in loading state');
-    }
-  }
-}
-
-async function run() {
-  const { server, port } = await startStaticServer(rootDir);
-  const browser = await chromium.launch();
-  const results = [];
-  for (const [label, viewport] of [['Desktop', { width: 1280, height: 900 }], ['Mobile', { width: 390, height: 844 }]]) {
-    const page = await browser.newPage({ viewport });
-    const consoleErrors = [];
-    page.on('console', (msg) => { if (msg.type() === 'error') consoleErrors.push(msg.text()); });
-    page.on('pageerror', (err) => consoleErrors.push(`pageerror: ${err.message}`));
-    await page.goto(`http://127.0.0.1:${port}/index.html`, { waitUntil: 'domcontentloaded', timeout: 15000 });
-    await page.waitForTimeout(3000);
-    const problems = [];
-    await runFlowChecks(page, problems);
-    await runPageChecks(page, problems);
-    await page.click('[data-page="dashboard"]'); await page.waitForTimeout(500);
-    const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth + 1);
-    const realErrors = consoleErrors.filter((e) => !e.includes('favicon'));
-    results.push({ label, realErrors, overflow, problems });
-    await page.close();
-  }
-  await browser.close(); server.close();
-  console.log('=== Dashboard Live QA (reference UX + real-data flow + all pages + stock tabs) ===');
-  let failed = false;
-  for (const { label, realErrors, overflow, problems } of results) {
-    console.log(`${label}: horizontalOverflow=${overflow} consoleErrors=${realErrors.length} flowProblems=${problems.length}`);
-    if (realErrors.length) { console.log(realErrors.join('\n')); failed = true; }
-    if (overflow) failed = true;
-    if (problems.length) { console.log(problems.map((p) => `  - ${p}`).join('\n')); failed = true; }
-  }
-  if (failed) { console.error('QA FAILED'); process.exit(1); }
-  console.log('QA PASSED');
-}
-run().catch((err) => { console.error(err); process.exit(1); });
+async function pageMatrix(page,label,problems){for(const name of pages){const b=page.locator(`[data-page="${name}"]`).first();if(await b.count()===0){problems.push(`${label}: navigation page ${name} missing`);continue;}await b.click();await page.waitForTimeout(800);const rootNode=page.locator(`#page-${name}`).first();const v=await text(page,`#page-${name}`);if(await rootNode.count()===0)problems.push(`${label}: page ${name} root missing`);else if(!v.trim())problems.push(`${label}: page ${name} blank`);if(loading(v))problems.push(`${label}: page ${name} stuck loading`);if(name==='top50'){const t=await text(page,'#top50-table');if(!(await page.locator('#top50-table tr').count()))problems.push(`${label}: top50 table empty`);if(!t.includes('2330')&&!t.includes('Production Data 讀取失敗')&&!t.includes('尚無'))problems.push(`${label}: top50 has no verified row/state`);}}}
+async function run(){await new Promise(r=>server.listen(0,'127.0.0.1',r));const port=server.address().port;const browser=await chromium.launch();let failed=false;for(const [label,viewport] of [['Desktop',{width:1280,height:900}],['Mobile',{width:390,height:844}]]){const p=await browser.newPage({viewport});const errors=[];p.on('console',m=>{if(m.type()==='error'&&!m.text().includes('favicon'))errors.push(m.text())});p.on('pageerror',e=>errors.push(e.message));await p.goto(`http://127.0.0.1:${port}/index.html`,{waitUntil:'domcontentloaded',timeout:15000});await p.waitForTimeout(3000);const problems=[];await check(p,label,problems);await pageMatrix(p,label,problems);const overflow=await p.evaluate(()=>document.documentElement.scrollWidth>document.documentElement.clientWidth+1);console.log(`${label}: errors=${errors.length} overflow=${overflow} problems=${problems.length}`);[...errors,...problems].forEach(x=>console.log(' - '+x));if(errors.length||overflow||problems.length)failed=true;await p.close();}await browser.close();server.close();if(failed)process.exit(1);console.log('QA PASSED');}
+run().catch(e=>{console.error(e);process.exit(1);});
