@@ -11,7 +11,8 @@ window.APP_CONFIG = {
     ['analysis-tabs-fix.js?v=20260905-tabs-fix-v2', false],
     ['stock-analysis-production.js?v=20260907-production-v1', false],
     ['dashboard-ux-acceptance-v1.js?v=20260909-ux-v1', false],
-    ['dashboard-data-pages-v2.js?v=20260909-data-pages-v2', false]
+    ['dashboard-data-pages-v2.js?v=20260909-data-pages-v2', false],
+    ['dashboard-top50-layout-v1.js?v=20260909-top50-layout-v1', false]
   ];
   scripts.forEach(([src, async]) => { const s=document.createElement('script'); s.src=src; s.async=async; document.head.appendChild(s); });
 })();
