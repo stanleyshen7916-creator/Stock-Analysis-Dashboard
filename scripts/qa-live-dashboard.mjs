@@ -110,8 +110,8 @@ async function run() {
     const consoleErrors = [];
     page.on('console', (msg) => { if (msg.type() === 'error') consoleErrors.push(msg.text()); });
     page.on('pageerror', (err) => consoleErrors.push(`pageerror: ${err.message}`));
-    await page.goto(`http://127.0.0.1:${port}/index.html`, { waitUntil: 'networkidle' });
-    await page.waitForTimeout(1800);
+    await page.goto(`http://127.0.0.1:${port}/index.html`, { waitUntil: 'domcontentloaded', timeout: 15000 });
+    await page.waitForTimeout(3000);
     const problems = [];
     await runFlowChecks(page, problems);
     await runPageChecks(page, problems);
