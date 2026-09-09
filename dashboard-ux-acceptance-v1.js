@@ -49,6 +49,84 @@
     host.appendChild(note);
   }
 
+  async function ensureOverviewChart() {
+    const root = document.querySelector('#analysis-tab-content');
+    if (!root || root.dataset.tab && root.dataset.tab !== 'overview') return;
+    if (root.querySelector('svg')) return;
+
+    const input = document.querySelector('#analysis-symbol');
+    const symbol = String(input?.value || document.querySelector('#analysis-symbol-display')?.textContent || '').trim().toUpperCase().split(/\s+/)[0];
+    const market = String(document.querySelector('#analysis-market-display')?.textContent || 'TWSE').trim() || 'TWSE';
+    if (!symbol || !window.APP_CONFIG?.SUPABASE_URL || !window.APP_CONFIG?.SUPABASE_ANON_KEY) return;
+
+    try {
+      const params = new URLSearchParams({
+        symbol: `eq.${symbol}`,
+        market: `eq.${market}`,
+        order: 'trading_date.desc',
+        limit: '60'
+      });
+      const response = await fetch(`${window.APP_CONFIG.SUPABASE_URL}/rest/v1/market_daily?${params.toString()}`, {
+        headers: { apikey: window.APP_CONFIG.SUPABASE_ANON_KEY, Authorization: `Bearer ${window.APP_CONFIG.SUPABASE_ANON_KEY}` }
+      });
+      if (!response.ok) return;
+      const rows = (await response.json()).reverse().filter((r) => [r.open, r.high, r.low, r.close].every((v) => Number.isFinite(Number(v))));
+      if (!rows.length || root.querySelector('svg')) return;
+
+      const width = 900;
+      const height = 300;
+      const pad = 28;
+      let low = Infinity;
+      let high = -Infinity;
+      rows.forEach((r) => { low = Math.min(low, Number(r.low)); high = Math.max(high, Number(r.high)); });
+      const range = high - low || 1;
+      const y = (value) => height - pad - (Number(value) - low) / range * (height - 2 * pad);
+      const ns = 'http://www.w3.org/2000/svg';
+      const svg = document.createElementNS(ns, 'svg');
+      svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+      svg.setAttribute('preserveAspectRatio', 'none');
+      svg.setAttribute('aria-label', '日線 K 線');
+
+      rows.forEach((r, i) => {
+        const x = pad + i / Math.max(rows.length - 1, 1) * (width - 2 * pad);
+        const open = y(r.open);
+        const close = y(r.close);
+        const wickHigh = y(r.high);
+        const wickLow = y(r.low);
+        const up = Number(r.close) >= Number(r.open);
+        const stroke = up ? '#13a878' : '#ef4444';
+        const line = document.createElementNS(ns, 'line');
+        line.setAttribute('x1', x); line.setAttribute('x2', x);
+        line.setAttribute('y1', wickHigh); line.setAttribute('y2', wickLow);
+        line.setAttribute('stroke', stroke); line.setAttribute('stroke-width', '1.5');
+        svg.appendChild(line);
+        const body = document.createElementNS(ns, 'rect');
+        const bodyWidth = Math.max(3, Math.min(10, (width - 2 * pad) / rows.length * 0.65));
+        body.setAttribute('x', x - bodyWidth / 2);
+        body.setAttribute('y', Math.min(open, close));
+        body.setAttribute('width', bodyWidth);
+        body.setAttribute('height', Math.max(2, Math.abs(open - close)));
+        body.setAttribute('fill', stroke);
+        svg.appendChild(body);
+      });
+
+      const host = root.querySelector('.analysis-chart');
+      if (host) {
+        host.replaceChildren(svg);
+      } else {
+        const section = Array.from(root.querySelectorAll('section')).find((node) => /K 線走勢/.test(node.textContent || ''));
+        if (section) {
+          const chartHost = document.createElement('div');
+          chartHost.className = 'analysis-chart';
+          chartHost.appendChild(svg);
+          section.appendChild(chartHost);
+        }
+      }
+    } catch (_) {
+      // Keep the existing honest unavailable state when Production data cannot be read.
+    }
+  }
+
   function refresh() {
     const page = document.querySelector('#page-analysis');
     if (!page) return;
@@ -62,6 +140,8 @@
     if (fundamentals && /資料不足/.test(fundamentals.textContent || '')) {
       addStateNote(fundamentals, 'fundamental');
     }
+
+    ensureOverviewChart();
   }
 
   function install() {
@@ -71,6 +151,7 @@
     observer.observe(document.body, { childList: true, subtree: true });
     setTimeout(refresh, 300);
     setTimeout(refresh, 1000);
+    setTimeout(refresh, 1800);
   }
 
   if (document.readyState === 'loading') {
