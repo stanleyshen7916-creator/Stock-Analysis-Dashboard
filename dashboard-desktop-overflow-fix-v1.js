@@ -1,11 +1,19 @@
 (() => {
-  // The Dashboard typography baseline intentionally increases readable text size.
-  // index.html previously added a 1.3333 body zoom on top of that baseline,
-  // which expands the CSS viewport and causes horizontal overflow on the
-  // 1280px Desktop QA viewport. The CSS declaration is !important, so the
-  // runtime override must also be important. Presentation-only; no data logic.
+  // Desktop overflow fix v3.
+  // Keep the typography baseline, remove the legacy body zoom, and constrain
+  // the topbar flex items so their intrinsic width cannot expand the document.
+  // Presentation-only; no data or calculation logic.
   const install = () => {
     document.body.style.setProperty('zoom', '1', 'important');
+    const style = document.createElement('style');
+    style.id = 'desktop-overflow-fix-v3';
+    style.textContent = `
+      html, body { overflow-x: hidden !important; }
+      .topbar { min-width: 0 !important; }
+      .topbar > div:first-child { min-width: 0 !important; flex: 0 1 270px !important; }
+      .top-meta { min-width: 0 !important; flex: 1 1 auto !important; }
+    `;
+    document.head.appendChild(style);
   };
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', install, { once: true });
