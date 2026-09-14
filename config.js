@@ -13,7 +13,8 @@ window.APP_CONFIG = {
     ['dashboard-ux-acceptance-v1.js?v=20260909-ux-v1', false],
     ['dashboard-data-pages-v2.js?v=20260909-data-pages-v2', false],
     ['dashboard-top50-layout-v1.js?v=20260909-top50-layout-v1', false],
-    ['dashboard-top50-names-v1.js?v=20260909-top50-names-v1', false]
+    ['dashboard-top50-names-v1.js?v=20260909-top50-names-v1', false],
+    ['dashboard-desktop-overflow-fix-v1.js?v=20260914-overflow-v1', false]
   ];
   scripts.forEach(([src, async]) => { const s=document.createElement('script'); s.src=src; s.async=async; document.head.appendChild(s); });
 })();
