@@ -1,12 +1,14 @@
 (() => {
-  // Desktop overflow fix v3.
-  // Keep the typography baseline, remove the legacy body zoom, and constrain
-  // the topbar flex items so their intrinsic width cannot expand the document.
+  // Desktop overflow fix v4.
+  // Keep the typography baseline, remove the legacy body zoom, constrain
+  // the topbar flex items, and expose a harmless deployment marker so the
+  // GitHub Pages deployment is refreshed after the UX baseline is finalized.
   // Presentation-only; no data or calculation logic.
   const install = () => {
+    document.documentElement.dataset.dashboardDeploy = '20260914-ux-v4';
     document.body.style.setProperty('zoom', '1', 'important');
     const style = document.createElement('style');
-    style.id = 'desktop-overflow-fix-v3';
+    style.id = 'desktop-overflow-fix-v4';
     style.textContent = `
       html, body { overflow-x: hidden !important; }
       .topbar { min-width: 0 !important; }
