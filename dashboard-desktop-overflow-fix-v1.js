@@ -1,15 +1,15 @@
 (() => {
-  // Desktop overflow fix v5.
+  // Desktop overflow fix v6.
   // Keep the approved light UX baseline, remove the legacy body zoom,
   // constrain the topbar flex items, and expose a deployment marker so
   // GitHub Pages can be verified against the current main branch.
   // Presentation-only; no data or calculation logic.
   const install = () => {
-    document.documentElement.dataset.dashboardDeploy = '20260914-ux-v5';
+    document.documentElement.dataset.dashboardDeploy = '20260914-ux-v6';
     document.documentElement.dataset.dashboardUx = 'reference-v3';
     document.body.style.setProperty('zoom', '1', 'important');
     const style = document.createElement('style');
-    style.id = 'desktop-overflow-fix-v5';
+    style.id = 'desktop-overflow-fix-v6';
     style.textContent = `
       html, body { overflow-x: hidden !important; }
       .topbar { min-width: 0 !important; }
