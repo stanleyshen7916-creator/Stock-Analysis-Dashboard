@@ -106,9 +106,11 @@
   function install() {
     const run = () => render().catch(() => {});
     run();
-    const observer = new MutationObserver(() => { if (document.querySelector('#page-analysis')) run(); });
-    observer.observe(document.body, { childList:true, subtree:true, characterData:true });
-    document.addEventListener('click', e => { if (e.target.closest('#analysis-search,.link-stock')) setTimeout(run, 700); }, true);
+    // Do not observe all DOM mutations: render() changes text nodes, which would
+    // recursively trigger the observer and cause layout churn that blocks tab clicks.
+    document.addEventListener('click', e => {
+      if (e.target.closest('#analysis-search,.link-stock')) setTimeout(run, 700);
+    }, true);
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', install, {once:true}); else install();
 })();
