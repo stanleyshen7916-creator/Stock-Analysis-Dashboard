@@ -16,6 +16,7 @@ window.APP_CONFIG = {
     ['dashboard-top50-names-v1.js?v=20260909-top50-names-v1', false],
     ['dashboard-reference-v5.js?v=20260915-reference-v5', false],
     ['dashboard-reference-v5-portfolio-fix.js?v=20260915-portfolio-fix', false],
+    ['individual-analysis-reference-v6.js?v=20260915-analysis-v6', false],
     ['dashboard-desktop-overflow-fix-v1.js?v=20260914-overflow-v1', false]
   ];
   scripts.forEach(([src, async]) => { const s=document.createElement('script'); s.src=src; s.async=async; document.head.appendChild(s); });
