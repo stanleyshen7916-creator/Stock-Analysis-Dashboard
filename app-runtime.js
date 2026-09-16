@@ -35,12 +35,33 @@ import { signIn, signUp, signOut, getStoredSession } from './lib/auth.js';
     node.innerHTML = list.map((e, i) => `<tr><td>${i + 1}</td><td><button class="link-stock" data-symbol="${e.symbol}" data-market="${e.market}">${e.symbol}</button></td><td>${nameOnly(e.symbol, e.market)}</td><td>${forcedHorizonLabel || horizonLabelFor(e)}</td><td><span class="score">${fmtNum(e.aiScore, 0)}</span></td><td>${fmtNum(e.currentPrice)}</td><td>${fmtNum(e.targetPrice)}</td><td>${fmtPct(e.expectedReturnPercent)}</td><td>${(e.aiReason || []).slice(0, 2).join('、') || '—'}</td><td><span class="status">${tierLabel(e.aiScore)}</span></td></tr>`).join('');
   }
 
+  let lastChangedList = [];
+  let activeChangeFilter = 'all';
+
   function renderChangesList(changed) {
-    const node = el('#changes'); if (!node) return;
-    if (!changed?.length) { node.className = 'empty'; node.textContent = '今日無真實變化'; return; }
-    node.className = '';
-    node.innerHTML = changed.slice(0, 12).map((e) => `<div class="change-item"><b class="${e.changeType === 'UPGRADED' ? 'change-up' : e.changeType === 'DOWNGRADED' ? 'change-down' : ''}">${e.symbol}</b><span>${nameOnly(e.symbol, e.market)}<br><small>${Number.isFinite(e.originalScore) ? fmtNum(e.originalScore, 0) : '—'} → ${fmtNum(e.aiScore, 0)} · ${decisionLabel(e.decisionState)}</small></span><strong>${changeLabel(e.changeType)}</strong></div>`).join('');
+    lastChangedList = changed ?? [];
+    setText('#changes-count-all', String(lastChangedList.length));
+    setText('#changes-count-new', String(lastChangedList.filter((e) => e.changeType === 'NEW').length));
+    setText('#changes-count-up', String(lastChangedList.filter((e) => e.changeType === 'UPGRADED').length));
+    setText('#changes-count-down', String(lastChangedList.filter((e) => e.changeType === 'DOWNGRADED').length));
+    setText('#changes-count-removed', String(lastChangedList.filter((e) => e.changeType === 'REMOVED').length));
+    renderFilteredChanges();
   }
+
+  function renderFilteredChanges() {
+    const node = el('#changes'); if (!node) return;
+    const filtered = activeChangeFilter === 'all' ? lastChangedList : lastChangedList.filter((e) => e.changeType === activeChangeFilter);
+    if (!filtered.length) { node.className = 'empty'; node.textContent = lastChangedList.length ? '此分類今日無真實變化' : '今日無真實變化'; return; }
+    node.className = '';
+    node.innerHTML = filtered.slice(0, 12).map((e) => `<div class="change-item"><b class="${e.changeType === 'UPGRADED' ? 'change-up' : e.changeType === 'DOWNGRADED' ? 'change-down' : ''}">${e.symbol}</b><span>${nameOnly(e.symbol, e.market)}<br><small>${Number.isFinite(e.originalScore) ? fmtNum(e.originalScore, 0) : '—'} → ${fmtNum(e.aiScore, 0)} · ${decisionLabel(e.decisionState)}</small></span><strong>${changeLabel(e.changeType)}</strong></div>`).join('');
+  }
+
+  document.getElementById('changes-tabs')?.addEventListener('click', (event) => {
+    const btn = event.target.closest('.changes-tab'); if (!btn) return;
+    activeChangeFilter = btn.dataset.changeFilter;
+    document.querySelectorAll('.changes-tab').forEach((b) => b.classList.toggle('active', b === btn));
+    renderFilteredChanges();
+  });
 
   function renderHorizonGrid() {
     for (const [shortKey, realKey] of Object.entries(HORIZON_KEY_MAP)) {
