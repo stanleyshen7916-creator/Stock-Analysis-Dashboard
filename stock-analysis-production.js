@@ -182,8 +182,12 @@
       const input = document.querySelector('#analysis-symbol');
       const symbol = String(input?.value ?? '').trim().toUpperCase();
       if (!symbol) return;
-      event.preventDefault();
-      event.stopImmediatePropagation();
+      // stopImmediatePropagation() previously lived here - removed. It ran in the
+      // capture phase, so it silently killed every other click listener on this
+      // button, including app-runtime.js's own runAnalysisSearch(), meaning the
+      // real Production score/technical-indicator panels never refreshed on
+      // search - only this file's separate "Production 分析結果" panel did.
+      // Both panels are additive; there is no reason for either to block the other.
       load(symbol, 'TWSE');
     }, true);
     const observe = () => {
