@@ -33,8 +33,10 @@
     .content-grid{grid-template-columns:minmax(0,1fr) 330px!important;gap:9px!important;margin-top:0!important}.content-grid .panel{padding:11px!important}
     .table-wrap table{font-size:12px!important}.table-wrap th{font-size:9px!important;padding:7px 6px!important}.table-wrap td{font-size:12px!important;padding:7px 6px!important}.table-wrap th:nth-child(9),.table-wrap td:nth-child(9){max-width:220px;white-space:normal}.table-wrap td:nth-child(9){font-size:10px!important}.score{font-size:11px!important}.status{font-size:9px!important}
     .side h2{font-size:16px!important}.change-item{font-size:10px!important;padding:7px 0!important}
+    .changes-tabs{display:flex;flex-wrap:wrap;gap:5px;margin:0 0 9px}.changes-tab{border:1px solid #e4eaf2;background:#f7f9fc;color:#5a6b83;border-radius:999px;padding:4px 9px;font-size:10px!important;cursor:pointer}.changes-tab b{font-weight:800;margin-left:3px}.changes-tab.active{background:var(--ref-blue);border-color:var(--ref-blue);color:#fff}
     .bottom-grid{grid-template-columns:1.1fr 1fr 1.25fr!important;gap:9px!important;margin-top:9px!important}.bottom-grid .panel{min-height:132px}.bottom-grid h2{font-size:15px!important}.bottom-grid p{font-size:10px!important}
     .flow{justify-content:space-between;gap:3px!important}.flow span{font-size:9px!important;padding:5px!important}.flow i{font-size:9px}
+    .flow-8{flex-wrap:wrap;row-gap:8px!important}.flow-8 span{display:flex!important;align-items:center;gap:5px;background:#f2f6fb;border-radius:999px;padding:5px 9px 5px 5px!important}.flow-8 span i{display:inline-grid;place-items:center;width:17px;height:17px;border-radius:50%;background:var(--ref-blue);color:#fff;font-style:normal;font-size:9px!important;font-weight:800}.flow-8 i.arrow{background:none;width:auto;height:auto;color:#a9b6c9}
     .hero-grid{display:none!important}
     .reference-section-title{font-size:10px;color:#8491a4;margin:0 0 5px}
     @media(max-width:1250px){.kpi-strip{grid-template-columns:repeat(4,1fr)}.dashboard-overview{grid-template-columns:1fr}.market-card{min-height:auto}.content-grid{grid-template-columns:1fr!important}}
@@ -62,13 +64,13 @@
       <header class="topbar"><div><h1>AI 智慧選股研究平台</h1><p>AI 選股與觀察決策入口</p></div><div class="top-meta"><span>📅 交易日</span><span>✓ 資料更新：每日</span><span class="ok" id="system-status">● 系統正常</span><span>✓ 行情報</span><span>✓ 三大法人</span><span>✓ 聯資券</span><form id="login-form" class="auth-form"><input id="login-email" type="email" placeholder="Email" autocomplete="username" required><input id="login-password" type="password" placeholder="密碼" autocomplete="current-password" required><button type="submit" class="primary">登入</button><button type="button" id="signup-btn">註冊</button></form><button type="button" id="logout-btn" class="primary" hidden>登出</button></div></header>
       <section id="page-dashboard" class="page active-page">
         <div class="kpi-strip">
-          <article class="kpi"><div class="kpi-label">本週 AI 觀察總數</div><div id="kpi-total" class="kpi-value">–</div><div class="kpi-note">上週：–</div></article>
-          <article class="kpi"><div class="kpi-label">強烈觀察</div><div id="kpi-strong" class="kpi-value red">–</div><div class="kpi-note">AI 評分 ≥ 90</div></article>
-          <article class="kpi"><div class="kpi-label">值得觀察</div><div id="kpi-worthy" class="kpi-value orange">–</div><div class="kpi-note">AI 評分 80–89</div></article>
-          <article class="kpi"><div class="kpi-label">持續觀察</div><div id="kpi-continue" class="kpi-value green">–</div><div class="kpi-note">AI 評分 70–79</div></article>
-          <article class="kpi"><div class="kpi-label">降低關注</div><div id="kpi-reduce" class="kpi-value">–</div><div class="kpi-note">AI 評分 &lt; 70</div></article>
-          <article class="kpi"><div class="kpi-label">本週至今 AI 推薦平均報酬</div><div id="kpi-return" class="kpi-value teal">待累積</div><div class="kpi-note">資料成熟後自動計算</div></article>
-          <article class="kpi"><div class="kpi-label">模型勝率</div><div id="kpi-win" class="kpi-value teal">待驗證</div><div class="kpi-note">90 日成熟樣本不足時不顯示數字</div></article>
+          <article class="kpi"><div class="kpi-label">📊 本週 AI 觀察總數</div><div id="kpi-total" class="kpi-value">–</div><div class="kpi-note">上週：–</div></article>
+          <article class="kpi"><div class="kpi-label">🔥 強烈觀察</div><div id="kpi-strong" class="kpi-value red">–</div><div class="kpi-note">AI 評分 ≥ 90</div></article>
+          <article class="kpi"><div class="kpi-label">💎 值得觀察</div><div id="kpi-worthy" class="kpi-value orange">–</div><div class="kpi-note">AI 評分 80–89</div></article>
+          <article class="kpi"><div class="kpi-label">📈 持續觀察</div><div id="kpi-continue" class="kpi-value green">–</div><div class="kpi-note">AI 評分 70–79</div></article>
+          <article class="kpi"><div class="kpi-label">🔽 降低關注</div><div id="kpi-reduce" class="kpi-value">–</div><div class="kpi-note">AI 評分 &lt; 70</div></article>
+          <article class="kpi"><div class="kpi-label">💰 本週至今 AI 推薦平均報酬</div><div id="kpi-return" class="kpi-value teal">待累積</div><div class="kpi-note">資料成熟後自動計算</div></article>
+          <article class="kpi"><div class="kpi-label">🏆 模型勝率</div><div id="kpi-win" class="kpi-value teal">待驗證</div><div class="kpi-note">90 日成熟樣本不足時不顯示數字</div></article>
         </div>
         <div class="dashboard-overview">
           <div class="overview-left">
@@ -79,12 +81,12 @@
         </div>
         <div class="content-grid">
           <section class="panel wide"><div class="section-head compact"><div><h2>AI 本週強力觀察 TOP 10</h2><p>依 AI 綜合評分排序；評分是研究優先級，不代表投資建議。</p></div><button data-page="analysis">個股完整分析</button></div><div class="table-wrap"><table><thead><tr><th>#</th><th>代號</th><th>名稱</th><th>週期</th><th>AI評分</th><th>現價</th><th>目標區間</th><th>預期報酬</th><th>AI觀察理由</th><th>狀態</th></tr></thead><tbody id="stock-table"><tr><td colspan="10" class="empty">載入中…</td></tr></tbody></table></div></section>
-          <aside class="side"><section class="panel"><h2>今日 AI 推薦變化</h2><p class="compact">今日無真實推薦變化資料時不顯示模擬數字。</p><div id="changes" class="empty">載入中…</div><button class="full" data-page="reports">查看完整 AI 推薦追蹤 →</button></section></aside>
+          <aside class="side"><section class="panel"><h2>今日 AI 推薦變化</h2><div id="changes-tabs" class="changes-tabs"><button class="changes-tab active" data-change-filter="all">全部 <b id="changes-count-all">–</b></button><button class="changes-tab" data-change-filter="NEW">新進 <b id="changes-count-new">–</b></button><button class="changes-tab" data-change-filter="UPGRADED">升級 <b id="changes-count-up">–</b></button><button class="changes-tab" data-change-filter="DOWNGRADED">降級 <b id="changes-count-down">–</b></button><button class="changes-tab" data-change-filter="REMOVED">移除 <b id="changes-count-removed">–</b></button></div><div id="changes" class="empty">載入中…</div><button class="full" data-page="reports">查看完整 AI 推薦追蹤 →</button></section></aside>
         </div>
         <div class="bottom-grid">
           <section class="panel"><h2>報告中心</h2><p>每日市場摘要、AI 選股報告與風險摘要。</p><button class="full" data-page="reports">查看報告中心 →</button></section>
           <section class="panel"><h2>本週市場概覽</h2><div class="market-score"><strong id="hero-count">–</strong><small id="hero-label">資料狀態待確認</small></div><p id="data-completeness">資料完整度：待確認</p><p id="market-note">市場資料與模型結果分開呈現。</p></section>
-          <section class="panel"><h2>AI 選股流程</h2><div class="flow"><span>市場資料</span><i>→</i><span>技術面</span><i>→</i><span>基本面</span><i>→</i><span>產業</span><i>→</i><span>AI評分</span><i>→</i><span>觀察清單</span></div><button class="full" data-page="engine">查看 AI 選股流程 →</button></section>
+          <section class="panel"><h2>AI 選股流程（每日自動執行）</h2><div class="flow flow-8"><span><i>1</i>資料更新</span><i class="arrow">→</i><span><i>2</i>資料清洗整理</span><i class="arrow">→</i><span><i>3</i>技術／基本／籌碼分析</span><i class="arrow">→</i><span><i>4</i>AI 評分計算</span><i class="arrow">→</i><span><i>5</i>每日推薦追蹤比較</span><i class="arrow">→</i><span><i>6</i>結果驗證</span><i class="arrow">→</i><span><i>7</i>候選模型驗證</span><i class="arrow">→</i><span><i>8</i>下一輪執行</span></div><button class="full" data-page="engine">查看 AI 選股流程 →</button></section>
         </div>
       </section>
       <section id="page-portfolio" class="page"><div class="page-title"><h2>我的持股 Portfolio</h2><p>管理持股與成本，並與 AI 觀察清單交叉檢視。</p></div><div class="form-card"><label>代號<input id="portfolio-symbol" placeholder="例如 2330"></label><label>名稱<input id="portfolio-name" placeholder="例如 台積電"></label><label>股數<input id="portfolio-shares" type="number" min="0"></label><label>成本<input id="portfolio-cost" type="number" min="0" step="0.01"></label><button id="portfolio-add" class="primary">新增持股</button></div><div class="panel table-wrap"><table><thead><tr><th>代號</th><th>名稱</th><th>股數</th><th>成本</th></tr></thead><tbody id="portfolio-table"><tr><td colspan="4" class="empty">尚未登入。</td></tr></tbody></table></div></section>
