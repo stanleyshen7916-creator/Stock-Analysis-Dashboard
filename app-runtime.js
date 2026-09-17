@@ -86,7 +86,17 @@ import { sma, ema, rsi, macd, bollingerBands, atr, stochastic } from './lib/indi
   function lastFinite(arr) { for (let i = arr.length - 1; i >= 0; i--) if (Number.isFinite(arr[i])) return arr[i]; return null; }
 
   /** Real market_top50.score_breakdown - fundamental/technical/chip only (Production has no 4th dimension). chip.score is always null today (no verified chip data source), rendered as 資料不足, never fabricated. */
+  function renderScoreGauge(compositeScore) {
+    const gauge = el('#analysis-score-gauge'); if (!gauge) return;
+    const pct = Number.isFinite(compositeScore) ? Math.max(0, Math.min(100, compositeScore)) : 0;
+    gauge.style.setProperty('--pct', String(pct));
+    gauge.style.background = Number.isFinite(compositeScore)
+      ? `conic-gradient(${compositeScore >= 70 ? '#13a878' : compositeScore >= 50 ? '#f59e0b' : '#ef4444'} calc(var(--pct)*1%), #eaf0f6 0)`
+      : '';
+  }
+
   function renderScoreBreakdown(breakdown) {
+    renderScoreGauge(breakdown?.composite_score);
     const node = el('#analysis-score-breakdown'); if (!node) return;
     if (!breakdown) { node.className = 'score-breakdown stock-empty'; node.textContent = '尚無真實模型分數細項。'; return; }
     node.className = 'score-breakdown';
@@ -114,13 +124,16 @@ import { sma, ema, rsi, macd, bollingerBands, atr, stochastic } from './lib/indi
     const kVal = lastFinite(kd.k), dVal = lastFinite(kd.d);
     const bollUpper = lastFinite(bollingerBands(close, 20, 2).upper);
     const atr14 = lastFinite(atr(high, low, close, 14));
-    setText('#analysis-ind-ma20', Number.isFinite(ma20) ? fmtNum(ma20) : '資料不足');
-    setText('#analysis-ind-ema20', Number.isFinite(ema20v) ? fmtNum(ema20v) : '資料不足');
-    setText('#analysis-ind-rsi14', Number.isFinite(rsi14) ? fmtNum(rsi14, 1) : '資料不足');
-    setText('#analysis-ind-macd', Number.isFinite(macdLine) && Number.isFinite(macdSignal) ? `DIF ${fmtNum(macdLine)} / DEA ${fmtNum(macdSignal)}` : '資料不足');
-    setText('#analysis-ind-kd', Number.isFinite(kVal) && Number.isFinite(dVal) ? `${fmtNum(kVal, 1)} / ${fmtNum(dVal, 1)}` : '資料不足');
-    setText('#analysis-ind-boll', Number.isFinite(bollUpper) ? fmtNum(bollUpper) : '資料不足');
-    setText('#analysis-ind-atr14', Number.isFinite(atr14) ? fmtNum(atr14) : '資料不足');
+    const setIndicator = (id, text, warnClass) => { const n = el(id); if (!n) return; n.textContent = text; n.className = warnClass ?? ''; };
+    setIndicator('#analysis-ind-ma20', Number.isFinite(ma20) ? fmtNum(ma20) : '資料不足');
+    setIndicator('#analysis-ind-ema20', Number.isFinite(ema20v) ? fmtNum(ema20v) : '資料不足');
+    // RSI >=70 conventionally overbought, <=30 oversold - standard thresholds, not tuned to this project.
+    setIndicator('#analysis-ind-rsi14', Number.isFinite(rsi14) ? `${fmtNum(rsi14, 1)}${rsi14 >= 70 ? ' ⚠️ 超買區' : rsi14 <= 30 ? ' 超賣區' : ''}` : '資料不足', Number.isFinite(rsi14) ? (rsi14 >= 70 ? 'ind-danger' : rsi14 <= 30 ? 'ind-good' : '') : '');
+    setIndicator('#analysis-ind-macd', Number.isFinite(macdLine) && Number.isFinite(macdSignal) ? `DIF ${fmtNum(macdLine)} / DEA ${fmtNum(macdSignal)}` : '資料不足');
+    // KD (Stochastic) >=80 overbought, <=20 oversold - standard thresholds.
+    setIndicator('#analysis-ind-kd', Number.isFinite(kVal) && Number.isFinite(dVal) ? `${fmtNum(kVal, 1)} / ${fmtNum(dVal, 1)}${kVal >= 80 ? ' ⚠️ 超買區' : kVal <= 20 ? ' 超賣區' : ''}` : '資料不足', Number.isFinite(kVal) ? (kVal >= 80 ? 'ind-danger' : kVal <= 20 ? 'ind-good' : '') : '');
+    setIndicator('#analysis-ind-boll', Number.isFinite(bollUpper) ? fmtNum(bollUpper) : '資料不足');
+    setIndicator('#analysis-ind-atr14', Number.isFinite(atr14) ? fmtNum(atr14) : '資料不足');
   }
 
   async function loadAnalysis(symbol, market) {
