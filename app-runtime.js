@@ -4,6 +4,7 @@ import { OBSERVATION_LIST_HORIZONS } from './lib/horizons.js';
 import { loadCompanyNames, lookupCompanyName, searchCompanyNames } from './lib/company-name-lookup.js';
 import { runHistoricalDataStatus } from './lib/historical-data-status.js';
 import { signIn, signUp, signOut, getStoredSession } from './lib/auth.js';
+import { sma, ema, rsi, macd, bollingerBands, atr, stochastic } from './lib/indicators.js';
 
 (async () => {
   const AHS = window.StockDashboard = {};
@@ -82,16 +83,58 @@ import { signIn, signUp, signOut, getStoredSession } from './lib/auth.js';
     setText('#system-status', '● 系統正常');
   }
 
+  function lastFinite(arr) { for (let i = arr.length - 1; i >= 0; i--) if (Number.isFinite(arr[i])) return arr[i]; return null; }
+
+  /** Real market_top50.score_breakdown - fundamental/technical/chip only (Production has no 4th dimension). chip.score is always null today (no verified chip data source), rendered as 資料不足, never fabricated. */
+  function renderScoreBreakdown(breakdown) {
+    const node = el('#analysis-score-breakdown'); if (!node) return;
+    if (!breakdown) { node.className = 'score-breakdown stock-empty'; node.textContent = '尚無真實模型分數細項。'; return; }
+    node.className = 'score-breakdown';
+    const dims = [['基本面', 'fundamental', breakdown.fundamental], ['技術面', 'technical', breakdown.technical], ['籌碼面', 'chip', breakdown.chip]];
+    const w = breakdown.effective_weights ?? {};
+    node.innerHTML = dims.map(([label, cls, d]) => {
+      const score = d?.score;
+      const pct = Number.isFinite(score) ? Math.max(0, Math.min(100, score)) : 0;
+      return `<div class="score-row"><span>${label}</span><span class="score-bar-track"><i class="${cls}" style="width:${pct}%"></i></span><b>${Number.isFinite(score) ? fmtNum(score, 0) : '資料不足'}</b></div>`;
+    }).join('') + `<div class="score-breakdown-note">Production 真實權重：基本面 ${fmtNum((w.fundamental ?? 0) * 100, 0)}% · 技術面 ${fmtNum((w.technical ?? 0) * 100, 0)}% · 籌碼面 ${fmtNum((w.chip ?? 0) * 100, 0)}%（籌碼面目前無可驗證資料來源時分數不顯示，非 0 分）</div>`;
+  }
+
+  /** Real market_daily OHLCV already fetched for this symbol -> client-side chart indicators (vendor-synced from the private repo, docs/VENDOR_SYNC.md). Never a second scoring engine - purely derived, presentation-layer values for the 關鍵指標 panel. */
+  function renderTechnicalIndicators(rows, breakdown) {
+    setText('#analysis-technical-score', Number.isFinite(breakdown?.technical?.score) ? fmtNum(breakdown.technical.score, 0) : '資料不足');
+    const ids = ['#analysis-ind-ma20', '#analysis-ind-ema20', '#analysis-ind-rsi14', '#analysis-ind-macd', '#analysis-ind-kd', '#analysis-ind-boll', '#analysis-ind-atr14'];
+    if (!rows?.length) { ids.forEach((id) => setText(id, '資料不足')); return; }
+    const close = rows.map((r) => r.close), high = rows.map((r) => r.high), low = rows.map((r) => r.low);
+    const ma20 = lastFinite(sma(close, 20));
+    const ema20v = lastFinite(ema(close, 20));
+    const rsi14 = lastFinite(rsi(close, 14));
+    const macdResult = macd(close);
+    const macdLine = lastFinite(macdResult.macd), macdSignal = lastFinite(macdResult.signal);
+    const kd = stochastic(high, low, close, 9, 3, 3);
+    const kVal = lastFinite(kd.k), dVal = lastFinite(kd.d);
+    const bollUpper = lastFinite(bollingerBands(close, 20, 2).upper);
+    const atr14 = lastFinite(atr(high, low, close, 14));
+    setText('#analysis-ind-ma20', Number.isFinite(ma20) ? fmtNum(ma20) : '資料不足');
+    setText('#analysis-ind-ema20', Number.isFinite(ema20v) ? fmtNum(ema20v) : '資料不足');
+    setText('#analysis-ind-rsi14', Number.isFinite(rsi14) ? fmtNum(rsi14, 1) : '資料不足');
+    setText('#analysis-ind-macd', Number.isFinite(macdLine) && Number.isFinite(macdSignal) ? `DIF ${fmtNum(macdLine)} / DEA ${fmtNum(macdSignal)}` : '資料不足');
+    setText('#analysis-ind-kd', Number.isFinite(kVal) && Number.isFinite(dVal) ? `${fmtNum(kVal, 1)} / ${fmtNum(dVal, 1)}` : '資料不足');
+    setText('#analysis-ind-boll', Number.isFinite(bollUpper) ? fmtNum(bollUpper) : '資料不足');
+    setText('#analysis-ind-atr14', Number.isFinite(atr14) ? fmtNum(atr14) : '資料不足');
+  }
+
   async function loadAnalysis(symbol, market) {
     setText('#analysis-conclusion', `${symbolWithName(symbol, market)}（${market}）｜載入中...`);
     setText('#analysis-provenance', '資料追溯：載入中...');
     setHTML('#analysis-fundamentals', '<div class="empty">載入中...</div>');
     setHTML('#analysis-market', '<div class="empty">載入中...</div>');
     const [dailyResult, fundamentalResult, historyResult] = await Promise.allSettled([
-      fetchMarketDaily(symbol, market, isoDateDaysAgo(60)), fetchFundamentals(symbol, market), fetchTop50RowHistory(symbol, market, 30)
+      fetchMarketDaily(symbol, market, isoDateDaysAgo(200)), fetchFundamentals(symbol, market), fetchTop50RowHistory(symbol, market, 30)
     ]);
     const history = historyResult.status === 'fulfilled' ? historyResult.value : [];
     const row = (snapshot?.current ?? []).find((r) => r.symbol === symbol && r.market === market) ?? history[0] ?? null;
+    renderScoreBreakdown(row?.score_breakdown);
+    renderTechnicalIndicators(dailyResult.status === 'fulfilled' ? dailyResult.value : [], row?.score_breakdown);
     const score = row?.recommendation_score;
     const target = row?.target_price;
     const horizonLabels = row?.observation_horizons ? OBSERVATION_LIST_HORIZONS.filter((h) => row.observation_horizons[h.key]).map((h) => h.label).join('、') : '';
