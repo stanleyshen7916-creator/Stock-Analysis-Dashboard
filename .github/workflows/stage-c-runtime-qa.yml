@@ -1,0 +1,25 @@
+name: Stage C Dashboard Runtime QA
+
+on:
+  push:
+    branches: ['feature/local-production-runtime']
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  dashboard-runtime-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+      - name: Node syntax check
+        run: node --check config.js
+      - name: Verify runtime switch
+        run: |
+          grep -q "runtime=local" config.js
+          grep -q "http://127.0.0.1:54321" config.js
+          grep -q "STOCK_ANALYSIS_RUNTIME" config.js
+          grep -q "https://kvffithbxqstrpbausbo.supabase.co" config.js
