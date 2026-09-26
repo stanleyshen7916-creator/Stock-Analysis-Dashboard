@@ -1,4 +1,4 @@
-import { fetchTop50Snapshot, fetchTop50RowHistory, fetchMarketDaily, fetchFundamentals } from './lib/data.js';
+import { fetchTop50Snapshot, fetchTop50RowHistory, fetchStockAnalysisResultHistory, fetchMarketDaily, fetchFundamentals } from './lib/data.js';
 import { buildObservationList } from './lib/observation-list.js';
 import { OBSERVATION_LIST_HORIZONS } from './lib/horizons.js';
 import { loadCompanyNames, lookupCompanyName, searchCompanyNames } from './lib/company-name-lookup.js';
@@ -141,11 +141,27 @@ import { sma, ema, rsi, macd, bollingerBands, atr, stochastic } from './lib/indi
     setText('#analysis-provenance', '資料追溯：載入中...');
     setHTML('#analysis-fundamentals', '<div class="empty">載入中...</div>');
     setHTML('#analysis-market', '<div class="empty">載入中...</div>');
-    const [dailyResult, fundamentalResult, historyResult] = await Promise.allSettled([
-      fetchMarketDaily(symbol, market, isoDateDaysAgo(200)), fetchFundamentals(symbol, market), fetchTop50RowHistory(symbol, market, 30)
+    const [dailyResult, fundamentalResult, historyResult, stockResult] = await Promise.allSettled([
+      fetchMarketDaily(symbol, market, isoDateDaysAgo(200)),
+      fetchFundamentals(symbol, market),
+      fetchTop50RowHistory(symbol, market, 30),
+      fetchStockAnalysisResultHistory(symbol, market, 30)
     ]);
-    const history = historyResult.status === 'fulfilled' ? historyResult.value : [];
-    const row = (snapshot?.current ?? []).find((r) => r.symbol === symbol && r.market === market) ?? history[0] ?? null;
+    const top50History = historyResult.status === 'fulfilled' ? historyResult.value : [];
+    const stockAnalysisHistory = stockResult.status === 'fulfilled' ? stockResult.value : [];
+    // Individual-stock pages may have a valid Production stock_analysis_results
+    // row even when the symbol is not in the market_top50 ranking snapshot.
+    // Prefer a valid Top-50 row when present; otherwise use the verified
+    // single-stock Production result. No calculation is performed here.
+    const top50Available = top50History.some((r) => r.data_status === 'AVAILABLE');
+    const history = top50Available || !stockAnalysisHistory.length ? top50History : stockAnalysisHistory;
+    const snapshotRow = (snapshot?.current ?? []).find((r) => r.symbol === symbol && r.market === market) ?? null;
+    const stockAnalysisRow = stockAnalysisHistory.find((r) => r.data_status === 'AVAILABLE') ?? stockAnalysisHistory[0] ?? null;
+    const row = snapshotRow?.data_status === 'AVAILABLE'
+      ? snapshotRow
+      : stockAnalysisRow?.data_status === 'AVAILABLE'
+        ? stockAnalysisRow
+        : snapshotRow ?? history[0] ?? null;
     renderScoreBreakdown(row?.score_breakdown);
     renderTechnicalIndicators(dailyResult.status === 'fulfilled' ? dailyResult.value : [], row?.score_breakdown);
     const score = row?.recommendation_score;
