@@ -1,120 +1,1038 @@
 <!doctype html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-  <title>AI 智慧選股研究平台</title>
-  <link rel="stylesheet" href="styles.css?v=20260904-reference">
-  <style>
-    /* Reference dashboard v3: presentation follows the Project Owner screenshot. */
-    :root{--ref-blue:#2563eb;--ref-green:#13a878;--ref-orange:#f59e0b;--ref-red:#ef4444;--ref-teal:#08a6b5;--ref-purple:#6956d8}
-    body{font-size:14px!important;background:#f7f9fc!important;color:#22324a!important}
-    .main{padding:10px 14px 24px!important;max-width:none!important}
-    .sidebar{width:220px!important;padding:12px 10px!important}
-    .main{margin-left:220px!important;width:calc(100% - 220px)!important}
-    .brand{padding-bottom:12px!important}.brand-mark{width:36px!important;height:36px!important}
-    .nav button{font-size:13px!important;padding:8px 10px!important}.nav-label{font-size:12px!important}.nav-sub{font-size:12px!important;padding-left:28px!important}
-    .topbar{min-height:54px!important;margin-bottom:9px!important;border-bottom:1px solid #e8edf4!important}
-    .topbar>div:first-child{min-width:270px}.topbar h1{font-size:19px!important;margin:0!important;color:#17253b!important}.topbar p{font-size:10px!important}.top-meta{gap:6px!important}.top-meta span{font-size:10px!important;padding:5px 8px!important}
-    .auth-form input{width:100px!important;font-size:10px!important}.auth-form button,#logout-btn{font-size:10px!important;padding:5px 8px!important}
-    .kpi-strip{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:7px;margin-bottom:9px}
-    .kpi{background:#fff;border:1px solid #e4eaf2;border-radius:9px;padding:10px 11px;min-height:86px;position:relative;overflow:hidden}
-    .kpi:after{content:"";position:absolute;right:10px;bottom:8px;width:64px;height:25px;border-top:2px solid #9dbbff;transform:skewY(-12deg);opacity:.55}
-    .kpi-label{font-size:10px;color:#60718a;font-weight:700}.kpi-value{font-size:27px;font-weight:800;line-height:1.15;margin-top:5px;color:#263c64}.kpi-value.green{color:var(--ref-green)}.kpi-value.red{color:var(--ref-red)}.kpi-value.orange{color:var(--ref-orange)}.kpi-value.teal{color:var(--ref-teal)}.kpi-value.muted{font-size:18px;color:#7a8798}.kpi-note{font-size:9px;color:#8895a7;margin-top:3px}
-    .dashboard-overview{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:9px;margin-bottom:9px}
-    .panel,.hero-card,.signal-card{box-shadow:0 2px 8px rgba(36,50,74,.035)!important;border-radius:9px!important}
-    .overview-left{min-width:0}.section-head{margin:0 0 7px!important}.section-head h2{font-size:16px!important}.section-head p{font-size:10px!important}
-    .horizon-grid{grid-template-columns:repeat(6,minmax(0,1fr))!important;gap:6px!important;margin-bottom:9px!important}
-    .horizon{padding:8px 9px!important;border-top-width:3px!important;min-height:82px}.horizon b{font-size:10px!important}.horizon strong{font-size:23px!important}.horizon span{font-size:9px!important}
-    .market-card{background:#fff;border:1px solid #e4eaf2;border-radius:9px;padding:12px;min-height:175px}.market-card h2{font-size:16px;margin:0 0 9px}.market-layout{display:grid;grid-template-columns:120px 1fr;gap:10px;align-items:center}.gauge{width:110px;height:70px;border:13px solid #dfe6ef;border-bottom:0;border-radius:110px 110px 0 0;position:relative;overflow:hidden}.gauge:before{content:"";position:absolute;left:-13px;bottom:-13px;width:110px;height:70px;border:13px solid transparent;border-top-color:#ffb000;border-right-color:#83cf4a;border-radius:110px 110px 0 0;transform:rotate(-8deg)}.gauge strong{position:absolute;left:36px;top:36px;font-size:23px;color:#2d4d8a}.gauge small{position:absolute;left:42px;top:62px;color:#7b8798}.market-items{font-size:10px;color:#596b84}.market-items div{padding:5px 0;border-bottom:1px solid #eef2f6}.market-items b{float:right;color:#139b73}
-    .content-grid{grid-template-columns:minmax(0,1fr) 330px!important;gap:9px!important;margin-top:0!important}.content-grid .panel{padding:11px!important}
-    .table-wrap table{font-size:12px!important}.table-wrap th{font-size:9px!important;padding:7px 6px!important}.table-wrap td{font-size:12px!important;padding:7px 6px!important}.table-wrap th:nth-child(9),.table-wrap td:nth-child(9){max-width:220px;white-space:normal}.table-wrap td:nth-child(9){font-size:10px!important}.score{font-size:11px!important}.status{font-size:9px!important}
-    .side h2{font-size:16px!important}.change-item{font-size:10px!important;padding:7px 0!important}
-    .changes-tabs{display:flex;flex-wrap:wrap;gap:5px;margin:0 0 9px}.changes-tab{border:1px solid #e4eaf2;background:#f7f9fc;color:#5a6b83;border-radius:999px;padding:4px 9px;font-size:10px!important;cursor:pointer}.changes-tab b{font-weight:800;margin-left:3px}.changes-tab.active{background:var(--ref-blue);border-color:var(--ref-blue);color:#fff}
-    .bottom-grid{grid-template-columns:1fr 1fr!important;gap:9px!important;margin-top:9px!important}.bottom-grid .panel{min-height:132px}.bottom-grid h2{font-size:15px!important}.bottom-grid p{font-size:10px!important}
-    .flow{justify-content:space-between;gap:3px!important}.flow span{font-size:9px!important;padding:5px!important}.flow i{font-size:9px}
-    .flow-8{flex-wrap:wrap;row-gap:8px!important}.flow-8 span{display:flex!important;align-items:center;gap:5px;background:#f2f6fb;border-radius:999px;padding:5px 9px 5px 5px!important}.flow-8 span i{display:inline-grid;place-items:center;width:17px;height:17px;border-radius:50%;background:var(--ref-blue);color:#fff;font-style:normal;font-size:9px!important;font-weight:800}.flow-8 i.arrow{background:none;width:auto;height:auto;color:#a9b6c9}
-    .hero-grid{display:none!important}
-    .reference-section-title{font-size:10px;color:#8491a4;margin:0 0 5px}
-    @media(max-width:1250px){.kpi-strip{grid-template-columns:repeat(4,1fr)}.dashboard-overview{grid-template-columns:1fr}.market-card{min-height:auto}.content-grid{grid-template-columns:1fr!important}}
-    @media(max-width:800px){.sidebar{width:100%!important}.main{margin-left:0!important;width:100%!important}.kpi-strip{grid-template-columns:repeat(2,1fr)}.horizon-grid{grid-template-columns:repeat(2,1fr)!important}.bottom-grid{grid-template-columns:1fr!important}.topbar{display:block!important}.top-meta{justify-content:flex-start!important;margin-top:7px}}
-  
-    /* Typography visual minimum v3 */
-    body{zoom:1.333333!important}
-    @media(max-width:800px){body{zoom:1.333333!important}}
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Stock Analysis System</title>
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
   <div class="app-shell">
-    <aside class="sidebar">
-      <div class="brand"><span class="brand-mark">AI</span><div><strong>AI 智慧選股</strong><small>AI Stock Selection System</small></div></div>
-      <nav id="nav" class="nav" aria-label="主要功能">
-        <button class="nav-item active" data-page="dashboard">⌂　總覽 Dashboard</button>
-        <div class="nav-group"><div class="nav-label">🔥　AI 觀察清單</div>
-          <button class="nav-sub active-sub" data-horizon="intraday">當沖（0–1日）</button><button class="nav-sub" data-horizon="short">短期（2週內）</button><button class="nav-sub" data-horizon="shortmid">短中期（3–6個月）</button><button class="nav-sub" data-horizon="mid">中期（6–12個月）</button><button class="nav-sub" data-horizon="midlong">中長期（12–36個月）</button><button class="nav-sub" data-horizon="long">長期（36個月以上）</button>
+    <aside class="app-sidebar">
+      <div class="sidebar-brand">
+        <div class="sidebar-brand__mark">AI</div>
+        <div>
+          <div class="sidebar-brand__title">台股分析儀表板</div>
+          <div class="sidebar-brand__subtitle">Stock Analysis System</div>
         </div>
-        <button class="nav-item" data-page="portfolio">▣　我的持股 Portfolio</button><button class="nav-item" data-page="analysis">⌁　個股分析</button><button class="nav-item" data-page="engine">◎　AI 選股流程</button><button class="nav-item" data-page="strategy">⚙　策略／參數</button><button class="nav-item" data-page="market">◉　市場分析</button><button class="nav-item" data-page="industry">◌　產業分析</button><button class="nav-item" data-page="backtest">⌘　回測驗證 Backtest</button><button class="nav-item" data-page="data">▤　資料中心</button><button class="nav-item" data-page="reports">▧　報告中心</button><button class="nav-item" data-page="settings">⚙　系統設定</button>
-      </nav>
-      <div class="status-card"><b>市場總覽</b><span>● 資料收集 Pipeline</span><span>● Database</span><span>● AI 分析引擎</span><span>● Dashboard</span></div>
+      </div>
+      <ul class="sidebar-nav" id="sidebar-nav">
+        <li class="sidebar-nav__item sidebar-nav__item--active" data-nav-page="overview">
+          <button class="sidebar-nav__button" type="button" data-nav-target="overview">AI 投資決策分析首頁</button>
+        </li>
+        <li class="sidebar-nav__item" data-nav-page="legacy">
+          <button class="sidebar-nav__button" type="button" data-nav-target="legacy">AI 智慧選股</button>
+        </li>
+        <li class="sidebar-nav__item" data-nav-page="stock">
+          <button class="sidebar-nav__button" type="button" data-nav-target="stock">個股研究</button>
+        </li>
+        <li class="sidebar-nav__item" data-nav-page="changes">
+          <button class="sidebar-nav__button" type="button" data-nav-target="changes">推薦異動</button>
+        </li>
+        <li class="sidebar-nav__item" data-nav-page="market">
+          <button class="sidebar-nav__button" type="button" data-nav-target="market">市場總覽</button>
+        </li>
+        <li class="sidebar-nav__item" data-nav-page="etf">
+          <button class="sidebar-nav__button" type="button" data-nav-target="etf">ETF 專區</button>
+        </li>
+        <li class="sidebar-nav__item sidebar-nav__item--disabled">
+          <button class="sidebar-nav__button" type="button" disabled>投資組合<span class="badge badge--soon">即將推出</span></button>
+        </li>
+        <li class="sidebar-nav__item" data-nav-page="research">
+          <button class="sidebar-nav__button" type="button" data-nav-target="research">回測／研究報告</button>
+        </li>
+      </ul>
     </aside>
-    <main class="main">
-      <header class="topbar"><div><h1>AI 智慧選股研究平台</h1><p>AI 選股與觀察決策入口</p></div><div class="top-meta"><span>📅 交易日</span><span>✓ 資料更新：每日</span><span class="ok" id="system-status">● 系統正常</span><span>✓ 行情報</span><span>✓ 三大法人</span><span>✓ 聯資券</span><form id="login-form" class="auth-form"><input id="login-email" type="email" placeholder="Email" autocomplete="username" required><input id="login-password" type="password" placeholder="密碼" autocomplete="current-password" required><button type="submit" class="primary">登入</button><button type="button" id="signup-btn">註冊</button></form><button type="button" id="logout-btn" class="primary" hidden>登出</button></div></header>
-      <section id="page-dashboard" class="page active-page">
-        <div class="kpi-strip">
-          <article class="kpi"><div class="kpi-label">📊 本週 AI 觀察總數</div><div id="kpi-total" class="kpi-value">–</div><div class="kpi-note">上週：–</div></article>
-          <article class="kpi"><div class="kpi-label">🔥 強烈觀察</div><div id="kpi-strong" class="kpi-value red">–</div><div class="kpi-note">AI 評分 ≥ 90</div></article>
-          <article class="kpi"><div class="kpi-label">💎 值得觀察</div><div id="kpi-worthy" class="kpi-value orange">–</div><div class="kpi-note">AI 評分 80–89</div></article>
-          <article class="kpi"><div class="kpi-label">📈 持續觀察</div><div id="kpi-continue" class="kpi-value green">–</div><div class="kpi-note">AI 評分 70–79</div></article>
-          <article class="kpi"><div class="kpi-label">🔽 降低關注</div><div id="kpi-reduce" class="kpi-value">–</div><div class="kpi-note">AI 評分 &lt; 70</div></article>
-          <article class="kpi"><div class="kpi-label">💰 本週至今 AI 推薦平均報酬</div><div id="kpi-return" class="kpi-value teal">待累積</div><div class="kpi-note">資料成熟後自動計算</div></article>
-          <article class="kpi"><div class="kpi-label">🏆 模型勝率</div><div id="kpi-win" class="kpi-value teal">待驗證</div><div class="kpi-note">90 日成熟樣本不足時不顯示數字</div></article>
+
+    <div class="app-content">
+      <header class="app-header">
+        <h1>台股分析儀表板</h1>
+        <div class="market-meta">
+          <span id="runtime-mode-badge" class="badge" title="資料來源環境：LOCAL（本機 Postgres）或 CLOUD（Supabase 雲端）。加上網址參數 ?runtime=local 或 ?runtime=cloud 可切換，選擇會記住。">環境：--</span>
+          <span id="market-status" class="badge badge--unknown" title="依台北時間交易時段（週一至週五 09:00-13:30）估算，未考慮國定假日等休市日。">市場狀態（估算）：--</span>
+          <span id="latest-trading-date" class="badge badge--unknown">最新交易日：--</span>
+          <span id="ai-mode-badge" class="badge badge--unknown" title="每日 Agent 的 AI 分析摘要步驟實際使用的模式：LOCAL MODEL（Ollama 本機模型成功）／FALLBACK（改用規則式摘要，未使用未驗證資料）／UNAVAILABLE（Cloud 模式或尚未有本機 Agent 執行紀錄）。">AI：--</span>
         </div>
-        <div class="dashboard-overview">
-          <div class="overview-left">
-            <div class="section-head"><div><h2>AI 本週投資觀察總覽</h2><p>六大投資週期；依 Production 真實資料呈現。</p></div><button data-page="engine">查看完整清單 →</button></div>
-            <div class="horizon-grid"><button class="horizon hot" data-horizon="intraday"><b>當沖　0–1日</b><strong>–</strong><span>檔　平均分 –</span></button><button class="horizon blue" data-horizon="short"><b>短期　2週內</b><strong>–</strong><span>檔　平均分 –</span></button><button class="horizon teal" data-horizon="shortmid"><b>短中期　3–6個月</b><strong>–</strong><span>檔　平均分 –</span></button><button class="horizon gold" data-horizon="mid"><b>中期　6–12個月</b><strong>–</strong><span>檔　平均分 –</span></button><button class="horizon orange" data-horizon="midlong"><b>中長期　12–36個月</b><strong>–</strong><span>檔　平均分 –</span></button><button class="horizon red" data-horizon="long"><b>長期　36個月以上</b><strong>–</strong><span>檔　平均分 –</span></button></div>
+      </header>
+
+      <!-- ================= Overview page (AI 投資決策分析首頁) =================
+           One-page decision board: today's summary, then ① 強力推薦投資 (the
+           10 largest overweights of the backtest-validated enhanced index,
+           full allocation folded underneath) and ② 強力觀察股 (Market Top 50
+           可投資候選, expected-return order, observation only). Supporting
+           detail lives on the sidebar pages: 市場總覽 (page-market), AI 智慧選股
+           (AI 評分 TOP 10, 投資期間分類) and 回測／研究報告 (page-research). -->
+      <section id="page-overview" class="app-page" data-page="overview">
+        <div class="page-header">
+          <h2>AI 投資決策分析首頁</h2>
+          <span class="page-header__meta">今天哪些股票強力推薦投資、哪些列為強力觀察（每日批次計算，真實 Production 資料）</span>
+        </div>
+
+        <p id="overview-loading" class="side-panel__note">正在取得市場資料…</p>
+        <p id="overview-empty" class="side-panel__note" hidden>目前尚無資料（market_top50 尚無計算結果）。</p>
+        <p id="overview-error" class="side-panel__note side-panel__note--down" hidden>市場資料取得失敗。</p>
+
+        <div id="overview-body" hidden>
+          <nav class="overview-detail-links" aria-label="明細頁面">
+            <span class="overview-detail-links__label">明細說明：</span>
+            <button type="button" class="detail-link" data-goto-page="market">市場總覽</button>
+            <button type="button" class="detail-link" data-goto-page="legacy">AI 評分 TOP 10・投資期間分類</button>
+            <button type="button" class="detail-link" data-goto-page="research">選股流程・回測驗證摘要</button>
+          </nav>
+
+          <div class="decision-summary" aria-label="今日決策摘要">
+            <div class="decision-tile decision-tile--recommend">
+              <div class="decision-tile__label">① 強力推薦投資</div>
+              <div class="decision-tile__value" id="decision-recommend-count">—</div>
+              <div class="decision-tile__sub" id="decision-recommend-sub">增強指數加碼幅度最大的個股</div>
+            </div>
+            <div class="decision-tile decision-tile--watch">
+              <div class="decision-tile__label">② 強力觀察股</div>
+              <div class="decision-tile__value" id="decision-watch-count">—</div>
+              <div class="decision-tile__sub" id="decision-watch-sub">Market Top 50 可投資候選（預期報酬 ≥ 20%）</div>
+            </div>
+            <div class="decision-tile">
+              <div class="decision-tile__label">兩份名單重疊</div>
+              <div class="decision-tile__value" id="decision-overlap-count">—</div>
+              <div class="decision-tile__sub" id="decision-overlap-sub">同時出現在 ① 與 ② 的股票</div>
+            </div>
           </div>
-          <aside class="market-card"><h2>市場整體狀態</h2><div class="market-layout"><div class="gauge"><strong id="market-score-value">–</strong><small>/100</small></div><div class="market-items"><div>大盤趨勢 <b>多頭／待驗證</b></div><div>資金動能 <b>待驗證</b></div><div>產業輪動 <b>AI / 半導體</b></div><div>風險指數 <b>資料不足</b></div></div></div><p id="market-score-label" class="kpi-note">市場環境分數僅在有可驗證來源時顯示。</p><p id="market-score-note" class="kpi-note">目前不以模型推測替代市場資料。</p></aside>
-        </div>
-        <div class="content-grid">
-          <section class="panel wide"><div class="section-head compact"><div><h2>AI 本週強力觀察 TOP 10</h2><p>依 AI 綜合評分排序；評分是研究優先級，不代表投資建議。</p></div><button data-page="analysis">個股完整分析</button></div><div class="table-wrap"><table><thead><tr><th>#</th><th>代號</th><th>名稱</th><th>週期</th><th>AI評分</th><th>現價</th><th>目標區間</th><th>預期報酬</th><th>AI觀察理由</th><th>狀態</th></tr></thead><tbody id="stock-table"><tr><td colspan="10" class="empty">載入中…</td></tr></tbody></table></div></section>
-          <aside class="side"><section class="panel"><h2>今日 AI 推薦變化</h2><div id="changes-tabs" class="changes-tabs"><button class="changes-tab active" data-change-filter="all">全部 <b id="changes-count-all">–</b></button><button class="changes-tab" data-change-filter="NEW">新進 <b id="changes-count-new">–</b></button><button class="changes-tab" data-change-filter="UPGRADED">升級 <b id="changes-count-up">–</b></button><button class="changes-tab" data-change-filter="DOWNGRADED">降級 <b id="changes-count-down">–</b></button><button class="changes-tab" data-change-filter="REMOVED">移除 <b id="changes-count-removed">–</b></button></div><div id="changes" class="empty">載入中…</div><button class="full" data-page="reports">查看完整 AI 推薦追蹤 →</button></section></aside>
-        </div>
-        <div class="bottom-grid">
-          <section class="panel"><h2>報告中心</h2><p>每日市場摘要、AI 選股報告與風險摘要。</p><button class="full" data-page="reports">查看報告中心 →</button></section>
-          <section class="panel"><h2>本週市場概覽</h2><div class="market-score"><strong id="hero-count">–</strong><small id="hero-label">資料狀態待確認</small></div><p id="data-completeness">資料完整度：待確認</p><p id="market-note">市場資料與模型結果分開呈現。</p></section>
+
+          <section class="side-panel side-panel--primary" id="enhanced-index-panel">
+            <h2><span class="section-num">1</span>強力推薦投資（AI 增強指數加碼股 TOP 10）<span class="track-badge track-badge--a">回測有效</span></h2>
+            <p class="panel-howto"><span class="panel-howto__tag">怎麼讀</span>AI 綜合評分在同產業內領先、因此被建議加碼最多的 10 檔。「建議權重」是這檔在整體配置中應占的比例；約每 4 週調整一次即可，不需每日跟隨。點列可開啟個股分析。</p>
+            <p class="panel-howto panel-howto--warn"><span class="panel-howto__tag">注意</span>回測驗證的是「依建議權重持有整個配置」（年化約多 1.2～1.6 個百分點，幅度小），不是只買這 10 檔；完整配置請展開下方「完整建議配置」。非投資建議。</p>
+            <div class="table-scroll">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>推薦</th>
+                    <th>代號</th>
+                    <th>名稱</th>
+                    <th>產業</th>
+                    <th>建議權重</th>
+                    <th>加碼</th>
+                    <th>指數權重</th>
+                    <th>AI 評分<br />產業內排名</th>
+                    <th>AI 綜合評分</th>
+                    <th>同時為強力觀察</th>
+                  </tr>
+                </thead>
+                <tbody id="decision-recommend-tbody"></tbody>
+              </table>
+            </div>
+            <details class="panel-evidence">
+              <summary>方法與回測驗證</summary>
+              <p class="side-panel__source">方法：市值前 150 大公司（近 60 日日均成交額 ≥ 1,000 萬元）以市值權重為基礎；權重達 10% 以上的個股（台積電）維持指數權重不動，其餘個股依「AI 綜合評分」在同產業內的排名加碼或減碼（最多 2 倍、最少 0）。每日依最新資料更新；回測採每 4 週調整一次，不需每日跟隨。</p>
+              <p class="side-panel__note">回測驗證（2016～2026 年，含已下市股票、還原除權息、隔日進場、扣除交易成本）：相對同範圍市值加權組合，年化多約 1.2～1.6 個百分點；4 種調倉起始週與 2016～2023、2023-06 以後兩段全部為正（年化約 +1.0～1.3、+1.8～2.7 個百分點），t 值 2.0～2.7。幅度仍小，過去績效不代表未來。自 2026-10-02 起每 4 週以影子追蹤記錄實際表現。非投資建議。</p>
+            </details>
+            <p id="enhanced-index-loading" class="side-panel__note">正在載入建議配置…</p>
+            <p id="enhanced-index-empty" class="side-panel__note" hidden>目前尚無建議配置資料（每日批次尚未產生資料）。</p>
+            <details class="panel-evidence">
+              <summary>完整建議配置（依建議權重排序）</summary>
+            <div id="enhanced-index-body" hidden>
+              <p id="enhanced-index-summary" class="side-panel__source"></p>
+              <div class="table-scroll">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>排序</th>
+                      <th>代號</th>
+                      <th>名稱</th>
+                      <th>產業</th>
+                      <th>指數權重</th>
+                      <th>建議權重</th>
+                      <th>加減碼</th>
+                      <th>AI 評分<br />產業內排名</th>
+                      <th>AI 綜合評分</th>
+                    </tr>
+                  </thead>
+                  <tbody id="enhanced-index-tbody"></tbody>
+                </table>
+              </div>
+            </div>
+            </details>
+          </section>
+
+          <section class="side-panel side-panel--primary">
+            <div class="side-panel__row side-panel__row--header">
+              <h2><span class="section-num">2</span>強力觀察股 TOP 10（可投資候選，依預期報酬排序）<span class="track-badge track-badge--b">僅供觀察</span></h2>
+            </div>
+            <p class="panel-howto"><span class="panel-howto__tag">怎麼讀</span>預期報酬 ≥ 20% 的可投資候選中排名前 10 名，多為高波動股。預設只顯示「強烈觀察」（可投資候選）；點其他卡片或期間頁籤可切換篩選。點任一列進入個股研究。</p>
+            <p class="panel-howto panel-howto--warn"><span class="panel-howto__tag">注意</span>回測中依本排名買進，72 種設定有 71 種落後大盤。請當作「值得研究」的名單，不要直接依排名買進。</p>
+            <details class="panel-evidence">
+              <summary>名單來源與回測驗證</summary>
+              <p class="side-panel__source">Market Top 50 排名前 10 名；上方卡片依決策狀態、下方頁籤依既有持有期間分類器過濾，兩者同時生效（同一檔可能符合多個期間）。</p>
+              <p class="side-panel__note">回測驗證（2016～2026 年，含已下市股票、還原除權息、隔日進場、扣除交易成本，對照含息加權報酬指數）：依本清單排序（預期報酬由高至低）定期持有前幾名，在 72 種不同設定（持股數、市值範圍、調倉時點）中有 71 種落後大盤，年化落後中位數約 6 個百分點；不限市值、每週換股時落後約 15 個百分點。預期報酬越高的個股，後續相對表現反而略差。本清單僅為觀察名單，不構成投資建議，請勿直接依排名買進。</p>
+            </details>
+            <div class="kpi-grid kpi-grid--compact" id="overview-kpi-grid">
+              <button type="button" class="kpi-tile" id="overview-kpi-total" data-decision-filter="ALL">
+                <div class="kpi-tile__label">本次觀察總數</div>
+                <div class="kpi-tile__value" data-value>—</div>
+                <div class="kpi-tile__sub" data-sub></div>
+              </button>
+              <button type="button" class="kpi-tile" id="overview-kpi-strong" data-decision-filter="INVESTABLE_CANDIDATE">
+                <div class="kpi-tile__label">強烈觀察</div>
+                <div class="kpi-tile__value kpi-tile__value--down" data-value>—</div>
+                <div class="kpi-tile__sub" data-sub></div>
+              </button>
+              <button type="button" class="kpi-tile" id="overview-kpi-value-watch" data-decision-filter="OBSERVATION">
+                <div class="kpi-tile__label">價值觀察</div>
+                <div class="kpi-tile__value kpi-tile__value--warn" data-value>—</div>
+                <div class="kpi-tile__sub" data-sub></div>
+              </button>
+              <button type="button" class="kpi-tile" id="overview-kpi-continued" data-decision-filter="NOT_QUALIFIED">
+                <div class="kpi-tile__label">持續觀察</div>
+                <div class="kpi-tile__value kpi-tile__value--up" data-value>—</div>
+                <div class="kpi-tile__sub" data-sub></div>
+              </button>
+              <button type="button" class="kpi-tile" id="overview-kpi-avg-return" data-decision-filter="ALL">
+                <div class="kpi-tile__label">本次平均預期報酬</div>
+                <div class="kpi-tile__value kpi-tile__value--accent" data-value>—</div>
+                <div class="kpi-tile__sub" data-sub></div>
+              </button>
+            </div>
+            <div id="overview-top10-filters" class="filterbtn-row"></div>
+            <div class="table-scroll">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>排名</th>
+                    <th>代號</th>
+                    <th>名稱</th>
+                    <th>投資期間</th>
+                    <th>風險</th>
+                    <th>預期報酬</th>
+                    <th>現價</th>
+                    <th>Target Price</th>
+                    <th>觀察理由</th>
+                    <th>變化</th>
+                  </tr>
+                </thead>
+                <tbody id="overview-top10-tbody"></tbody>
+              </table>
+            </div>
+          </section>
         </div>
       </section>
-      <section id="page-portfolio" class="page"><div class="page-title"><h2>我的持股 Portfolio</h2><p>管理持股與成本，並與 AI 觀察清單交叉檢視。</p></div><div class="form-card"><label>代號<input id="portfolio-symbol" placeholder="例如 2330"></label><label>名稱<input id="portfolio-name" placeholder="例如 台積電"></label><label>股數<input id="portfolio-shares" type="number" min="0"></label><label>成本<input id="portfolio-cost" type="number" min="0" step="0.01"></label><button id="portfolio-add" class="primary">新增持股</button></div><div class="panel table-wrap"><table><thead><tr><th>代號</th><th>名稱</th><th>股數</th><th>成本</th></tr></thead><tbody id="portfolio-table"><tr><td colspan="4" class="empty">尚未登入。</td></tr></tbody></table></div></section>
-      <section id="page-analysis" class="page"><div class="page-title"><h2>個股分析</h2><p>以 Production 可追溯資料呈現單一股票研究結果。</p></div><div class="search-card"><input id="analysis-symbol" placeholder="輸入股票代號，例如 2330"><button id="analysis-search" class="primary">開始分析</button></div><div class="analysis-grid"><section class="panel"><h3>AI 結論</h3><div id="analysis-conclusion" class="empty">輸入股票代號後載入。</div></section><section class="panel"><h3>資料追溯</h3><div id="analysis-provenance" class="empty">尚未查詢。</div></section><section class="panel"><h3>基本面</h3><div id="analysis-fundamentals" class="empty">尚未查詢。</div></section><section class="panel"><h3>市場資料</h3><div id="analysis-market" class="empty">尚未查詢。</div></section></div></section>
-      <section id="page-engine" class="page"><div class="page-title"><h2>AI 選股流程</h2><p>市場資料 → 指標 → 評分 → 觀察清單。</p></div><div class="engine-grid"><section class="panel"><h3>查詢</h3><input id="engine-symbol" placeholder="股票代號"><button id="engine-run" class="primary">執行 AI 評分</button></section><section class="panel"><h3>AI 評分</h3><div id="engine-score" class="score-total">–<span>/100</span></div><div id="engine-breakdown" class="empty">尚未執行。</div></section></div></section>
-      <section id="page-strategy" class="page"><div class="page-title"><h2>策略／參數</h2><p>顯示目前採用的評分與觀察規則。</p></div><div class="panel"><div id="strategy-content" class="empty">載入中…</div></div></section>
-      <section id="page-market" class="page"><div class="page-title"><h2>市場分析</h2><p>市場環境、趨勢與風險資料。</p></div><div class="generic-grid"><section class="panel"><h3>市場狀態</h3><div id="market-status-detail" class="empty">載入中…</div></section><section class="panel"><h3>市場資料品質</h3><div id="market-data-quality" class="empty">載入中…</div></section></div></section>
-      <section id="page-industry" class="page"><div class="page-title"><h2>產業分析</h2><p>產業分群與 AI 觀察。</p></div><div class="panel"><div id="industry-content" class="empty">載入中…</div></div></section>
-      <section id="page-backtest" class="page"><div class="page-title"><h2>回測驗證 Backtest</h2><p>只顯示具備可驗證樣本的結果。</p></div><div class="panel"><div id="backtest-content" class="empty">載入中…</div></div></section>
-      <section id="page-data" class="page"><div class="page-title"><h2>資料中心</h2><p>市場資料、來源與更新狀態。</p></div><div class="panel"><div id="data-content" class="empty">載入中…</div></div></section>
-      <section id="page-reports" class="page"><div class="page-title"><h2>報告中心</h2><p>研究報告與 AI 觀察追蹤。</p></div><div class="panel"><div id="reports-content" class="empty">載入中…</div></div></section>
-      <section id="page-settings" class="page"><div class="page-title"><h2>系統設定</h2><p>帳號與平台設定。</p></div><div class="panel"><div id="settings-content" class="empty">載入中…</div></div></section>
-    </main>
+
+      <!-- ================= Market overview page (detail) ================= -->
+      <section id="page-market" class="app-page" data-page="market" hidden>
+        <div class="page-header">
+          <h2>市場總覽</h2>
+          <span class="page-header__meta">今日大盤背景（TWSE + TPEx 官方資料），不影響任何評分或排名</span>
+        </div>
+
+        <section class="side-panel">
+          <h2>大盤與資金</h2>
+          <p class="panel-howto"><span class="panel-howto__tag">怎麼讀</span>三大法人為買賣超合計；融資餘額反映散戶槓桿，融券餘額反映放空部位。</p>
+          <div class="tile-grid tile-grid--5up">
+            <div class="tile-grid__item">
+              <div class="tile-grid__label">加權指數</div>
+              <div id="overview-market-index" class="tile-grid__value">—</div>
+            </div>
+            <div class="tile-grid__item">
+              <div class="tile-grid__label">成交金額</div>
+              <div id="overview-market-turnover" class="tile-grid__value">—</div>
+            </div>
+            <div class="tile-grid__item">
+              <div class="tile-grid__label">三大法人</div>
+              <div id="overview-market-institutional" class="tile-grid__value">—</div>
+            </div>
+            <div class="tile-grid__item">
+              <div class="tile-grid__label">融資餘額</div>
+              <div id="overview-market-margin" class="tile-grid__value">—</div>
+            </div>
+            <div class="tile-grid__item">
+              <div class="tile-grid__label">融券餘額</div>
+              <div id="overview-market-short" class="tile-grid__value">—</div>
+            </div>
+          </div>
+          <p id="overview-market-overview-source" class="side-panel__source">市場總覽讀取 <code>market_overview_daily</code>（TWSE + TPEx 官方資料）；僅 <code>data_status = VALID</code> 且該欄位非 null 時顯示數字，否則誠實顯示「—」，不虛構、不以前一交易日冒充。</p>
+        </section>
+      </section>
+
+      <!-- ================= ETF page (detail, step 1) =================
+           Descriptive metrics for the locked ETF research cohort
+           (ETF_PRIORITY_SYMBOLS) from market_daily + corporate_actions only.
+           No score, ranking or recommendation until an ETF method has been
+           backtested (step 2). Loaded on first open (renderEtfPage). -->
+      <section id="page-etf" class="app-page" data-page="etf" hidden>
+        <div class="page-header">
+          <h2>ETF 專區</h2>
+          <span class="page-header__meta">系統追蹤的 ETF 表現與風險（僅描述，不評分、不推薦）</span>
+        </div>
+
+        <section class="side-panel">
+          <h2>ETF 表現與風險</h2>
+          <p class="panel-howto"><span class="panel-howto__tag">怎麼讀</span>報酬已還原除息與分割，等於含息總報酬。「折溢價」＝前一營業日收盤價相對當日官方淨值，正數＝溢價（買貴了）、負數＝折價；超過 ±1% 以橘色標示，買進前宜留意。「預估折溢價」為投信盤中估算值（每日排程於收盤後擷取）。「相對 0050」＝近 1 年報酬減 0050 的近 1 年報酬，正數代表跑贏市值型 ETF。波動越大、最大回撤越深，代表持有時可能經歷的下跌越大。「前三大持股」取自投信投顧公會每月公布的前十大持股（約晚一個月），括號內為前十大合計占基金淨資產比例，越高代表越集中。點列可開啟個股研究看走勢。</p>
+          <details class="panel-evidence">
+            <summary>為什麼 ETF 不會出現在首頁名單</summary>
+            <p class="side-panel__source">首頁「強力推薦投資」只收普通股（這份配置本身就是市值加權再依 AI 評分加減碼，類似 0050 的強化版）；「強力觀察股」要求預期報酬 ≥ 20%，ETF 波動低、目標價離現價近，幾乎不可能達標；AI 綜合評分完全依據公司財報（月營收、EPS、淨利、ROE），ETF 沒有這些資料，只會得到中性 50 分。因此 ETF 在此獨立呈現。</p>
+            <p class="side-panel__note">「成分股 AI 評分加權」暫不顯示：以目前的 AI 評分計算，追蹤中的 ETF 全部落在 88～98 分之間（大型權值股多為 100 分），幾乎無法區分，也尚未回測。待連續型 AI 評分（影子追蹤中）確認後再評估，並先回測，確認有效才會標示為推薦。</p>
+          </details>
+          <p id="etf-loading" class="side-panel__note">正在計算 ETF 指標…</p>
+          <p id="etf-error" class="side-panel__note side-panel__note--down" hidden>ETF 資料取得失敗。</p>
+          <div id="etf-body" hidden>
+            <p id="etf-summary" class="side-panel__source"></p>
+            <div class="table-scroll">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>代號</th>
+                    <th>名稱</th>
+                    <th>收盤</th>
+                    <th>淨值<br />（前一營業日）</th>
+                    <th>折溢價<br />（收盤 vs 淨值）</th>
+                    <th>預估折溢價<br />（最新）</th>
+                    <th>近 1 月</th>
+                    <th>近 3 月</th>
+                    <th>近 6 月</th>
+                    <th>近 1 年<br />（含息）</th>
+                    <th>相對 0050<br />（近 1 年）</th>
+                    <th>近 1 年<br />最大回撤</th>
+                    <th>波動（年化）</th>
+                    <th>60 日均線</th>
+                    <th>20 日均<br />成交金額</th>
+                    <th>前三大持股<br />（前十大占淨值）</th>
+                  </tr>
+                </thead>
+                <tbody id="etf-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <!-- ================= Backtest / research page (detail) ================= -->
+      <section id="page-research" class="app-page" data-page="research" hidden>
+        <div class="page-header">
+          <h2>回測／研究報告</h2>
+          <span class="page-header__meta">首頁每個數字的來源與可信度</span>
+        </div>
+
+        <section class="side-panel">
+          <h2>回測驗證摘要</h2>
+          <p class="panel-howto"><span class="panel-howto__tag">怎麼讀</span>同一段期間（2016～2026 年，含已下市股票、隔日進場）比較三種用法；只有「建議配置」在回測中勝過比較基準，幅度也小。</p>
+          <div class="table-scroll">
+            <table class="data-table data-table--wrap">
+              <thead>
+                <tr>
+                  <th>用法</th>
+                  <th>出現位置</th>
+                  <th>回測結果</th>
+                  <th>建議用途</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>強力推薦投資（AI 增強指數加碼股）</td>
+                  <td>首頁 ① 強力推薦投資（完整配置可展開）</td>
+                  <td>相對同範圍市值加權組合年化多約 1.2～1.6 個百分點，t 值 2.0～2.7</td>
+                  <td>主要參考，約每 4 週調整一次</td>
+                </tr>
+                <tr>
+                  <td>AI 綜合評分排序</td>
+                  <td>AI 智慧選股：AI 評分 TOP 10</td>
+                  <td>評分越高後續 20 個交易日相對報酬越好（t 值 4.9），但最高分組每 20 個交易日僅多約 0.14 個百分點</td>
+                  <td>了解個股體質，不單獨作為選股依據</td>
+                </tr>
+                <tr>
+                  <td>預期報酬排序</td>
+                  <td>首頁 ② 強力觀察股</td>
+                  <td>72 種設定有 71 種落後大盤，年化落後中位數約 6 個百分點</td>
+                  <td>僅供觀察，不直接依排名買進</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="side-panel" id="shadow-performance-panel">
+          <h2>影子追蹤實績（上線後的真實事後驗證）</h2>
+          <p class="panel-howto"><span class="panel-howto__tag">怎麼讀</span>自 2026-10-02 起，系統每 4 週依「當時」已公布的資料記錄各選股規則的虛擬持股（只新增、不回改），績效每日依實際股價重算、含交易成本，並與含息加權報酬指數比較。上方回測都用歷史資料；這裡是唯一不受「用歷史挑規則」影響的證據。</p>
+          <p class="panel-howto panel-howto--warn"><span class="panel-howto__tag">注意</span>累積數月以上之前，短期差異多半只是市場波動，不足以判斷哪個規則較好。</p>
+          <p id="shadow-performance-empty" class="side-panel__note">影子追蹤自 2026-10-02 起跑，首次績效將在 2026-10-05（進場日）之後的交易日顯示。</p>
+          <div id="shadow-performance-body" hidden>
+            <p id="shadow-performance-summary" class="side-panel__source"></p>
+            <div class="table-scroll">
+              <table class="data-table data-table--wrap">
+                <thead>
+                  <tr>
+                    <th>策略</th>
+                    <th>起始日</th>
+                    <th>調倉次數</th>
+                    <th>累積報酬</th>
+                    <th>含息大盤</th>
+                    <th>超額</th>
+                  </tr>
+                </thead>
+                <tbody id="shadow-performance-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section class="side-panel" id="audit-runs-panel">
+          <h2>每月可信度稽核</h2>
+          <p class="panel-howto"><span class="panel-howto__tag">怎麼讀</span>每月第一次夜間排程自動執行：隨機抽近期股價（上市、上櫃、ETF）與月營收，逐筆對照證交所、櫃買官方資料；依事先登記的標準判定影子追蹤；並統計近 30 天每晚排程的成功率。不一致項目全數列出，不隱藏。</p>
+          <p id="audit-runs-empty" class="side-panel__note">尚無稽核紀錄（僅本機資料庫模式提供）。</p>
+          <div id="audit-runs-body" class="table-scroll" hidden>
+            <table class="data-table data-table--wrap">
+              <thead>
+                <tr>
+                  <th>月份</th>
+                  <th>資料抽樣一致</th>
+                  <th>影子追蹤判定</th>
+                  <th>排程成功（近 30 天）</th>
+                  <th>不一致項目</th>
+                </tr>
+              </thead>
+              <tbody id="audit-runs-tbody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="side-panel" id="calibration-panel">
+          <h2>參數自我校準（每日）</h2>
+          <p class="panel-howto"><span class="panel-howto__tag">怎麼讀</span>每晚依最新股價，分別針對一般股票與 ETF，檢驗目標價／風險價的各組參數：每 5 個交易日記錄一次各參數會給出的目標價與風險價，滿 20 個交易日後核對「先達目標」或「先破風險價」，並以「照目標價／風險價出場的報酬（含交易成本）減同類別全體持有的平均報酬」比較優劣。也依目前的波動環境（低／中／高）分開評估。</p>
+          <p class="panel-howto panel-howto--warn"><span class="panel-howto__tag">注意</span>這裡只「提出建議」：是否改用新參數須經事先登記的統計條件，並由 Stanley 決定，系統不會自行修改正式參數。</p>
+          <p id="calibration-empty" class="side-panel__note">尚無校準報告（僅本機資料庫模式提供）。</p>
+          <div id="calibration-body" hidden>
+            <p id="calibration-summary" class="side-panel__source"></p>
+            <div class="table-scroll">
+              <table class="data-table data-table--wrap">
+                <thead>
+                  <tr>
+                    <th>類別</th>
+                    <th>目前波動</th>
+                    <th>判定（全期間／相同波動期間）</th>
+                    <th>現行參數</th>
+                    <th>最佳組合</th>
+                    <th>正式名單事後檢核</th>
+                  </tr>
+                </thead>
+                <tbody id="calibration-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section class="side-panel">
+          <h2>AI 選股流程（每日自動執行）</h2>
+          <p class="panel-howto"><span class="panel-howto__tag">怎麼讀</span>此系統實際的批次流程，非示意圖。步驟旁標示它產生的畫面；某處顯示「—」或無資料時，代表對應步驟當日尚未完成。</p>
+          <div class="pipeline-steps">
+            <div class="pipeline-step"><span class="pipeline-step__num">1</span>市場資料更新<span class="pipeline-step__feeds">市場總覽</span></div>
+            <span class="pipeline-step__arrow">→</span>
+            <div class="pipeline-step"><span class="pipeline-step__num">2</span>清洗／整理</div>
+            <span class="pipeline-step__arrow">→</span>
+            <div class="pipeline-step"><span class="pipeline-step__num">3</span>技術／基本面指標與綜合評分<span class="pipeline-step__feeds">強力推薦投資・AI 評分 TOP 10</span></div>
+            <span class="pipeline-step__arrow">→</span>
+            <div class="pipeline-step"><span class="pipeline-step__num">4</span>產生 Market Top 50<span class="pipeline-step__feeds">強力觀察股・投資期間分類</span></div>
+            <span class="pipeline-step__arrow">→</span>
+            <div class="pipeline-step"><span class="pipeline-step__num">5</span>每日追蹤／模擬觀察</div>
+            <span class="pipeline-step__arrow">→</span>
+            <div class="pipeline-step"><span class="pipeline-step__num">6</span>比較預測與實際表現</div>
+            <span class="pipeline-step__arrow">→</span>
+            <div class="pipeline-step"><span class="pipeline-step__num">7</span>演算法驗證／模型健康度稽核</div>
+            <span class="pipeline-step__arrow">→</span>
+            <div class="pipeline-step"><span class="pipeline-step__num">8</span>下一輪執行</div>
+          </div>
+        </section>
+      </section>
+
+      <!-- ================= Recommendation Changes page ================= -->
+      <section id="page-changes" class="app-page" data-page="changes" hidden>
+        <div class="page-header">
+          <h2>推薦異動</h2>
+          <span class="page-header__meta">比較今日與上一個計算日的 Market Top 50 評分／名次；僅陳述機械式差異，不生成投資理由或解讀。</span>
+        </div>
+        <section class="side-panel">
+          <p class="side-panel__source">比較今日與上一個計算日的 Market Top 50 評分／名次；僅陳述機械式差異（評分升降、新進／移出名單），不生成投資理由或解讀。</p>
+          <p id="overview-changes-loading" class="side-panel__note">正在比較今日與上一計算日…</p>
+          <p id="overview-changes-empty" class="side-panel__note" hidden>尚無前一計算日資料可供比較。</p>
+          <div id="overview-changes-body" hidden>
+            <p id="overview-changes-summary" class="side-panel__note"></p>
+            <div class="tile-grid tile-grid--4up">
+              <div class="tile-grid__item tile-grid__item--icon">
+                <span class="tile-grid__icon tile-grid__icon--new" aria-hidden="true">↑</span>
+                <div class="tile-grid__label">新進</div>
+                <div id="overview-changes-new" class="tile-grid__value">0 檔</div>
+              </div>
+              <div class="tile-grid__item tile-grid__item--icon">
+                <span class="tile-grid__icon tile-grid__icon--up" aria-hidden="true">↑</span>
+                <div class="tile-grid__label">升級</div>
+                <div id="overview-changes-upgraded" class="tile-grid__value">0 檔</div>
+              </div>
+              <div class="tile-grid__item tile-grid__item--icon">
+                <span class="tile-grid__icon tile-grid__icon--down" aria-hidden="true">↓</span>
+                <div class="tile-grid__label">降級</div>
+                <div id="overview-changes-downgraded" class="tile-grid__value">0 檔</div>
+              </div>
+              <div class="tile-grid__item tile-grid__item--icon">
+                <span class="tile-grid__icon tile-grid__icon--neutral" aria-hidden="true">—</span>
+                <div class="tile-grid__label">移除</div>
+                <div id="overview-changes-removed" class="tile-grid__value">0 檔</div>
+              </div>
+            </div>
+            <div class="table-scroll">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>代號</th>
+                    <th>名稱</th>
+                    <th>變化</th>
+                    <th>上次評分</th>
+                    <th>本次評分</th>
+                    <th>說明</th>
+                  </tr>
+                </thead>
+                <tbody id="overview-changes-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <!-- ================= Stock Detail page ================= -->
+      <section id="page-stock" class="app-page" data-page="stock" hidden>
+        <div class="page-header">
+          <h2>個股分析</h2>
+        </div>
+
+        <form id="search-form" class="search-form" autocomplete="off">
+          <label for="symbol-input">股票代號</label>
+          <input id="symbol-input" name="symbol" type="text" inputmode="numeric" placeholder="例如 2330" required />
+          <button type="submit">搜尋</button>
+        </form>
+
+        <section class="dashboard-tools" aria-label="分析工具">
+          <div class="timeframe-group" role="group" aria-label="時間週期">
+            <span>週期</span>
+            <button type="button" data-timeframe="D" class="timeframe-button timeframe-button--active">日</button>
+            <button type="button" data-timeframe="W" class="timeframe-button">週</button>
+            <button type="button" data-timeframe="M" class="timeframe-button">月</button>
+          </div>
+          <div class="watchlist-group">
+            <span title="自己加入的股票清單，不會隨目前查詢的個股改變；點選任一檔可切換過去。">自選股清單</span>
+            <div id="watchlist" class="watchlist" aria-live="polite"></div>
+            <span id="watchlist-hint" class="watchlist-hint"></span>
+          </div>
+          <div class="indicator-toggles" role="group" aria-label="指標顯示">
+            <span>顯示</span>
+            <label><input type="checkbox" data-indicator="ma5" checked /> MA5</label>
+            <label><input type="checkbox" data-indicator="ma20" checked /> MA20</label>
+            <label><input type="checkbox" data-indicator="rsi" checked /> RSI14</label>
+            <label><input type="checkbox" data-indicator="volume" checked /> 成交量</label>
+            <label><input type="checkbox" data-indicator="bb" /> 布林通道</label>
+            <label><input type="checkbox" data-indicator="ema" /> EMA20</label>
+            <label><input type="checkbox" data-indicator="macd" /> MACD</label>
+            <label><input type="checkbox" data-indicator="atr" /> ATR</label>
+            <label><input type="checkbox" data-indicator="stoch" /> KD</label>
+            <label><input type="checkbox" data-indicator="obv" /> OBV</label>
+          </div>
+        </section>
+
+        <section id="state-loading" class="state-banner state-banner--loading" hidden>載入中…</section>
+        <section id="state-empty" class="state-banner state-banner--empty" hidden>找不到這個股票代號的資料。</section>
+        <section id="state-error" class="state-banner state-banner--error" hidden></section>
+        <section id="state-stale" class="state-banner state-banner--stale" hidden>資料可能過期，最新交易日與今天相差較大。</section>
+
+        <div class="stock-page-grid">
+          <div>
+            <section id="summary-card" class="summary-card" hidden>
+              <div class="summary-card__identity">
+                <span id="summary-symbol" class="summary-card__symbol"></span>
+                <span id="summary-name" class="summary-card__name"></span>
+                <span id="summary-market" class="badge"></span>
+                <button id="watchlist-toggle" type="button" class="secondary-button">加入自選</button>
+              </div>
+              <div class="summary-card__price">
+                <span id="summary-close" class="summary-card__close"></span>
+                <span id="summary-change" class="summary-card__change"></span>
+              </div>
+              <div class="summary-card__meta">
+                <span>成交量：<span id="summary-volume"></span></span>
+                <span>交易日：<span id="summary-date"></span></span>
+              </div>
+              <div class="summary-card__ohlc">
+                <span>開盤：<span id="summary-open"></span></span>
+                <span>最高：<span id="summary-high"></span></span>
+                <span>最低：<span id="summary-low"></span></span>
+              </div>
+              <div id="summary-provenance" class="summary-card__provenance" hidden>
+                <span id="summary-source"></span>
+                <span id="summary-freshness" class="badge"></span>
+                <span id="summary-data-status" class="badge" title="資料狀態：本次交易日資料是否可用。">資料狀態：--</span>
+                <span id="summary-calc-status" class="badge" title="計算狀態：AI 綜合評分／Target Price 等計算是否已完成。">計算狀態：--</span>
+                <span id="summary-analysis-status" class="badge" title="分析狀態：分析工作區（事實／計算／解讀）是否已產生。">分析狀態：尚未執行</span>
+              </div>
+            </section>
+
+            <section id="chart-section" class="chart-section" hidden>
+              <div id="price-chart" class="price-chart" role="img" aria-label="Candlestick price and volume chart"></div>
+              <p id="indicator-note" class="indicator-note" hidden>資料筆數不足，暫不顯示部分技術指標（MA / RSI）。</p>
+            </section>
+
+            <section id="technical-summary" class="technical-summary" hidden>
+              <h2>技術分析摘要</h2>
+              <p id="technical-summary-text"></p>
+              <p class="technical-summary__disclaimer">本摘要僅描述現有技術指標數值，非投資建議，不構成買賣訊號。</p>
+            </section>
+          </div>
+
+          <div>
+            <section id="holding-simulation-panel" class="side-panel">
+              <div class="side-panel__row side-panel__row--header">
+                <h2>持倉與模擬輸入</h2>
+                <button id="holding-simulation-reset" type="button" class="secondary-button">清除</button>
+              </div>
+              <p class="side-panel__source">僅供前端模擬計算：不寫入持倉資料庫、不修改 Production 市場資料、不下單、不連接券商。</p>
+              <div class="holding-simulation__inputs">
+                <label for="holding-purchase-price-input">平均購入金額（元）</label>
+                <input id="holding-purchase-price-input" type="number" min="0" step="0.01" placeholder="例如 2450" />
+                <label for="holding-shares-input">股數（張）</label>
+                <input id="holding-shares-input" type="number" min="0" step="0.001" placeholder="例如 2" />
+                <label for="holding-current-price-input">目前股價（元）</label>
+                <input id="holding-current-price-input" type="number" min="0" step="0.01" placeholder="自動帶入目前股價，可修改進行模擬" />
+              </div>
+              <p id="holding-simulation-prompt" class="side-panel__note">請輸入平均購入價格與股數開始模擬。</p>
+              <p id="holding-simulation-error" class="side-panel__note side-panel__note--down" hidden></p>
+              <ul id="holding-simulation-result" class="side-panel__list" hidden>
+                <li><span>總投入金額</span><span id="holding-total-invested"></span></li>
+                <li><span>目前市值</span><span id="holding-current-market-value"></span></li>
+                <li><span>目前損益</span><span id="holding-current-pnl"></span></li>
+                <li><span>目前報酬率</span><span id="holding-current-return"></span></li>
+              </ul>
+            </section>
+
+            <section id="sell-suggestion-panel" class="side-panel" hidden>
+              <h2>AI 建議售出價格</h2>
+              <p class="side-panel__source">建議售出價格直接取自既有 Recommendation Engine 的 Target Price（近期 Donchian Channel 上緣，技術面價格計算），非另一套演算法、非 AI 自行生成。</p>
+              <p id="sell-suggestion-empty" class="side-panel__note" hidden>目前無法取得建議售出價格（近期歷史資料未滿計算所需天數），非 0 或猜測值。</p>
+              <div id="sell-suggestion-body" hidden>
+                <p class="side-panel__label">建議售出價格</p>
+                <p id="sell-suggestion-price" class="side-panel__value"></p>
+                <p id="sell-suggestion-prompt" class="side-panel__note">請於上方輸入平均購入價格與股數，計算預估報酬與損益。</p>
+                <ul id="sell-suggestion-estimate" class="side-panel__list" hidden>
+                  <li><span>預估報酬率</span><span id="sell-suggestion-return"></span></li>
+                  <li><span>預估損益</span><span id="sell-suggestion-pnl"></span></li>
+                </ul>
+                <h3>建議策略</h3>
+                <ul id="sell-suggestion-strategy" class="side-panel__list"></ul>
+                <p id="sell-suggestion-explanation" class="side-panel__note"></p>
+              </div>
+            </section>
+
+            <section class="side-panel">
+              <h2>AI 綜合評分</h2>
+              <p class="side-panel__source">自 2026-09-29 起 AI 綜合評分＝基本面 100%，基本面依據月營收成長與最新已公布季報的 EPS 年增、淨利年增、ROE（近四季）。依 2016～2026 年回測（事先訂定的挑選準則）：基本面權重越高預測力越強；加入季報後，評分與後續 20 個交易日報酬的排序相關 t 值由 1.2 提升至 4.9。技術面自 2026-09-29、籌碼面（三大法人）自 2026-09-27 起權重為 0、僅供參考；消息面（重大訊息）僅顯示，不計入總分。ETF 無基本面，仍以技術面評分。</p>
+              <p id="score-gauge-loading" class="side-panel__note">正在計算評分…</p>
+              <p id="score-gauge-empty" class="side-panel__note" hidden>資料不足，暫無法計算綜合評分（近期歷史資料未滿計算所需天數）。</p>
+              <p id="score-gauge-total" class="side-panel__value" hidden></p>
+              <div id="score-gauge-body" class="dimension-grid" hidden></div>
+            </section>
+
+            <section id="fundamental-panel" class="side-panel" hidden>
+              <h2>月營收</h2>
+              <div class="side-panel__row">
+                <span id="fundamental-period" class="side-panel__label"></span>
+                <span id="fundamental-revenue" class="side-panel__value"></span>
+              </div>
+              <p id="fundamental-mom" class="side-panel__note" hidden></p>
+              <p id="fundamental-yoy" class="side-panel__note" hidden></p>
+              <ul id="fundamental-trend" class="side-panel__list" hidden></ul>
+              <p id="fundamental-source" class="side-panel__source"></p>
+            </section>
+
+            <section id="corporate-action-panel" class="side-panel" hidden>
+              <h2>公司行動</h2>
+              <ul id="corporate-action-list" class="side-panel__list"></ul>
+            </section>
+
+            <section id="material-information-panel" class="side-panel" hidden>
+              <h2>重大訊息（消息面）</h2>
+              <p class="side-panel__source">來源：公開資訊觀測站每日重大訊息（TWSE／TPEx 官方開放資料），自 2026-09-25 起每日累積。僅列出事實，不判斷利多／利空，不計入綜合評分。</p>
+              <p id="material-information-empty" class="side-panel__note" hidden>自 2026-09-25 起尚無此股的重大訊息紀錄。</p>
+              <ul id="material-information-list" class="side-panel__list"></ul>
+            </section>
+
+            <section id="risk-panel" class="side-panel" hidden>
+              <h2>風險評估</h2>
+              <ul class="side-panel__list">
+                <li><span>年化歷史波動度</span><span id="risk-volatility"></span></li>
+                <li><span>最大回撤</span><span id="risk-drawdown"></span></li>
+                <li><span>成交量異常</span><span id="risk-volume-anomaly"></span></li>
+                <li><span>資料品質風險</span><span id="risk-data-quality"></span></li>
+                <li><span>公司行動風險</span><span id="risk-corporate-action"></span></li>
+              </ul>
+              <p class="side-panel__source">風險指標僅描述既有已驗證資料的統計特性，非投資建議，不構成風險評級。</p>
+            </section>
+          </div>
+        </div>
+
+        <section id="long-term-trend-panel" class="side-panel" hidden>
+          <h2>長期趨勢分析</h2>
+          <p class="side-panel__source">1Y/3Y/5Y/10Y 報酬率、CAGR、最大回檔、年化波動度、歷年最佳/最差年度，皆由真實 market_daily 歷史資料計算；期間不足時誠實顯示「資料不足」，不補值。調整後價格（Adjusted Price）採用真實公司行動事件計算，尚無事件時等同原始價格。</p>
+          <p id="long-term-trend-loading" class="side-panel__note">正在取得長期歷史資料…</p>
+          <p id="long-term-trend-empty" class="side-panel__note" hidden>此股票目前尚無 market_daily 歷史資料。</p>
+          <p id="long-term-trend-error" class="side-panel__note side-panel__note--down" hidden>長期歷史資料取得失敗。</p>
+          <div id="long-term-trend-body" hidden>
+            <p id="long-term-trend-summary" class="side-panel__note"></p>
+            <div class="table-scroll">
+              <table id="long-term-trend-metrics-table" class="data-table">
+                <thead><tr><th>指標</th><th>數值</th></tr></thead>
+                <tbody id="long-term-trend-metrics-tbody"></tbody>
+              </table>
+            </div>
+            <h3>歷年報酬（Yearly Performance）</h3>
+            <ul id="long-term-trend-yearly-list" class="side-panel__list"></ul>
+          </div>
+        </section>
+
+        <section id="analysis-workspace" class="analysis-workspace" hidden>
+          <h2>分析工作區</h2>
+          <p class="analysis-workspace__note">整理目前畫面上已顯示的資料與指標，產生可追溯的分析摘要（事實／計算／解讀分層標示，非 AI 投資結論）。</p>
+          <button id="analysis-trigger" type="button" class="secondary-button">開始分析</button>
+          <div id="analysis-result" class="analysis-result" hidden>
+            <div class="analysis-result__section">
+              <h3>事實 Fact</h3>
+              <ul id="analysis-facts" class="analysis-result__list"></ul>
+            </div>
+            <div class="analysis-result__section">
+              <h3>計算 Calculation</h3>
+              <ul id="analysis-calculations" class="analysis-result__list"></ul>
+            </div>
+            <div class="analysis-result__section">
+              <h3>解讀 Interpretation</h3>
+              <ul id="analysis-interpretation" class="analysis-result__list"></ul>
+            </div>
+            <p id="analysis-disclaimer" class="analysis-result__disclaimer"></p>
+          </div>
+        </section>
+
+        <section id="recommendation-panel" class="analysis-workspace" hidden>
+          <h2>AI 推薦與合理目標價格</h2>
+          <p class="analysis-workspace__note">依規則式訊號（技術面＋已驗證基本面）計算的候選評分與 Target Price／Risk Price，隨「開始分析」一併產生（非 AI 生成的投資結論，僅為固定規則計算）。</p>
+          <div id="recommendation-result" class="analysis-result" hidden>
+            <div class="analysis-result__section">
+              <h3>Target Price</h3>
+              <ul id="recommendation-target-price" class="analysis-result__list"></ul>
+            </div>
+            <div class="analysis-result__section">
+              <h3>Expected Return（預期報酬率，&gt;20% 門檻）</h3>
+              <p id="expected-return-decision-state" class="badge"></p>
+              <ul id="expected-return-detail" class="analysis-result__list"></ul>
+            </div>
+            <div class="analysis-result__section">
+              <h3>符合／不符合條件</h3>
+              <p id="recommendation-verdict"></p>
+              <ul id="recommendation-matched-signals" class="analysis-result__list"></ul>
+            </div>
+            <div class="analysis-result__section">
+              <h3>AI 反證 Counter-Evidence</h3>
+              <ul id="recommendation-counter-evidence" class="analysis-result__list"></ul>
+            </div>
+            <div class="analysis-result__section">
+              <h3>投資週期分類與個股適配分析</h3>
+              <p id="horizon-evidence-strength"></p>
+              <ul id="horizon-list" class="analysis-result__list"></ul>
+              <p id="horizon-liquidity" class="side-panel__note"></p>
+            </div>
+            <p id="recommendation-disclaimer" class="analysis-result__disclaimer"></p>
+          </div>
+        </section>
+      </section>
+
+      <!-- ================= Legacy tools page (today's existing panels, unchanged) ================= -->
+      <section id="page-legacy" class="app-page" data-page="legacy" hidden>
+        <div class="page-header">
+          <h2>AI 智慧選股</h2>
+          <span class="page-header__meta">AI 評分 TOP 10／投資期間分類，以及投資組合／模擬觀察／比較／篩選／演算法設定與驗證／資料中心</span>
+        </div>
+
+        <section class="side-panel">
+          <h2>AI 評分 TOP 10（僅供參考，非投資建議）<span class="track-badge track-badge--a">回測有效（幅度小）</span></h2>
+          <p class="panel-howto"><span class="panel-howto__tag">怎麼讀</span>分數越高代表基本面體質越好，但不代表有上漲空間。這是首頁「強力推薦投資」加減碼所用的同一套評分；「雙達標」＝同時也是首頁「強力觀察股」所屬的可投資候選（預期報酬 ≥ 20%）。</p>
+          <details class="panel-evidence">
+            <summary>方法與回測驗證</summary>
+            <p class="side-panel__source">依 AI 綜合評分（自 2026-09-29 起完全依據基本面）獨立排序，與首頁 Market Top 50／強力觀察股的「預期報酬」排序機制完全獨立——高分不代表有上漲空間，僅供參考個股體質，不構成投資建議、不影響任何排名或篩選。「雙達標」代表同一檔股票同時符合「AI 評分高」（進入本排行）與「預期報酬 ≥ 20%」（決策狀態＝可投資候選）兩項條件。</p>
+            <p class="side-panel__note">回測驗證（2016～2026 年，上市＋上櫃約 85 萬筆評分，含已下市股票、隔日進場，對照含息加權報酬指數；現行評分＝月營收＋季報 EPS／淨利／ROE）：評分越高，後續 20 個交易日的相對報酬越好（排序相關 t 值 4.9；最高與最低五分之一平均相差約 1.0 個百分點，t 值 4.8），2023-06 以後的樣本外期間仍有效（市值前 150 大 t 值 2.7）。最高分五分之一未扣交易成本時平均每 20 個交易日僅比大盤多約 0.14 個百分點，幅度小；僅供參考，請勿單獨作為選股依據。</p>
+          </details>
+          <p id="overview-ai-score-loading" class="side-panel__note">正在載入 AI 評分排行…</p>
+          <p id="overview-ai-score-empty" class="side-panel__note" hidden>目前尚無 AI 評分排行資料（每日批次尚未產生資料）。</p>
+          <p id="overview-ai-score-tie-note" class="side-panel__note" hidden></p>
+          <div id="overview-ai-score-body" hidden>
+            <div class="table-scroll">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>排名</th>
+                    <th>代號</th>
+                    <th>名稱</th>
+                    <th>AI 評分</th>
+                    <th>風險</th>
+                    <th>現價</th>
+                    <th>Target Price</th>
+                    <th>預期報酬</th>
+                    <th>決策狀態</th>
+                    <th>雙達標</th>
+                  </tr>
+                </thead>
+                <tbody id="overview-ai-score-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section class="side-panel" id="ai-sim-panel">
+          <h2>AI 模擬投資（一般股票、ETF 各 100 萬元；第 1 輪一週、第 2 輪四週）</h2>
+          <p class="panel-howto"><span class="panel-howto__tag">怎麼讀</span>AI 依本平台自己的建議自動模擬買賣，用來檢驗平台參數與實際結果是否相符。一般股票帳戶跟隨首頁「強力推薦投資」前 10 名；ETF 帳戶依 AI 評分選前 5 檔（日均成交值 ≥ 5,000 萬元，排除槓桿／反向）。每晚收盤後決定隔日開盤的買賣；持股期間以平台的目標價／風險價自動停利停損；跌出前 2 倍名次即賣出，空位由下一名遞補。含手續費 0.1425%、證交稅，配息照價值入帳；比較基準為同時以 100 萬元買進的 0050。</p>
+          <p class="panel-howto panel-howto--warn"><span class="panel-howto__tag">注意</span>第 1 輪（10/5～10/8）僅 4 個交易日；第 2 輪（10/12～11/6，19 個交易日）改用第 2 版異動原則（最短持有 5 日、停利停損後冷卻 5 日），並在開局逐檔驗證 AI 評分公式、結束時比對評分與實際報酬。短期結果仍以市場波動為主，不足以單獨證明策略優劣。</p>
+          <p id="ai-sim-empty" class="side-panel__note">尚無模擬紀錄（僅本機資料庫模式提供）。</p>
+          <div id="ai-sim-body" hidden></div>
+        </section>
+
+        <section class="side-panel">
+          <h2>本週投資觀察（Market Top 50 持有期間分類）</h2>
+          <p class="panel-howto"><span class="panel-howto__tag">怎麼讀</span>首頁強力觀察股所屬的 Market Top 50 中，各適合哪種持有期間；一檔可同時符合多類，資料不足者不勉強分類。</p>
+          <p class="side-panel__source">批次套用既有分類器於 Market Top 50 全部標的；分類需至少 2 個已驗證訊號同意，未達門檻不勉強分類。</p>
+          <div id="overview-horizon-grid" class="card-grid"></div>
+        </section>
+
+        <section id="portfolio-panel" class="side-panel">
+          <h2>投資組合（研究用途）</h2>
+          <p class="side-panel__source">僅供個人記錄與研究使用，非交易系統，不串接券商 API，不執行任何交易。</p>
+          <form id="portfolio-form" class="search-form" autocomplete="off">
+            <label for="portfolio-symbol-input">股票代號</label>
+            <input id="portfolio-symbol-input" type="text" inputmode="numeric" placeholder="例如 2330" required />
+            <label for="portfolio-shares-input">股數</label>
+            <input id="portfolio-shares-input" type="number" min="1" step="1" placeholder="股數" required />
+            <label for="portfolio-amount-input">成交金額</label>
+            <input id="portfolio-amount-input" type="number" min="0" step="0.01" placeholder="成交金額（總額）" required />
+            <label for="portfolio-date-input">成交日期</label>
+            <input id="portfolio-date-input" type="date" />
+            <button type="submit">新增持股</button>
+          </form>
+          <p id="portfolio-error" class="side-panel__note side-panel__note--down" hidden></p>
+          <ul id="portfolio-list" class="side-panel__list"></ul>
+        </section>
+
+        <section id="simulation-panel" class="side-panel">
+          <h2>模擬觀察名單（Simulation）</h2>
+          <p class="side-panel__source">從 Market Top 50／自選股挑選 5～10 檔模擬觀察，記錄可追溯的預測結果供日後驗證。僅供個人研究使用，非交易系統，不串接券商 API，不執行任何交易。</p>
+          <form id="simulation-form" class="search-form" autocomplete="off">
+            <label for="simulation-symbol-input">股票代號</label>
+            <input id="simulation-symbol-input" type="text" inputmode="numeric" placeholder="例如 2330" required />
+            <label for="simulation-observation-date-input">觀察日期</label>
+            <input id="simulation-observation-date-input" type="date" required />
+            <label for="simulation-purchase-date-input">模擬買進日期</label>
+            <input id="simulation-purchase-date-input" type="date" required />
+            <label for="simulation-amount-input">模擬買進金額</label>
+            <input id="simulation-amount-input" type="number" min="0" step="0.01" placeholder="模擬買進金額（總額）" required />
+            <label for="simulation-shares-input">股數</label>
+            <input id="simulation-shares-input" type="number" min="1" step="1" placeholder="股數" required />
+            <label for="simulation-note-input">備註</label>
+            <input id="simulation-note-input" type="text" placeholder="選填" />
+            <button type="submit">加入模擬觀察</button>
+          </form>
+          <p id="simulation-error" class="side-panel__note side-panel__note--down" hidden></p>
+          <ul id="simulation-list" class="side-panel__list simulation-list"></ul>
+        </section>
+
+        <section id="comparison-panel" class="side-panel">
+          <h2>股票比較</h2>
+          <p class="side-panel__source">同時檢視多檔股票的最新價格、漲跌與技術狀態，資料與自選股欄位相同來源。</p>
+          <form id="comparison-form" class="search-form" autocomplete="off">
+            <label for="comparison-symbol-input">股票代號</label>
+            <input id="comparison-symbol-input" type="text" inputmode="numeric" placeholder="例如 2330" required />
+            <button type="submit">加入比較</button>
+          </form>
+          <p id="comparison-error" class="side-panel__note side-panel__note--down" hidden></p>
+          <ul id="comparison-list" class="side-panel__list"></ul>
+        </section>
+
+        <section id="screening-panel" class="side-panel">
+          <h2>訊號篩選</h2>
+          <p class="side-panel__source">依已驗證的趨勢／RSI 訊號，從自選股清單中篩選符合條件的股票。</p>
+          <form id="screening-form" class="search-form" autocomplete="off">
+            <label for="screening-criterion-select">篩選條件</label>
+            <select id="screening-criterion-select">
+              <option value="trend-up">趨勢：偏多</option>
+              <option value="trend-down">趨勢：偏空</option>
+              <option value="rsi-overbought">RSI：超買</option>
+              <option value="rsi-oversold">RSI：超賣</option>
+              <option value="ma-bullish">MA排列：偏多（MA5&gt;MA20）</option>
+              <option value="ma-bearish">MA排列：偏空（MA5&lt;MA20）</option>
+              <option value="momentum-up">動能：近5日上漲</option>
+              <option value="momentum-down">動能：近5日下跌</option>
+              <option value="volume-above">成交量：高於均量</option>
+              <option value="volume-below">成交量：低於均量</option>
+            </select>
+            <button type="submit">篩選</button>
+          </form>
+          <p id="screening-note" class="side-panel__note" hidden></p>
+          <ul id="screening-list" class="side-panel__list"></ul>
+        </section>
+
+        <section id="market-top50-panel" class="side-panel">
+          <h2>Market Top 50</h2>
+          <p class="side-panel__source">依既有 AI 推薦引擎（Target Price／Expected Return，Issue #124/#130）每日批次計算，非交易系統，不提供下單／券商功能，僅供研究與觀察名單建立使用。</p>
+          <p id="market-top50-meta" class="side-panel__note" hidden></p>
+          <p id="market-top50-error" class="side-panel__note side-panel__note--down" hidden></p>
+          <p id="market-top50-empty" class="side-panel__note" hidden>尚無 Top 50 計算結果（每日批次尚未產生資料）。</p>
+          <div id="market-top50-table-wrap" class="table-scroll" hidden>
+            <table id="market-top50-table" class="data-table">
+              <thead>
+                <tr>
+                  <th>排名</th>
+                  <th>代號</th>
+                  <th>名稱</th>
+                  <th>現價</th>
+                  <th>Target Price</th>
+                  <th>Expected Return</th>
+                  <th>決策狀態</th>
+                  <th>風險</th>
+                  <th>綜合評分</th>
+                  <th>資料狀態</th>
+                  <th>資料日期</th>
+                  <th>資料來源</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="market-top50-tbody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="algorithm-config-panel" class="side-panel">
+          <h2>演算法設定總覽</h2>
+          <p class="side-panel__source">現行推薦引擎（Locked Baseline）已使用的權重／門檻，唯讀顯示，僅供研究參考；不可於此頁面修改，修改需另行版本化與回測驗證（M7 Phase 2，尚未開放）。</p>
+          <div class="table-scroll">
+            <table id="algorithm-config-table" class="data-table">
+              <thead>
+                <tr>
+                  <th>參數</th>
+                  <th>公式</th>
+                  <th>權重</th>
+                  <th>門檻</th>
+                  <th>資料來源</th>
+                  <th>版本</th>
+                  <th>最後更新</th>
+                  <th>驗證狀態</th>
+                </tr>
+              </thead>
+              <tbody id="algorithm-config-tbody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="algorithm-version-panel" class="side-panel">
+          <h2>演算法候選版本（M7 Phase 2）</h2>
+          <p class="side-panel__source">候選版本僅用於回測比較，不會套用到正式演算法；套用需由 Stanley 手動修改程式碼決定，AI 不得自動上線（Section 21）。回測請執行 <code>npm run algorithm:backtest -- --threshold=35</code> 後將結果貼於下方對應候選版本。</p>
+          <form id="algorithm-version-form" class="search-form" autocomplete="off">
+            <input id="algorithm-version-change-input" type="text" placeholder="變更內容" required>
+            <input id="algorithm-version-reason-input" type="text" placeholder="變更原因" required>
+            <select id="algorithm-version-type-select">
+              <option value="threshold">Expected Return 門檻變更</option>
+              <option value="weight">綜合評分權重變更</option>
+            </select>
+            <input id="algorithm-version-threshold-new-input" type="number" step="any" placeholder="新候選門檻值（例如 35）">
+            <span id="algorithm-version-weight-fields" hidden>
+              <input id="algorithm-version-weight-fundamental-input" type="number" step="any" placeholder="新 Fundamental 權重（0-1）">
+              <input id="algorithm-version-weight-technical-input" type="number" step="any" placeholder="新 Technical 權重（0-1）">
+              <input id="algorithm-version-weight-chip-input" type="number" step="any" placeholder="新 Chip 權重（0-1）">
+            </span>
+            <input id="algorithm-version-changed-by-input" type="text" placeholder="填寫人（選填）">
+            <button type="submit">新增候選版本</button>
+          </form>
+          <p id="algorithm-version-error" class="side-panel__note side-panel__note--down" hidden></p>
+          <ul id="algorithm-version-list" class="side-panel__list simulation-list"></ul>
+        </section>
+
+        <section id="algorithm-validation-panel" class="side-panel">
+          <h2>演算法驗證結果（真實資料）</h2>
+          <p class="side-panel__source">直接從真實 market_top50／market_daily 計算，重用既有推薦引擎與 <code>algorithm-validation.js</code>，非另一套邏輯；樣本數未達 30 筆時誠實顯示「樣本不足」，絕不冒充可信結論。</p>
+          <p id="algorithm-validation-loading" class="side-panel__note">正在取得市場資料…</p>
+          <p id="algorithm-validation-empty" class="side-panel__note" hidden>目前尚無資料（market_top50 尚無可驗證的預測紀錄）。</p>
+          <p id="algorithm-validation-error" class="side-panel__note side-panel__note--down" hidden>市場資料取得失敗。</p>
+          <div id="algorithm-validation-body" hidden>
+            <p id="algorithm-validation-summary" class="side-panel__note"></p>
+            <div class="table-scroll">
+              <table id="algorithm-validation-indicator-table" class="data-table">
+                <thead>
+                  <tr><th>指標</th><th>樣本數</th><th>狀態</th><th>命中率</th><th>TP</th><th>FP</th><th>TN</th><th>FN</th></tr>
+                </thead>
+                <tbody id="algorithm-validation-indicator-tbody"></tbody>
+              </table>
+            </div>
+            <div class="table-scroll">
+              <table id="algorithm-validation-horizon-table" class="data-table">
+                <thead>
+                  <tr><th>投資週期</th><th>樣本數</th><th>狀態</th><th>平均報酬</th></tr>
+                </thead>
+                <tbody id="algorithm-validation-horizon-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section id="ai-final-output-panel" class="side-panel">
+          <h2>AI 研究結論（Top 50，真實資料）</h2>
+          <p class="side-panel__source">僅根據真實已計算資料回答：可投資標的、原因、目標價依據、不建議標的與反證、演算法是否需要修正——不捏造資料，不使用未驗證的絕對門檻（第⑤點為真實回測結果的相對比較）。</p>
+          <p id="ai-final-output-loading" class="side-panel__note">正在取得市場資料…</p>
+          <p id="ai-final-output-empty" class="side-panel__note" hidden>目前尚無資料（market_top50 尚無可用結果）。</p>
+          <p id="ai-final-output-error" class="side-panel__note side-panel__note--down" hidden>市場資料取得失敗。</p>
+          <div id="ai-final-output-body" hidden>
+            <h3>① 可投資標的</h3>
+            <ul id="ai-final-output-investable" class="side-panel__list simulation-list"></ul>
+            <h3>④ 不建議標的（節錄）</h3>
+            <ul id="ai-final-output-not-recommended" class="side-panel__list simulation-list"></ul>
+            <h3>⑤ 演算法是否需要修正</h3>
+            <p id="ai-final-output-verdict" class="side-panel__note"></p>
+          </div>
+        </section>
+
+        <section id="historical-data-status-panel" class="side-panel">
+          <h2>資料中心／歷史資料狀態</h2>
+          <p class="side-panel__source">TWSE/TPEx 各自的真實 market_daily 涵蓋範圍，直接對 Production 查詢，不猜測。</p>
+          <p id="historical-data-status-loading" class="side-panel__note">正在取得歷史資料狀態…</p>
+          <p id="historical-data-status-error" class="side-panel__note side-panel__note--down" hidden>歷史資料狀態取得失敗。</p>
+          <div id="historical-data-status-body" hidden>
+            <div class="table-scroll">
+              <table id="historical-data-status-table" class="data-table">
+                <thead><tr><th>項目</th><th>TWSE</th><th>TPEx</th></tr></thead>
+                <tbody>
+                  <tr><td>最早資料</td><td id="historical-data-status-twse-earliest"></td><td id="historical-data-status-tpex-earliest"></td></tr>
+                  <tr><td>最新資料</td><td id="historical-data-status-twse-latest"></td><td id="historical-data-status-tpex-latest"></td></tr>
+                  <tr><td>總資料筆數</td><td id="historical-data-status-twse-rows"></td><td id="historical-data-status-tpex-rows"></td></tr>
+                  <tr><td>最新交易日股票數</td><td id="historical-data-status-twse-symbols"></td><td id="historical-data-status-tpex-symbols"></td></tr>
+                  <tr><td>5 年覆蓋</td><td id="historical-data-status-twse-5y"></td><td id="historical-data-status-tpex-5y"></td></tr>
+                  <tr><td>10 年覆蓋</td><td id="historical-data-status-twse-10y"></td><td id="historical-data-status-tpex-10y"></td></tr>
+                  <tr><td>資料品質（抽查最新交易日）</td><td id="historical-data-status-twse-quality"></td><td id="historical-data-status-tpex-quality"></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p id="historical-data-status-updated" class="side-panel__note"></p>
+          </div>
+        </section>
+      </section>
+
+      <footer class="app-footer">
+        <p>
+          Charts powered by
+          <a href="https://github.com/tradingview/lightweight-charts" target="_blank" rel="noopener noreferrer">TradingView Lightweight Charts™</a>
+          (Apache License 2.0).
+        </p>
+      </footer>
+    </div>
   </div>
-  <script src="config.js?v=20260904-reference"></script>
-  <script src="app.js?v=20260904-reference"></script>
-  <script>
-    (()=>{
-      const calcKpis=()=>{
-        const rows=[...document.querySelectorAll('#stock-table tr')].filter(r=>r.children.length>=10);
-        if(!rows.length)return;
-        let strong=0,worthy=0,cont=0,reduce=0;
-        rows.forEach(r=>{const s=Number((r.children[4]?.textContent||'').replace(/[^0-9.-]/g,''));if(!Number.isFinite(s))return;if(s>=90)strong++;else if(s>=80)worthy++;else if(s>=70)cont++;else reduce++;});
-        const total=strong+worthy+cont+reduce;
-        if(total){document.getElementById('kpi-total').textContent=total;document.getElementById('kpi-strong').textContent=strong;document.getElementById('kpi-worthy').textContent=worthy;document.getElementById('kpi-continue').textContent=cont;document.getElementById('kpi-reduce').textContent=reduce;}
-        document.querySelectorAll('.horizon').forEach(card=>{const h=card.dataset.horizon;const matching=rows.filter(r=>(r.children[3]?.textContent||'').includes(h==='intraday'?'當沖':h==='short'?'短期':h==='shortmid'?'短中期':h==='mid'?'中期':h==='midlong'?'中長期':'長期'));if(matching.length){const scores=matching.map(r=>Number((r.children[4]?.textContent||'').replace(/[^0-9.-]/g,''))).filter(Number.isFinite);card.querySelector('strong').textContent=matching.length;card.querySelector('span').textContent=`檔　平均分 ${scores.length?Math.round(scores.reduce((a,b)=>a+b,0)/scores.length):'–'}`;}});
-      };
-      const obs=new MutationObserver(calcKpis);obs.observe(document.getElementById('stock-table'),{childList:true,subtree:true});setTimeout(calcKpis,1200);
-    })();
-  </script>
+
+  <script src="js/config.js"></script>
+  <script type="module" src="js/app.js"></script>
 </body>
 </html>
