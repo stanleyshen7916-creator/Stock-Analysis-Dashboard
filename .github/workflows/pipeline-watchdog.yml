@@ -1,0 +1,33 @@
+# Nightly-run watchdog: every morning, checks that Cloud has the latest
+# trading session's data (the local nightly run syncs it there) and opens an
+# issue - e-mailed to the repo owner - when it does not; closes it on recovery.
+# Runs in this public repo, where GitHub Actions minutes are free.
+# Generated from Stock-Analysis-System/publish/dashboard-repo/ - do not edit here.
+name: Nightly pipeline watchdog
+
+on:
+  schedule:
+    - cron: '30 0 * * *'   # 08:30 Taipei
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: pipeline-watchdog
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check the nightly data in Cloud
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node watchdog/check-pipeline.mjs
