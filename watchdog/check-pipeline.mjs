@@ -1,12 +1,16 @@
 import { pathToFileURL } from 'node:url';
 import { readFileSync } from 'node:fs';
-// Nightly-run watchdog (2026-10-15, Stanley chose it): the platform's data
-// is produced by a nightly run on Stanley's PC and synced to Cloud. If that
-// PC is off or the run fails, nothing on the PC can say so. This runs on
-// GitHub Actions in the PUBLIC Stock-Analysis-Dashboard repo (free minutes)
-// every morning, reads Cloud with the public read-only key, and opens an
-// issue - which GitHub e-mails to Stanley - when the latest trading session
-// is missing; it closes the issue once data is current again.
+// Pipeline watchdog (2026-10-15, Stanley chose it): the platform's data
+// is produced by a run on Stanley's PC and synced to Cloud. If that PC is
+// off or the run fails, nothing on the PC can say so. This runs on GitHub
+// Actions in the PUBLIC Stock-Analysis-Dashboard repo (free minutes) every
+// evening, reads Cloud with the public read-only key, and opens an issue -
+// which GitHub e-mails to Stanley - when data is too far behind; it closes
+// the issue once data is current again.
+//
+// Since 2026-10-19 the run is daytime-only (log on + 18:00; laptops are shut
+// down at night), so data for day D lands at 18:00 D at the earliest and
+// often only at the next log on: one session of lag is normal, two is not.
 //
 // Source of truth: Stock-Analysis-System/publish/dashboard-repo/ (copied in by
 // scripts/publish-dashboard.mjs). No secrets: the key read here is the same
@@ -17,7 +21,7 @@ export const CHECKS = [
   { table: 'market_top50', column: 'calculation_date', label: 'AI 名單（market_top50）' },
   { table: 'shadow_portfolio_performance', column: 'as_of_date', label: '影子追蹤（shadow_portfolio_performance）' }
 ];
-export const RUN_HOUR_TAIPEI = 23; // the nightly run's data for day D lands after ~23:30 Taipei
+export const RUN_HOUR_TAIPEI = 18; // the 18:00 run's data for day D lands after ~18:30 Taipei
 
 const taipeiDate = (d) => new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Taipei', year: 'numeric', month: '2-digit', day: '2-digit' }).format(d);
 const taipeiHour = (d) => Number(new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Taipei', hour: '2-digit', hour12: false }).format(d));
@@ -33,7 +37,7 @@ export function closedDates(rows) {
     .map((d) => `${Number(d.slice(0, 3)) + 1911}-${d.slice(3, 5)}-${d.slice(5, 7)}`));
 }
 
-/** The latest session whose nightly data should already exist at `now`. */
+/** The latest session whose data could already exist at `now` (if the PC ran at 18:00). */
 export function expectedLatestSession(now, closed = new Set()) {
   let d = taipeiDate(now);
   if (taipeiHour(now) < RUN_HOUR_TAIPEI + 1) d = addDays(d, -1);
@@ -45,16 +49,17 @@ export function expectedLatestSession(now, closed = new Set()) {
 }
 
 /**
- * Stale checks. Without the holiday list, a single missing weekday could be
- * a holiday, so only a gap of 2+ weekdays is reported (stated in the result).
+ * Stale checks. One session behind is normal for the daytime-only run; without
+ * the holiday list a missing weekday could also be a holiday, so one more is
+ * tolerated (stated in the result).
  */
 export function evaluate({ now, closed, latest }) {
   const expected = expectedLatestSession(now, closed ?? new Set());
-  const tolerance = closed ? 0 : 1;
+  const tolerance = closed ? 1 : 2;
   let allowed = expected;
   for (let k = 0; k < tolerance; k += 1) {
     allowed = addDays(allowed, -1);
-    while (weekday(allowed) === 0 || weekday(allowed) === 6) allowed = addDays(allowed, -1);
+    while (weekday(allowed) === 0 || weekday(allowed) === 6 || closed?.has(allowed)) allowed = addDays(allowed, -1);
   }
   const stale = CHECKS.filter((c) => !latest[c.table] || String(latest[c.table]).slice(0, 10) < allowed)
     .map((c) => ({ ...c, latest: latest[c.table] ?? null }));
@@ -95,7 +100,7 @@ export async function main({ now = new Date(), log = console.log } = {}) {
     latest[c.table] = rows[0]?.[c.column] ?? null;
   }
   let closed = null;
-  try { closed = closedDates(await getJson('https://openapi.twse.com.tw/v1/holidaySchedule/holidaySchedule')); } catch (err) { log(`holiday list unavailable (${err.message}); tolerating one weekday`); }
+  try { closed = closedDates(await getJson('https://openapi.twse.com.tw/v1/holidaySchedule/holidaySchedule')); } catch (err) { log(`holiday list unavailable (${err.message}); tolerating one more weekday`); }
   const result = evaluate({ now, closed, latest });
   log(JSON.stringify({ latest, ...result }, null, 2));
 
@@ -103,14 +108,14 @@ export async function main({ now = new Date(), log = console.log } = {}) {
   const open = await github(`/issues?state=open&labels=${LABEL}&per_page=5`);
   if (!result.ok && open.length === 0) {
     const lines = [
-      `每晚排程的資料沒有更新到最新交易日 **${result.expected}**（檢查時間 ${now.toISOString()}）。`, '',
+      `資料排程落後超過一個交易日：最新交易日為 **${result.expected}**，雲端至少應有 ${result.allowed} 的資料（檢查時間 ${now.toISOString()}）。`, '',
       ...result.stale.map((s) => `- ${s.label}：雲端最新為 ${s.latest ?? '無資料'}`), '',
-      '可能原因：電腦未開機或未登入 Windows、Docker 未啟動、排程失敗或雲端同步失敗。',
-      '處理方式：在電腦上執行 `powershell -File scripts\\local-production\\run-agent.ps1 --force`，並查看 `runtime\\logs\\agent.log`。',
-      '資料恢復最新後，此 issue 會自動關閉。',
-      result.holidayListUsed ? '' : '（本次未能取得證交所休市日表，只在連續兩個平日缺資料時才通報。）'
+      '排程在登入 Windows 後 5 分鐘與 18:00 執行，所以落後一個交易日屬正常；落後兩個以上通常表示：電腦連續未開機、Docker 未啟動、排程失敗或雲端同步失敗。',
+      '處理方式：開機登入等 5 分鐘讓排程自動補跑，或在電腦上執行 `powershell -File scripts\\local-production\\run-agent.ps1 --force`，並查看 `runtime\\logs\\agent.log`。',
+      '資料恢復後，此 issue 會自動關閉。',
+      result.holidayListUsed ? '' : '（本次未能取得證交所休市日表，再多容許一個平日。）'
     ];
-    await github('/issues', { method: 'POST', body: { title: `每晚排程未更新：缺 ${result.expected} 的資料`, body: lines.join('\n'), labels: [LABEL] } });
+    await github('/issues', { method: 'POST', body: { title: `資料排程落後：雲端缺 ${result.allowed} 之後的資料`, body: lines.join('\n'), labels: [LABEL] } });
     log('issue opened');
   } else if (result.ok && open.length > 0) {
     for (const issue of open) {
