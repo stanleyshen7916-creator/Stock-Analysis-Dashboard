@@ -1604,3 +1604,270 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+/* AI 模擬投資 summary (2026-10-19): static KPI tiles, return-vs-0050 chart,
+   finished rounds collapsed. */
+.kpi-tile--static,
+.kpi-tile--static:hover {
+  cursor: default;
+  border-color: var(--tile-border);
+}
+
+.sim-kpi-grid {
+  margin: 0.5rem 0 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(118px, 1fr));
+}
+
+@media (max-width: 640px) {
+  .sim-kpi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.sim-chart {
+  margin: 0 0 1rem;
+  max-width: 760px;
+}
+
+.sim-chart svg {
+  width: 100%;
+  height: auto;
+  max-height: 240px;
+  display: block;
+}
+
+.sim-chart__grid { stroke: var(--tile-border); stroke-width: 1; }
+.sim-chart__zero { stroke: var(--color-muted); stroke-width: 1; stroke-dasharray: 3 3; }
+.sim-chart__label { fill: var(--color-muted); font-size: 11px; }
+.sim-chart__line { fill: none; stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; }
+.sim-chart__line--strategy { stroke: var(--color-accent); }
+.sim-chart__line--benchmark { stroke: var(--color-muted); stroke-dasharray: 6 4; stroke-width: 2; }
+
+.sim-chart__legend {
+  font-size: 0.78rem;
+  color: var(--color-muted);
+  margin-top: 0.25rem;
+}
+
+.sim-chart__key {
+  display: inline-block;
+  width: 1.4rem;
+  height: 0;
+  border-top: 2.5px solid var(--color-accent);
+  vertical-align: middle;
+  margin-right: 0.35rem;
+}
+
+.sim-chart__key--benchmark { border-top: 2px dashed var(--color-muted); }
+
+.sim-details {
+  margin: 0 0 1.25rem;
+}
+
+.sim-details > summary {
+  cursor: pointer;
+  color: var(--color-accent);
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+}
+
+/* 執行績效總覽 (home page, 2026-10-20): data-status bar above the headline round. */
+.perf-status {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.25rem;
+  align-items: baseline;
+  padding: 0.6rem 0.9rem;
+  margin: 0 0 1rem;
+  border: 1px solid var(--tile-border);
+  border-radius: 10px;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+
+.perf-status--stale {
+  border-color: var(--color-down);
+}
+
+.perf-status--stale .perf-status__item:last-child {
+  color: var(--color-down);
+}
+
+.perf-status__item--strong {
+  color: inherit;
+  font-weight: 600;
+}
+
+.sim-details > summary {
+  font-weight: 500;
+}
+
+/* 買進／賣出 (2026-10-26): trade action pills - blue / orange, never the
+   green / red of profit and loss; a cancelled order is greyed out. */
+.trade-action {
+  display: inline-block;
+  padding: 0.05rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+
+.trade-action--buy { color: #2f5fd0; background: #e8eefc; border-color: #c9d6f7; }
+.trade-action--sell { color: #b45309; background: #fdf0e1; border-color: #f5d6b0; }
+.trade-action--cancelled { color: var(--color-muted); background: transparent; border-color: var(--color-border); text-decoration: line-through; }
+
+.trade-pending__item {
+  display: inline-block;
+  margin: 0.2rem 0.75rem 0.2rem 0;
+}
+
+/* 投資績效儀表板 (home page, 2026-10-26) */
+.dash-accounts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  margin: 0 0 1rem;
+}
+
+.dash-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  padding: 1.1rem 1.25rem;
+}
+
+.dash-card__title {
+  margin: 0 0 0.5rem;
+  font-size: 0.95rem;
+  color: var(--color-muted);
+  font-weight: 600;
+}
+
+.dash-card__headline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem 1rem;
+}
+
+.dash-card__return {
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.dash-card__bench {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+.dash-card__verdict {
+  display: inline-block;
+  margin: 0.6rem 0 0.9rem;
+  padding: 0.2rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: var(--tile-bg);
+  color: var(--color-muted);
+}
+
+.dash-card__verdict--ahead { background: #e6f4ed; color: var(--color-up); }
+.dash-card__verdict--behind { background: #fbe9e7; color: var(--color-down); }
+
+.dash-card__facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.6rem 1rem;
+  margin: 0;
+}
+
+.dash-card__facts dt {
+  font-size: 0.75rem;
+  color: var(--color-muted);
+}
+
+.dash-card__facts dd {
+  margin: 0.1rem 0 0;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.sim-chart__line--etf { stroke: #8b5cf6; }
+.sim-chart__key--strategy { border-top-color: var(--color-accent); }
+.sim-chart__key--etf { border-top-color: #8b5cf6; }
+
+.dash-columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 0 1rem;
+}
+
+.dash-movers__group + .dash-movers__group {
+  margin-top: 1rem;
+}
+
+.dash-movers__title {
+  margin: 0 0 0.4rem;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+
+.dash-mover {
+  display: grid;
+  grid-template-columns: minmax(0, 9rem) minmax(0, 1fr) 6rem;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.3rem 0;
+  font-size: 0.88rem;
+}
+
+.dash-mover__label small {
+  display: block;
+  color: var(--color-muted);
+  font-size: 0.72rem;
+}
+
+.dash-mover__track {
+  height: 0.6rem;
+  background: var(--tile-bg);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.dash-mover__bar {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+}
+
+.dash-mover__bar--up { background: var(--color-up); }
+.dash-mover__bar--down { background: var(--color-down); }
+
+.dash-mover__value {
+  text-align: right;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.dash-activity__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 0.9rem;
+  align-items: baseline;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--tile-border);
+  font-size: 0.88rem;
+}
+
+.dash-activity__account {
+  font-weight: 600;
+  min-width: 7rem;
+}
+
+@media (max-width: 640px) {
+  .dash-card__return { font-size: 2rem; }
+  .dash-mover { grid-template-columns: minmax(0, 7rem) minmax(0, 1fr) 5rem; }
+}

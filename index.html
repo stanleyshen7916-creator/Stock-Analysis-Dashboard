@@ -21,8 +21,14 @@
         </div>
       </div>
       <ul class="sidebar-nav" id="sidebar-nav">
-        <li class="sidebar-nav__item sidebar-nav__item--active" data-nav-page="overview">
-          <button class="sidebar-nav__button" type="button" data-nav-target="overview">AI 投資決策分析首頁</button>
+        <li class="sidebar-nav__item sidebar-nav__item--active" data-nav-page="dashboard">
+          <button class="sidebar-nav__button" type="button" data-nav-target="dashboard">投資績效儀表板</button>
+        </li>
+        <li class="sidebar-nav__item" data-nav-page="performance">
+          <button class="sidebar-nav__button" type="button" data-nav-target="performance">執行績效總覽</button>
+        </li>
+        <li class="sidebar-nav__item" data-nav-page="overview">
+          <button class="sidebar-nav__button" type="button" data-nav-target="overview">今日投資名單</button>
         </li>
         <li class="sidebar-nav__item" data-nav-page="legacy">
           <button class="sidebar-nav__button" type="button" data-nav-target="legacy">AI 智慧選股</button>
@@ -59,16 +65,101 @@
         </div>
       </header>
 
-      <!-- ================= Overview page (AI 投資決策分析首頁) =================
+      <!-- ================= Home: 執行績效總覽 (2026-10-20) =================
+           What the platform's advice actually did: the AI paper-trading
+           accounts (scripts/ai-simulation.mjs) - cumulative return vs 0050,
+           win rate, max drawdown, this week / month, holdings, latest
+           trades and data freshness. Rendered by renderAiSimulation() in
+           app.js from public/js/lib/ai-simulation-summary.js; the per-round
+           detail (rules, every order, daily NAV) is folded at the bottom.
+           Today's lists moved to 今日投資名單 (page-overview). -->
+      <!-- ================= Home: 投資績效儀表板 (2026-10-26) =================
+           The one-glance view of the AI paper-trading round in progress:
+           is each account ahead of 0050, by how much, which stocks made or
+           lost the money, and what was bought / sold. Rendered by
+           renderPerformanceDashboard() in app.js from the rows
+           renderAiSimulation() already loads; every figure, order and the
+           shadow rounds stay on 執行績效總覽 (page-performance). -->
+      <section id="page-dashboard" class="app-page" data-page="dashboard">
+        <div class="page-header">
+          <h2>投資績效儀表板</h2>
+          <span class="page-header__meta">AI 模擬投資目前這一輪的成績：賺或賠多少、有沒有贏過 0050</span>
+        </div>
+        <p id="dash-loading" class="side-panel__note">正在載入投資績效…</p>
+        <p id="dash-empty" class="side-panel__note" hidden>尚無模擬紀錄，或暫時讀不到資料。</p>
+        <div id="dash-body" hidden>
+          <div id="dash-status" class="perf-status" role="status"></div>
+          <div id="dash-accounts" class="dash-accounts"></div>
+          <section class="side-panel">
+            <h2>累積報酬走勢</h2>
+            <div id="dash-chart"></div>
+          </section>
+          <div class="dash-columns">
+            <section class="side-panel">
+              <h2>賺最多與賠最多的股票</h2>
+              <p class="panel-howto"><span class="panel-howto__tag">怎麼讀</span>本輪每檔股票的損益合計：已賣出的實現損益，加上仍持有的帳面損益（未扣日後賣出成本）。</p>
+              <div id="dash-movers"></div>
+            </section>
+            <section class="side-panel">
+              <h2>交易次數</h2>
+              <div id="dash-activity"></div>
+            </section>
+          </div>
+          <p class="panel-howto panel-howto--warn"><span class="panel-howto__tag">注意</span>模擬投資，非真實交易，也非投資建議。期間僅數週，結果主要反映市場波動。</p>
+          <nav class="overview-detail-links" aria-label="其他頁面">
+            <span class="overview-detail-links__label">看完整數字：</span>
+            <button type="button" class="detail-link" data-goto-page="performance">執行績效總覽（持股、全部交易、每日淨值、規則調整追蹤）</button>
+          </nav>
+        </div>
+      </section>
+
+      <section id="page-performance" class="app-page" data-page="performance" hidden>
+        <div class="page-header">
+          <h2>執行績效總覽</h2>
+          <span class="page-header__meta">平台建議實際執行的結果：AI 模擬投資帳戶（一般股票、ETF 各 100 萬元）對照同期 0050</span>
+        </div>
+        <p id="perf-loading" class="side-panel__note">正在載入模擬投資績效…</p>
+        <p id="ai-sim-empty" class="side-panel__note" hidden>尚無模擬紀錄，或暫時讀不到資料。</p>
+        <div id="perf-body" hidden>
+          <div id="perf-status" class="perf-status" role="status"></div>
+          <div id="perf-headline"></div>
+          <section class="side-panel">
+            <h2>目前持倉</h2>
+            <div id="perf-holdings"></div>
+          </section>
+          <section class="side-panel">
+            <h2>最近交易</h2>
+            <div id="perf-trades"></div>
+          </section>
+          <section class="side-panel" id="perf-shadow-panel" hidden>
+            <h2>規則調整並行追蹤（Shadow）<span class="track-badge track-badge--b">不影響正式規則</span></h2>
+            <p class="panel-howto"><span class="panel-howto__tag">怎麼讀</span>從正式回合同一天收盤後的持股與現金出發，改用新版異動原則，在相同交易日並行模擬；兩者差異只來自規則。只用來檢驗規則是否改善，正式回合的規則不變。</p>
+            <div id="perf-shadow"></div>
+          </section>
+          <section class="side-panel" id="ai-sim-panel">
+            <h2>明細：每一輪的異動原則、交易與每日淨值</h2>
+            <p class="panel-howto"><span class="panel-howto__tag">怎麼讀</span>AI 依本平台自己的建議自動模擬買賣，用來檢驗平台參數與實際結果是否相符。一般股票帳戶跟隨「強力推薦投資」前 10 名；ETF 帳戶依 AI 評分選前 5 檔（日均成交值 ≥ 5,000 萬元，排除槓桿／反向）。每晚收盤後決定隔日開盤的買賣；持股期間以平台的目標價／風險價自動停利停損；跌出前 2 倍名次即賣出，空位由下一名遞補。含手續費 0.1425%、證交稅，配息照價值入帳；比較基準為同時以 100 萬元買進的 0050。</p>
+            <p class="panel-howto panel-howto--warn"><span class="panel-howto__tag">注意</span>模擬至今僅數週、交易筆數少，結果仍以市場波動為主，不足以單獨證明策略優劣。非投資建議。</p>
+            <div id="ai-sim-body" hidden></div>
+          </section>
+          <nav class="overview-detail-links" aria-label="其他頁面">
+            <span class="overview-detail-links__label">今日名單與研究：</span>
+            <button type="button" class="detail-link" data-goto-page="overview">今日投資名單</button>
+            <button type="button" class="detail-link" data-goto-page="research">回測／研究報告</button>
+          </nav>
+        </div>
+      </section>
+
+      <!-- ================= Overview page (今日投資名單; home until 2026-10-20) =================
            One-page decision board: today's summary, then ① 強力推薦投資 (the
            10 largest overweights of the backtest-validated enhanced index,
            full allocation folded underneath) and ② 強力觀察股 (Market Top 50
            可投資候選, expected-return order, observation only). Supporting
            detail lives on the sidebar pages: 市場總覽 (page-market), AI 智慧選股
            (AI 評分 TOP 10, 投資期間分類) and 回測／研究報告 (page-research). -->
-      <section id="page-overview" class="app-page" data-page="overview">
+      <section id="page-overview" class="app-page" data-page="overview" hidden>
         <div class="page-header">
-          <h2>AI 投資決策分析首頁</h2>
+          <h2>今日投資名單</h2>
           <span class="page-header__meta">今天哪些股票強力推薦投資、哪些列為強力觀察（每日批次計算，真實 Production 資料）</span>
         </div>
 
@@ -789,13 +880,7 @@
           </div>
         </section>
 
-        <section class="side-panel" id="ai-sim-panel">
-          <h2>AI 模擬投資（一般股票、ETF 各 100 萬元；第 1 輪一週、第 2 輪四週）</h2>
-          <p class="panel-howto"><span class="panel-howto__tag">怎麼讀</span>AI 依本平台自己的建議自動模擬買賣，用來檢驗平台參數與實際結果是否相符。一般股票帳戶跟隨首頁「強力推薦投資」前 10 名；ETF 帳戶依 AI 評分選前 5 檔（日均成交值 ≥ 5,000 萬元，排除槓桿／反向）。每晚收盤後決定隔日開盤的買賣；持股期間以平台的目標價／風險價自動停利停損；跌出前 2 倍名次即賣出，空位由下一名遞補。含手續費 0.1425%、證交稅，配息照價值入帳；比較基準為同時以 100 萬元買進的 0050。</p>
-          <p class="panel-howto panel-howto--warn"><span class="panel-howto__tag">注意</span>第 1 輪（10/5～10/8）僅 4 個交易日；第 2 輪（10/12～11/6，19 個交易日）改用第 2 版異動原則（最短持有 5 日、停利停損後冷卻 5 日），並在開局逐檔驗證 AI 評分公式、結束時比對評分與實際報酬。短期結果仍以市場波動為主，不足以單獨證明策略優劣。</p>
-          <p id="ai-sim-empty" class="side-panel__note">尚無模擬紀錄（僅本機資料庫模式提供）。</p>
-          <div id="ai-sim-body" hidden></div>
-        </section>
+        <p class="side-panel__note">AI 模擬投資的績效與明細已移到首頁「執行績效總覽」。<button type="button" class="detail-link" data-goto-page="performance">前往</button></p>
 
         <section class="side-panel">
           <h2>本週投資觀察（Market Top 50 持有期間分類）</h2>
