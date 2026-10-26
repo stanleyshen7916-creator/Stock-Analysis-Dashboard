@@ -4,7 +4,7 @@
 內容由私人主專案 Stock-Analysis-System 的 `public/` 以 `scripts/publish-dashboard.mjs` 產生，
 與本機 http://localhost:8080 為同一套程式；在此網站上讀取雲端資料庫（近 150 天）。
 
-來源版本：73907943add0de1a8cda2080df59dac766f2d785（見 PUBLISHED.json）
+來源版本：69a5e41219c248526f3ed6979ab1ad53e70c0369（見 PUBLISHED.json）
 
 資料排程監控：`.github/workflows/pipeline-watchdog.yml` 每天 20:00（台北）檢查雲端資料，落後超過一個交易日時自動開 issue 通知，恢復後自動關閉（原始檔在主專案 `publish/dashboard-repo/`）。
 

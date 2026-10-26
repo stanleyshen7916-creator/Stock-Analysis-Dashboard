@@ -2379,7 +2379,7 @@ function renderPerformanceOverview(loaded, { make, table, money, signed, today }
         const base = official && days[0] ? official.days.filter((d) => d.trading_date <= days[0].trading_date).at(-1) : null;
         const officialLast = official?.days.at(-1);
         const same = base && officialLast && base !== officialLast ? (Number(officialLast.nav) / Number(base.nav) - 1) * 100 : null;
-        return [summary.label.replace('帳戶', ''), `${run.start_date} ～ ${run.end_date}`, `第 ${summary.rulesVersion ?? '—'} 版${run.rules?.levels?.riskMethod === 'NONE' ? '＋不設停利停損' : run.rules?.levels ? `＋風險價 ${{ ATR_2: '收盤−2×ATR', ATR_3: '收盤−3×ATR' }[run.rules.levels.riskMethod] ?? run.rules.levels.riskMethod}` : ''}`, summary.lastDate ?? '—', pct(summary.returnPct), pct(summary.marketReturnPct),
+        return [summary.label.replace('帳戶', ''), `${run.start_date} ～ ${run.end_date}`, `第 ${summary.rulesVersion ?? '—'} 版${run.rules?.levels?.riskMethod === 'NONE' ? '＋不設停利停損' : run.rules?.levels ? `＋風險價 ${{ ATR_2: '收盤−2×ATR', ATR_3: '收盤−3×ATR' }[run.rules.levels.riskMethod] ?? run.rules.levels.riskMethod}` : run.rules?.buyMode === 'NASDAQ' ? '＋NASDAQ 限價買進' : run.rules?.noStop ? '＋不設停損' : ''}`, summary.lastDate ?? '—', pct(summary.returnPct), pct(summary.marketReturnPct),
           Number.isFinite(summary.excessPct) ? `${summary.excessPct >= 0 ? '+' : ''}${summary.excessPct.toFixed(2)} pt` : '—', pct(same),
           Number.isFinite(summary.maxDrawdownPct) ? `${summary.maxDrawdownPct.toFixed(2)}%` : '—', Number.isFinite(summary.winRatePct) ? `${summary.winRatePct.toFixed(0)}%` : '—'];
       }), 6));
