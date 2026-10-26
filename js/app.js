@@ -53,7 +53,7 @@ import { fetchRecentQuarterlyRows } from './lib/quarterly-financials-source.js';
 import { fetchLatestInstitutionalFlow } from './lib/institutional-flow-source.js';
 import { fetchRecentMaterialInformation } from './lib/material-information-source.js';
 import { createDashboardChart, renderDashboardChart, setSeriesVisibility } from './chart-render.js';
-import { summarizeSimRun, missedWeekdays, taipeiToday, buildReturnChart, buildLinesChart, mergeReturnSeries, symbolContributions, tradeActivity, weekAndMonthReturns, sessionsBeatingBenchmark, recentTrades, pickHeadlineRuns } from './lib/ai-simulation-summary.js';
+import { summarizeSimRun, missedWeekdays, taipeiToday, buildReturnChart, buildLinesChart, mergeReturnSeries, symbolContributions, tradeActivity, portfolioComposition, weekAndMonthReturns, sessionsBeatingBenchmark, recentTrades, pickHeadlineRuns } from './lib/ai-simulation-summary.js';
 
 const SYMBOL_PATTERN = /^[0-9A-Za-z]{4,6}$/;
 const MA_SHORT_PERIOD = 5;
@@ -227,6 +227,7 @@ const el = {
   sidebarNav: document.getElementById('sidebar-nav'),
   pageOverview: document.getElementById('page-overview'),
   pageDashboard: document.getElementById('page-dashboard'),
+  pagePortfolio: document.getElementById('page-portfolio'),
   pagePerformance: document.getElementById('page-performance'),
   pageStock: document.getElementById('page-stock'),
   pageChanges: document.getElementById('page-changes'),
@@ -288,7 +289,7 @@ const el = {
 // toggling idiom already used for state banners elsewhere in this file -
 // no new pattern, no router/history library. #page-legacy holds every
 // pre-redesign panel unchanged; #page-overview/#page-stock are new.
-const PAGE_CONTAINERS = { dashboard: el.pageDashboard, performance: el.pagePerformance, overview: el.pageOverview, stock: el.pageStock, changes: el.pageChanges, legacy: el.pageLegacy, market: el.pageMarket, research: el.pageResearch, etf: el.pageEtf };
+const PAGE_CONTAINERS = { dashboard: el.pageDashboard, portfolio: el.pagePortfolio, performance: el.pagePerformance, overview: el.pageOverview, stock: el.pageStock, changes: el.pageChanges, legacy: el.pageLegacy, market: el.pageMarket, research: el.pageResearch, etf: el.pageEtf };
 
 function switchPage(pageId) {
   if (pageId === 'etf') renderEtfPageOnce();
@@ -2119,16 +2120,16 @@ function renderSimSummary(s, make, extra = null) {
   const tiles = [
     ['淨值', `NT$${money(s.nav)}`, '', s.started ? `資料日 ${s.lastDate}（第 ${s.sessions} 個交易日）` : `待 ${s.startDate} 開盤成交`],
     ['累積報酬', pct(s.returnPct), tone(s.returnPct), `起始 NT$${money(s.initialCash)}`],
-    ['同期 0050', pct(s.benchmarkReturnPct), tone(s.benchmarkReturnPct), '同額買進 0050'],
-    ['超額報酬', Number.isFinite(s.excessPct) ? `${s.excessPct >= 0 ? '+' : ''}${s.excessPct.toFixed(2)} pt` : '—', tone(s.excessPct), '帳戶報酬 − 0050'],
+    ['同期大盤', pct(s.marketReturnPct), tone(s.marketReturnPct), Number.isFinite(s.marketReturnPct) ? `加權報酬指數（含息）｜0050 參考 ${pct(s.benchmarkReturnPct)}` : `大盤資料待更新｜0050 參考 ${pct(s.benchmarkReturnPct)}`],
+    ['超額報酬', Number.isFinite(s.excessPct) ? `${s.excessPct >= 0 ? '+' : ''}${s.excessPct.toFixed(2)} pt` : '—', tone(s.excessPct), '帳戶報酬 − 大盤'],
     ['已實現損益', signedMoney(s.realizedPnl), tone(s.realizedPnl), s.closedTrades ? `賣出 ${s.closedTrades} 筆，獲利 ${s.winningTrades} 筆` : '尚無賣出'],
     ['未實現損益', signedMoney(s.unrealizedPnl), tone(s.unrealizedPnl), `持股 ${s.holdingsCount} 檔｜現金 NT$${money(s.cash)}`],
     ['最大回檔', Number.isFinite(s.maxDrawdownPct) ? `${s.maxDrawdownPct.toFixed(2)}%` : '—', s.maxDrawdownPct < -1e-9 ? 'kpi-tile__value--down' : '', s.pendingOrders ? `待成交委託 ${s.pendingOrders} 筆` : '淨值從高點的最大跌幅'],
     // home page (執行績效總覽, 2026-10-20): win rate and this week / month
     ...(extra ? [
       ['交易勝率', Number.isFinite(s.winRatePct) ? `${s.winRatePct.toFixed(0)}%` : '—', '', s.closedTrades ? `已賣出 ${s.closedTrades} 筆中獲利 ${s.winningTrades} 筆` : '尚無賣出'],
-      ...[['本週', extra.week], ['本月', extra.month]].map(([label, p]) => [`${label}表現`, p ? pct(p.returnPct) : '—', p ? tone(p.returnPct) : '', p ? `0050 ${pct(p.benchmarkPct)}｜自 ${p.from.slice(5).replace('-', '/')} 收盤` : `${label}尚無交易日`]),
-      ['勝過 0050 的交易日', extra.beat ? `${extra.beat.beat}/${extra.beat.total}` : '—', '', '當日帳戶漲跌優於 0050']
+      ...[['本週', extra.week], ['本月', extra.month]].map(([label, p]) => [`${label}表現`, p ? pct(p.returnPct) : '—', p ? tone(p.returnPct) : '', p ? `大盤 ${pct(p.marketPct)}｜自 ${p.from.slice(5).replace('-', '/')} 收盤` : `${label}尚無交易日`]),
+      ['勝過大盤的交易日', extra.beat ? `${extra.beat.beat}/${extra.beat.total}` : '—', '', '當日帳戶漲跌優於大盤']
     ] : [])
   ];
   const grid = make('div', null, 'kpi-grid kpi-grid--compact sim-kpi-grid');
@@ -2154,7 +2155,7 @@ function renderSimReturnChart(days) {
   };
   const figure = document.createElement('figure');
   figure.className = 'sim-chart';
-  const svg = node('svg', { viewBox: `0 0 ${chart.width} ${chart.height}`, role: 'img', 'aria-label': '累積報酬與同期 0050 走勢' });
+  const svg = node('svg', { viewBox: `0 0 ${chart.width} ${chart.height}`, role: 'img', 'aria-label': '累積報酬與同期大盤、0050 走勢' });
   for (const tick of chart.yTicks) {
     svg.append(node('line', { x1: chart.plot.left, x2: chart.plot.right, y1: tick.y, y2: tick.y, class: 'sim-chart__grid' }));
     svg.append(node('text', { x: chart.plot.left - 6, y: tick.y + 4, 'text-anchor': 'end', class: 'sim-chart__label' }, `${tick.value.toFixed(1)}%`));
@@ -2165,10 +2166,11 @@ function renderSimReturnChart(days) {
     if (i % every === 0 || i === chart.xLabels.length - 1) svg.append(node('text', { x: label.x, y: chart.height - 8, 'text-anchor': 'middle', class: 'sim-chart__label' }, label.text));
   });
   if (chart.benchmark) svg.append(node('polyline', { points: chart.benchmark, class: 'sim-chart__line sim-chart__line--benchmark' }));
+  if (chart.market) svg.append(node('polyline', { points: chart.market, class: 'sim-chart__line sim-chart__line--market' }));
   if (chart.strategy) svg.append(node('polyline', { points: chart.strategy, class: 'sim-chart__line sim-chart__line--strategy' }));
   const caption = document.createElement('figcaption');
   caption.className = 'sim-chart__legend';
-  caption.innerHTML = '<span class="sim-chart__key sim-chart__key--strategy"></span>帳戶累積報酬　<span class="sim-chart__key sim-chart__key--benchmark"></span>同期 0050';
+  caption.innerHTML = '<span class="sim-chart__key sim-chart__key--strategy"></span>帳戶累積報酬　<span class="sim-chart__key sim-chart__key--market"></span>同期大盤　<span class="sim-chart__key sim-chart__key--benchmark"></span>0050（參考）';
   figure.append(svg, caption);
   return figure;
 }
@@ -2182,9 +2184,11 @@ async function renderAiSimulation(config) {
   const showEmpty = () => {
     if (loading) loading.hidden = true;
     empty.hidden = false;
-    const [dashLoading, dashEmpty] = ['dash-loading', 'dash-empty'].map((id) => document.getElementById(id));
-    if (dashLoading) dashLoading.hidden = true;
-    if (dashEmpty) dashEmpty.hidden = false;
+    for (const prefix of ['dash', 'pf']) {
+      const [pageLoading, pageEmpty] = [`${prefix}-loading`, `${prefix}-empty`].map((id) => document.getElementById(id));
+      if (pageLoading) pageLoading.hidden = true;
+      if (pageEmpty) pageEmpty.hidden = false;
+    }
   };
   try {
     const base = String(config.SUPABASE_URL).replace(/\/$/, '');
@@ -2233,13 +2237,14 @@ async function renderAiSimulation(config) {
     // Home page (執行績效總覽): headline round, holdings, latest trades, shadow rounds, data status
     const headlineIds = renderPerformanceOverview(loaded, { make, table, money, signed, today });
     renderPerformanceDashboard(loaded, { make, table, money, today });
+    renderPortfolioPage(loaded, { make, table, money });
     // Detail: every round folded, newest first (the headline round's tiles and chart are already above)
     for (const { run, days, orders, summary } of loaded) {
       const last = days.at(-1);
       const finished = run.status === 'FINISHED';
       const pctOf = (x) => (Number.isFinite(x) ? `${x >= 0 ? '+' : ''}${x.toFixed(2)}%` : '—');
       const section = make('details', null, 'sim-details');
-      section.append(make('summary', `${summary.shadow ? 'Shadow・' : ''}${summary.label}（${run.start_date} ～ ${run.end_date}，${finished ? '已結束' : '進行中'}${summary.rulesVersion ? `，第 ${summary.rulesVersion} 版規則` : ''}）　報酬 ${pctOf(summary.returnPct)}｜0050 ${pctOf(summary.benchmarkReturnPct)}`));
+      section.append(make('summary', `${summary.shadow ? 'Shadow・' : ''}${summary.label}（${run.start_date} ～ ${run.end_date}，${finished ? '已結束' : '進行中'}${summary.rulesVersion ? `，第 ${summary.rulesVersion} 版規則` : ''}）　報酬 ${pctOf(summary.returnPct)}｜大盤 ${pctOf(summary.marketReturnPct)}｜0050 ${pctOf(summary.benchmarkReturnPct)}`));
       body.append(section);
       if (!headlineIds.has(run.run_id)) {
         section.append(renderSimSummary(summary, make));
@@ -2265,7 +2270,7 @@ async function renderAiSimulation(config) {
         const f = last.feedback ?? {};
         const started = days.length > 1;
         section.append(make('p', started
-          ? `資料日 ${last.trading_date}｜淨值 NT$${money(last.nav)}（報酬 ${signed(last.return_pct)}%）｜同期 0050 ${signed(last.benchmark_return_pct)}%｜現金 NT$${money(last.cash)}｜持股 ${last.holdings.length} 檔`
+          ? `資料日 ${last.trading_date}｜淨值 NT$${money(last.nav)}（報酬 ${signed(last.return_pct)}%）｜同期大盤 ${last.feedback?.market ? `${signed(last.feedback.market.returnPct)}%` : '—'}｜0050 參考 ${signed(last.benchmark_return_pct)}%｜現金 NT$${money(last.cash)}｜持股 ${last.holdings.length} 檔`
           : `起始資金 NT$${money(run.initial_cash)}｜已依 ${last.trading_date} 收盤後資料下單，${run.start_date} 開盤成交`, 'side-panel__source'));
         if (started) {
           section.append(make('p', `參數驗證（第 ${f.day ?? '—'} 個交易日）：有平台目標價／風險價的買進 ${f.withLevels ?? 0} 筆，觸及風險價 ${f.riskHits ?? 0} 筆（${rate(f.actualRiskRate)}；歷史同期 ${rate(f.expectedRiskRate)}）、達目標價 ${f.targetHits ?? 0} 筆（${rate(f.actualTargetRate)}；歷史同期 ${rate(f.expectedTargetRate)}）${f.ordersForNext?.length ? `｜下一交易日預定：${f.ordersForNext.join('、')}` : ''}`, 'side-panel__note'));
@@ -2286,7 +2291,7 @@ async function renderAiSimulation(config) {
       }
       if (days.length > 1) {
         section.append(make('p', '每日淨值', 'side-panel__note'));
-        section.append(table(['日期', '淨值', '報酬', '0050', '持股數', '當日說明'], days.map((d) => [d.trading_date, money(d.nav), `${signed(d.return_pct)}%`, d.benchmark_return_pct == null ? '—' : `${signed(d.benchmark_return_pct)}%`, String(d.holdings.length), [d.feedback?.note, ...(d.feedback?.deferred ?? []), ...(d.feedback?.skipped ?? []), ...(d.feedback?.waitingForData ?? []), ...(d.feedback?.events ?? []).filter((e) => e.type !== 'DATA_GAP_WAIT').map((e) => `${e.symbol} 除權息入帳 ${money(e.amount)} 元`)].filter(Boolean).join('；') || '—']), 2));
+        section.append(table(['日期', '淨值', '報酬', '大盤', '0050（參考）', '持股數', '當日說明'], days.map((d) => [d.trading_date, money(d.nav), `${signed(d.return_pct)}%`, d.feedback?.market ? `${signed(d.feedback.market.returnPct)}%` : '—', d.benchmark_return_pct == null ? '—' : `${signed(d.benchmark_return_pct)}%`, String(d.holdings.length), [d.feedback?.note, ...(d.feedback?.deferred ?? []), ...(d.feedback?.skipped ?? []), ...(d.feedback?.waitingForData ?? []), ...(d.feedback?.events ?? []).filter((e) => e.type !== 'DATA_GAP_WAIT').map((e) => `${e.symbol} 除權息入帳 ${money(e.amount)} 元`)].filter(Boolean).join('；') || '—']), 2));
       }
     }
     empty.hidden = true;
@@ -2367,13 +2372,13 @@ function renderPerformanceOverview(loaded, { make, table, money, signed, today }
     shadowBox.replaceChildren();
     if (shadow.length) {
       const officialByClass = new Map(headline.map((e) => [e.run.account_class, e]));
-      shadowBox.append(table(['帳戶', '期間', '規則', '資料日', '報酬', '同期 0050', '超額', '正式回合同期', '最大回檔', '勝率'], shadow.map(({ run, days, summary }) => {
+      shadowBox.append(table(['帳戶', '期間', '規則', '資料日', '報酬', '同期大盤', '超額', '正式回合同期', '最大回檔', '勝率'], shadow.map(({ run, days, summary }) => {
         const official = officialByClass.get(run.account_class);
         // the official round over the shadow round's own sessions (from the shadow round's starting row)
         const base = official && days[0] ? official.days.filter((d) => d.trading_date <= days[0].trading_date).at(-1) : null;
         const officialLast = official?.days.at(-1);
         const same = base && officialLast && base !== officialLast ? (Number(officialLast.nav) / Number(base.nav) - 1) * 100 : null;
-        return [summary.label.replace('帳戶', ''), `${run.start_date} ～ ${run.end_date}`, `第 ${summary.rulesVersion ?? '—'} 版${run.rules?.levels ? `＋風險價 ${{ ATR_2: '收盤−2×ATR', ATR_3: '收盤−3×ATR' }[run.rules.levels.riskMethod] ?? run.rules.levels.riskMethod}` : ''}`, summary.lastDate ?? '—', pct(summary.returnPct), pct(summary.benchmarkReturnPct),
+        return [summary.label.replace('帳戶', ''), `${run.start_date} ～ ${run.end_date}`, `第 ${summary.rulesVersion ?? '—'} 版${run.rules?.levels ? `＋風險價 ${{ ATR_2: '收盤−2×ATR', ATR_3: '收盤−3×ATR' }[run.rules.levels.riskMethod] ?? run.rules.levels.riskMethod}` : ''}`, summary.lastDate ?? '—', pct(summary.returnPct), pct(summary.marketReturnPct),
           Number.isFinite(summary.excessPct) ? `${summary.excessPct >= 0 ? '+' : ''}${summary.excessPct.toFixed(2)} pt` : '—', pct(same),
           Number.isFinite(summary.maxDrawdownPct) ? `${summary.maxDrawdownPct.toFixed(2)}%` : '—', Number.isFinite(summary.winRatePct) ? `${summary.winRatePct.toFixed(0)}%` : '—'];
       }), 6));
@@ -2387,8 +2392,8 @@ function renderPerformanceOverview(loaded, { make, table, money, signed, today }
 
 // 投資績效儀表板 (home page, 2026-10-26, Stanley's request: 執行績效總覽
 // had too much to read at a glance): for the headline round only - each
-// account's return against 0050 in words and one big number, one chart
-// with both accounts and 0050, the stocks that made / lost the most, and
+// account's return against 大盤 in words and one big number, one chart
+// with both accounts, 大盤 and 0050, the stocks that made / lost the most, and
 // how many buys / sells. Everything else stays on 執行績效總覽.
 function renderPerformanceDashboard(loaded, { make, money, today }) {
   const box = { status: 'dash-status', accounts: 'dash-accounts', chart: 'dash-chart', movers: 'dash-movers', activity: 'dash-activity', body: 'dash-body', loading: 'dash-loading', empty: 'dash-empty' };
@@ -2412,19 +2417,19 @@ function renderPerformanceDashboard(loaded, { make, money, today }) {
     make('span', missed > 0 ? `⚠ 之後約 ${missed} 個交易日尚未更新（以週一至週五估算，未扣國定假日）` : '每個交易日收盤後更新', 'perf-status__item')
   );
 
-  // one card per account: the return, the verdict against 0050, four facts
+  // one card per account: the return, the verdict against 大盤 (0050 for reference), four facts
   box.accounts.replaceChildren();
   for (const { summary: s } of headline) {
     const card = make('section', null, 'dash-card');
     card.append(make('h3', s.label, 'dash-card__title'));
     const big = make('div', null, 'dash-card__headline');
-    big.append(make('span', pct(s.returnPct), `dash-card__return ${tone(s.returnPct)}`.trim()), make('span', `同期 0050 ${pct(s.benchmarkReturnPct)}`, 'dash-card__bench'));
+    big.append(make('span', pct(s.returnPct), `dash-card__return ${tone(s.returnPct)}`.trim()), make('span', `同期大盤 ${pct(s.marketReturnPct)}｜0050 參考 ${pct(s.benchmarkReturnPct)}`, 'dash-card__bench'));
     card.append(big);
     if (Number.isFinite(s.excessPct)) {
       const ahead = s.excessPct >= 0;
-      card.append(make('p', `${ahead ? '贏過' : '輸給'} 0050 ${Math.abs(s.excessPct).toFixed(2)} 個百分點`, `dash-card__verdict dash-card__verdict--${ahead ? 'ahead' : 'behind'}`));
+      card.append(make('p', `${ahead ? '贏過' : '輸給'}大盤 ${Math.abs(s.excessPct).toFixed(2)} 個百分點`, `dash-card__verdict dash-card__verdict--${ahead ? 'ahead' : 'behind'}`));
     } else {
-      card.append(make('p', s.started ? '尚無 0050 對照' : `待 ${s.startDate} 開盤成交`, 'dash-card__verdict'));
+      card.append(make('p', s.started ? '大盤資料待下次排程更新' : `待 ${s.startDate} 開盤成交`, 'dash-card__verdict'));
     }
     const pnl = Number.isFinite(s.nav) && Number.isFinite(s.initialCash) ? s.nav - s.initialCash : null;
     const facts = make('dl', null, 'dash-card__facts');
@@ -2442,9 +2447,9 @@ function renderPerformanceDashboard(loaded, { make, money, today }) {
     box.accounts.append(card);
   }
 
-  // both accounts and 0050 on one chart
+  // both accounts, 大盤 and 0050 on one chart
   box.chart.replaceChildren();
-  const keys = [...headline.map((e) => e.summary.accountClass), 'benchmark'];
+  const keys = [...headline.map((e) => e.summary.accountClass), 'market', 'benchmark'];
   const chart = buildLinesChart(mergeReturnSeries(headline), keys);
   if (chart) {
     const ns = 'http://www.w3.org/2000/svg';
@@ -2454,9 +2459,9 @@ function renderPerformanceDashboard(loaded, { make, money, today }) {
       if (text != null) n.textContent = text;
       return n;
     };
-    const lineClass = (key) => (key === 'benchmark' ? 'benchmark' : key === 'ETF' ? 'etf' : 'strategy');
+    const lineClass = (key) => ({ benchmark: 'benchmark', market: 'market', ETF: 'etf' })[key] ?? 'strategy';
     const figure = make('figure', null, 'sim-chart dash-chart');
-    const svg = node('svg', { viewBox: `0 0 ${chart.width} ${chart.height}`, role: 'img', 'aria-label': '各帳戶累積報酬與同期 0050 走勢' });
+    const svg = node('svg', { viewBox: `0 0 ${chart.width} ${chart.height}`, role: 'img', 'aria-label': '各帳戶累積報酬與同期大盤、0050 走勢' });
     for (const tick of chart.yTicks) {
       svg.append(node('line', { x1: chart.plot.left, x2: chart.plot.right, y1: tick.y, y2: tick.y, class: 'sim-chart__grid' }));
       svg.append(node('text', { x: chart.plot.left - 6, y: tick.y + 4, 'text-anchor': 'end', class: 'sim-chart__label' }, `${tick.value.toFixed(1)}%`));
@@ -2466,13 +2471,13 @@ function renderPerformanceDashboard(loaded, { make, money, today }) {
     chart.xLabels.forEach((label, i) => {
       if (i % every === 0 || i === chart.xLabels.length - 1) svg.append(node('text', { x: label.x, y: chart.height - 8, 'text-anchor': 'middle', class: 'sim-chart__label' }, label.text));
     });
-    // 0050 drawn first so the accounts sit on top
+    // 0050 and 大盤 drawn first so the accounts sit on top
     for (const key of [...keys].reverse()) {
       if (chart.lines[key]) svg.append(node('polyline', { points: chart.lines[key], class: `sim-chart__line sim-chart__line--${lineClass(key)}` }));
     }
     const legend = make('figcaption', null, 'sim-chart__legend');
     for (const key of keys) {
-      const label = key === 'benchmark' ? '同期 0050' : headline.find((e) => e.summary.accountClass === key).summary.label;
+      const label = { benchmark: '0050（參考）', market: '同期大盤' }[key] ?? headline.find((e) => e.summary.accountClass === key).summary.label;
       legend.append(make('span', null, `sim-chart__key sim-chart__key--${lineClass(key)}`), `${label}　`);
     }
     figure.append(svg, legend);
@@ -2525,6 +2530,69 @@ function renderPerformanceDashboard(loaded, { make, money, today }) {
   box.activity.append(renderPendingOrders(headline, make) ?? make('p', '下一交易日沒有預定買賣。', 'side-panel__note'));
 
   box.body.hidden = false;
+}
+
+// 投資組合 (2026-10-26, Stanley's request): per headline account, how much
+// is invested vs cash, each holding's weight as a bar, and a table with
+// return on cost and the distance to the platform's risk / target price.
+function renderPortfolioPage(loaded, { make, table, money }) {
+  const [box, body, loading, empty] = ['pf-accounts', 'pf-body', 'pf-loading', 'pf-empty'].map((id) => document.getElementById(id));
+  if (!box || !body || !loading || !empty) return;
+  const { headline } = pickHeadlineRuns(loaded);
+  loading.hidden = true;
+  if (!headline.length) { empty.hidden = false; return; }
+  const pct = (x, d = 2) => (Number.isFinite(x) ? `${x >= 0 ? '+' : ''}${x.toFixed(d)}%` : '—');
+  const share = (x) => (Number.isFinite(x) ? `${x.toFixed(1)}%` : '—');
+  box.replaceChildren();
+  for (const { summary, days, orders } of headline) {
+    const c = portfolioComposition(days.at(-1));
+    const panel = make('section', null, 'side-panel');
+    panel.append(make('h2', `${summary.label}　資料日 ${c.date ?? '—'}`));
+    const facts = make('div', null, 'kpi-grid kpi-grid--compact sim-kpi-grid');
+    for (const [label, value, sub] of [
+      ['帳戶淨值', `NT$${money(c.nav)}`, `持股 ${c.holdings.length} 檔`],
+      ['持股比例', share(c.investedPct), `現金 NT$${money(c.cash)}（${share(c.cashPct)}）`],
+      ['前三大持股', share(c.top3Pct), '占淨值比例，越高越集中'],
+      ['待成交委託', String(orders.filter((o) => o.status === 'PENDING').length), '下一交易日開盤']
+    ]) {
+      const tile = make('div', null, 'kpi-tile kpi-tile--static');
+      tile.append(make('span', label, 'kpi-tile__label'), make('span', value, 'kpi-tile__value'), make('span', sub, 'kpi-tile__sub'));
+      facts.append(tile);
+    }
+    panel.append(facts);
+
+    // weights as bars, cash last
+    const bars = make('div', null, 'pf-weights');
+    const scale = Math.max(1, ...c.holdings.map((h) => h.weightPct ?? 0), c.cashPct ?? 0);
+    const bar = (label, sub, weight, cls) => {
+      const row = make('div', null, 'dash-mover');
+      const name = make('span', null, 'dash-mover__label');
+      name.append(`${label} `, make('small', sub));
+      const track = make('span', null, 'dash-mover__track');
+      const fill = make('span', null, `dash-mover__bar ${cls}`);
+      fill.style.width = `${Math.max(1, ((weight ?? 0) / scale) * 100).toFixed(1)}%`;
+      track.append(fill);
+      row.append(name, track, make('span', share(weight), 'dash-mover__value'));
+      return row;
+    };
+    for (const h of c.holdings) bars.append(bar(h.name ?? h.symbol, `${h.symbol}・報酬 ${pct(h.returnPct, 1)}`, h.weightPct, 'pf-weights__bar'));
+    if (Number.isFinite(c.cashPct)) bars.append(bar('現金', '尚未投入', c.cashPct, 'pf-weights__bar pf-weights__bar--cash'));
+    panel.append(bars);
+
+    if (c.holdings.length) {
+      panel.append(table(['代號', '名稱', '權重', '股數', '成本', '收盤', '市值', '損益', '報酬', '買進日', '持有交易日', 'AI 名次', '距風險價', '距目標價'], c.holdings.map((h) => [
+        h.symbol, h.name ?? '—', share(h.weightPct), money(h.shares), money(h.cost), h.close == null ? '—' : String(h.close), money(h.marketValue),
+        Number.isFinite(h.pnl) ? `${h.pnl >= 0 ? '+' : ''}${Math.round(h.pnl).toLocaleString('zh-TW')}` : '—', pct(h.returnPct), h.buyDate ?? '—',
+        h.heldSessions == null ? '—' : String(h.heldSessions), h.rank == null ? '—' : String(h.rank), pct(h.toRiskPct, 1), pct(h.toTargetPct, 1)
+      ]), 7));
+    } else {
+      panel.append(make('p', '目前沒有持股。', 'side-panel__note'));
+    }
+    const pending = renderPendingOrders([{ summary, orders }], make);
+    if (pending) panel.append(pending);
+    box.append(panel);
+  }
+  body.hidden = false;
 }
 
 async function renderEnhancedIndexAllocation(config) {
@@ -2756,7 +2824,7 @@ async function renderOverviewPage() {
   const config = window.APP_CONFIG || {};
   // the home page (執行績效總覽) never waits for, or fails with, the Market Top 50 read
   if (config.SUPABASE_URL && config.SUPABASE_ANON_KEY) renderAiSimulation(config);
-  else for (const id of ['perf-loading', 'dash-loading']) { const l = document.getElementById(id); if (l) l.textContent = '尚未設定 Supabase 連線資訊。'; }
+  else for (const id of ['perf-loading', 'dash-loading', 'pf-loading']) { const l = document.getElementById(id); if (l) l.textContent = '尚未設定 Supabase 連線資訊。'; }
   if (!config.SUPABASE_URL || !config.SUPABASE_ANON_KEY) {
     el.overviewLoading.hidden = true;
     el.overviewError.textContent = '尚未設定 Supabase 連線資訊，請於 public/js/config.js 填入 SUPABASE_URL 與 SUPABASE_ANON_KEY。';

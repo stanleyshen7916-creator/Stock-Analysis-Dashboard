@@ -1871,3 +1871,16 @@ body {
   .dash-card__return { font-size: 2rem; }
   .dash-mover { grid-template-columns: minmax(0, 7rem) minmax(0, 1fr) 5rem; }
 }
+
+/* 大盤 (2026-10-26): the comparison line - solid dark; 0050 stays dashed grey for reference. */
+.sim-chart__line--market { stroke: #374151; stroke-width: 2; }
+.sim-chart__key--market { border-top: 2px solid #374151; }
+
+/* 投資組合 (2026-10-26): holding weights reuse the .dash-mover bar rows. */
+.pf-weights {
+  margin: 1rem 0;
+  max-width: 760px;
+}
+
+.pf-weights__bar { background: var(--color-accent); }
+.pf-weights__bar--cash { background: var(--color-muted); }

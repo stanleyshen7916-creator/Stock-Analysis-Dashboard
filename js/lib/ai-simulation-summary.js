@@ -1,12 +1,18 @@
 // AI 模擬投資 summary (2026-10-19, Stanley's request): turns the sim_runs /
 // sim_daily / sim_orders rows the AI 智慧選股 panel already reads into the
-// headline numbers (NAV, return vs 0050, realized / unrealized P&L, max
+// headline numbers (NAV, return vs 大盤 and 0050, realized / unrealized P&L, max
 // drawdown), the points of the return-vs-0050 line chart, and a staleness
 // check for active runs. Pure functions - no DOM, no fetch - so they can be
 // tested in node. Never fabricates a number: anything missing comes back null.
 
 const num = (v) => (v === null || v === undefined || v === '' || !Number.isFinite(Number(v)) ? null : Number(v));
 const sum = (values) => values.reduce((total, v) => total + v, 0);
+
+// 大盤 (2026-10-26, Stanley: the comparison is the market, 0050 only for
+// reference): the TAIEX total return index's return from the run's start,
+// written into sim_daily.feedback.market by scripts/ai-simulation.mjs.
+export const marketPctOf = (day) => num(day?.feedback?.market?.returnPct);
+export const benchmarkPctOf = (day) => num(day?.benchmark_return_pct);
 
 export function summarizeSimRun({ run, days = [], orders = [] }) {
   const ordered = [...days].sort((a, b) => String(a.trading_date).localeCompare(String(b.trading_date)));
@@ -16,7 +22,9 @@ export function summarizeSimRun({ run, days = [], orders = [] }) {
   const started = ordered.length > 1;
   const returnPct = started ? num(last?.return_pct) : null;
   const benchmarkReturnPct = started ? num(last?.benchmark_return_pct) : null;
-  const excessPct = returnPct !== null && benchmarkReturnPct !== null ? returnPct - benchmarkReturnPct : null;
+  const marketReturnPct = started ? marketPctOf(last) : null;
+  // excess = account minus 大盤; 0050 is shown for reference only
+  const excessPct = returnPct !== null && marketReturnPct !== null ? returnPct - marketReturnPct : null;
 
   const closed = orders.filter((o) => o.side === 'SELL' && o.status === 'FILLED' && num(o.detail?.pnl) !== null);
   const realizedPnl = closed.length ? sum(closed.map((o) => num(o.detail.pnl))) : 0;
@@ -52,6 +60,7 @@ export function summarizeSimRun({ run, days = [], orders = [] }) {
     cash: num(last?.cash),
     returnPct,
     benchmarkReturnPct,
+    marketReturnPct,
     excessPct,
     realizedPnl,
     unrealizedPnl,
@@ -89,9 +98,13 @@ export function periodReturn(days, periodStart) {
   const base = ordered.filter((d) => String(d.trading_date) < periodStart).at(-1) ?? ordered[0];
   if (base === last) return null;
   const returnPct = (num(last.nav) / num(base.nav) - 1) * 100;
-  const b0 = num(base.benchmark_return_pct), b1 = num(last.benchmark_return_pct);
-  const benchmarkPct = b0 !== null && b1 !== null ? ((1 + b1 / 100) / (1 + b0 / 100) - 1) * 100 : null;
-  return { from: base.trading_date, to: last.trading_date, returnPct, benchmarkPct, excessPct: benchmarkPct === null ? null : returnPct - benchmarkPct };
+  const compound = (pick) => {
+    const b0 = pick(base), b1 = pick(last);
+    return b0 !== null && b1 !== null ? ((1 + b1 / 100) / (1 + b0 / 100) - 1) * 100 : null;
+  };
+  const benchmarkPct = compound(benchmarkPctOf);
+  const marketPct = compound(marketPctOf);
+  return { from: base.trading_date, to: last.trading_date, returnPct, benchmarkPct, marketPct, excessPct: marketPct === null ? null : returnPct - marketPct };
 }
 
 // This week's (from Monday) and this month's (from the 1st) returns, as of `today` (YYYY-MM-DD).
@@ -99,15 +112,16 @@ export function weekAndMonthReturns(days, today) {
   return { week: periodReturn(days, mondayOf(today)), month: periodReturn(days, `${String(today).slice(0, 7)}-01`) };
 }
 
-// Sessions on which the account did better than 0050 (day-over-day), of all sessions after the start.
-export function sessionsBeatingBenchmark(days) {
+// Sessions on which the account did better than 大盤 (day-over-day; `pick`
+// reads the comparison's cumulative return from a row), of all sessions after the start.
+export function sessionsBeatingBenchmark(days, pick = marketPctOf) {
   const ordered = [...days].sort((a, b) => String(a.trading_date).localeCompare(String(b.trading_date)));
   let beat = 0, total = 0;
   for (let i = 1; i < ordered.length; i += 1) {
     const [p, c] = [ordered[i - 1], ordered[i]];
-    if ([p.nav, c.nav, p.benchmark_return_pct, c.benchmark_return_pct].some((v) => num(v) === null)) continue;
+    if ([num(p.nav), num(c.nav), pick(p), pick(c)].some((v) => v === null)) continue;
     const own = num(c.nav) / num(p.nav) - 1;
-    const bench = (1 + num(c.benchmark_return_pct) / 100) / (1 + num(p.benchmark_return_pct) / 100) - 1;
+    const bench = (1 + pick(c) / 100) / (1 + pick(p) / 100) - 1;
     total += 1;
     if (own > bench) beat += 1;
   }
@@ -155,13 +169,14 @@ export function taipeiToday(now = new Date()) {
   return new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Taipei', year: 'numeric', month: '2-digit', day: '2-digit' }).format(now);
 }
 
-// SVG coordinates for the cumulative-return chart (strategy vs 0050).
+// SVG coordinates for the cumulative-return chart (strategy vs 大盤, 0050 for reference).
 // Rows without a number are skipped for that line, never drawn as 0.
 export function buildReturnChart(days, options = {}) {
-  const chart = buildLinesChart(days, ['return_pct', 'benchmark_return_pct'], options);
+  const rows = days.map((d) => ({ ...d, market_return_pct: marketPctOf(d) }));
+  const chart = buildLinesChart(rows, ['return_pct', 'market_return_pct', 'benchmark_return_pct'], options);
   if (!chart) return null;
   const { lines, ...rest } = chart;
-  return { ...rest, strategy: lines.return_pct, benchmark: lines.benchmark_return_pct };
+  return { ...rest, strategy: lines.return_pct, market: lines.market_return_pct, benchmark: lines.benchmark_return_pct };
 }
 
 // SVG coordinates for several percentage lines over the same dated rows
@@ -200,15 +215,17 @@ export function buildLinesChart(rows, keys, { width = 640, height = 220, padLeft
 }
 
 // 投資績效儀表板 (2026-10-26, Stanley's request): the headline accounts'
-// cumulative returns and 0050 on one date axis, for buildLinesChart.
+// cumulative returns, 大盤 and 0050 on one date axis, for buildLinesChart.
 // `entries` = [{ summary, days }]; each account's line is keyed by its
-// account class, 0050 comes from the first account that has it on a date.
+// account class; market (大盤) and benchmark (0050) come from the first
+// account that has them on a date.
 export function mergeReturnSeries(entries) {
   const byDate = new Map();
   for (const { summary, days } of entries) {
     for (const d of days) {
-      const row = byDate.get(d.trading_date) ?? { trading_date: d.trading_date, benchmark: null };
+      const row = byDate.get(d.trading_date) ?? { trading_date: d.trading_date, market: null, benchmark: null };
       row[summary.accountClass] = num(d.return_pct);
+      if (row.market === null) row.market = marketPctOf(d);
       if (row.benchmark === null) row.benchmark = num(d.benchmark_return_pct);
       byDate.set(d.trading_date, row);
     }
@@ -255,5 +272,50 @@ export function tradeActivity(orders) {
     rankExit: byRule('R4'),
     cancelled: orders.filter((o) => o.status === 'CANCELLED').length,
     pending: orders.filter((o) => o.status === 'PENDING').length
+  };
+}
+
+// 投資組合 (2026-10-26, Stanley's request): what an account holds on its
+// latest row - each holding's weight in the NAV, return on cost, and how
+// far the close is from the platform's risk / target price - plus cash,
+// biggest weight first. Null fields stay null.
+export function portfolioComposition(day) {
+  const nav = num(day?.nav);
+  const cash = num(day?.cash);
+  const holdings = (Array.isArray(day?.holdings) ? day.holdings : []).map((h) => {
+    const marketValue = num(h.marketValue);
+    const cost = num(h.cost);
+    const pnl = num(h.pnl);
+    const close = num(h.lastClose);
+    const risk = num(h.risk);
+    const target = num(h.target);
+    return {
+      symbol: h.symbol,
+      name: h.name ?? null,
+      shares: num(h.shares),
+      cost,
+      close,
+      marketValue,
+      pnl,
+      returnPct: cost > 0 && pnl !== null ? (pnl / cost) * 100 : null,
+      weightPct: nav > 0 && marketValue !== null ? (marketValue / nav) * 100 : null,
+      buyDate: h.buyDate ?? null,
+      heldSessions: num(h.heldSessions),
+      rank: num(h.rank),
+      risk,
+      target,
+      toRiskPct: close > 0 && risk !== null ? (risk / close - 1) * 100 : null,
+      toTargetPct: close > 0 && target !== null ? (target / close - 1) * 100 : null
+    };
+  }).sort((a, b) => (b.weightPct ?? -1) - (a.weightPct ?? -1));
+  const top = holdings.slice(0, 3).map((h) => h.weightPct).filter((v) => v !== null);
+  return {
+    date: day?.trading_date ?? null,
+    nav,
+    cash,
+    cashPct: nav > 0 && cash !== null ? (cash / nav) * 100 : null,
+    investedPct: nav > 0 && cash !== null ? ((nav - cash) / nav) * 100 : null,
+    top3Pct: top.length ? sum(top) : null,
+    holdings
   };
 }
