@@ -5,6 +5,8 @@
 // check for active runs. Pure functions - no DOM, no fetch - so they can be
 // tested in node. Never fabricates a number: anything missing comes back null.
 
+import { isTradingDay } from './tw-market-calendar.js';
+
 const num = (v) => (v === null || v === undefined || v === '' || !Number.isFinite(Number(v)) ? null : Number(v));
 const sum = (values) => values.reduce((total, v) => total + v, 0);
 
@@ -149,17 +151,17 @@ export function pickHeadlineRuns(entries) {
   return { headline, shadow };
 }
 
-// Weekdays strictly after lastDate and strictly before today (both
+// Trading days strictly after lastDate and strictly before today (both
 // YYYY-MM-DD): sessions whose close has passed but that the run has not
-// processed. Weekday-based, so Taiwan market holidays count too - callers
-// label it as an estimate.
+// processed. Skips weekends and the known TWSE closures in
+// tw-market-calendar.js; years the calendar does not cover count weekdays
+// only (see calendarCovers).
 export function missedWeekdays(lastDate, today) {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(String(lastDate ?? '')) || !/^\d{4}-\d{2}-\d{2}$/.test(String(today ?? ''))) return null;
   const end = Date.parse(`${today}T00:00:00Z`);
   let count = 0;
   for (let t = Date.parse(`${lastDate}T00:00:00Z`) + 864e5; t < end; t += 864e5) {
-    const weekday = new Date(t).getUTCDay();
-    if (weekday !== 0 && weekday !== 6) count += 1;
+    if (isTradingDay(new Date(t).toISOString().slice(0, 10))) count += 1;
   }
   return count;
 }

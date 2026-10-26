@@ -2331,7 +2331,7 @@ function renderPerformanceOverview(loaded, { make, table, money, signed, today }
   status.append(
     make('span', `模擬資料日 ${latest ?? '—'}`, 'perf-status__item perf-status__item--strong'),
     make('span', active.length ? `進行中 ${active.length} 個帳戶${lastDates.length > 1 ? `（資料日不一致：${lastDates.join('、')}）` : ''}` : '目前沒有進行中的回合', 'perf-status__item'),
-    make('span', stale ? `⚠ 之後約 ${missed} 個交易日尚未處理（以週一至週五估算，未扣國定假日）；通常是正式機排程未執行，恢復後會依序補算` : '每個交易日收盤後由正式機排程更新', 'perf-status__item')
+    make('span', stale ? `⚠ 之後 ${missed} 個交易日尚未處理（依證交所休市日曆；颱風等臨時休市需手動補入）；通常是正式機排程未執行，恢復後會依序補算` : '每個交易日收盤後由正式機排程更新', 'perf-status__item')
   );
 
   headlineBox.replaceChildren();
@@ -2415,7 +2415,7 @@ function renderPerformanceDashboard(loaded, { make, money, today }) {
   box.status.replaceChildren(
     make('span', `資料日 ${latest ?? '—'}`, 'perf-status__item perf-status__item--strong'),
     make('span', `本輪 ${lead.startDate} ～ ${lead.endDate}，${lead.status === 'FINISHED' ? '已結束' : `進行中（第 ${lead.sessions} 個交易日）`}`, 'perf-status__item'),
-    make('span', missed > 0 ? `⚠ 之後約 ${missed} 個交易日尚未更新（以週一至週五估算，未扣國定假日）` : '每個交易日收盤後更新', 'perf-status__item')
+    make('span', missed > 0 ? `⚠ 之後 ${missed} 個交易日尚未更新（依證交所休市日曆）` : '每個交易日收盤後更新', 'perf-status__item')
   );
 
   // one card per account: the return, the verdict against 大盤 (0050 for reference), four facts
