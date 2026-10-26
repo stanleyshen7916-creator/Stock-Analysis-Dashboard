@@ -53,7 +53,7 @@ import { fetchRecentQuarterlyRows } from './lib/quarterly-financials-source.js';
 import { fetchLatestInstitutionalFlow } from './lib/institutional-flow-source.js';
 import { fetchRecentMaterialInformation } from './lib/material-information-source.js';
 import { createDashboardChart, renderDashboardChart, setSeriesVisibility } from './chart-render.js';
-import { summarizeSimRun, missedWeekdays, taipeiToday, buildReturnChart, buildLinesChart, mergeReturnSeries, symbolContributions, tradeActivity, portfolioComposition, weekAndMonthReturns, sessionsBeatingBenchmark, recentTrades, pickHeadlineRuns } from './lib/ai-simulation-summary.js';
+import { summarizeSimRun, missedWeekdays, taipeiToday, buildReturnChart, buildLinesChart, mergeReturnSeries, symbolContributions, tradeActivity, portfolioComposition, predictionVsActual, predictionSummary, weekAndMonthReturns, sessionsBeatingBenchmark, recentTrades, pickHeadlineRuns } from './lib/ai-simulation-summary.js';
 
 const SYMBOL_PATTERN = /^[0-9A-Za-z]{4,6}$/;
 const MA_SHORT_PERIOD = 5;
@@ -2238,6 +2238,7 @@ async function renderAiSimulation(config) {
     const headlineIds = renderPerformanceOverview(loaded, { make, table, money, signed, today });
     renderPerformanceDashboard(loaded, { make, table, money, today });
     renderPortfolioPage(loaded, { make, table, money });
+    renderPredictionCheck(loaded, { make, table });
     // Detail: every round folded, newest first (the headline round's tiles and chart are already above)
     for (const { run, days, orders, summary } of loaded) {
       const last = days.at(-1);
@@ -2530,6 +2531,69 @@ function renderPerformanceDashboard(loaded, { make, money, today }) {
   box.activity.append(renderPendingOrders(headline, make) ?? make('p', '下一交易日沒有預定買賣。', 'side-panel__note'));
 
   box.body.hidden = false;
+}
+
+// 預估與實際對照 (2026-10-26, Stanley's request): every filled buy of the
+// headline round, the algorithm's estimate at the decision against what
+// happened (predictionVsActual); per account the actual target / risk hit
+// rates against the calibration's expected rates.
+const PREDICTION_OUTCOME = {
+  TARGET: ['達目標價賣出', 'value--up'],
+  RISK: ['觸及風險價賣出', 'value--down'],
+  RANK: ['名次調整賣出', ''],
+  OTHER: ['其他賣出', ''],
+  OPEN: ['持有中', '']
+};
+function renderPredictionCheck(loaded, { make, table }) {
+  const box = document.getElementById('dash-predict');
+  if (!box) return;
+  const { headline } = pickHeadlineRuns(loaded);
+  box.replaceChildren();
+  if (!headline.length) return;
+  const pct = (x, d = 1) => (Number.isFinite(x) ? `${x >= 0 ? '+' : ''}${x.toFixed(d)}%` : '—');
+  const rate = (x) => (Number.isFinite(x) ? `${(x * 100).toFixed(0)}%` : '—');
+  const all = [];
+  const summaryRows = headline.map(({ summary, days, orders }) => {
+    const rows = predictionVsActual([{ summary, days, orders }]);
+    all.push(...rows);
+    const s = predictionSummary(rows, days.at(-1)?.feedback);
+    const leveled = rows.filter((r) => r.hasLevels);
+    const count = (exit) => leveled.filter((r) => r.exit === exit).length;
+    return [
+      summary.label.replace('帳戶', ''), String(s.buys), pct(s.meanSlippagePct, 2), `${s.withLevels} 筆`,
+      s.withLevels ? `${count('TARGET')} 筆（${rate(s.targetRate)}）／預估 ${rate(s.expectedTargetRate)}` : '—',
+      s.withLevels ? `${count('RISK')} 筆（${rate(s.riskRate)}）／預估 ${rate(s.expectedRiskRate)}` : '—',
+      s.withLevels ? `${pct(s.meanExpectedUpPct)}／${pct(s.meanExpectedDownPct)}` : '—',
+      pct(s.meanActualLeveledPct), pct(s.meanActualPct)
+    ];
+  });
+  box.append(table(['帳戶', '買進', '成交價對決策日收盤', '買進時有平台價位', '達目標價：實際／預估', '觸及風險價：實際／預估', '預估空間（目標／風險）', '有價位者實際報酬', '全部實際報酬'], summaryRows));
+
+  // findings the table makes visible: targets passed without a sale, risk prices broken without a sale
+  const passed = all.filter((r) => r.exit === 'OPEN' && r.progressPct >= 100);
+  const broken = all.filter((r) => r.exit === 'OPEN' && r.progressPct !== null && r.progressPct <= 0);
+  const notes = [];
+  if (passed.length) notes.push(`${passed.map((r) => r.name ?? r.symbol).join('、')} 目前已高於買進時的目標價，但沒有賣出：之後每晚更新的價位取代了原本的目標價。`);
+  if (broken.length) notes.push(`${broken.map((r) => r.name ?? r.symbol).join('、')} 目前已低於買進時的風險價，但仍持有：之後每晚更新的價位取代了原本的風險價。`);
+  const noLevels = all.filter((r) => !r.hasLevels).length;
+  if (noLevels) notes.push(`${all.length} 筆買進中有 ${noLevels} 筆在買進時沒有平台價位（風險報酬未達顯示門檻），無法對照預估。`);
+  for (const n of notes) box.append(make('p', n, 'side-panel__note'));
+
+  const details = make('details', null, 'sim-details');
+  details.append(make('summary', `逐筆對照（${all.length} 筆買進）`));
+  details.append(table(['帳戶', '股票', '買進日', '決策日收盤 → 成交價', '目標價（預估空間）', '風險價（預估空間）', '結果', '出場價／目前收盤', '實際報酬', '位置（風險價 0%～目標價 100%）'], all.map((r) => {
+    const [label] = PREDICTION_OUTCOME[r.exit] ?? [r.exit];
+    const outcome = r.exit === 'OPEN' && r.progressPct >= 100 ? '持有中（已超過目標價）' : r.exit === 'OPEN' && r.progressPct !== null && r.progressPct <= 0 ? '持有中（已低於風險價）' : label;
+    return [
+      r.account.replace('帳戶', ''), `${r.name ?? ''} ${r.symbol}`.trim(), r.buyDate ?? '—',
+      `${r.decisionClose ?? '—'} → ${r.fill ?? '—'}（${pct(r.slippagePct, 2)}）`,
+      r.target === null ? '—' : `${r.target}（${pct(r.expectedUpPct)}）`,
+      r.risk === null ? '—' : `${r.risk}（${pct(r.expectedDownPct)}）`,
+      outcome, r.exitPrice === null ? '—' : String(r.exitPrice), pct(r.actualPct),
+      r.progressPct === null ? '—' : `${r.progressPct.toFixed(0)}%`
+    ];
+  }), 8));
+  box.append(details);
 }
 
 // 投資組合 (2026-10-26, Stanley's request): per headline account, how much

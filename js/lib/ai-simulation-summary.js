@@ -319,3 +319,67 @@ export function portfolioComposition(day) {
     holdings
   };
 }
+
+// 預估與實際對照 (2026-10-26, Stanley's request: cross-check the performance
+// against the algorithm's own target / buy / sell estimates). One row per
+// filled buy of the given runs: the estimate made at the decision (decision
+// close, target and risk price) against what happened (fill at the next
+// open, then the target / risk / rank exit or the latest close). A buy is
+// closed by the first filled sell of the same symbol after it. Prices only;
+// fees and dividends are in the P&L elsewhere.
+const mean = (xs) => (xs.length ? sum(xs) / xs.length : null);
+const EXIT_OF_RULE = { R2: 'TARGET', R3: 'RISK', R4: 'RANK' };
+export function predictionVsActual(entries) {
+  const rows = [];
+  for (const { summary, days, orders } of entries) {
+    const sells = orders.filter((o) => o.side === 'SELL' && o.status === 'FILLED');
+    const used = new Set();
+    const lastHoldings = new Map((days.at(-1)?.holdings ?? []).map((h) => [h.symbol, h]));
+    const buys = orders.filter((o) => o.side === 'BUY' && o.status === 'FILLED').sort((a, b) => String(a.exec_date).localeCompare(String(b.exec_date)));
+    for (const b of buys) {
+      const sell = sells.find((s) => s.symbol === b.symbol && !used.has(s) && String(s.exec_date) >= String(b.exec_date));
+      if (sell) used.add(sell);
+      const fill = num(b.price);
+      const decisionClose = num(b.detail?.decisionClose);
+      const target = num(b.detail?.target);
+      const risk = num(b.detail?.risk);
+      const exitPrice = sell ? num(sell.price) : num(lastHoldings.get(b.symbol)?.lastClose);
+      const exit = sell ? (EXIT_OF_RULE[sell.detail?.rule] ?? 'OTHER') : 'OPEN';
+      const pct = (a, base) => (a !== null && base > 0 ? (a / base - 1) * 100 : null);
+      rows.push({
+        account: summary.label, symbol: b.symbol, name: b.detail?.name ?? null,
+        decisionDate: b.decision_date, buyDate: b.exec_date, exitDate: sell?.exec_date ?? null,
+        decisionClose, fill, slippagePct: pct(fill, decisionClose),
+        target, risk, hasLevels: target !== null && risk !== null,
+        expectedUpPct: pct(target, decisionClose), expectedDownPct: pct(risk, decisionClose),
+        exit, exitPrice, actualPct: pct(exitPrice, fill),
+        // where the latest / exit price sits between the risk (0%) and the target (100%) price
+        progressPct: target !== null && risk !== null && target > risk && exitPrice !== null ? ((exitPrice - risk) / (target - risk)) * 100 : null
+      });
+    }
+  }
+  return rows;
+}
+
+// The rows above summed per account against the run's own expectation
+// (sim_daily.feedback: expectedTargetRate / expectedRiskRate - the share of
+// past signals that reached the target / risk price within the same number
+// of sessions, from the parameter calibration).
+export function predictionSummary(rows, feedback = null) {
+  const leveled = rows.filter((r) => r.hasLevels);
+  const share = (xs, exit) => (xs.length ? xs.filter((r) => r.exit === exit).length / xs.length : null);
+  const avg = (xs) => mean(xs.filter((v) => v !== null));
+  return {
+    buys: rows.length,
+    meanSlippagePct: avg(rows.map((r) => r.slippagePct)),
+    withLevels: leveled.length,
+    targetRate: share(leveled, 'TARGET'),
+    riskRate: share(leveled, 'RISK'),
+    expectedTargetRate: num(feedback?.expectedTargetRate),
+    expectedRiskRate: num(feedback?.expectedRiskRate),
+    meanExpectedUpPct: avg(leveled.map((r) => r.expectedUpPct)),
+    meanExpectedDownPct: avg(leveled.map((r) => r.expectedDownPct)),
+    meanActualPct: avg(rows.map((r) => r.actualPct)),
+    meanActualLeveledPct: avg(leveled.map((r) => r.actualPct))
+  };
+}
